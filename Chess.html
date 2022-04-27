@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>象棋vs電腦</title>
+    <style type="text/css">
+    #canvas {
+        border: 1px solid #000;
+    }
+
+    .horizontal {
+        font-family: 微軟正黑體;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="uparea">
+        <div class="horizontal">
+            <button onclick="updatecanvaspos();chessboard.reset();">重置棋局</button>
+            <p>回合：</p>
+            <p id="rounddisplay"></p>
+        </div>
+    </div>
+    <div class="horizontal"><canvas id="canvas"></canvas></div>
+    <script type="text/javascript">
+    var fl = Math.floor;
+    class Pos {
+        static facings = [new Pos(1, 1), new Pos(1, 0), new Pos(1, -1), new Pos(0, -1),
+            new Pos(-1, -1), new Pos(-1, 0), new Pos(-1, 1), new Pos(0, 1)
+        ]; //八方向
+        static fourfacings = [new Pos(1, 0), new Pos(0, -1), new Pos(-1, 0), new Pos(0, 1)]; //四方向
+        static obfacings = [new Pos(1, 1), new Pos(1, -1), new Pos(-1, 1), new Pos(-1, -1)]; //斜四方向
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        add(x, y) {
+            if (y === undefined) {
+                return new Pos(this.x + x.x, this.y + x.y);
+            }
+            return new Pos(this.x + x, this.y + y);
+        }
+        sub(x, y) {
+            if (y === undefined) {
+                return new Pos(this.x - x.x, this.y - x.y);
+            }
+            return new Pos(this.x - x, this.y - y);
+        }
+        mul(m) {
+            return new Pos(this.x * m, this.y * m);
+        }
+        right() {
+            return new Pos(this.y, -this.x);
+        }
+        left() {
+            return new Pos(-this.y, this.x);
+        }
+        equal(pos) {
+            return this.x == pos.x && this.y == pos.y;
+        }
+        static fromXYObj(obj) {
+            return new Pos(obj["x"], obj["y"])
+        }
+    }
+    class ChessColor {
+        static INVALID = -1;
+        static NOTHING = 0;
+        static RED = 1;
+        static BLACK = 2;
+        static reverse = function(color) {
+            if (color == 1) return 2;
+            if (color == 2) return 1;
+            return color;
+        }
+    }
+    class ChessType {
+        static INVALID = -1;
+        static NOTHING = 0;
+        static PAWN = 1; //兵、卒
+        static CANNON = 2; //炮、砲
+        static ROOK = 3; //俥、車
+        static HORSE = 4; //傌、馬
+        static JUMBO = 5; //相、象
+        static KNIGHT = 6; //仕、士
+        static GENERAL = 7; //帥、將
+    }
+    class Chess {
+        constructor(color, type) {
+            this.color = color;
+            this.type = type;
+        }
+        word() {
+            if (this.color > 0 && this.type > 0 && this.color < 3 && this.type < 8) {
+                return Chess.words[this.type - 1][this.color - 1];
+            }
+            return "";
+        }
+        getcolor() {
+            return Chess.colors[this.color];
+        }
+        copy() {
+            return new Chess(this.color, this.type);
+        }
+        static STARTPOS = [null, [new Pos(0, 3), new Pos(2, 3), new Pos(4, 3)], new Pos(1, 2), new Pos(0, 0), new Pos(1, 0), new Pos(2, 0), new Pos(3, 0), new Pos(4, 0)];
+        static words = [
+            ["兵", "卒"],
+            ["炮", "砲"],
+            ["俥", "車"],
+            ["傌", "馬"],
+            ["相", "象"],
+            ["仕", "士"],
+            ["帥", "將"]
+        ];
+        static colors = ["#E3CF57", "#FF0000", "#000000"];
+        static NOTHING = new Chess(0, 0);
+        static INVALID = new Chess(-1, -1);
+
+    }
+    class Chessboard {
+        constructor(main) {
+            this.main = main;
+            this.reset();
+        }
+        copy() {
+            let r = new Chessboard(false);
+            r.array = this.array.reduce((arr, v) => { arr[arr.length] = v.concat(); return arr; }, new Array());
+            return r;
+        }
+        undo(count) {
+            if ((typeof count) != "number") {
+                count = 1;
+            }
+            if (this.actions.length > 0) {
+                let action = this.actions[this.actions.length - 1];
+                this.actions.length = this.actions.length - 1;
+                if (action["eaten"].type == ChessType.GENERAL) {
+                    this.status = 0;
+                }
+                let from = action["from"];
+                let to = action["to"];
+                let eaten = action["eaten"];
+                let moved = this.get(to);
+                this.array[from.x][from.y] = moved;
+                this.array[to.x][to.y] = eaten;
+                this.roundchange();
+                if (count >= 2) {
+                    this.undo(count - 1);
+                } else {
+                    this.selected = null;
+                    this.selecteds = new Array();
+                }
+            }
+        }
+        reset() {
+            this.array = new Array();
+            this.round = ChessColor.RED;
+            this.status = 0;
+            this.selected = null;
+            this.selecteds = new Array();
+            this.actions = new Array();
+            this.roundcount = 1;
+            for (let x = 0; x < 9; x++) {
+                let l = new Array();
+                for (let y = 0; y < 10; y++) {
+                    l[y] = Chess.NOTHING;
+                }
+                this.array[x] = l;
+            }
+            for (let i = 1; i < 8; i++) {
+                let pos = Chess.STARTPOS[i];
+                if (i == 1) {
+                    for (let j = 0; j < pos.length; j++) {
+                        let p = pos[j];
+                        this.array[p.x][p.y] = new Chess(ChessColor.BLACK, i);
+                        this.array[8 - p.x][p.y] = new Chess(ChessColor.BLACK, i);
+                        this.array[p.x][9 - p.y] = new Chess(ChessColor.RED, i);
+                        this.array[8 - p.x][9 - p.y] = new Chess(ChessColor.RED, i);
+                    }
+                } else {
+                    this.array[pos.x][pos.y] = new Chess(ChessColor.BLACK, i);
+                    this.array[8 - pos.x][pos.y] = new Chess(ChessColor.BLACK, i);
+                    this.array[pos.x][9 - pos.y] = new Chess(ChessColor.RED, i);
+                    this.array[8 - pos.x][9 - pos.y] = new Chess(ChessColor.RED, i);
+                }
+            }
+            if (this.main) {
+                document.getElementById("rounddisplay").innerHTML = (this.round == ChessColor.RED ? "紅方(玩家)" : "黑方(電腦)") + " 第" + this.roundcount + "回合";
+            }
+        }
+        isvalid(pos) {
+            return -1 < pos.x && pos.x < 9 && -1 < pos.y && pos.y < 10
+        }
+        get(pos) {
+            if (this.isvalid(pos)) return this.array[pos.x][pos.y];
+            return Chess.INVALID;
+        }
+        inhome(pos, color) {
+            return (color == ChessColor.RED && pos.y > 4) || (color == ChessColor.BLACK && pos.y < 5);
+        }
+        incastle(pos, color) {
+            return (pos.x > 2 && pos.x < 6) && ((color == ChessColor.RED && pos.y > 6) || (color == ChessColor.BLACK && pos.y < 3));
+        }
+        findfirst(color, type) {
+            for (let x = 0; x < 9; x++) {
+                for (let y = 0; y < 10; y++) {
+                    if (this.array[x][y].color == color && (type === undefined || this.array[x][y].type == type)) {
+                        return new Pos(x, y);
+                    }
+                }
+            }
+            return null;
+        }
+        findall(color, type) {
+            let r = new Array();
+            for (let x = 0; x < 9; x++) {
+                for (let y = 0; y < 10; y++) {
+                    if (this.array[x][y].color == color && (type === undefined || this.array[x][y].type == type)) {
+                        r[r.length] = new Pos(x, y);
+                    }
+                }
+            }
+            return r;
+        }
+        getrange(pos, atkself) {
+            let chess = this.array[pos.x][pos.y];
+            let r = new Array();
+            let home = this.inhome(pos, chess.color);
+            switch (chess.type) {
+                case ChessType.PAWN: //兵、卒
+                    let dy = chess.color == ChessColor.RED ? -1 : 1;
+                    if (home) {
+                        r[0] = pos.add(0, dy);
+                    } else {
+                        r[0] = pos.add(0, dy);
+                        r[1] = pos.add(1, 0);
+                        r[2] = pos.add(-1, 0);
+                    }
+                    break;
+                case ChessType.CANNON: //炮、砲
+                    for (let i = 0; i < 4; i++) {
+                        let facing = Pos.fourfacings[i];
+                        let target = pos.add(facing);
+                        while (this.get(target).color == ChessColor.NOTHING) {
+                            r[r.length] = target;
+                            target = target.add(facing);
+                        }
+                        target = target.add(facing);
+                        while (this.get(target).color != ChessColor.INVALID) {
+                            if (this.get(target).color != ChessColor.NOTHING) {
+                                r[r.length] = target;
+                                break;
+                            }
+                            target = target.add(facing);
+                        }
+                    }
+                    break;
+                case ChessType.ROOK: //俥、車
+                    for (let i = 0; i < 4; i++) {
+                        let facing = Pos.fourfacings[i];
+                        let target = pos.add(facing);
+                        while (this.get(target).color == ChessColor.NOTHING) {
+                            r[r.length] = target;
+                            target = target.add(facing);
+                        }
+                        if (this.get(target).color == ChessColor.reverse(chess.color)) {
+                            r[r.length] = target;
+                        }
+                    }
+                    break;
+                case ChessType.HORSE: //傌、馬
+                    for (let i = 0; i < 4; i++) {
+                        let facing = Pos.fourfacings[i];
+                        let target = pos.add(facing);
+                        if (this.get(target).color == ChessColor.NOTHING) {
+                            r[r.length] = target.add(facing).add(facing.left());
+                            r[r.length] = target.add(facing).add(facing.right());
+                        }
+                    }
+                    break;
+                case ChessType.JUMBO: //相、象
+                    for (let i = 0; i < 4; i++) {
+                        let facing = Pos.obfacings[i];
+                        let target = pos.add(facing);
+                        if (this.get(target).color == ChessColor.NOTHING) {
+                            let to = target.add(facing);
+                            if (this.inhome(to, chess.color)) {
+                                r[r.length] = to;
+                            }
+                        }
+                    }
+                    break;
+                case ChessType.KNIGHT: //仕、士
+                    for (let i = 0; i < 4; i++) {
+                        let facing = Pos.obfacings[i];
+                        let target = pos.add(facing);
+                        if (this.incastle(target, chess.color)) {
+                            r[r.length] = target;
+                        }
+                    }
+                    break;
+                case ChessType.GENERAL: //帥、將
+                    for (let i = 0; i < 4; i++) {
+                        let facing = Pos.fourfacings[i];
+                        let target = pos.add(facing);
+                        if (this.incastle(target, chess.color)) {
+                            r[r.length] = target;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            let danger = 0; //檢查王對王
+            let ec = ChessColor.reverse(chess.color);
+            let pos0 = this.findfirst(ec, ChessType.GENERAL); //敵人的GENERAL
+            let pos1 = this.findfirst(chess.color, ChessType.GENERAL); //我方的GENERAL
+            if (pos0 && pos1 && pos0.x >= 0 && pos1.x >= 0) {
+                let start = Math.min(pos1.y, pos0.y);
+                let end = Math.max(pos1.y, pos0.y);
+                if (chess.type == ChessType.GENERAL) {
+                    danger = 1;
+                    for (let y = start + 1; y < end; y++) {
+                        if (this.get(new Pos(pos0.x, y)).color != ChessColor.NOTHING) {
+                            danger = 0;
+                        }
+                    }
+                } else if (pos1.x == pos0.x && pos0.x == pos.x) {
+                    let c = 0;
+                    for (let y = start + 1; y < end; y++) {
+                        if (this.get(new Pos(pos0.x, y)).color != ChessColor.NOTHING) {
+                            c = c + 1;
+                        }
+                    }
+                    if (c <= 1) {
+                        danger = 1;
+                    }
+                }
+            }
+            //檢查合理性
+            let l = new Array();
+            for (let i = 0; i < r.length; i++) {
+                if ((atkself || this.get(r[i]).color != chess.color) && this.isvalid(r[i])) {
+                    if (danger) {
+                        if (chess.type == ChessType.GENERAL) {
+                            if (pos0.x == r[i].x) continue;
+                        } else if (pos0.x != r[i].x) continue;
+                    }
+                    l[l.length] = r[i];
+                }
+            }
+            return l;
+        }
+        move(from, to) {
+            if (this.isvalid(from) && this.isvalid(to)) {
+                if (this.array[to.x][to.y].type == ChessType.GENERAL) {
+                    this.status = ChessColor.reverse(this.array[to.x][to.y].color);
+                }
+                this.actions[this.actions.length] = { "from": from, "to": to, "eaten": this.array[to.x][to.y] };
+                this.array[to.x][to.y] = this.array[from.x][from.y];
+                this.array[from.x][from.y] = Chess.NOTHING;
+                if (this.main && this.status == 0 && this.array[to.x][to.y].type > 0) {
+                    let activecount = 0;
+                    for (let i = 1; i <= 4; i++) {
+                        if (this.findfirst(ChessColor.RED, i) || this.findfirst(ChessColor.BLACK, i)) {
+                            activecount++;
+                        }
+                    }
+                    if (activecount == 0) {
+                        this.status = -1;
+                    }
+                    if (activecount == 1) {
+                        if (this.findfirst(ChessColor.RED, 2) && this.findall(ChessColor.RED).length < 3) {
+                            this.status = -1;
+                        } else if (this.findfirst(ChessColor.BLACK, 2) && this.findall(ChessColor.BLACK).length < 3) {
+                            this.status = -1;
+                        }
+                    }
+                }
+            }
+        }
+        roundchange() {
+            this.round = ChessColor.reverse(this.round);
+            if (this.round == ChessColor.RED) this.roundcount++;
+            if (this.main) {
+                document.getElementById("rounddisplay").innerHTML = (this.round == ChessColor.RED ? "紅方(玩家)" : "黑方(電腦)") + " 第" + this.roundcount + "回合";
+            }
+        }
+    }
+    var chessboard = new Chessboard(true);
+    let canvaspos = {
+        x: 0,
+        y: 0,
+    };
+    var xsize = 0;
+    var ysize = 0;
+    var bsize = 0;
+    var ctx;
+
+    function updatecanvaspos() { //修正排版
+        let size1 = document.body.clientWidth;
+        let size2 = window.screen.height - 160 - uparea.clientHeight;
+        bsize = Math.min(size1 / 18, size2 / 20);
+        canvas.width = xsize = fl(bsize * 18);
+        canvas.height = ysize = fl(bsize * 20);
+        if (size1 / 18 < size2 / 20) {
+            canvaspos.x = 0;
+            canvaspos.y = fl((size2 - ysize) / 2) + uparea.clientHeight;
+        } else {
+            canvaspos.x = fl((size1 - xsize) / 2);
+            canvaspos.y = uparea.clientHeight;
+        }
+        ctx = canvas.getContext("2d");
+        ctx.lineWidth = fl(bsize / 10);
+        ctx.textAlign = 'center';
+    }
+    updatecanvaspos();
+    var mouse = {
+        x: 0,
+        y: 0,
+    };
+    window.addEventListener('mousemove', (event) => {
+        mouse.x = event.pageX - canvaspos.x;
+        mouse.y = event.pageY - canvaspos.y;
+    });
+
+    function drawline(x1, y1, x2, y2) { //畫直線
+        ctx.beginPath();
+        ctx.moveTo(fl(x1), fl(y1));
+        ctx.lineTo(fl(x2), fl(y2));
+        ctx.stroke();
+    }
+
+    function drawcircle(x, y, r) {
+        ctx.beginPath();
+        ctx.arc(fl(x), fl(y), fl(r), 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fill();
+    }
+
+    function fillrect(x, y, w, h) {
+        ctx.beginPath();
+        ctx.rect(fl(x), fl(y), fl(w), fl(h));
+        ctx.fill();
+    }
+
+    canvas.onclick = (event) => onmouseclick();
+
+    function onmouseclick() {
+        if (chessboard.status == 0 && chessboard.round == ChessColor.RED) {
+            let pos = new Pos(fl(mouse.x / bsize * 0.5), fl(mouse.y / bsize * 0.5));
+            let chess = chessboard.get(pos);
+            if (chess.color == chessboard.round) {
+                if (chessboard.selected && chessboard.selected.equal(pos)) {
+                    chessboard.selected = null;
+                    chessboard.selecteds = new Array();
+                } else {
+                    chessboard.selected = pos;
+                    chessboard.selecteds = chessboard.getrange(pos);
+                }
+            } else if (chessboard.selected) {
+                for (let i = 0; i < chessboard.selecteds.length; i++) {
+                    let p = chessboard.selecteds[i];
+                    if (pos.equal(p)) {
+                        chessboard.move(chessboard.selected, pos);
+                        chessboard.selected = null;
+                        chessboard.selecteds = new Array();
+                        if (chessboard.status == 0) {
+                            chessboard.roundchange();
+                            window.setTimeout(() => runCOMPUTER(ChessColor.BLACK, ChessColor.RED, chessboard), 1000);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    function attackarray(b, c, atkself, defender) {
+        let worth = [0, 5, 18, 20, 15, 10, 8, 10000];
+        let r = new Array();
+        for (let x = 0; x < 9; x++) {
+            let l = new Array();
+            for (let y = 0; y < 10; y++) {
+                l[y] = null;
+            }
+            r[x] = l;
+        }
+        let selfs = b.findall(c);
+        for (let i = 0; i < selfs.length; i++) {
+            let range = b.getrange(selfs[i], atkself);
+            let v = worth[b.get(selfs[i]).type];
+            for (let j = 0; j < range.length; j++) {
+                let p = range[j];
+                if (r[p.x][p.y] == null) {
+                    r[p.x][p.y] = { min: v, max: v };
+                } else {
+                    r[p.x][p.y].min = Math.min(r[p.x][p.y].min, v);
+                    r[p.x][p.y].max = Math.max(r[p.x][p.y].max, v);
+                }
+            }
+        }
+        return r;
+    }
+
+    function runCOMPUTER(computer, player, mainboard) {
+        let worth = [0, 5, 18, 20, 15, 10, 8, 10000];
+        let board = mainboard.copy();
+        let selfs = board.findall(computer);
+        let moves = new Array();
+        for (let i = 0; i < selfs.length; i++) {
+            let range = board.getrange(selfs[i]);
+            for (let j = 0; j < range.length; j++) {
+                moves[moves.length] = { "from": selfs[i], "to": range[j] };
+            }
+        }
+        let count = moves.length;
+        let scores = new Array();
+        for (let i = 0; i < count; i++) {
+            let score = 0.0;
+            let move = moves[i];
+            //
+            let eaten = board.get(move["to"]);
+            let self = board.get(move["from"]);
+            board.move(move["from"], move["to"]);
+            let myattack = attackarray(board, computer);
+            let mydefend = attackarray(board, computer, true);
+            let enemyattack = attackarray(board, player);
+            let enemydefend = attackarray(board, player, true);
+            if (eaten.color == player) {
+                score += worth[eaten.type] * 3;
+            }
+            let maxdamage = 0;
+            let maxget = 0;
+            let maxdefended = 0;
+            for (let x = 0; x < 9; x++) {
+                for (let y = 0; y < 10; y++) {
+                    if (myattack[x][y] != null && enemydefend[x][y] != null) {
+                        maxdefended = Math.max(maxdefended, worth[board.get(new Pos(x, y)).type]);
+                    }
+                }
+            }
+            for (let x = 0; x < 9; x++) {
+                for (let y = 0; y < 10; y++) {
+                    let pos = new Pos(x, y);
+                    if (enemyattack[x][y] != null) {
+                        if (board.get(pos).type == ChessType.GENERAL) {
+                            score -= 100000000.0;
+                        }
+                        if (mydefend[x][y] == null) {
+                            maxdamage = Math.max(maxdamage, worth[board.get(pos).type]);
+                            score -= 0.1 * Math.sqrt(worth[board.get(pos).type]);
+                        } else {
+                            maxdamage = Math.max(maxdamage, worth[board.get(pos).type] - enemyattack[x][y].min);
+                        }
+                    }
+                    if (myattack[x][y] != null && maxdefended > worth[board.get(pos).type]) {
+                        if (enemydefend[x][y] == null) {
+                            if (board.get(pos).type == ChessType.GENERAL) {
+                                score += 1000000.0;
+                            }
+                            maxget = Math.max(maxget, worth[board.get(pos).type]);
+                            score += 0.1 * Math.sqrt(worth[board.get(pos).type]);
+                        } else {
+                            maxget = Math.max(maxget, worth[board.get(pos).type] - myattack[x][y].min);
+                        }
+                    }
+                }
+            }
+            score = score + maxget - maxdamage * 3.0;
+            //
+            board.undo();
+            scores[i] = score;
+        }
+        let targets = [moves[fl(Math.random() * moves.length)]];
+        let maxscore = scores[0] - 100.0;
+        for (let i = 0.0; i < count; i++) {
+            if (scores[i] > maxscore) {
+                maxscore = scores[i];
+                targets = [moves[i]];
+            }
+            if (scores[i] == maxscore) {
+                targets[targets.length] = moves[i];
+            }
+        }
+        let target = targets[fl(Math.random() * targets.length)];
+        mainboard.move(target["from"], target["to"]);
+        //結尾
+        if (mainboard.status == 0) {
+            mainboard.roundchange();
+        }
+    }
+
+    function refresh() { //刷新畫面
+        ctx.fillStyle = "#E3CF57";
+        ctx.strokeStyle = "#000000";
+        fillrect(0, 0, xsize, ysize);
+        if (chessboard.actions.length > 0) {
+            let lastaction = chessboard.actions[chessboard.actions.length - 1];
+            ctx.fillStyle = "#888888";
+            let [x, y] = [bsize * (2 * lastaction["from"].x + 1), bsize * (2 * lastaction["from"].y + 1)];
+            fillrect(x - bsize, y - bsize, 2 * bsize, 2 * bsize);
+            [x, y] = [bsize * (2 * lastaction["to"].x + 1), bsize * (2 * lastaction["to"].y + 1)];
+            fillrect(x - bsize, y - bsize, 2 * bsize, 2 * bsize);
+        }
+        let lw = ctx.lineWidth;
+        let blw = 1.5 * lw
+        let slw = 0.5 * lw
+        drawline(bsize - blw, bsize - lw, xsize - bsize + blw, bsize - lw); //外框
+        drawline(bsize - lw, bsize - blw, bsize - lw, ysize - bsize + blw);
+        drawline(xsize - bsize + lw, bsize - blw, xsize - bsize + lw, ysize - bsize + blw);
+        drawline(bsize - blw, ysize - bsize + lw, xsize - bsize + blw, ysize - bsize + lw);
+        drawline(bsize + slw, bsize + lw, xsize - bsize - slw, bsize + lw); //內框
+        drawline(bsize + lw, bsize + slw, bsize + lw, ysize - bsize - slw);
+        drawline(xsize - bsize - lw, bsize + slw, xsize - bsize - lw, ysize - bsize - slw);
+        drawline(bsize + slw, ysize - bsize - lw, xsize - bsize - slw, ysize - bsize - lw);
+        for (let i = 1; i < 9; i++) { //橫線
+            drawline(bsize + lw, bsize * (2 * i + 1), xsize - bsize - lw, bsize * (2 * i + 1));
+        }
+        for (let i = 1; i < 8; i++) { //直線
+            drawline(bsize * (2 * i + 1), bsize + lw, bsize * (2 * i + 1), bsize * 9);
+            drawline(bsize * (2 * i + 1), ysize - bsize * 9, bsize * (2 * i + 1), ysize - bsize - lw);
+        }
+        let mul = 5;
+        let symbols = [
+            [1, 1],
+            [1, -1],
+            [-1, -1],
+            [-1, 1]
+        ];
+        for (let i = 0; i < 4; i++) { //叉叉
+            let s = symbols[i];
+            drawline(xsize / 2 + bsize * 2 * s[0], ysize / 2 + bsize * 5 * s[1], xsize / 2 - bsize * 2 * s[0], ysize / 2 + bsize * 9 * s[1]);
+        }
+        let drawright = function(x, y) {
+            for (let i = 0; i < 2; i++) {
+                let s = symbols[i];
+                drawline(x + 1.5 * lw * s[0], y + 2 * lw * s[1], x + (2 + mul) * lw * s[0], y + 2 * lw * s[1]);
+                drawline(x + 2 * lw * s[0], y + 1.5 * lw * s[1], x + 2 * lw * s[0], y + (2 + mul) * lw * s[1]);
+            }
+        }
+        let drawleft = function(x, y) {
+            for (let i = 2; i < 4; i++) {
+                let s = symbols[i];
+                drawline(x + 1.5 * lw * s[0], y + 2 * lw * s[1], x + (2 + mul) * lw * s[0], y + 2 * lw * s[1]);
+                drawline(x + 2 * lw * s[0], y + 1.5 * lw * s[1], x + 2 * lw * s[0], y + (2 + mul) * lw * s[1]);
+            }
+        }
+        let drawall = function(x, y) {
+            for (let i = 0; i < 4; i++) {
+                let s = symbols[i];
+                drawline(x + 1.5 * lw * s[0], y + 2 * lw * s[1], x + (2 + mul) * lw * s[0], y + 2 * lw * s[1]);
+                drawline(x + 2 * lw * s[0], y + 1.5 * lw * s[1], x + 2 * lw * s[0], y + (2 + mul) * lw * s[1]);
+            }
+        }
+        let poss = [new Pos(2, 3), new Pos(1, 2), new Pos(4, 3)];
+        for (let i = 0; i < 3; i++) {
+            let pos = poss[i];
+            drawall(bsize * (2 * pos.x + 1), bsize * (2 * pos.y + 1));
+            drawall(bsize * (2 * pos.x + 1), bsize * (19 - 2 * pos.y));
+            if (i < 2) {
+                drawall(bsize * (17 - 2 * pos.x), bsize * (2 * pos.y + 1));
+                drawall(bsize * (17 - 2 * pos.x), bsize * (19 - 2 * pos.y));
+            }
+        }
+        if (true) {
+            drawright(bsize + lw, bsize * 7);
+            drawright(bsize + lw, bsize * 13);
+            drawleft(bsize * 17 - lw, bsize * 7);
+            drawleft(bsize * 17 - lw, bsize * 13);
+        }
+        ctx.font = fl(bsize) + 'px 標楷體'; // 文字字號、字型
+        for (let x = 0; x < 9; x++) {
+            for (let y = 0; y < 10; y++) {
+                let chess = chessboard.array[x][y];
+                if (chess.type > 0) {
+                    let center = new Pos(bsize * (2 * x + 1), bsize * (2 * y + 1));
+                    let color = chess.getcolor();
+                    ctx.fillStyle = "#F0E68C";
+                    ctx.strokeStyle = "#000000";
+                    drawcircle(center.x, center.y, bsize - 1);
+                    ctx.strokeStyle = color;
+                    drawcircle(center.x, center.y, bsize - 1 - 2 * lw);
+                    ctx.fillStyle = color;
+                    ctx.fillText(chess.word(), center.x, center.y + fl(bsize / 4));
+                }
+            }
+        }
+        let drawselect = function(x, y) {
+            for (let i = 0; i < 4; i++) {
+                let s = symbols[i];
+                drawline(x + (0.5 * lw - bsize) * s[0], y + (1 * lw - bsize) * s[1], x + ((1 + mul) * lw - bsize) * s[0], y + (1 * lw - bsize) * s[1]);
+                drawline(x + (1 * lw - bsize) * s[0], y + (0.5 * lw - bsize) * s[1], x + (1 * lw - bsize) * s[0], y + ((1 + mul) * lw - bsize) * s[1]);
+            }
+        }
+        if (chessboard.selected) {
+            let pos = chessboard.selected;
+            ctx.strokeStyle = "#00FFFF";
+            drawselect(bsize * (2 * pos.x + 1), bsize * (2 * pos.y + 1));
+            ctx.strokeStyle = "#00FF00";
+            for (let i = 0; i < chessboard.selecteds.length; i++) {
+                let p = chessboard.selecteds[i];
+                drawselect(bsize * (2 * p.x + 1), bsize * (2 * p.y + 1));
+            }
+        }
+        ctx.font = fl(bsize * 3) + 'px 標楷體'; // 文字字號、字型
+        ctx.fillStyle = "#00FF00";
+        if (chessboard.status == ChessColor.RED) {
+            ctx.fillText("你贏了", xsize / 2, ysize / 2);
+        }
+        if (chessboard.status == ChessColor.BLACK) {
+            ctx.fillText("你輸了", xsize / 2, ysize / 2);
+        }
+        if (chessboard.status == -1) {
+            ctx.fillText("和局", xsize / 2, ysize / 2);
+        }
+    }
+    window.setInterval(refresh, 100);
+    </script>
+</body>
+
+</html>
