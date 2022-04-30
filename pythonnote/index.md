@@ -1,9 +1,7 @@
 ---
-title: 小橘子的編程筆記-Python篇
-tags: programming,Python
+title: 小橘子的Python筆記
+tags: Python
 ---
-
-# 小橘子的編程筆記-Python篇
 
 ## 語法
 - [基礎語法](basic)
