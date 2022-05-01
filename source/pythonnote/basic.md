@@ -63,14 +63,14 @@ b = 2
 ```python
 變數名稱 = 另一個變數名稱
 ```
-<details><summary>注：</summary>
+:::spoiler 注：
 這種寫法在資料值可變時會使兩個變數代表同個值，使其連動
 可以用這樣的寫法來做淺複製(詳細的"變數與型別"再說)
 
 ```python
 變數名稱 = type(另一個變數名稱)(另一個變數名稱)
 ```
-</details>
+:::
 範例：
 
 ```python
@@ -84,12 +84,12 @@ num = 1
 且不能和保留字重複
 也建議不要和內建的函數、常數、類型重名(可能會有非預期的結果)
 不能以數字開頭(可以包含數字)，不能包含計算符號(加減乘除之類的符號)
-<details><summary>保留字</summary>
+:::spoiler 保留字
 False、None、True、and、as、assert、async、await、break、class、continue、def、del、elif、else、except、finally、for、from、global、if、import、in、is、lambda、nonlocal、not、or、pass、raise、return、try、while、with、yield
-</details>
-<details><summary>內建函數、常數、類型名稱</summary>
+:::
+:::spoiler 內建函數、常數、類型名稱
 ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOError、BrokenPipeError、BufferError、BytesWarning、ChildProcessError、ConnectionAbortedError、ConnectionError、ConnectionRefusedError、ConnectionResetError、DeprecationWarning、EOFError、Ellipsis、EncodingWarning、EnvironmentError、Exception、False、FileExistsError、FileNotFoundError、FloatingPointError、FutureWarning、GeneratorExit、IOError、ImportError、ImportWarning、IndentationError、IndexError、InterruptedError、IsADirectoryError、KeyError、KeyboardInterrupt、LookupError、MemoryError、ModuleNotFoundError、NameError 、None、NotADirectoryError、NotImplemented、NotImplementedError、OSError、OverflowError、PendingDeprecationWarning、PermissionError、ProcessLookupError、RecursionError、ReferenceError、ResourceWarning、RuntimeError、RuntimeWarning、StopAsyncIteration、StopIteration、SyntaxError、SyntaxWarning、SystemError、SystemExit、TabError、TimeoutError、True、TypeError 、UnboundLocalError、UnicodeDecodeError、UnicodeEncodeError、UnicodeError、UnicodeTranslateError、UnicodeWarning、UserWarning、ValueError、Warning、WindowsError、ZeroDivisionError、\_\_build\_class\_\_、\_\_debug\_\_、\_\_doc\_\_、\_\_import\_\_、\_\_loader\_\_、\_\_name\_\_、\_\_package\_\_、\_\_spec\_\_、abs、aiter、all、anext、any、ascii、bin、bool、breakpoint、bytearray、bytes、callable、chr、classmethod、compile、complex、copyright、credits、delattr、dict、dir、divmod、enumerate、eval、exec、exit、filter、float、format、frozenset、getattr、globals、hasattr、hash、help、hex、id、input、int、isinstance、issubclass、iter、len、license、list、locals、map、max、memoryview、min、next、object、oct、open、ord、pow、print、property、quit、range、repr、reversed、round、set、setattr、slice、sorted、staticmethod、str、sum、super、tuple、type、vars、zip
-</details>
+:::
 辨別方法：
 通常編輯器在碰到以上名稱時，都會有特殊顏色，若有出現則盡量避免使用該名稱，或是在結尾加一個底線
 
@@ -181,14 +181,14 @@ print(t[1]) #87
 print(t[-1]) #你好
 t = t+(1,2,3) #直接加東西在結尾
 ```
-<details><summary>可用方法詳細介紹：</summary>
+:::spoiler 可用方法詳細介紹：
 count(value):
 Return number of occurrences of value.
 ***
 index(value, start=0, stop=9223372036854775807):
 Return first index of value.
 Raises ValueError if the value is not present.
-</details>
+:::
 
 ### 清單
 清單表示並列且有序的一組任意長度的資料值
@@ -205,7 +205,7 @@ print(a) #[7, 8, "haha", "1"]
 a = a+["owo",1234] #直接加東西在結尾
 a.extend(["owo",1234]) #和上一行類似，但可加上任意型別且在原地操作
 ```
-<details><summary>可用方法詳細介紹：</summary>
+:::spoiler 可用方法詳細介紹：
 append(object):
 Append object to the end of the list.
 ***
@@ -246,7 +246,7 @@ order of two equal elements is maintained).
 If a key function is given, apply it once to each list item and sort them,
 ascending or descending, according to their function values.
 The reverse flag can be set to sort in descending order.
-</details>
+:::
 
 ### 集合
 清單表示無序不重複的一組任意長度的資料值
@@ -264,7 +264,7 @@ s.add(7) #加一個
 s = s + {1,2,3} #集合合併
 print(s) #{8, 4, 5, 7}
 ```
-<details><summary>可用方法詳細介紹：</summary>
+:::spoiler 可用方法詳細介紹：
 add():
 Add an element to a set.
 This has no effect if the element is already present.
@@ -323,7 +323,7 @@ Return the union of sets as a new set.
 ***
 update():
 Update a set with the union of itself and others.
-</details>
+:::
 
 ### 字典
 字典是鍵-值對的資料結構
@@ -337,7 +337,7 @@ d["c"] = 56 #新增資料
 print(d["a"]) #12
 print(d) #{'a': 12, 'b': 34, 'c': 56}
 ```
-<details><summary>可用方法詳細介紹：</summary>
+:::spoiler 可用方法詳細介紹：
 clear():
 D.clear() -> None.  Remove all items from D.
 ***
@@ -378,7 +378,7 @@ In either case, this is followed by: for k in F:  D[k] = F[k]
 ***
 values():
 D.values() -> an object providing a view on D's values
-</details>
+:::
 
 ### 順帶一提
 類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型

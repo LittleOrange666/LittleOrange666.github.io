@@ -54,7 +54,7 @@ template: str = open("template.html", encoding="utf8").read()
 
 def run_markdown(source: str) -> str:
     # 處理參數
-    args: dict[str, str] = {"title": ""}
+    args: dict[str, str] = {"title": "LittleOrange's page"}
     if source.startswith("---"):
         end = source.find("---", 3)
         li: list[str] = source[source.find("\n") + 1:source.rfind("\n", 0, end)].split("\n")
@@ -64,21 +64,43 @@ def run_markdown(source: str) -> str:
                 while v.startswith(" "):
                     v = v[1:]
                 args[k] = v
-        source = source[end+4:]
-    # spoiler轉成details
-    reg = re.compile("^:::spoiler\\s(\\S+)\\s", re.M)
-    reg0 = re.compile("^:::$", re.M)
-    get = reg.search(source)
-    while get:
-        source = f"{source[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{source[get.span()[1] - 1:]}"
-        get = reg.search(source)
-    get = reg0.search(source)
-    while get:
-        source = f"{source[:get.span()[0]]}</details>{source[get.span()[1]:]}"
-        get = reg0.search(source)
+        source = source[end + 4:]
     # 主要部分
     html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
                                                  'codehilite', 'mdx_math', 'nl2br'])
+    # spoiler轉成details
+    html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
+                                                                                                    " NEXTLINE ")
+    reg = re.compile(":::spoiler\\s(\\S+)\\s", re.M)
+    reg0 = re.compile(":::", re.M)
+    get = reg.search(html)
+    spoiler_count = 0
+    while get:
+        # html = f"{html[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{html[get.span()[1] - 1:]}" #old
+        spoiler_count += 1
+        i = spoiler_count
+        html = f"""{html[:get.span()[0]]}<div class="accordion accordion-flush" id="accordion_{i}">
+  <div class="accordion-item">
+    <p class="accordion-header" id="heading_{i}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{i}" aria-expanded="false" aria-controls="collapse_{i}">
+        {get.group(1)}
+      </button>
+    </p>
+    <div id="collapse_{i}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_{i}">
+      <div class="accordion-body">
+        {html[get.span()[1] - 1:]}
+      </div>
+    </div>
+  </div>
+</div>"""
+        get = reg.search(html)
+    get = reg0.search(html)
+    while get:
+        # html = f"{html[:get.span()[0]]}</details>{html[get.span()[1]:]}" #old
+        html = f"{html[:get.span()[0]]}</div></div></div></div>{html[get.span()[1]:]}"
+        get = reg0.search(html)
+    html = html.replace(" NEXTLINE ", "<br>")
+    # 載入模板
     html = template.replace("MAIN_HTML", html).replace("THE_TITLE", args["title"])
     html = re.sub("<br>\\s*<br>", "<br>", parse.solve(html).replace("</br>", "<br>"))
     return html

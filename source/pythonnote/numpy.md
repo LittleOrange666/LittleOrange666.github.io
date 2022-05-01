@@ -183,7 +183,7 @@ arr[arr>0]
 陣列中最小的元素的索引
 **arr.argmax() -> int**
 陣列中最大的元素的索引
-<details><summary>help</summary>
+:::spoiler help
 class ndarray(builtins.object)
   ndarray(shape, dtype=float, buffer=None, offset=0,
           strides=None, order=None)
@@ -1934,4 +1934,4 @@ class ndarray(builtins.object)
   ----------------------------------------------------------------------
   Data and other attributes defined here:
   \_\_hash__ = None
-</details>
+:::

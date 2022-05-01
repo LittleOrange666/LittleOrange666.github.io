@@ -1,10 +1,15 @@
 <html>
-    <head>
-        <title>Python matplotlib</title>
-        <link href="styles.css" rel="stylesheet">
-    </head>
-    <body>
-        <h1 id="matplotlib">matplotlib</h1>
+
+<head>
+    <title>Python matplotlib</title>
+    <link href="styles.css" rel="stylesheet">
+    <base target="_blank">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1 id="matplotlib">matplotlib</h1>
 <p>因為和通常numpy一起用，所以開頭要寫</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -64,44 +69,130 @@
 <div class="codehilite"><pre><span></span><code><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料1</span><span class="p">,</span><span class="n">y軸資料1</span><span class="p">,</span><span class="n">x軸資料2</span><span class="p">,</span><span class="n">y軸資料2</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
 </code></pre></div>
 
-<p>lines是一個儲存折線的列表，幾組資料就幾條折線</p>
-<details><summary>折線圖樣式</summary>
-樣式是一個字串，由三個部分組成
-1. 色彩字元
-色彩字元|說明
----|---
-b|藍
-g|綠
-r|紅
-c|青
-m|洋紅
-y|黃
-k|黑
-w|白
-2. 線型字元
-線型字元|說明
----|---
--|實線
-\-\-|短劃虛線
-.|點虛線
--:|短劃點虛線
-3. 符號字元
-符號字元|說明
----|---
-.|點
-,|像素
-o|圓形
-s|方形
-^|三角形
-Ex.藍色實線並用三角形符號記做
-
-
+<p>lines是一個儲存折線的列表，幾組資料就幾條折線<br>
+<div class="accordion accordion-flush" id="accordion_1">
+  <div class="accordion-item">
+    <p class="accordion-header" id="heading_1">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1">
+        折線圖樣式
+      </button>
+    </p>
+    <div id="collapse_1" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_1">
+      <div class="accordion-body">
+        <br>
+樣式是一個字串，由三個部分組成<br>
+1. 色彩字元</p>
+<table>
+<thead>
+<tr>
+<th>色彩字元</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b</td>
+<td>藍</td>
+</tr>
+<tr>
+<td>g</td>
+<td>綠</td>
+</tr>
+<tr>
+<td>r</td>
+<td>紅</td>
+</tr>
+<tr>
+<td>c</td>
+<td>青</td>
+</tr>
+<tr>
+<td>m</td>
+<td>洋紅</td>
+</tr>
+<tr>
+<td>y</td>
+<td>黃</td>
+</tr>
+<tr>
+<td>k</td>
+<td>黑</td>
+</tr>
+<tr>
+<td>w</td>
+<td>白</td>
+</tr>
+<tr>
+<td>2. 線型字元</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>線型字元</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>實線</td>
+</tr>
+<tr>
+<td>--</td>
+<td>短劃虛線</td>
+</tr>
+<tr>
+<td>.</td>
+<td>點虛線</td>
+</tr>
+<tr>
+<td>-:</td>
+<td>短劃點虛線</td>
+</tr>
+<tr>
+<td>3. 符號字元</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>符號字元</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>點</td>
+</tr>
+<tr>
+<td>,</td>
+<td>像素</td>
+</tr>
+<tr>
+<td>o</td>
+<td>圓形</td>
+</tr>
+<tr>
+<td>s</td>
+<td>方形</td>
+</tr>
+<tr>
+<td>^</td>
+<td>三角形</td>
+</tr>
+</tbody>
+</table>
+<p>Ex.藍色實線並用三角形符號記做</p>
 <div class="codehilite"><pre><span></span><code><span class="s2">"b-^"</span>
 </code></pre></div>
 
-
-</details>
-
+<p></div></div></div></div></p>
 <h4 id="_6">散佈圖</h4>
 <div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">點大小</span><span class="p">,</span><span class="n">色彩</span><span class="p">)</span>
 </code></pre></div>
@@ -170,7 +261,11 @@ Ex.藍色實線並用三角形符號記做
 
 <p>建立一個與原來子圖共用x軸的子圖<br>
 再分別對兩個子圖做操作即可</p>
-        <script type="text/x-mathjax-config">
+      </div>
+    </div>
+  </div>
+</div>
+    <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             config: ["MMLorHTML.js"],
             jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
@@ -178,6 +273,7 @@ Ex.藍色實線並用三角形符號記做
             enable_dollar_delimiter: true
         });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
-    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+</body>
+
 </html>
