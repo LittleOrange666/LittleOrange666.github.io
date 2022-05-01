@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Python 檔案輸出入</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1 id="python">Python 檔案輸出入</h1>
+<p>檔案處裡有三個步驟<br>
+1. 開啟檔案<br>
+2. 讀寫檔案<br>
+3. 關閉檔案(可視情況省略)</p>
+<h2 id="_1">開啟檔案</h2>
+<p>開啟檔案的基本語法如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">檔案變數名</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">路徑</span><span class="p">,</span><span class="n">模式</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_2">模式</h3>
+<p>模式包含三個部分<br>
+1. 開啟方式<br>
+|名稱|符號|功能|<br>
+|---|---|---|<br>
+|讀取|r|讀取檔案，檔案必須存在|<br>
+|寫入|w|從檔案開頭開始寫入，若不存在則新建一個|<br>
+|新增|x|新建一個檔案並寫入，檔案必須不存在|<br>
+|附加|a|從檔案結尾開始寫入，檔案必須存在|<br>
+2. 讀寫格式<br>
+|名稱|符號|功能|<br>
+|---|---|---|<br>
+|文字|t|用文字模式開啟，讀寫使用str型別|<br>
+|二進位|b|用二進位模式開啟，讀寫使用bytes型別|<br>
+3. 是否讀寫皆可<br>
+讀寫皆可在結尾加一個"+"</p>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"],
+            enable_dollar_delimiter: true
+        });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    </body>
+</html>

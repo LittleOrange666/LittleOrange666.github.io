@@ -1,6 +1,5 @@
 ---
 title: python scipy
-tags: programming,Python,scipy
 ---
 
 # scipy

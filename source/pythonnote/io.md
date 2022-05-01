@@ -1,6 +1,5 @@
 ---
 title: Python 檔案輸出入
-tags: programming,Python
 ---
 
 # Python 檔案輸出入

@@ -1,6 +1,5 @@
 ---
 title: Python函數
-tags: programming,Python
 ---
 
 # 函數

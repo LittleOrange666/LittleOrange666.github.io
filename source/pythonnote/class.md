@@ -1,6 +1,5 @@
 ---
 title: Python自訂型別
-tags: programming,Python
 ---
 
 # 自訂型別

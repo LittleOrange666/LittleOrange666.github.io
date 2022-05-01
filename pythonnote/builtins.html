@@ -1,0 +1,694 @@
+<html>
+    <head>
+        <title>python builtins</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1 id="builtins">談談builtins</h1>
+<p>未完成，先隨便放點東西</p>
+<h2 id="_1">常數:</h2>
+<h3 id="ellipsis">Ellipsis</h3>
+<h3 id="false">False:</h3>
+<p>bool(x) -> bool<br>
+Returns True when the argument x is true, False otherwise.<br>
+The builtins True and False are the only two instances of the class bool.<br>
+The class bool is a subclass of the class int, and cannot be subclassed.</p>
+<h3 id="none">None</h3>
+<h3 id="notimplemented">NotImplemented</h3>
+<h3 id="true">True:</h3>
+<p>bool(x) -> bool<br>
+Returns True when the argument x is true, False otherwise.<br>
+The builtins True and False are the only two instances of the class bool.<br>
+The class bool is a subclass of the class int, and cannot be subclassed.</p>
+<h2 id="_2">函數:</h2>
+<h3 id="absx">abs(x):</h3>
+<p>Return the absolute value of the argument.</p>
+<h3 id="aiterasync_iterable">aiter(async_iterable):</h3>
+<p>Return an AsyncIterator for an AsyncIterable object.</p>
+<h3 id="alliterable">all(iterable):</h3>
+<p>Return True if bool(x) is True for all values x in the iterable.<br>
+If the iterable is empty, return True.</p>
+<h3 id="anext">anext():</h3>
+<p>Return the next item from the async iterator.</p>
+<h3 id="anyiterable">any(iterable):</h3>
+<p>Return True if bool(x) is True for any x in the iterable.<br>
+If the iterable is empty, return False.</p>
+<h3 id="asciiobj">ascii(obj):</h3>
+<p>Return an ASCII-only representation of an object.<br>
+As repr(), return a string containing a printable representation of an<br>
+object, but escape the non-ASCII characters in the string returned by<br>
+repr() using \x, \u or \U escapes. This generates a string similar<br>
+to that returned by repr() in Python 2.</p>
+<h3 id="binnumber">bin(number):</h3>
+<p>Return the binary representation of an integer.<br>
+   >>> bin(2796202)<br>
+   '0b1010101010101010101010'</p>
+<h3 id="breakpoint">breakpoint():</h3>
+<p>breakpoint(*args, **kws)<br>
+Call sys.breakpointhook(*args, **kws).  sys.breakpointhook() must accept<br>
+whatever arguments are passed.<br>
+By default, this drops you into the pdb debugger.</p>
+<h3 id="callableobj">callable(obj):</h3>
+<p>Return whether the object is callable (i.e., some kind of function).<br>
+Note that classes are callable, as are instances of classes with a<br>
+<strong>call</strong>() method.</p>
+<h3 id="chri">chr(i):</h3>
+<p>Return a Unicode string of one character with ordinal i; 0 <= i <= 0x10ffff.</p>
+<h3 id="compilesource-filename-mode-flags0-dont_inheritfalse-optimize-1-_feature_version-1">compile(source, filename, mode, flags=0, dont_inherit=False, optimize=-1, _feature_version=-1):</h3>
+<p>Compile source into a code object that can be executed by exec() or eval().<br>
+The source code may represent a Python module, statement or expression.<br>
+The filename will be used for run-time error messages.<br>
+The mode must be 'exec' to compile a module, 'single' to compile a<br>
+single (interactive) statement, or 'eval' to compile an expression.<br>
+The flags argument, if present, controls which future statements influence<br>
+the compilation of the code.<br>
+The dont_inherit argument, if true, stops the compilation inheriting<br>
+the effects of any future statements in effect in the code calling<br>
+compile; if absent or false these statements do influence the compilation,<br>
+in addition to any features explicitly specified.</p>
+<h3 id="copyright">copyright():</h3>
+<p>interactive prompt objects for printing the license text, a list of<br>
+    contributors and the copyright notice.</p>
+<h3 id="credits">credits():</h3>
+<p>interactive prompt objects for printing the license text, a list of<br>
+    contributors and the copyright notice.</p>
+<h3 id="delattrobj-name">delattr(obj, name):</h3>
+<p>Deletes the named attribute from the given object.<br>
+delattr(x, 'y') is equivalent to ''del x.y''</p>
+<h3 id="dir">dir():</h3>
+<p>dir([object]) -> list of strings<br>
+If called without an argument, return the names in the current scope.<br>
+Else, return an alphabetized list of names comprising (some of) the attributes<br>
+of the given object, and of attributes reachable from it.<br>
+If the object supplies a method named <strong>dir</strong>, it will be used; otherwise<br>
+the default dir() logic is used and returns:<br>
+  for a module object: the module's attributes.<br>
+  for a class object:  its attributes, and recursively the attributes<br>
+    of its bases.<br>
+  for any other object: its attributes, its class's attributes, and<br>
+    recursively the attributes of its class's base classes.</p>
+<h3 id="divmodx-y">divmod(x, y):</h3>
+<p>Return the tuple (x//y, x%y).  Invariant: div*y + mod == x.</p>
+<h3 id="evalsource-globalsnone-localsnone">eval(source, globals=None, locals=None):</h3>
+<p>Evaluate the given source in the context of globals and locals.<br>
+The source may be a string representing a Python expression<br>
+or a code object as returned by compile().<br>
+The globals must be a dictionary and locals can be any mapping,<br>
+defaulting to the current globals and locals.<br>
+If only globals is given, locals defaults to it.</p>
+<h3 id="execsource-globalsnone-localsnone">exec(source, globals=None, locals=None):</h3>
+<p>Execute the given source in the context of globals and locals.<br>
+The source may be a string representing one or more Python statements<br>
+or a code object as returned by compile().<br>
+The globals must be a dictionary and locals can be any mapping,<br>
+defaulting to the current globals and locals.<br>
+If only globals is given, locals defaults to it.</p>
+<h3 id="exitcodenone">exit(code=None):</h3>
+<h3 id="formatvalue-format_spec">format(value, format_spec=''):</h3>
+<p>Return value.<strong>format</strong>(format_spec)<br>
+format_spec defaults to the empty string.<br>
+See the Format Specification Mini-Language section of help('FORMATTING') for<br>
+details.</p>
+<h3 id="getattr">getattr():</h3>
+<p>getattr(object, name[, default]) -> value<br>
+Get a named attribute from an object; getattr(x, 'y') is equivalent to x.y.<br>
+When a default argument is given, it is returned when the attribute doesn't<br>
+exist; without it, an exception is raised in that case.</p>
+<h3 id="globals">globals():</h3>
+<p>Return the dictionary containing the current scope's global variables.<br>
+NOTE: Updates to this dictionary *will* affect name lookups in the current<br>
+global scope and vice-versa.</p>
+<h3 id="hasattrobj-name">hasattr(obj, name):</h3>
+<p>Return whether the object has an attribute with the given name.<br>
+This is done by calling getattr(obj, name) and catching AttributeError.</p>
+<h3 id="hashobj">hash(obj):</h3>
+<p>Return the hash value for the given object.<br>
+Two objects that compare equal must also have the same hash value, but the<br>
+reverse is not necessarily true.</p>
+<h3 id="helpargs-kwds">help(<em>args, </em>*kwds):</h3>
+<p>Define the builtin 'help'.<br>
+    This is a wrapper around pydoc.help that provides a helpful message<br>
+    when 'help' is typed at the Python interactive prompt.<br>
+    Calling help() at the Python prompt starts an interactive help session.<br>
+    Calling help(thing) prints help for the python object 'thing'.</p>
+<h3 id="hexnumber">hex(number):</h3>
+<p>Return the hexadecimal representation of an integer.<br>
+   >>> hex(12648430)<br>
+   '0xc0ffee'</p>
+<h3 id="idobj">id(obj):</h3>
+<p>Return the identity of an object.<br>
+This is guaranteed to be unique among simultaneously existing objects.<br>
+(CPython uses the object's memory address.)</p>
+<h3 id="inputpromptnone">input(prompt=None):</h3>
+<p>Read a string from standard input.  The trailing newline is stripped.<br>
+The prompt string, if given, is printed to standard output without a<br>
+trailing newline before reading input.<br>
+If the user hits EOF (*nix: Ctrl-D, Windows: Ctrl-Z+Return), raise EOFError.<br>
+On *nix systems, readline is used if available.</p>
+<h3 id="isinstanceobj-class_or_tuple">isinstance(obj, class_or_tuple):</h3>
+<p>Return whether an object is an instance of a class or of a subclass thereof.<br>
+A tuple, as in <code>isinstance(x, (A, B, ...))</code>, may be given as the target to<br>
+check against. This is equivalent to <code>isinstance(x, A) or isinstance(x, B)
+or ...</code> etc.</p>
+<h3 id="issubclasscls-class_or_tuple">issubclass(cls, class_or_tuple):</h3>
+<p>Return whether 'cls' is derived from another class or is the same class.<br>
+A tuple, as in <code>issubclass(x, (A, B, ...))</code>, may be given as the target to<br>
+check against. This is equivalent to <code>issubclass(x, A) or issubclass(x, B)
+or ...</code>.</p>
+<h3 id="iter">iter():</h3>
+<p>iter(iterable) -> iterator<br>
+iter(callable, sentinel) -> iterator<br>
+Get an iterator from an object.  In the first form, the argument must<br>
+supply its own iterator, or be a sequence.<br>
+In the second form, the callable is called until it returns the sentinel.</p>
+<h3 id="lenobj">len(obj):</h3>
+<p>Return the number of items in a container.</p>
+<h3 id="license">license():</h3>
+<p>interactive prompt objects for printing the license text, a list of<br>
+    contributors and the copyright notice.</p>
+<h3 id="locals">locals():</h3>
+<p>Return a dictionary containing the current scope's local variables.<br>
+NOTE: Whether or not updates to this dictionary will affect name lookups in<br>
+the local scope and vice-versa is *implementation dependent* and not<br>
+covered by any backwards compatibility guarantees.</p>
+<h3 id="max">max():</h3>
+<p>max(iterable, *[, default=obj, key=func]) -> value<br>
+max(arg1, arg2, *args, *[, key=func]) -> value<br>
+With a single iterable argument, return its biggest item. The<br>
+default keyword-only argument specifies an object to return if<br>
+the provided iterable is empty.<br>
+With two or more arguments, return the largest argument.</p>
+<h3 id="min">min():</h3>
+<p>min(iterable, *[, default=obj, key=func]) -> value<br>
+min(arg1, arg2, *args, *[, key=func]) -> value<br>
+With a single iterable argument, return its smallest item. The<br>
+default keyword-only argument specifies an object to return if<br>
+the provided iterable is empty.<br>
+With two or more arguments, return the smallest argument.</p>
+<h3 id="next">next():</h3>
+<p>next(iterator[, default])<br>
+Return the next item from the iterator. If default is given and the iterator<br>
+is exhausted, it is returned instead of raising StopIteration.</p>
+<h3 id="octnumber">oct(number):</h3>
+<p>Return the octal representation of an integer.<br>
+   >>> oct(342391)<br>
+   '0o1234567'</p>
+<h3 id="openfile-moder-buffering-1-encodingnone-errorsnone-newlinenone-closefdtrue-openernone">open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None):</h3>
+<p>Open file and return a stream.  Raise OSError upon failure.<br>
+file is either a text or byte string giving the name (and the path<br>
+if the file isn't in the current working directory) of the file to<br>
+be opened or an integer file descriptor of the file to be<br>
+wrapped. (If a file descriptor is given, it is closed when the<br>
+returned I/O object is closed, unless closefd is set to False.)<br>
+mode is an optional string that specifies the mode in which the file<br>
+is opened. It defaults to 'r' which means open for reading in text<br>
+mode.  Other common values are 'w' for writing (truncating the file if<br>
+it already exists), 'x' for creating and writing to a new file, and<br>
+'a' for appending (which on some Unix systems, means that all writes<br>
+append to the end of the file regardless of the current seek position).<br>
+In text mode, if encoding is not specified the encoding used is platform<br>
+dependent: locale.getpreferredencoding(False) is called to get the<br>
+current locale encoding. (For reading and writing raw bytes use binary<br>
+mode and leave encoding unspecified.) The available modes are:<br>
+========= ===============================================================<br>
+Character Meaning</p>
+<hr></hr>
+<p>'r'       open for reading (default)<br>
+'w'       open for writing, truncating the file first<br>
+'x'       create a new file and open it for writing<br>
+'a'       open for writing, appending to the end of the file if it exists<br>
+'b'       binary mode<br>
+'t'       text mode (default)<br>
+'+'       open a disk file for updating (reading and writing)<br>
+'U'       universal newline mode (deprecated)<br>
+========= ===============================================================<br>
+The default mode is 'rt' (open for reading text). For binary random<br>
+access, the mode 'w+b' opens and truncates the file to 0 bytes, while<br>
+'r+b' opens the file without truncation. The 'x' mode implies 'w' and<br>
+raises an <code>FileExistsError</code> if the file already exists.<br>
+Python distinguishes between files opened in binary and text modes,<br>
+even when the underlying operating system doesn't. Files opened in<br>
+binary mode (appending 'b' to the mode argument) return contents as<br>
+bytes objects without any decoding. In text mode (the default, or when<br>
+'t' is appended to the mode argument), the contents of the file are<br>
+returned as strings, the bytes having been first decoded using a<br>
+platform-dependent encoding or using the specified encoding if given.<br>
+'U' mode is deprecated and will raise an exception in future versions<br>
+of Python.  It has no effect in Python 3.  Use newline to control<br>
+universal newlines mode.<br>
+buffering is an optional integer used to set the buffering policy.<br>
+Pass 0 to switch buffering off (only allowed in binary mode), 1 to select<br>
+line buffering (only usable in text mode), and an integer > 1 to indicate<br>
+the size of a fixed-size chunk buffer.  When no buffering argument is<br>
+given, the default buffering policy works as follows:<br>
+* Binary files are buffered in fixed-size chunks; the size of the buffer<br>
+  is chosen using a heuristic trying to determine the underlying device's<br>
+  "block size" and falling back on <code>io.DEFAULT_BUFFER_SIZE</code>.<br>
+  On many systems, the buffer will typically be 4096 or 8192 bytes long.<br>
+* "Interactive" text files (files for which isatty() returns True)<br>
+  use line buffering.  Other text files use the policy described above<br>
+  for binary files.<br>
+encoding is the name of the encoding used to decode or encode the<br>
+file. This should only be used in text mode. The default encoding is<br>
+platform dependent, but any encoding supported by Python can be<br>
+passed.  See the codecs module for the list of supported encodings.<br>
+errors is an optional string that specifies how encoding errors are to<br>
+be handled---this argument should not be used in binary mode. Pass<br>
+'strict' to raise a ValueError exception if there is an encoding error<br>
+(the default of None has the same effect), or pass 'ignore' to ignore<br>
+errors. (Note that ignoring encoding errors can lead to data loss.)<br>
+See the documentation for codecs.register or run 'help(codecs.Codec)'<br>
+for a list of the permitted encoding error strings.<br>
+newline controls how universal newlines works (it only applies to text<br>
+mode). It can be None, '', '\n', '\r', and '\r\n'.  It works as<br>
+follows:<br>
+* On input, if newline is None, universal newlines mode is<br>
+  enabled. Lines in the input can end in '\n', '\r', or '\r\n', and<br>
+  these are translated into '\n' before being returned to the<br>
+  caller. If it is '', universal newline mode is enabled, but line<br>
+  endings are returned to the caller untranslated. If it has any of<br>
+  the other legal values, input lines are only terminated by the given<br>
+  string, and the line ending is returned to the caller untranslated.<br>
+* On output, if newline is None, any '\n' characters written are<br>
+  translated to the system default line separator, os.linesep. If<br>
+  newline is '' or '\n', no translation takes place. If newline is any<br>
+  of the other legal values, any '\n' characters written are translated<br>
+  to the given string.<br>
+If closefd is False, the underlying file descriptor will be kept open<br>
+when the file is closed. This does not work when a file name is given<br>
+and must be True in that case.<br>
+A custom opener can be used by passing a callable as *opener*. The<br>
+underlying file descriptor for the file object is then obtained by<br>
+calling *opener* with (*file*, *flags*). *opener* must return an open<br>
+file descriptor (passing os.open as *opener* results in functionality<br>
+similar to passing None).<br>
+open() returns a file object whose type depends on the mode, and<br>
+through which the standard file operations such as reading and writing<br>
+are performed. When open() is used to open a file in a text mode ('w',<br>
+'r', 'wt', 'rt', etc.), it returns a TextIOWrapper. When used to open<br>
+a file in a binary mode, the returned class varies: in read binary<br>
+mode, it returns a BufferedReader; in write binary and append binary<br>
+modes, it returns a BufferedWriter, and in read/write mode, it returns<br>
+a BufferedRandom.<br>
+It is also possible to use a string or bytearray as a file for both<br>
+reading and writing. For strings StringIO can be used like a file<br>
+opened in a text mode, and for bytes a BytesIO can be used like a file<br>
+opened in a binary mode.</p>
+<h3 id="ordc">ord(c):</h3>
+<p>Return the Unicode code point for a one-character string.</p>
+<h3 id="powbase-exp-modnone">pow(base, exp, mod=None):</h3>
+<p>Equivalent to base**exp with 2 arguments or base**exp % mod with 3 arguments<br>
+Some types, such as ints, are able to use a more efficient algorithm when<br>
+invoked using the three argument form.</p>
+<h3 id="print">print():</h3>
+<p>print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)<br>
+Prints the values to a stream, or to sys.stdout by default.<br>
+Optional keyword arguments:<br>
+file:  a file-like object (stream); defaults to the current sys.stdout.<br>
+sep:   string inserted between values, default a space.<br>
+end:   string appended after the last value, default a newline.<br>
+flush: whether to forcibly flush the stream.</p>
+<h3 id="quitcodenone">quit(code=None):</h3>
+<h3 id="reprobj">repr(obj):</h3>
+<p>Return the canonical string representation of the object.<br>
+For many object types, including most builtins, eval(repr(obj)) == obj.</p>
+<h3 id="roundnumber-ndigitsnone">round(number, ndigits=None):</h3>
+<p>Round a number to a given precision in decimal digits.<br>
+The return value is an integer if ndigits is omitted or None.  Otherwise<br>
+the return value has the same type as the number.  ndigits may be negative.</p>
+<h3 id="setattrobj-name-value">setattr(obj, name, value):</h3>
+<p>Sets the named attribute on the given object to the specified value.<br>
+setattr(x, 'y', v) is equivalent to ``x.y = v''</p>
+<h3 id="sortediterable-keynone-reversefalse">sorted(iterable, key=None, reverse=False):</h3>
+<p>Return a new list containing all items from the iterable in ascending order.<br>
+A custom key function can be supplied to customize the sort order, and the<br>
+reverse flag can be set to request the result in descending order.</p>
+<h3 id="sumiterable-start0">sum(iterable, start=0):</h3>
+<p>Return the sum of a 'start' value (default: 0) plus an iterable of numbers<br>
+When the iterable is empty, return the start value.<br>
+This function is intended specifically for use with numeric values and may<br>
+reject non-numeric types.</p>
+<h3 id="vars">vars():</h3>
+<p>vars([object]) -> dictionary<br>
+Without arguments, equivalent to locals().<br>
+With an argument, equivalent to object.<strong>dict</strong>.</p>
+<h2 id="_3">類別:</h2>
+<h3 id="unicodedecodeerror">UnicodeDecodeError:</h3>
+<p>Unicode decoding error.</p>
+<h3 id="unicodeencodeerror">UnicodeEncodeError:</h3>
+<p>Unicode encoding error.</p>
+<h3 id="unicodetranslateerror">UnicodeTranslateError:</h3>
+<p>Unicode translation error.</p>
+<h3 id="bool">bool:</h3>
+<p>bool(x) -> bool<br>
+Returns True when the argument x is true, False otherwise.<br>
+The builtins True and False are the only two instances of the class bool.<br>
+The class bool is a subclass of the class int, and cannot be subclassed.</p>
+<h3 id="bytearray">bytearray:</h3>
+<p>bytearray(iterable_of_ints) -> bytearray<br>
+bytearray(string, encoding[, errors]) -> bytearray<br>
+bytearray(bytes_or_buffer) -> mutable copy of bytes_or_buffer<br>
+bytearray(int) -> bytes array of size given by the parameter initialized with null bytes<br>
+bytearray() -> empty bytes array<br>
+Construct a mutable bytearray object from:<br>
+  - an iterable yielding integers in range(256)<br>
+  - a text string encoded using the specified encoding<br>
+  - a bytes or a buffer object<br>
+  - any object implementing the buffer API.<br>
+  - an integer</p>
+<h3 id="bytes">bytes:</h3>
+<p>bytes(iterable_of_ints) -> bytes<br>
+bytes(string, encoding[, errors]) -> bytes<br>
+bytes(bytes_or_buffer) -> immutable copy of bytes_or_buffer<br>
+bytes(int) -> bytes object of size given by the parameter initialized with null bytes<br>
+bytes() -> empty bytes object<br>
+Construct an immutable array of bytes from:<br>
+  - an iterable yielding integers in range(256)<br>
+  - a text string encoded using the specified encoding<br>
+  - any object implementing the buffer API.<br>
+  - an integer</p>
+<h3 id="classmethod">classmethod:</h3>
+<p>classmethod(function) -> method<br>
+Convert a function to be a class method.<br>
+A class method receives the class as implicit first argument,<br>
+just like an instance method receives the instance.<br>
+To declare a class method, use this idiom:<br>
+  class C:<br>
+      @classmethod<br>
+      def f(cls, arg1, arg2, ...):<br>
+          ...<br>
+It can be called either on the class (e.g. C.f()) or on an instance<br>
+(e.g. C().f()).  The instance is ignored except for its class.<br>
+If a class method is called for a derived class, the derived class<br>
+object is passed as the implied first argument.<br>
+Class methods are different than C++ or Java static methods.<br>
+If you want those, see the staticmethod builtin.</p>
+<h3 id="complex">complex:</h3>
+<p>Create a complex number from a real part and an optional imaginary part.<br>
+This is equivalent to (real + imag*1j) where imag defaults to 0.</p>
+<h3 id="dict">dict:</h3>
+<p>dict() -> new empty dictionary<br>
+dict(mapping) -> new dictionary initialized from a mapping object's<br>
+    (key, value) pairs<br>
+dict(iterable) -> new dictionary initialized as if via:<br>
+    d = {}<br>
+    for k, v in iterable:<br>
+        d[k] = v<br>
+dict(**kwargs) -> new dictionary initialized with the name=value pairs<br>
+    in the keyword argument list.  For example:  dict(one=1, two=2)</p>
+<h3 id="enumerate">enumerate:</h3>
+<p>Return an enumerate object.<br>
+  iterable<br>
+    an object supporting iteration<br>
+The enumerate object yields pairs containing a count (from start, which<br>
+defaults to zero) and a value yielded by the iterable argument.<br>
+enumerate is useful for obtaining an indexed list:<br>
+    (0, seq[0]), (1, seq[1]), (2, seq[2]), ...</p>
+<h3 id="filter">filter:</h3>
+<p>filter(function or None, iterable) --> filter object<br>
+Return an iterator yielding those items of iterable for which function(item)<br>
+is true. If function is None, return the items that are true.</p>
+<h3 id="float">float:</h3>
+<p>Convert a string or number to a floating point number, if possible.</p>
+<h3 id="frozenset">frozenset:</h3>
+<p>frozenset() -> empty frozenset object<br>
+frozenset(iterable) -> frozenset object<br>
+Build an immutable unordered collection of unique elements.</p>
+<h3 id="int">int:</h3>
+<p>int([x]) -> integer<br>
+int(x, base=10) -> integer<br>
+Convert a number or string to an integer, or return 0 if no arguments<br>
+are given.  If x is a number, return x.<strong>int</strong>().  For floating point<br>
+numbers, this truncates towards zero.<br>
+If x is not a number or if base is given, then x must be a string,<br>
+bytes, or bytearray instance representing an integer literal in the<br>
+given base.  The literal can be preceded by '+' or '-' and be surrounded<br>
+by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.<br>
+Base 0 means to interpret the base from the string as an integer literal.<br>
+>>> int('0b100', base=0)<br>
+4</p>
+<h3 id="list">list:</h3>
+<p>Built-in mutable sequence.<br>
+If no argument is given, the constructor creates a new empty list.<br>
+The argument must be an iterable if specified.</p>
+<h3 id="map">map:</h3>
+<p>map(func, *iterables) --> map object<br>
+Make an iterator that computes the function using arguments from<br>
+each of the iterables.  Stops when the shortest iterable is exhausted.</p>
+<h3 id="memoryview">memoryview:</h3>
+<p>Create a new memoryview object which references the given object.</p>
+<h3 id="object">object:</h3>
+<p>The base class of the class hierarchy.<br>
+When called, it accepts no arguments and returns a new featureless<br>
+instance that has no instance attributes and cannot be given any.</p>
+<h3 id="property">property:</h3>
+<p>Property attribute.<br>
+  fget<br>
+    function to be used for getting an attribute value<br>
+  fset<br>
+    function to be used for setting an attribute value<br>
+  fdel<br>
+    function to be used for del'ing an attribute<br>
+  doc<br>
+    docstring<br>
+Typical use is to define a managed attribute x:<br>
+class C(object):<br>
+    def getx(self): return self._x<br>
+    def setx(self, value): self._x = value<br>
+    def delx(self): del self._x<br>
+    x = property(getx, setx, delx, "I'm the 'x' property.")<br>
+Decorators make defining new properties or modifying existing ones easy:<br>
+class C(object):<br>
+    @property<br>
+    def x(self):<br>
+        "I am the 'x' property."<br>
+        return self._x<br>
+    @x.setter<br>
+    def x(self, value):<br>
+        self._x = value<br>
+    @x.deleter<br>
+    def x(self):<br>
+        del self._x</p>
+<h3 id="range">range:</h3>
+<p>range(stop) -> range object<br>
+range(start, stop[, step]) -> range object<br>
+Return an object that produces a sequence of integers from start (inclusive)<br>
+to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.<br>
+start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.<br>
+These are exactly the valid indices for a list of 4 elements.<br>
+When step is given, it specifies the increment (or decrement).</p>
+<h3 id="reversed">reversed:</h3>
+<p>Return a reverse iterator over the values of the given sequence.</p>
+<h3 id="set">set:</h3>
+<p>set() -> new empty set object<br>
+set(iterable) -> new set object<br>
+Build an unordered collection of unique elements.</p>
+<h3 id="slice">slice:</h3>
+<p>slice(stop)<br>
+slice(start, stop[, step])<br>
+Create a slice object.  This is used for extended slicing (e.g. a[0:10:2]).</p>
+<h3 id="staticmethod">staticmethod:</h3>
+<p>staticmethod(function) -> method<br>
+Convert a function to be a static method.<br>
+A static method does not receive an implicit first argument.<br>
+To declare a static method, use this idiom:<br>
+     class C:<br>
+         @staticmethod<br>
+         def f(arg1, arg2, ...):<br>
+             ...<br>
+It can be called either on the class (e.g. C.f()) or on an instance<br>
+(e.g. C().f()). Both the class and the instance are ignored, and<br>
+neither is passed implicitly as the first argument to the method.<br>
+Static methods in Python are similar to those found in Java or C++.<br>
+For a more advanced concept, see the classmethod builtin.</p>
+<h3 id="str">str:</h3>
+<p>str(object='') -> str<br>
+str(bytes_or_buffer[, encoding[, errors]]) -> str<br>
+Create a new string object from the given object. If encoding or<br>
+errors is specified, then the object must expose a data buffer<br>
+that will be decoded using the given encoding and error handler.<br>
+Otherwise, returns the result of object.<strong>str</strong>() (if defined)<br>
+or repr(object).<br>
+encoding defaults to sys.getdefaultencoding().<br>
+errors defaults to 'strict'.</p>
+<h3 id="super">super:</h3>
+<p>super() -> same as super(<strong>class</strong>, <first argument>)<br>
+super(type) -> unbound super object<br>
+super(type, obj) -> bound super object; requires isinstance(obj, type)<br>
+super(type, type2) -> bound super object; requires issubclass(type2, type)<br>
+Typical use to call a cooperative superclass method:<br>
+class C(B):<br>
+    def meth(self, arg):<br>
+        super().meth(arg)<br>
+This works for class methods too:<br>
+class C(B):<br>
+    @classmethod<br>
+    def cmeth(cls, arg):<br>
+        super().cmeth(arg)</p>
+<h3 id="tuple">tuple:</h3>
+<p>Built-in immutable sequence.<br>
+If no argument is given, the constructor returns an empty tuple.<br>
+If iterable is specified the tuple is initialized from iterable's items.<br>
+If the argument is a tuple, the return value is the same object.</p>
+<h3 id="type">type:</h3>
+<p>type(object_or_name, bases, dict)<br>
+type(object) -> the object's type<br>
+type(name, bases, dict) -> a new type</p>
+<h3 id="zip">zip:</h3>
+<p>zip(*iterables, strict=False) --> Yield tuples until an input is exhausted.<br>
+   >>> list(zip('abcdefg', range(3), range(4)))<br>
+   [('a', 0, 0), ('b', 1, 1), ('c', 2, 2)]<br>
+The zip object yields n-length tuples, where n is the number of iterables<br>
+passed as positional arguments to zip().  The i-th element in every tuple<br>
+comes from the i-th iterable argument to zip().  This continues until the<br>
+shortest argument is exhausted.<br>
+If strict is true and one of the arguments is exhausted before the others,<br>
+raise a ValueError.</p>
+<h2 id="_4">例外:</h2>
+<h3 id="arithmeticerror">ArithmeticError:</h3>
+<p>Base class for arithmetic errors.</p>
+<h3 id="assertionerror">AssertionError:</h3>
+<p>Assertion failed.</p>
+<h3 id="attributeerror">AttributeError:</h3>
+<p>Attribute not found.</p>
+<h3 id="baseexception">BaseException:</h3>
+<p>Common base class for all exceptions</p>
+<h3 id="blockingioerror">BlockingIOError:</h3>
+<p>I/O operation would block.</p>
+<h3 id="brokenpipeerror">BrokenPipeError:</h3>
+<p>Broken pipe.</p>
+<h3 id="buffererror">BufferError:</h3>
+<p>Buffer error.</p>
+<h3 id="byteswarning">BytesWarning:</h3>
+<p>Base class for warnings about bytes and buffer related problems, mostly<br>
+related to conversion from str or comparing to str.</p>
+<h3 id="childprocesserror">ChildProcessError:</h3>
+<p>Child process error.</p>
+<h3 id="connectionabortederror">ConnectionAbortedError:</h3>
+<p>Connection aborted.</p>
+<h3 id="connectionerror">ConnectionError:</h3>
+<p>Connection error.</p>
+<h3 id="connectionrefusederror">ConnectionRefusedError:</h3>
+<p>Connection refused.</p>
+<h3 id="connectionreseterror">ConnectionResetError:</h3>
+<p>Connection reset.</p>
+<h3 id="deprecationwarning">DeprecationWarning:</h3>
+<p>Base class for warnings about deprecated features.</p>
+<h3 id="eoferror">EOFError:</h3>
+<p>Read beyond end of file.</p>
+<h3 id="encodingwarning">EncodingWarning:</h3>
+<p>Base class for warnings about encodings.</p>
+<h3 id="environmenterror">EnvironmentError:</h3>
+<p>Base class for I/O related errors.</p>
+<h3 id="exception">Exception:</h3>
+<p>Common base class for all non-exit exceptions.</p>
+<h3 id="fileexistserror">FileExistsError:</h3>
+<p>File already exists.</p>
+<h3 id="filenotfounderror">FileNotFoundError:</h3>
+<p>File not found.</p>
+<h3 id="floatingpointerror">FloatingPointError:</h3>
+<p>Floating point operation failed.</p>
+<h3 id="futurewarning">FutureWarning:</h3>
+<p>Base class for warnings about constructs that will change semantically<br>
+in the future.</p>
+<h3 id="generatorexit">GeneratorExit:</h3>
+<p>Request that a generator exit.</p>
+<h3 id="ioerror">IOError:</h3>
+<p>Base class for I/O related errors.</p>
+<h3 id="importerror">ImportError:</h3>
+<p>Import can't find module, or can't find name in module.</p>
+<h3 id="importwarning">ImportWarning:</h3>
+<p>Base class for warnings about probable mistakes in module imports</p>
+<h3 id="indentationerror">IndentationError:</h3>
+<p>Improper indentation.</p>
+<h3 id="indexerror">IndexError:</h3>
+<p>Sequence index out of range.</p>
+<h3 id="interruptederror">InterruptedError:</h3>
+<p>Interrupted by signal.</p>
+<h3 id="isadirectoryerror">IsADirectoryError:</h3>
+<p>Operation doesn't work on directories.</p>
+<h3 id="keyerror">KeyError:</h3>
+<p>Mapping key not found.</p>
+<h3 id="keyboardinterrupt">KeyboardInterrupt:</h3>
+<p>Program interrupted by user.</p>
+<h3 id="lookuperror">LookupError:</h3>
+<p>Base class for lookup errors.</p>
+<h3 id="memoryerror">MemoryError:</h3>
+<p>Out of memory.</p>
+<h3 id="modulenotfounderror">ModuleNotFoundError:</h3>
+<p>Module not found.</p>
+<h3 id="nameerror">NameError:</h3>
+<p>Name not found globally.</p>
+<h3 id="notadirectoryerror">NotADirectoryError:</h3>
+<p>Operation only works on directories.</p>
+<h3 id="notimplementederror">NotImplementedError:</h3>
+<p>Method or function hasn't been implemented yet.</p>
+<h3 id="oserror">OSError:</h3>
+<p>Base class for I/O related errors.</p>
+<h3 id="overflowerror">OverflowError:</h3>
+<p>Result too large to be represented.</p>
+<h3 id="pendingdeprecationwarning">PendingDeprecationWarning:</h3>
+<p>Base class for warnings about features which will be deprecated<br>
+in the future.</p>
+<h3 id="permissionerror">PermissionError:</h3>
+<p>Not enough permissions.</p>
+<h3 id="processlookuperror">ProcessLookupError:</h3>
+<p>Process not found.</p>
+<h3 id="recursionerror">RecursionError:</h3>
+<p>Recursion limit exceeded.</p>
+<h3 id="referenceerror">ReferenceError:</h3>
+<p>Weak ref proxy used after referent went away.</p>
+<h3 id="resourcewarning">ResourceWarning:</h3>
+<p>Base class for warnings about resource usage.</p>
+<h3 id="runtimeerror">RuntimeError:</h3>
+<p>Unspecified run-time error.</p>
+<h3 id="runtimewarning">RuntimeWarning:</h3>
+<p>Base class for warnings about dubious runtime behavior.</p>
+<h3 id="stopasynciteration">StopAsyncIteration:</h3>
+<p>Signal the end from iterator.<strong>anext</strong>().</p>
+<h3 id="stopiteration">StopIteration:</h3>
+<p>Signal the end from iterator.<strong>next</strong>().</p>
+<h3 id="syntaxerror">SyntaxError:</h3>
+<p>Invalid syntax.</p>
+<h3 id="syntaxwarning">SyntaxWarning:</h3>
+<p>Base class for warnings about dubious syntax.</p>
+<h3 id="systemerror">SystemError:</h3>
+<p>Internal error in the Python interpreter.<br>
+Please report this to the Python maintainer, along with the traceback,<br>
+the Python version, and the hardware/OS platform and version.</p>
+<h3 id="systemexit">SystemExit:</h3>
+<p>Request to exit from the interpreter.</p>
+<h3 id="taberror">TabError:</h3>
+<p>Improper mixture of spaces and tabs.</p>
+<h3 id="timeouterror">TimeoutError:</h3>
+<p>Timeout expired.</p>
+<h3 id="typeerror">TypeError:</h3>
+<p>Inappropriate argument type.</p>
+<h3 id="unboundlocalerror">UnboundLocalError:</h3>
+<p>Local name referenced but not bound to a value.</p>
+<h3 id="unicodeerror">UnicodeError:</h3>
+<p>Unicode related error.</p>
+<h3 id="unicodewarning">UnicodeWarning:</h3>
+<p>Base class for warnings about Unicode related problems, mostly<br>
+related to conversion problems.</p>
+<h3 id="userwarning">UserWarning:</h3>
+<p>Base class for warnings generated by user code.</p>
+<h3 id="valueerror">ValueError:</h3>
+<p>Inappropriate argument value (of correct type).</p>
+<h3 id="warning">Warning:</h3>
+<p>Base class for warning categories.</p>
+<h3 id="windowserror">WindowsError:</h3>
+<p>Base class for I/O related errors.</p>
+<h3 id="zerodivisionerror">ZeroDivisionError:</h3>
+<p>Second argument to a division or modulo operation was zero</p>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"],
+            enable_dollar_delimiter: true
+        });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    </body>
+</html>

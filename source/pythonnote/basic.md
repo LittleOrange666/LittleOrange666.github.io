@@ -1,6 +1,5 @@
 ---
 title: Python基礎語法
-tags: programming,Python
 ---
 
 # 基礎語法

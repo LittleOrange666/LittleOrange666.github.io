@@ -1,6 +1,5 @@
 ---
 title: python builtins
-tags: programming,Python
 ---
 
 # 談談builtins

@@ -1,6 +1,5 @@
 ---
 title: python numpy
-tags: programming,Python,numpy
 ---
 
 # numpy

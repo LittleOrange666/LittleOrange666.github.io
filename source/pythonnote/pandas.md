@@ -1,6 +1,5 @@
 ---
 title: python pandas
-tags: programming,Python,pandas
 ---
 
 # pandas

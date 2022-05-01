@@ -1,6 +1,5 @@
 ---
 title: Python matplotlib
-tags: programming,Python,matplotlib
 ---
 
 # matplotlib

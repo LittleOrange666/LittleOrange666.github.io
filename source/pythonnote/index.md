@@ -1,6 +1,5 @@
 ---
 title: 小橘子的Python筆記
-tags: Python
 ---
 
 ## 語法

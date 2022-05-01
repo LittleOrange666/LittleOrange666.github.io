@@ -1,6 +1,5 @@
 ---
 title: Python變數與型別
-tags: programming,Python
 ---
 
 # 變數與型別
