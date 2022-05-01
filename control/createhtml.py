@@ -15,20 +15,48 @@ class Codehightlighter(HTMLParser):
         super().__init__(*args, **kwargs)
         self.text: list[str] = []
         self.prepare = ""
+        self.makeindex = True
+        self.index = 0
+        self.indexs: list[list[int|list[int|list[int]]]] = []
+        self.names = []
+        self.wait = ""
 
     def handle_starttag(self, tag, attrs):
+        attrs = {k: v for k, v in attrs}
         if tag == "code":
-            for k, v in attrs:
+            for k, v in attrs.items():
                 if k == "class" and v in prepares:
                     self.prepare = v
         if self.prepare == "":
-            atl = ' '.join(k if v is None else k + '="' + v + '"' for k, v in attrs if k is not None)
+            waiting = self.makeindex
+            if self.makeindex:
+                if tag == "h1":
+                    self.indexs.append([self.index])
+                elif tag == "h2":
+                    if len(self.indexs) == 0:
+                        self.indexs.append([-1])
+                    self.indexs[-1].append([self.index])
+                elif tag == "h3":
+                    if len(self.indexs) == 0:
+                        self.indexs.append([-1])
+                    if len(self.indexs[-1]) == 1:
+                        self.indexs[-1].append([-1])
+                    self.indexs[-1][-1].append([self.index])
+                else:
+                    waiting = False
+            if waiting:
+                attrs["id"] = f"item-{self.index}"
+                self.wait = tag
+                self.names.append("")
+                self.index += 1
+            atl = ' '.join(k if v is None else k + '="' + v + '"' for k, v in attrs.items() if k is not None)
             if len(attrs):
                 atl = ' ' + atl
             if tag != "br" or len(self.text) == 0 or self.text[-1] != "<br>":
                 self.text.append(f"<{tag}{atl}>")
 
     def handle_endtag(self, tag):
+        self.wait = ""
         if self.prepare != "":
             self.prepare = ""
         else:
@@ -37,22 +65,63 @@ class Codehightlighter(HTMLParser):
     def handle_data(self, data):
         if self.prepare == "":
             self.text.append(data)
+            if self.wait != "":
+                self.names[-1] = data
         else:
             if self.prepare == "language-python":
                 self.text.append(highlight(data, PythonLexer(), HtmlFormatter()))
 
-    def solve(self, text: str):
+    def solve(self, text: str, makeindex: bool = True):
         self.text = []
         self.prepare = ""
+        self.makeindex = makeindex
+        self.wait = ""
+        self.index = 0
+        self.indexs: list[list[int | list[int | list[int]]]] = []
+        self.names = []
+        self.wait = ""
         self.feed(text)
-        return "".join(self.text)
+        r = "".join(self.text)
+        if makeindex:
+            lines = ['<nav id="indexbar" class="navbar navbar-light bg-light flex-column align-items-stretch">',
+                     '<a class="navbar-brand" href="#">索引</a>', '<nav class="nav nav-pills flex-column">']
+            for l1 in self.indexs:
+                if l1[0] != -1:
+                    lines.append(f'<a class="nav-link" href="#item-{l1[0]}">{self.names[l1[0]]}</a>')
+                if len(l1) > 1:
+                    lines.append('<nav class="nav nav-pills flex-column">')
+                    for l2 in l1[1:]:
+                        if l2[0] != -1:
+                            lines.append(f'<a class="nav-link" href="#item-{l2[0]}">{self.names[l2[0]]}</a>')
+                        if len(l2) > 1:
+                            lines.append('<nav class="nav nav-pills flex-column">')
+                            for l3 in l2[1:]:
+                                lines.append(f'<a class="nav-link" href="#item-{l3[0]}">{self.names[l3[0]]}</a>')
+                            lines.append('</nav>')
+                    lines.append('</nav>')
+            lines.append('</nav>')
+            lines.append('</nav>')
+            linejoin = "\n".join(lines)
+            r = f"""<div class="container">
+  <div class="row">
+    <div class="col">{linejoin}
+    </div>
+    <div class="col">
+      <div data-bs-spy="scroll" data-bs-target="#indexbar" data-bs-offset="0" tabindex="0">
+{r}
+      </div>
+    <div class="col">
+    </div>
+    </div>
+  </div>"""
+        return r
 
 
 parse = Codehightlighter()
 template: str = open("template.html", encoding="utf8").read()
 
 
-def run_markdown(source: str) -> str:
+def run_markdown(source: str, makeindex: bool = True) -> str:
     # 處理參數
     args: dict[str, str] = {"title": "LittleOrange's page"}
     if source.startswith("---"):
@@ -82,7 +151,7 @@ def run_markdown(source: str) -> str:
         html = f"""{html[:get.span()[0]]}<div class="accordion accordion-flush" id="accordion_{i}">
   <div class="accordion-item">
     <p class="accordion-header" id="heading_{i}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{i}" aria-expanded="false" aria-controls="collapse_{i}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{i}" aria-expanded="false" aria-controls="collapse_{i}"> 
         {get.group(1)}
       </button>
     </p>
@@ -100,9 +169,11 @@ def run_markdown(source: str) -> str:
         html = f"{html[:get.span()[0]]}</div></div></div></div>{html[get.span()[1]:]}"
         get = reg0.search(html)
     html = html.replace(" NEXTLINE ", "<br>")
+    #
+    html = parse.solve(html, makeindex)
     # 載入模板
     html = template.replace("MAIN_HTML", html).replace("THE_TITLE", args["title"])
-    html = re.sub("<br>\\s*<br>", "<br>", parse.solve(html).replace("</br>", "<br>"))
+    html = re.sub("<br>\\s*<br>", "<br>", html.replace("</br>", "<br>"))
     return html
 
 
@@ -112,7 +183,7 @@ for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "source")):
         new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "source"), os.pardir), f)
         if os.path.splitext(name)[-1] == ".md":
             new_name = new_name[:-3] + ".html"
-            dat = run_markdown(open(name, encoding="utf8").read())
+            dat = run_markdown(open(name, encoding="utf8").read(), False)
             try:
                 open(new_name, "w", encoding="utf8").write(dat)
             except FileNotFoundError:
@@ -125,4 +196,3 @@ for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "source")):
                 os.mkdir(new_name[:new_name.rfind("\\")])
                 shutil.copyfile(name, new_name)
         print(f"create {os.path.abspath(new_name)} from {os.path.abspath(name)}")
-os.system("pause")

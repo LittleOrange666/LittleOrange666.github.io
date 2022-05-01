@@ -6,23 +6,32 @@
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <style type="text/css">
+    body {
+        position: relative;
+    }
+    #main_area{
+        width: 80%;
+    }
+    </style>
 </head>
 
-<body>
+<body data-bs-spy="scroll" data-bs-target="#indexbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">Home</a>
-        </li>
-    </div>
-  </div>
-</nav>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">Home</a>
+                    </li>
+            </div>
+        </div>
+    </nav>
+    <div id="main_area" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true">
     <h1 id="numpy">numpy</h1>
 <h4 id="numpypython">NumPy是Python語言的一個擴充程式庫。支援高階大量的維度陣列與矩陣運算，此外也針對陣列運算提供大量的數學函式函式庫。</h4>
 <p><strong>通常使用"import numpy as np"來載入numpy</strong><br>
@@ -191,7 +200,7 @@ arr<script type="math/tex; mode=display">*索引*</script> = <em>數據</em><br>
 <div class="accordion accordion-flush" id="accordion_1">
   <div class="accordion-item">
     <p class="accordion-header" id="heading_1">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1"> 
         help
       </button>
     </p>
@@ -427,7 +436,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   __rfloordiv __(self, value, /)<br>
       Return value//self.<br>
   __rlshift __(self, value, /)<br>
-      Return value<<self. \_\_rmatmul \_\_(self, value, ) return value@self. \_\_rmod \_\_(self, value, ) return value%self. \_\_rmul \_\_(self, value, ) return value*self. \_\_ror \_\_(self, value, ) return value|self. \_\_rpow \_\_(self, value, mod="None," ) return pow(value, self, mod). \_\_rrshift \_\_(self, value, ) return value>>self.<br>
+      Return value<<self. \_\_rmatmul \_\_(self, value, ) return value@self. \_\_rmod value%self. \_\_rmul value*self. \_\_ror value|self. \_\_rpow mod="None," pow(value, self, mod). \_\_rrshift value>>self.<br>
   __rshift __(self, value, /)<br>
       Return self>>value.<br>
   __rsub __(self, value, /)<br>
@@ -1943,6 +1952,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
     </div>
   </div>
 </div>
+    </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             config: ["MMLorHTML.js"],

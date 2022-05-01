@@ -6,23 +6,32 @@
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <style type="text/css">
+    body {
+        position: relative;
+    }
+    #main_area{
+        width: 80%;
+    }
+    </style>
 </head>
 
-<body>
+<body data-bs-spy="scroll" data-bs-target="#indexbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">Home</a>
-        </li>
-    </div>
-  </div>
-</nav>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">Home</a>
+                    </li>
+            </div>
+        </div>
+    </nav>
+    <div id="main_area" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true">
     <h1 id="pandas">pandas</h1>
 <p>先載入</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -189,6 +198,7 @@ hexbin|六邊形分箱圖<br>
 圓餅圖需要<code>y="欄位名稱"</code>來定義要畫圖的欄位<br>
 或使用<code>subplots=True</code>表達每一個欄位都畫一個圖<br>
 散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸</p>
+    </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             config: ["MMLorHTML.js"],
