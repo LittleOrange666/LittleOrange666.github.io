@@ -7,7 +7,7 @@ title: 索引
 
 ## 自製小遊戲
 - [象棋](Chess)
-- [圍棋](Gobang)
+- [五子棋](Gobang)
 
 ## 自製小工具
 - [方位找點](facingtopos)
