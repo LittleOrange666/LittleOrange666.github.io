@@ -1,3 +1,5 @@
+from typing import Callable
+
 import markdown
 from html.parser import HTMLParser
 from pygments import highlight
@@ -189,22 +191,27 @@ def run_markdown(source: str, makeindex: bool = True) -> str:
     return html
 
 
-for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "src")):
-    for f in fileNames:
-        name = os.path.join(dirPath, f)
-        new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "src"), os.pardir), f)
-        if os.path.splitext(name)[-1] == ".md":
-            new_name = new_name[:-3] + ".html"
-            dat = run_markdown(open(name, encoding="utf8").read(), False)
-            try:
-                open(new_name, "w", encoding="utf8").write(dat)
-            except FileNotFoundError:
-                os.mkdir(new_name[:new_name.rfind("\\")])
-                open(new_name, "w", encoding="utf8").write(dat)
-        else:
-            try:
-                shutil.copyfile(name, new_name)
-            except FileNotFoundError:
-                os.mkdir(new_name[:new_name.rfind("\\")])
-                shutil.copyfile(name, new_name)
-        print(f"create {os.path.abspath(new_name)} from {os.path.abspath(name)}")
+def main(logger: Callable[[str], None]):
+    for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "src")):
+        for f in fileNames:
+            name = os.path.join(dirPath, f)
+            new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "src"), os.pardir), f)
+            if os.path.splitext(name)[-1] == ".md":
+                new_name = new_name[:-3] + ".html"
+                dat = run_markdown(open(name, encoding="utf8").read(), False)
+                try:
+                    open(new_name, "w", encoding="utf8").write(dat)
+                except FileNotFoundError:
+                    os.mkdir(new_name[:new_name.rfind("\\")])
+                    open(new_name, "w", encoding="utf8").write(dat)
+            else:
+                try:
+                    shutil.copyfile(name, new_name)
+                except FileNotFoundError:
+                    os.mkdir(new_name[:new_name.rfind("\\")])
+                    shutil.copyfile(name, new_name)
+            logger(f"create {os.path.abspath(new_name)} from {os.path.abspath(name)}")
+
+
+if __name__ == '__main__':
+    main(print)
