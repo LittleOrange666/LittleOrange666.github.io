@@ -3,40 +3,46 @@
 <head>
     <title>Python基礎語法</title>
     <base target="_top">
-    <link href="styles.css" rel="stylesheet">
+    <link href="/style/codehilite.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <style type="text/css">
-    body {
-        position: relative;
-    }
-    #main_area{
+    .markdown-body {
         width: 80%;
+        position: relative;
+        top: 100px;
+    }
+    #top_area{
+        position: fixed;
+        left:  0px;
+        right: 0px;
     }
     </style>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#indexbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">Home</a>
-                    </li>
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">Home</a>
+                        </li>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
     <div id="main_area" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true">
-    <h1 id="_1">基礎語法</h1>
+        <h1 id="_1">基礎語法</h1>
 <h2 id="_2">換行</h2>
 <p>在Python裡每換一行就代表下一段程式碼，不需要也不能有分號<br>
-但在以下兩個情況電腦會將不同行看成同一段程式碼<br>
-1. 括號未完成</p>
+但在以下兩個情況電腦會將不同行看成同一段程式碼</p>
+<p>一、 括號未完成</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
@@ -45,9 +51,7 @@
 <span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-<ol>
-<li>行結尾是反斜槓</li>
-</ol>
+<p>二、行結尾是反斜槓</p>
 <div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">87</span>
 </code></pre></div>
 
@@ -83,22 +87,13 @@
 <div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">另一個變數名稱</span>
 </code></pre></div>
 
-<p><div class="accordion accordion-flush" id="accordion_1">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_1">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1"> 
-        注：
-      </button>
-    </p>
-    <div id="collapse_1" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_1">
-      <div class="accordion-body">
-        <br>
+<p><details><summary>注：</summary><br>
 這種寫法在資料值可變時會使兩個變數代表同個值，使其連動<br>
 可以用這樣的寫法來做淺複製(詳細的"變數與型別"再說)</p>
 <div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
 </code></pre></div>
 
-<p></div></div></div></div><br>
+<p></details><br>
 範例：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">真的</span> <span class="o">=</span> <span class="kc">True</span>
@@ -111,30 +106,12 @@
 且不能和保留字重複<br>
 也建議不要和內建的函數、常數、類型重名(可能會有非預期的結果)<br>
 不能以數字開頭(可以包含數字)，不能包含計算符號(加減乘除之類的符號)<br>
-<div class="accordion accordion-flush" id="accordion_2">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_2">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_2" aria-expanded="false" aria-controls="collapse_2"> 
-        保留字
-      </button>
-    </p>
-    <div id="collapse_2" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_2">
-      <div class="accordion-body">
-        <br>
+<details><summary>保留字</summary><br>
 False、None、True、and、as、assert、async、await、break、class、continue、def、del、elif、else、except、finally、for、from、global、if、import、in、is、lambda、nonlocal、not、or、pass、raise、return、try、while、with、yield<br>
-</div></div></div></div><br>
-<div class="accordion accordion-flush" id="accordion_3">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_3">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_3" aria-expanded="false" aria-controls="collapse_3"> 
-        內建函數、常數、類型名稱
-      </button>
-    </p>
-    <div id="collapse_3" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_3">
-      <div class="accordion-body">
-        <br>
+</details><br>
+<details><summary>內建函數、常數、類型名稱</summary><br>
 ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOError、BrokenPipeError、BufferError、BytesWarning、ChildProcessError、ConnectionAbortedError、ConnectionError、ConnectionRefusedError、ConnectionResetError、DeprecationWarning、EOFError、Ellipsis、EncodingWarning、EnvironmentError、Exception、False、FileExistsError、FileNotFoundError、FloatingPointError、FutureWarning、GeneratorExit、IOError、ImportError、ImportWarning、IndentationError、IndexError、InterruptedError、IsADirectoryError、KeyError、KeyboardInterrupt、LookupError、MemoryError、ModuleNotFoundError、NameError 、None、NotADirectoryError、NotImplemented、NotImplementedError、OSError、OverflowError、PendingDeprecationWarning、PermissionError、ProcessLookupError、RecursionError、ReferenceError、ResourceWarning、RuntimeError、RuntimeWarning、StopAsyncIteration、StopIteration、SyntaxError、SyntaxWarning、SystemError、SystemExit、TabError、TimeoutError、True、TypeError 、UnboundLocalError、UnicodeDecodeError、UnicodeEncodeError、UnicodeError、UnicodeTranslateError、UnicodeWarning、UserWarning、ValueError、Warning、WindowsError、ZeroDivisionError、__build_class__、__debug__、__doc__、__import__、__loader__、__name__、__package__、__spec__、abs、aiter、all、anext、any、ascii、bin、bool、breakpoint、bytearray、bytes、callable、chr、classmethod、compile、complex、copyright、credits、delattr、dict、dir、divmod、enumerate、eval、exec、exit、filter、float、format、frozenset、getattr、globals、hasattr、hash、help、hex、id、input、int、isinstance、issubclass、iter、len、license、list、locals、map、max、memoryview、min、next、object、oct、open、ord、pow、print、property、quit、range、repr、reversed、round、set、setattr、slice、sorted、staticmethod、str、sum、super、tuple、type、vars、zip<br>
-</div></div></div></div><br>
+</details><br>
 辨別方法：<br>
 通常編輯器在碰到以上名稱時，都會有特殊顏色，若有出現則盡量避免使用該名稱，或是在結尾加一個底線</p>
 <h3 id="_6">使用</h3>
@@ -214,23 +191,14 @@ True=1, False=0</p>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#直接加東西在結尾</span>
 </code></pre></div>
 
-<p><div class="accordion accordion-flush" id="accordion_4">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_4">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_4" aria-expanded="false" aria-controls="collapse_4"> 
-        可用方法詳細介紹：
-      </button>
-    </p>
-    <div id="collapse_4" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_4">
-      <div class="accordion-body">
-        <br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 count(value):<br>
 Return number of occurrences of value.</p>
 <hr></hr>
 <p>index(value, start=0, stop=9223372036854775807):<br>
 Return first index of value.<br>
 Raises ValueError if the value is not present.<br>
-</div></div></div></div></p>
+</details></p>
 <h3 id="_15">清單</h3>
 <p>清單表示並列且有序的一組任意長度的資料值<br>
 可插入/刪除資料<br>
@@ -245,16 +213,7 @@ Raises ValueError if the value is not present.<br>
 <span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">"owo"</span><span class="p">,</span><span class="mi">1234</span><span class="p">])</span> <span class="c1">#和上一行類似，但可加上任意型別且在原地操作</span>
 </code></pre></div>
 
-<p><div class="accordion accordion-flush" id="accordion_5">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_5">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_5" aria-expanded="false" aria-controls="collapse_5"> 
-        可用方法詳細介紹：
-      </button>
-    </p>
-    <div id="collapse_5" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_5">
-      <div class="accordion-body">
-        <br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 append(object):<br>
 Append object to the end of the list.</p>
 <hr></hr>
@@ -295,7 +254,7 @@ order of two equal elements is maintained).<br>
 If a key function is given, apply it once to each list item and sort them,<br>
 ascending or descending, according to their function values.<br>
 The reverse flag can be set to sort in descending order.<br>
-</div></div></div></div></p>
+</details></p>
 <h3 id="_16">集合</h3>
 <p>清單表示無序不重複的一組任意長度的資料值<br>
 並能夠在常數時間裡檢查一元素是否在集合中<br>
@@ -311,16 +270,7 @@ The reverse flag can be set to sort in descending order.<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1">#{8, 4, 5, 7}</span>
 </code></pre></div>
 
-<p><div class="accordion accordion-flush" id="accordion_6">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_6">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_6" aria-expanded="false" aria-controls="collapse_6"> 
-        可用方法詳細介紹：
-      </button>
-    </p>
-    <div id="collapse_6" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_6">
-      <div class="accordion-body">
-        <br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 add():<br>
 Add an element to a set.<br>
 This has no effect if the element is already present.</p>
@@ -379,7 +329,7 @@ Return the union of sets as a new set.<br>
 <hr></hr>
 <p>update():<br>
 Update a set with the union of itself and others.<br>
-</div></div></div></div></p>
+</details></p>
 <h3 id="_17">字典</h3>
 <p>字典是鍵-值對的資料結構<br>
 鍵是唯一的，值不一定唯一<br>
@@ -391,16 +341,7 @@ Update a set with the union of itself and others.<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#{'a': 12, 'b': 34, 'c': 56}</span>
 </code></pre></div>
 
-<p><div class="accordion accordion-flush" id="accordion_7">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_7">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_7" aria-expanded="false" aria-controls="collapse_7"> 
-        可用方法詳細介紹：
-      </button>
-    </p>
-    <div id="collapse_7" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_7">
-      <div class="accordion-body">
-        <br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 clear():<br>
 D.clear() -> None.  Remove all items from D.</p>
 <hr></hr>
@@ -441,7 +382,7 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
 <hr></hr>
 <p>values():<br>
 D.values() -> an object providing a view on D's values<br>
-</div></div></div></div></p>
+</details></p>
 <h3 id="_18">順帶一提</h3>
 <p>類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型<br>
 較常用的有int(),float(),str(),bool(),list()<br>
@@ -473,23 +414,16 @@ D.values() -> an object providing a view on D's values<br>
 
 <p>先輸出一行字(不換行)(可選)，再接收一行字串</p>
 <h2 id="_22">基礎計算符</h2>
-<p>常用的計算符包含：<br>
-+ 數學計算符 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>//</code> <code>%</code> <code>**</code><br>
-+ 比較計算符 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code><br>
-+ 位元計算符 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code><br>
-+ 邏輯計算符 <code>not</code> <code>or</code> <code>and</code><br>
-+ 賦值計算符 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code><br>
-+ 其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></p>
-<p><div class="accordion accordion-flush" id="accordion_8">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_8">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_8" aria-expanded="false" aria-controls="collapse_8"> 
-        總表</p>
-      </button>
-    </p>
-    <div id="collapse_8" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_8">
-      <div class="accordion-body">
-        
+<p>常用的計算符包含：</p>
+<ul>
+<li>數學計算符 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>//</code> <code>%</code> <code>**</code></li>
+<li>比較計算符 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code></li>
+<li>位元計算符 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code></li>
+<li>邏輯計算符 <code>not</code> <code>or</code> <code>and</code></li>
+<li>賦值計算符 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code></li>
+<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></li>
+</ul>
+<p><details><summary>總表</p></summary>
 <table>
 <thead>
 <tr>
@@ -676,7 +610,7 @@ D.values() -> an object providing a view on D's values<br>
 </tr>
 </tbody>
 </table>
-<p></div></div></div></div></p>
+<p></details></p>
 <h2 id="_23">條件判斷</h2>
 <p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">#縮排是必須的</span>
@@ -763,12 +697,14 @@ Ex:</p>
 如下：<br>
 <script type="math/tex; mode=display">集合={輸出表達式|變量\in輸入集合, 謂詞}</script>
 <br>
-Python中的推導式有4種，分別是<br>
-+ 列表推導式(List Comprehension)<br>
-+ 集合推導式(Set Comprehension)<br>
-+ 字典推導式(Dictionary Comprehension)<br>
-+ 生成器表達式(Generator Expression)<br>
-共通語法：</p>
+Python中的推導式有4種，分別是</p>
+<ul>
+<li>列表推導式(List Comprehension)</li>
+<li>集合推導式(Set Comprehension)</li>
+<li>字典推導式(Dictionary Comprehension)</li>
+<li>生成器表達式(Generator Expression)<br>
+共通語法：</li>
+</ul>
 <div class="codehilite"><pre><span></span><code><span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="n">右括號</span>
 
 <span class="c1">#或著加上謂詞</span>
@@ -795,38 +731,6 @@ Python中的推導式有4種，分別是<br>
 若各元素只會被用到一次，相較於列表推導式可節省記憶體與時間<br>
 元素的順序會被保留<br>
 使用小括號()</p>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

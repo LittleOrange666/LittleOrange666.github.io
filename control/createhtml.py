@@ -11,15 +11,26 @@ prepares = ["language-python"]
 
 
 class Codehightlighter(HTMLParser):
+    __slots__ = ("text", "prepare", "makeindex", "index", "indexs", "names", "wait")
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.text: list[str] = []
+        self.prepare: str = ""
+        self.makeindex: bool = True
+        self.index: int = 0
+        self.indexs: list[list[int | list[int | list[int]]]] = []
+        self.names: list[str] = []
+        self.wait: str = ""
+
+    def init(self):
+        self.text = []
         self.prepare = ""
         self.makeindex = True
-        self.index = 0
-        self.indexs: list[list[int|list[int|list[int]]]] = []
-        self.names = []
         self.wait = ""
+        self.index = 0
+        self.indexs: list[list[int | list[int | list[int]]]] = []
+        self.names = []
 
     def handle_starttag(self, tag, attrs):
         attrs = {k: v for k, v in attrs}
@@ -79,7 +90,6 @@ class Codehightlighter(HTMLParser):
         self.index = 0
         self.indexs: list[list[int | list[int | list[int]]]] = []
         self.names = []
-        self.wait = ""
         self.feed(text)
         r = "".join(self.text)
         if makeindex:
@@ -143,30 +153,32 @@ def run_markdown(source: str, makeindex: bool = True) -> str:
     reg = re.compile(":::spoiler\\s(\\S+)\\s", re.M)
     reg0 = re.compile(":::", re.M)
     get = reg.search(html)
-    spoiler_count = 0
+    # spoiler_count = 0 #已棄用
     while get:
-        # html = f"{html[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{html[get.span()[1] - 1:]}" #old
-        spoiler_count += 1
-        i = spoiler_count
-        html = f"""{html[:get.span()[0]]}<div class="accordion accordion-flush" id="accordion_{i}">
-  <div class="accordion-item">
-    <p class="accordion-header" id="heading_{i}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{i}" aria-expanded="false" aria-controls="collapse_{i}"> 
-        {get.group(1)}
-      </button>
-    </p>
-    <div id="collapse_{i}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion_{i}">
-      <div class="accordion-body">
-        {html[get.span()[1] - 1:]}
-      </div>
-    </div>
-  </div>
-</div>"""
+        html = f"{html[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{html[get.span()[1] - 1:]}"
+        # spoiler_count += 1 #已棄用
+        # i = spoiler_count
+        # html = f"""{html[:get.span()[0]]}<div class="accordion accordion-flush" id="accordion_{i}">
+        #  <div class="accordion-item">
+        #    <p class="accordion-header" id="heading_{i}">
+        #      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        #      data-bs-target="#collapse_{i}" aria-expanded="false" aria-controls="collapse_{i}">
+        #        {get.group(1)}
+        #      </button>
+        #    </p>
+        #    <div id="collapse_{i}" class="accordion-collapse collapse"
+        #    aria-labelledby="headingOne" data-bs-parent="#accordion_{i}">
+        #      <div class="accordion-body">
+        #        {html[get.span()[1] - 1:]}
+        #      </div>
+        #    </div>
+        #  </div>
+        # </div>"""
         get = reg.search(html)
     get = reg0.search(html)
     while get:
-        # html = f"{html[:get.span()[0]]}</details>{html[get.span()[1]:]}" #old
-        html = f"{html[:get.span()[0]]}</div></div></div></div>{html[get.span()[1]:]}"
+        html = f"{html[:get.span()[0]]}</details>{html[get.span()[1]:]}"
+        # html = f"{html[:get.span()[0]]}</div></div></div></div>{html[get.span()[1]:]}" #已棄用
         get = reg0.search(html)
     html = html.replace(" NEXTLINE ", "<br>")
     #
@@ -177,10 +189,10 @@ def run_markdown(source: str, makeindex: bool = True) -> str:
     return html
 
 
-for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "source")):
+for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "src")):
     for f in fileNames:
         name = os.path.join(dirPath, f)
-        new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "source"), os.pardir), f)
+        new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "src"), os.pardir), f)
         if os.path.splitext(name)[-1] == ".md":
             new_name = new_name[:-3] + ".html"
             dat = run_markdown(open(name, encoding="utf8").read(), False)
