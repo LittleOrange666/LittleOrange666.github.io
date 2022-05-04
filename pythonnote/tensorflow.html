@@ -116,11 +116,15 @@
 </code></pre></div>
 
 <ul>
-<li>損失函數: tf.Tensor<br>
-  損失函數是一個用於判斷正確程度的值，應為一個透過對占位符及模型參數作數學計算後的到的張量</li>
-<li>梯度下降器: tf.Operation<br>
+<li>
+<p>損失函數: tf.Tensor<br>
+  損失函數是一個用於判斷正確程度的值，應為一個透過對占位符及模型參數作數學計算後的到的張量</p>
+</li>
+<li>
+<p>梯度下降器: tf.Operation<br>
   梯度下降器是用於反向修正的算法，通常不會自己寫<br>
-  語法：</li>
+  語法：</p>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'global_step'</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -143,7 +147,145 @@
 <p>使用<code>sess.run(optimizer)</code>可進行訓練<br>
 使用<code>sess.run(損失函數)</code>可求出損失值<br>
 這兩個操作都需要輸入資料<br>
-使用<code>sess.run(模型參數)</code>可取出模型參數</p>
+使用<code>sess.run(模型參數)</code>可取出模型參數<br>
+<details><summary>範例：y=ax+b</p></summary>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft JhengHei'</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 正常顯示負號</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_eager_execution</span><span class="p">()</span> <span class="c1"># 禁用eager execution防止出RuntimeError</span>
+<span class="c1">#隨機參數</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random_a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">random_b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 產生資料</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">random_a</span> <span class="o">*</span> <span class="n">train_X</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">random_b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">random_a</span>  <span class="c1"># y=ax+b，但是加入了噪聲</span>
+<span class="c1"># 輸入值</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">"float"</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">"float"</span><span class="p">)</span>
+<span class="c1"># 可訓練參數</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"weight"</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"bias"</span><span class="p">)</span>
+<span class="c1"># 前嚮結構</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'global_step'</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># 反向改善</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">z</span><span class="p">))</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">global_step</span><span class="p">)</span>  <span class="c1"># 梯度下降</span>
+<span class="c1"># 初始化所有變數</span>
+<span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+<span class="c1"># 定義訓練參數</span>
+<span class="n">training_epochs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">display_step</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">global_step</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span> <span class="o"><</span> <span class="n">training_epochs</span><span class="p">:</span>  <span class="c1"># step=執行次數/資料大小=global_step.eval()/len(train_X)</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">global_step</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_X</span><span class="p">))</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">):</span>
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>  <span class="c1"># 餵資料</span>
+        <span class="c1"># 顯示訓練中的詳細訊息</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="n">display_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">train_Y</span><span class="p">})</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Epoch:"</span><span class="p">,</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"cost="</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="s2">"W="</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">),</span> <span class="s2">"b="</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Finished!"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"cost="</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">train_Y</span><span class="p">}),</span> <span class="s2">"W="</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">),</span> <span class="s2">"b="</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+    <span class="c1"># 顯示模型</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">,</span> <span class="s1">'ro'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Original data'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">)</span> <span class="o">*</span> <span class="n">train_X</span> <span class="o">+</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Fitted line'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p></details></p>
+<h3 id="_13">動態圖</h3>
+<p>動態圖基於eager execution<br>
+不需要建立Session<br>
+直接計算梯度並更改參數</p>
+<h4 id="_14">動態圖架構</h4>
+<p>動態圖架構包含模型參數、損失函數、改善器</p>
+<ul>
+<li>模型參數: tf.Variable<br>
+  模型參數是模型中要透過訓練求得的值</li>
+<li>損失函數: tf.Tensor<br>
+  損失函數是一個用於判斷正確程度的值，應為一個透過對占位符及模型參數作數學計算後的到的張量<br>
+  與靜態圖不同的是，損失函數是動態計算而不是在一開始就固定</li>
+<li>改善器: GradientDescentOptimizer<br>
+  改善器能夠透過梯度自動優化參數<br>
+  語法：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="_15">動態圖使用</h4>
+<p>首先定義好模型參數與改善器<br>
+並在過程中計算梯度<br>
+<strong>計算梯度</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+    <span class="n">cost_</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="n">損失函數</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">cost_</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="n">模型參數列表</span><span class="p">])</span>  <span class="c1"># 計算梯度</span>
+</code></pre></div>
+
+<p><strong>優化參數</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="p">[</span><span class="n">模型參數列表</span><span class="p">]),</span> <span class="n">global_step</span><span class="p">)</span>
+</code></pre></div>
+
+<p>要取出任何的模型參數可直接使用</p>
+<div class="codehilite"><pre><span></span><code><span class="n">參數</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</code></pre></div>
+
+<p><details><summary>範例：y=ax+b</p></summary>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft JhengHei'</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 正常顯示負號</span>
+<span class="c1">#隨機參數</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random_a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">random_b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># 產生資料</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">random_a</span> <span class="o">*</span> <span class="n">train_X</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">random_b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">random_a</span>  <span class="c1"># y=ax+b，但是加入了噪聲</span>
+<span class="c1"># 定義訓練參數</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"weight"</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"bias"</span><span class="p">)</span>
+<span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'global_step'</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">getcost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="c1"># 定義函數，計算loss值</span>
+    <span class="c1"># 前嚮結構</span>
+    <span class="c1">#z = tf.cast(tf.multiply(np.asarray(x, dtype=np.float32), W) + b, dtype=tf.float32)</span>
+    <span class="n">z</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">z</span><span class="p">))</span>  <span class="c1"># loss值</span>
+    <span class="k">return</span> <span class="n">cost</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="c1"># 隨機梯度下降法作為改善器</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+<span class="n">training_epochs</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 迭代訓練次數</span>
+<span class="n">display_step</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">old_step</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">while</span> <span class="n">global_step</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span> <span class="o"><</span> <span class="n">training_epochs</span><span class="p">:</span>  <span class="c1"># 迭代訓練模型</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">global_step</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_X</span><span class="p">))</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+        <span class="n">cost_</span> <span class="o">=</span> <span class="n">getcost</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+        <span class="n">gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">cost_</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>  <span class="c1"># 計算梯度</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="p">[</span><span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">]),</span> <span class="n">global_step</span><span class="p">)</span>
+    <span class="c1"># 顯示訓練中的詳細訊息</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="n">display_step</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">step</span><span class="o">!=</span><span class="n">old_step</span><span class="p">:</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="c1"># 損失值換為np.ndarray</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Epoch:"</span><span class="p">,</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"cost="</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="s2">"W="</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="s2">"b="</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        <span class="n">old_step</span><span class="o">=</span><span class="n">step</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">" Finished!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"cost="</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="s2">"W="</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="s2">"b="</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">,</span> <span class="s1">'ro'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Original data'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">W</span> <span class="o">*</span> <span class="n">train_X</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Fitted line'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p></details></p>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
