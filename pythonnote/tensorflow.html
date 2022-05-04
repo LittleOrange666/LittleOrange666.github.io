@@ -80,6 +80,8 @@
 <div class="codehilite"><pre><span></span><code><span class="n">tf</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
 </code></pre></div>
 
+<h4 id="_9">自定義</h4>
+<p>除了標準的張量計算外，還可以用<code>@tf.function</code>來建立自定義的張量計算</p>
 <h3 id="eager-execution">關於eager execution</h3>
 <p>eager execution表示所有計算都立即執行<br>
 在tensorflow 2默認是啟用的<br>
@@ -90,34 +92,41 @@
 
 <p>若禁用eager execution，則計算結果必須通過sess.run來讀取<br>
 但可以利用占位符作計算，把資料留到輸出結果時再輸入</p>
-<h2 id="_9">架構</h2>
-<h3 id="_10">靜態圖</h3>
+<h2 id="_10">架構</h2>
+<h3 id="_11">靜態圖</h3>
 <p>需禁用eager execution<br>
 靜態圖將"定義"與"執行"分離<br>
 預先定義好架構與損失後，建立Session進行訓練</p>
-<h4 id="_11">靜態圖架構</h4>
+<h4 id="_12">靜態圖架構</h4>
 <p>靜態圖的架構包含占位符、模型參數、損失函數和梯度下降器</p>
 <ul>
 <li>占位符: tf.Tensor<br>
   占位符表示模型中可輸入資料的空位<br>
-  語法：<br>
-<code>python
-  名稱 = tf.compat.v1.placeholder("float")</code></li>
+  語法：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">名稱</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">"float"</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
 <li>模型參數: tf.Variable<br>
   模型參數是模型中要透過訓練求得的值<br>
-  語法：<br>
-<code>python
-  名稱 = tf.Variable(初始值: tf.Tensor, name=名稱: str)</code></li>
+  語法：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">名稱</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">初始值</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">名稱</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
 <li>損失函數: tf.Tensor<br>
   損失函數是一個用於判斷正確程度的值，應為一個透過對占位符及模型參數作數學計算後的到的張量</li>
 <li>梯度下降器: tf.Operation<br>
   梯度下降器是用於反向修正的算法，通常不會自己寫<br>
-  語法：<br>
-<code>python
-  learning_rate = 0.01
-  global_step = tf.Variable(0, name='global_step', trainable=False)
-  optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate).minimize(損失函數, global_step)</code></li>
+  語法：</li>
 </ul>
+<div class="codehilite"><pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'global_step'</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">損失函數</span><span class="p">,</span> <span class="n">global_step</span><span class="p">)</span>
+</code></pre></div>
+
 <h4 id="session">Session建立與使用</h4>
 <p>主要訓練部分需要建立一個Session<br>
 語法：</p>

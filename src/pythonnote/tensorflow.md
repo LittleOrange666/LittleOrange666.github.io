@@ -44,6 +44,8 @@ tf.square(A,B)
 ```python
 tf.sqrt(A,B)
 ```
+#### 自定義
+除了標準的張量計算外，還可以用`@tf.function`來建立自定義的張量計算
 ### 關於eager execution
 eager execution表示所有計算都立即執行
 在tensorflow 2默認是啟用的
@@ -65,25 +67,25 @@ tf.compat.v1.disable_eager_execution() # 禁用eager execution防止出RuntimeEr
 + 占位符: tf.Tensor
   占位符表示模型中可輸入資料的空位
   語法：
-  ```python
-  名稱 = tf.compat.v1.placeholder("float")
-  ```
+```python
+名稱 = tf.compat.v1.placeholder("float")
+```
 + 模型參數: tf.Variable
   模型參數是模型中要透過訓練求得的值
   語法：
-  ```python
-  名稱 = tf.Variable(初始值: tf.Tensor, name=名稱: str)
-  ```
+```python
+名稱 = tf.Variable(初始值: tf.Tensor, name=名稱: str)
+```
 + 損失函數: tf.Tensor
   損失函數是一個用於判斷正確程度的值，應為一個透過對占位符及模型參數作數學計算後的到的張量
 + 梯度下降器: tf.Operation
   梯度下降器是用於反向修正的算法，通常不會自己寫
   語法：
-  ```python
-  learning_rate = 0.01
-  global_step = tf.Variable(0, name='global_step', trainable=False)
-  optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate).minimize(損失函數, global_step)
-  ```
+```python
+learning_rate = 0.01
+global_step = tf.Variable(0, name='global_step', trainable=False)
+optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate).minimize(損失函數, global_step)
+```
 
 #### Session建立與使用
 主要訓練部分需要建立一個Session

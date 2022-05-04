@@ -99,7 +99,7 @@ case 2:原陣列為二維：矩陣乘法<br>
 <strong>np.random.shuffle(arr)</strong><br>
 隨機打亂陣列</p>
 <h3 id="-_1">--其他--</h3>
-<p><strong>np.nonzero(arr/pyarr) -> tuple<script type="math/tex; mode=display">arr</script></strong><br>
+<p><strong>np.nonzero(arr/pyarr) -> tuple[arr]</strong><br>
 尋找陣列中的非零項目(對bool則是!=False)，用n個一維的numpy陣列紀錄n維陣列非零項目位置，一維的numpy陣列維非零項目總數，默認數據類型為<code>int64</code><br>
 <strong>np.unravel_index(index:int,shape) -> shape</strong><br>
 將<code>index</code>轉換為大小為<code>shape</code>的矩陣中的位置座標</p>
@@ -143,11 +143,10 @@ arr {運算子} arr<br>
 注：比較兩布林陣列需使用"|", "&", "^"等運算子，不可使用"and", "or"</p>
 <h3 id="_3">陣列元素讀寫</h3>
 <p>讀取：<br>
-<em>數據</em> = arr<script type="math/tex; mode=display">*索引*</script>
-<br>
+<em>數據</em> = arr[<em>索引</em>]<br>
 此處<em>數據</em>可能是單一數值或陣列，視<em>索引</em>而定<br>
 寫入：<br>
-arr<script type="math/tex; mode=display">*索引*</script> = <em>數據</em><br>
+arr[<em>索引</em>] = <em>數據</em><br>
 此處<em>數據</em>可以是單一數值或陣列。<br>
 1.若<em>索引</em>指向非單一數值，<em>數據</em>可以選擇輸入單一數值或與<em>索引</em>指向的內容相同形狀的陣列，若輸入單一數值，則將<em>索引</em>指向的內容全部改為該數值，若輸入與<em>索引</em>指向的內容相同形狀的陣列，則將<em>索引</em>指向的內容改為對應位置的值<br>
 2.若<em>索引</em>指向單一數值，<em>數據</em>只能是單一數值</p>
