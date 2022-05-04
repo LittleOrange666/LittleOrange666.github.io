@@ -66,6 +66,8 @@ case 1:原陣列為一維：向量內積
 case 2:原陣列為二維：矩陣乘法
 **np.intersect1d(arr1,arr2) -> arr**
 取出同時存在於兩陣列的值
+**np.random.shuffle(arr)**
+隨機打亂陣列
 
 ### --其他--
 **np.nonzero(arr/pyarr) -> tuple\[arr\]**

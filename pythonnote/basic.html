@@ -7,14 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <style type="text/css">
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
     #top_area{
         position: fixed;
         left:  0px;
         right: 0px;
+    }
+    #main_area {
+        width: 80%;
+        padding-top: 50px;
     }
     </style>
 </head>
@@ -730,6 +730,19 @@ Python中的推導式有4種，分別是</p>
 若各元素只會被用到一次，相較於列表推導式可節省記憶體與時間<br>
 元素的順序會被保留<br>
 使用小括號()</p>
+<h2 id="main">關於main</h2>
+<p>Python程式不需要包含在main函數裡就可執行<br>
+若是要長期維護的代碼會建議用如下語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 主要程式碼</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+<p>這種寫法可以使程式碼在被import時不自動執行主要程式碼<br>
+但同時可以手動執行main<br>
+而且有一些函數庫會要求把程式碼寫在<code>if __name__ == '__main__':</code>裡面(例如：PyQt)<br>
+並能明確的標示出主要程式碼的位置</p>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

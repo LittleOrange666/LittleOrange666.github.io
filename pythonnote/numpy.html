@@ -7,14 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <style type="text/css">
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
     #top_area{
         position: fixed;
         left:  0px;
         right: 0px;
+    }
+    #main_area {
+        width: 80%;
+        padding-top: 50px;
     }
     </style>
 </head>
@@ -95,7 +95,9 @@ case 2:原陣列為二維(不一定是矩陣)：將原陣列的元素由左上�
 case 1:原陣列為一維：向量內積<br>
 case 2:原陣列為二維：矩陣乘法<br>
 <strong>np.intersect1d(arr1,arr2) -> arr</strong><br>
-取出同時存在於兩陣列的值</p>
+取出同時存在於兩陣列的值<br>
+<strong>np.random.shuffle(arr)</strong><br>
+隨機打亂陣列</p>
 <h3 id="-_1">--其他--</h3>
 <p><strong>np.nonzero(arr/pyarr) -> tuple<script type="math/tex; mode=display">arr</script></strong><br>
 尋找陣列中的非零項目(對bool則是!=False)，用n個一維的numpy陣列紀錄n維陣列非零項目位置，一維的numpy陣列維非零項目總數，默認數據類型為<code>int64</code><br>
