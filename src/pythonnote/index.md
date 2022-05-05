@@ -28,9 +28,7 @@ title: 小橘子的Python筆記
 - 進階數學計算：[scipy](scipy)
 
 ### 機器學習
-- 基礎：sklearn
-- 框架：keras
-- 核心：[tensorflow](tensorflow)
+- [tensorflow](tensorflow/)
 
 ### GUI
 - 遊戲：pygame

@@ -1,7 +1,7 @@
 ---
-title: python tensorflow
+title: python tensorflow 基礎
 ---
-# tensorflow
+# tensorflow 基礎
 先import
 因為和通常numpy、matplotlib一起用，所以開頭要寫
 ```python
@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei'] # 正常顯示中文
 plt.rcParams['axes.unicode_minus'] = False # 正常顯示負號
 ```
-## 基本
+## 基本部分
 ### 常用資料型別
 #### 張量 tf.Tensor
 基本有點像np.ndarray
@@ -54,9 +54,15 @@ eager execution表示所有計算都立即執行
 tf.compat.v1.disable_v2_behavior() # 禁用tensorflow 2全域特性防止出RuntimeError
 tf.compat.v1.disable_eager_execution() # 禁用eager execution防止出RuntimeError
 ```
-若禁用eager execution，則計算結果必須通過sess.run來讀取
+若禁用eager execution，則計算結果必須通過Session::run來讀取
 但可以利用占位符作計算，把資料留到輸出結果時再輸入
 ## 架構
+tensorflow中有5種不同的架構
++ 靜態圖：最原始也最靈活的架構
++ 動態圖：比起靜態圖更符合Python的編寫方式
++ 估算器：整合了常用功能的進階API
++ keras：十分通用的前端神經網路介面
++ swift
 ### 靜態圖
 需禁用eager execution
 靜態圖將"定義"與"執行"分離
@@ -244,3 +250,6 @@ plt.legend()
 plt.show()
 ```
 :::
+### 估算器
+### keras
+詳見[keras](keras)

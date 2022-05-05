@@ -1,0 +1,152 @@
+<html>
+
+<head>
+    <title>python tensorflow-keras架構</title>
+    <base target="_top">
+    <link href="/style/codehilite.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <style type="text/css">
+    #top_area{
+        position: fixed;
+        left:  0px;
+        right: 0px;
+    }
+    #main_area {
+        width: 80%;
+        padding-top: 50px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                        </li>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="main_area" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true">
+        <h1 id="keras">keras架構</h1>
+<p>Keras 是一個用 Python 編寫的高級神經網絡 API，它能夠以 TensorFlow, CNTK, 或者 Theano 作為後端運行。 Keras 的開發重點是支持快速的實驗。能夠以最少的時間把想法轉換為實驗結果，是做好研究的關鍵。</p>
+<h2 id="_1">基本使用</h2>
+<p>先import</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
+</code></pre></div>
+
+<h3 id="_2">建立模型</h3>
+<p>模型有兩種建立方式</p>
+<ol>
+<li>順序模型</li>
+<li>函數式 API</li>
+</ol>
+<h4 id="_3">順序模型</h4>
+<p>寫法一、</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">第一層</span>
+    <span class="n">第二層</span>
+    <span class="o">..</span>
+    <span class="n">最後一層</span>
+    <span class="p">])</span>
+</code></pre></div>
+
+<p>寫法二、</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">第一層</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">第二層</span><span class="p">)</span>
+<span class="o">..</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">最後一層</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="api">函數式 API</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">輸入陣列形狀</span><span class="p">)</span>
+<span class="n">第一層</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">第二層</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">第一層</span><span class="p">)</span>
+<span class="o">..</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">前一層</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">outputs</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="_4">層</h4>
+<p>keras中最基本的層是layers.Dense<br>
+Dense(units)表示這一層中有units個節點</p>
+<h4 id="_5">激活函數</h4>
+<p>激活函數可以用layers.Activation作為一個單獨的層<br>
+或著用Dense(units,activation=激活函數)來使用<br>
+通常使用內建的<br>
+也可以自己設計，但自己設計的激活函數要支援對張量(tf.Tensor)作操作<br>
+<details><summary>內建激活函數(都在keras.backend底下)</summary><br>
+</details></p>
+<h3 id="_6">編譯</h3>
+<p>建構完模型要對模型作編譯</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</code></pre></div>
+
+<p>編譯需要兩個參數</p>
+<ol>
+<li>損失函數loss</li>
+<li>優化器optimizers</li>
+</ol>
+<p>還有一些常用的參數</p>
+<ul>
+<li>評估函數metrics</li>
+</ul>
+<h4 id="_7">損失函數</h4>
+<p>損失函數輸入真實值與預測值後，回傳一個損失值<br>
+通常使用內建的，也可以自己設計<br>
+<details><summary>內建損失函數(都在keras.losses底下)</summary><br>
+</details></p>
+<h4 id="_8">優化器</h4>
+<p>優化器是一個物件<br>
+通常使用內建的<br>
+<details><summary>內建優化器(都在keras.optimizers底下)</summary><br>
+</details></p>
+<h4 id="_9">評估函數</h4>
+<p>評估函數輸入真實值與預測值後，回傳一個評估值<br>
+通常使用內建的，也可以自己設計<br>
+用於評估模型的性能<br>
+可以同時使用多個<br>
+<details><summary>內建損失函數(都在keras.losses底下)</summary><br>
+</details></p>
+<h4 id="_10">使用名稱</h4>
+<p>編譯時使用內建的東西可以直接傳入名稱<br>
+如以下兩者意義相同</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'RMSprop'</span><span class="p">,</span><span class="n">loss</span><span class="o">=</span><span class="s1">'mean_squared_error'</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'mae'</span><span class="p">])</span>
+</code></pre></div>
+
+<h3 id="_11">訓練</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_12">測試</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>透過測試資料求出損失值及評估值</p>
+<h3 id="_13">使用</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</code></pre></div>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"],
+            enable_dollar_delimiter: true
+        });
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+</body>
+
+</html>
