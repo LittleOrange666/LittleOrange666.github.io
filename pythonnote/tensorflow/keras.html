@@ -79,7 +79,8 @@
 
 <h4 id="_4">層</h4>
 <p>keras中最基本的層是layers.Dense<br>
-Dense(units)表示這一層中有units個節點</p>
+Dense(units)表示這一層中有units個節點<br>
+可以用class設計不同行為的曾</p>
 <h4 id="_5">激活函數</h4>
 <p>激活函數可以用layers.Activation作為一個單獨的層<br>
 或著用Dense(units,activation=激活函數)來使用<br>
@@ -116,7 +117,7 @@ Dense(units)表示這一層中有units個節點</p>
 通常使用內建的，也可以自己設計<br>
 用於評估模型的性能<br>
 可以同時使用多個<br>
-<details><summary>內建損失函數(都在keras.losses底下)</summary><br>
+<details><summary>內建評估函數(都在keras.metrics底下)</summary><br>
 </details></p>
 <h4 id="_10">使用名稱</h4>
 <p>編譯時使用內建的東西可以直接傳入名稱<br>
@@ -126,17 +127,31 @@ Dense(units)表示這一層中有units個節點</p>
 </code></pre></div>
 
 <h3 id="_11">訓練</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span>
+<p>透過訓練資料進行訓練</p>
+<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，支援使用generator作為輸入</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span><span class="n">train_output</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練一筆資料</span>
 </code></pre></div>
 
+<p></details> spoiler 參數表(若依照此順序輸入可省略"key=")<br>
+| keyname | 默認值 | 意義 |<br>
+| --- | --- | --- |<br>
+| x | None | 樣本資料 |<br>
+| y | None | 目標資料 |<br>
+| batch_size | 32 | 每一批次輸入資料的樣本數 |<br>
+| epochs | 1 | 重複訓練的次數 <br>
+</details></p>
 <h3 id="_12">測試</h3>
+<p>透過測試資料求出損失值及評估值</p>
 <div class="codehilite"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
 </code></pre></div>
 
-<p>透過測試資料求出損失值及評估值</p>
 <h3 id="_13">使用</h3>
+<p>使用模型預測結果</p>
 <div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 </code></pre></div>
+
+<h3 id="_14">儲存與載入</h3>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

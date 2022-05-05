@@ -12,6 +12,9 @@ import os
 prepares = ["language-python"]
 
 
+def addattr(old,new):
+    return old+" "+new if old else new
+
 class Codehightlighter(HTMLParser):
     __slots__ = ("text", "prepare", "makeindex", "index", "indexs", "names", "wait")
 
@@ -62,6 +65,8 @@ class Codehightlighter(HTMLParser):
                 self.wait = tag
                 self.names.append("")
                 self.index += 1
+            if tag == "table":
+                attrs["class"] = addattr(attrs["class"] if "class" in attrs else "","table table-striped table-bordered")
             atl = ' '.join(k if v is None else k + '="' + v + '"' for k, v in attrs.items() if k is not None)
             if len(attrs):
                 atl = ' ' + atl

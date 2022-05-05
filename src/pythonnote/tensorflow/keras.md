@@ -45,6 +45,7 @@ model = models.Model(input=inputs,output=outputs)
 #### 層
 keras中最基本的層是layers.Dense
 Dense(units)表示這一層中有units個節點
+可以用class設計不同行為的曾
 #### 激活函數
 激活函數可以用layers.Activation作為一個單獨的層
 或著用Dense(units,activation=激活函數)來使用
@@ -82,7 +83,7 @@ model.compile()
 通常使用內建的，也可以自己設計
 用於評估模型的性能
 可以同時使用多個
-:::spoiler 內建損失函數(都在keras.losses底下)
+:::spoiler 內建評估函數(都在keras.metrics底下)
 :::
 
 #### 使用名稱
@@ -94,15 +95,28 @@ model.compile(optimizer='RMSprop',loss='mean_squared_error',metrics=['mae'])
 ```
 
 ### 訓練
+透過訓練資料進行訓練
 ```python
-history = model.fit(train_inputs,train_outputs,epochs=訓練次數)
+history = model.fit(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料
+history = model.fit_generator(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料，支援使用generator作為輸入
+history = model.train_on_batch(train_input,train_output,epochs=訓練次數) # 一次訓練一筆資料
 ```
+::: spoiler 參數表(若依照此順序輸入可省略"key=")
+| keyname | 默認值 | 意義 |
+| --- | --- | --- |
+| x | None | 樣本資料 |
+| y | None | 目標資料 |
+| batch_size | 32 | 每一批次輸入資料的樣本數 |
+| epochs | 1 | 重複訓練的次數 
+:::
 ### 測試
+透過測試資料求出損失值及評估值
 ```python
 score = model.evaluate(test_inputs,test_outputs)
 ```
-透過測試資料求出損失值及評估值
 ### 使用
+使用模型預測結果
 ```python
 output = model.predict(input)
 ```
+### 儲存與載入
