@@ -60,8 +60,8 @@ model.compile()
 ```
 編譯需要兩個參數
 
-1. 損失函數loss
-2. 優化器optimizers
++ 損失函數loss
++ 優化器optimizers
 
 還有一些常用的參數
 
@@ -97,17 +97,25 @@ model.compile(optimizer='RMSprop',loss='mean_squared_error',metrics=['mae'])
 ### 訓練
 透過訓練資料進行訓練
 ```python
-history = model.fit(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料
+history = model.fit(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入
 history = model.fit_generator(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料，支援使用generator作為輸入
 history = model.train_on_batch(train_input,train_output,epochs=訓練次數) # 一次訓練一筆資料
 ```
-::: spoiler 參數表(若依照此順序輸入可省略"key=")
+:::spoiler 參數表(若依照此順序輸入可省略"key=")
 | keyname | 默認值 | 意義 |
 | --- | --- | --- |
 | x | None | 樣本資料 |
 | y | None | 目標資料 |
 | batch_size | 32 | 每一批次輸入資料的樣本數 |
-| epochs | 1 | 重複訓練的次數 
+| epochs | 1 | 重複訓練的次數 |
+| verdose | 1 | 記錄檔資訊的顯示模式 0:不輸出 1:進度指示器 2: 每個epoch一行 |
+| callbacks | None | 回呼函數，用於過程中的細節操作 |
+| validation_split | 0.0 | 用於將訓練資料的一部分拆出作為驗證資料之比例 |
+| validation_data | None | 驗證資料，會覆蓋validation_split |
+| shuffle | True | 是否在每一輪訓練中打亂資料順序 |
+| class_weight | None | 若包含不同類別的樣本資料，可對不同類別的損失值作加權(僅在訓練時有效) |
+| sample_weight | None | 對每個樣本的損失值作加權(僅在訓練時有效) |
+| initial_epoch | 0 | 開始訓練的輪次 |
 :::
 ### 測試
 透過測試資料求出損失值及評估值
@@ -120,3 +128,87 @@ score = model.evaluate(test_inputs,test_outputs)
 output = model.predict(input)
 ```
 ### 儲存與載入
+keras模型可以用三種格式儲存
+
++ h5
++ json(只包含形狀)
+
+#### h5py
+副檔名建議用".h5"或".keras"
+**儲存：**
+```python
+model.save(檔名)
+```
+**載入：**
+```python
+model = models.load_model(檔名)
+```
+
+#### json
+**儲存：**
+```python
+open(檔名,"w").write(model.to_json())
+```
+**載入：**
+```python
+model = models.model_from_json(open(檔名).read())
+```
+### 範例
+:::spoiler 範例：$y=A\dot X+b$
+```python
+param_count = 10 # 參數數量
+
+import numpy as np
+import random
+from tensorflow.keras import optimizers,losses,metrics,layers,models
+import matplotlib.pyplot as plt
+
+# 隨機參數
+random_a = [random.randint(20,100) for _ in range(param_count)]
+random_b = random.randint(2,8)*(1-2* random.randint(0,1))
+
+# 生成資料
+def createData(count):
+    X = np.array([np.linspace(-1, 1, count) for _ in range(param_count)]).T
+    Y = np.dot(X,np.array(random_a)) + np.full((count,),random_b) + np.random.randn(count) * 0.1 * min(random_a)  # y=A*X+b，但是加入了噪聲
+    return X,Y
+train_X,train_Y = createData(100)
+test_X,test_Y = createData(30)
+
+# 建立模型
+inputs = layers.Input(shape=(param_count,))
+layer1 = layers.Dense(64)(inputs)
+layer2 = layers.Dense(64)(layer1)
+outputs = layers.Dense(1)(layer2)
+model = models.Model(inputs=inputs, outputs=outputs)
+model.compile(optimizer=optimizers.RMSprop(),loss=losses.mean_squared_error,metrics=[metrics.mae])
+
+# 訓練
+model.fit(train_X,train_Y,epochs=100,validation_data=[test_X,test_Y])
+
+# 檢查
+print(model.evaluate(test_X,test_Y))
+
+# 損失值變化
+plt.plot(np.arange(len(history.history['loss'])),history.history['loss'])
+plt.title('Model accuracy')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['Train'], loc='upper right')
+plt.show()
+
+# 儲存
+import time
+t=time.localtime()
+filename = f"keras_{t.tm_year}_{t.tm_mon}_{t.tm_mday}_{t.tm_hour}_{t.tm_min}_{t.tm_sec}.h5"
+model.save(filename)
+del model
+
+# 使用
+the_model = models.load_model(filename)
+x_predict = np.array([random.sample(range(-10, 10), 10) for _ in range(param_count)]).T
+y_predict = the_model.predict(x_predict)
+y_should = np.dot(x_predict,random_a)+np.full((10,),random_b)
+print(x_predict,y_predict.T[0],y_should)
+```
+:::

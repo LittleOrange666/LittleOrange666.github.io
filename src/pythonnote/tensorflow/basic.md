@@ -113,6 +113,7 @@ sess.run有以下功能：
 使用`sess.run(損失函數)`可求出損失值
 這兩個操作都需要輸入資料
 使用`sess.run(模型參數)`可取出模型參數
+#### 範例
 :::spoiler 範例：y=ax+b
 ```python
 import tensorflow as tf

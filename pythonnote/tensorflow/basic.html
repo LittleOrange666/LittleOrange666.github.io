@@ -153,8 +153,9 @@
 <p>使用<code>sess.run(optimizer)</code>可進行訓練<br>
 使用<code>sess.run(損失函數)</code>可求出損失值<br>
 這兩個操作都需要輸入資料<br>
-使用<code>sess.run(模型參數)</code>可取出模型參數<br>
-<details><summary>範例：y=ax+b</p></summary>
+使用<code>sess.run(模型參數)</code>可取出模型參數</p>
+<h4 id="_13">範例</h4>
+<p><details><summary>範例：y=ax+b</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -206,11 +207,11 @@
 </code></pre></div>
 
 <p></details></p>
-<h3 id="_13">動態圖</h3>
+<h3 id="_14">動態圖</h3>
 <p>動態圖基於eager execution<br>
 不需要建立Session<br>
 直接計算梯度並更改參數</p>
-<h4 id="_14">動態圖架構</h4>
+<h4 id="_15">動態圖架構</h4>
 <p>動態圖架構包含模型參數、損失函數、改善器</p>
 <ul>
 <li>模型參數: tf.Variable<br>
@@ -226,7 +227,7 @@
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="_15">動態圖使用</h4>
+<h4 id="_16">動態圖使用</h4>
 <p>首先定義好模型參數與改善器<br>
 並在過程中計算梯度<br>
 <strong>計算梯度</strong></p>
@@ -292,7 +293,7 @@
 </code></pre></div>
 
 <p></details></p>
-<h3 id="_16">估算器</h3>
+<h3 id="_17">估算器</h3>
 <h3 id="keras">keras</h3>
 <p>詳見<a href="keras">keras</a></p>
     </div>
