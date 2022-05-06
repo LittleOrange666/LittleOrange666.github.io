@@ -133,22 +133,79 @@ Dense(units)表示這一層中有units個節點<br>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span><span class="n">train_output</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練一筆資料</span>
 </code></pre></div>
 
-<p><details><summary>參數表(若依照此順序輸入可省略"key=")</summary><br>
-| keyname | 默認值 | 意義 |<br>
-| --- | --- | --- |<br>
-| x | None | 樣本資料 |<br>
-| y | None | 目標資料 |<br>
-| batch_size | 32 | 每一批次輸入資料的樣本數 |<br>
-| epochs | 1 | 重複訓練的次數 |<br>
-| verdose | 1 | 記錄檔資訊的顯示模式 0:不輸出 1:進度指示器 2: 每個epoch一行 |<br>
-| callbacks | None | 回呼函數，用於過程中的細節操作 |<br>
-| validation_split | 0.0 | 用於將訓練資料的一部分拆出作為驗證資料之比例 |<br>
-| validation_data | None | 驗證資料，會覆蓋validation_split |<br>
-| shuffle | True | 是否在每一輪訓練中打亂資料順序 |<br>
-| class_weight | None | 若包含不同類別的樣本資料，可對不同類別的損失值作加權(僅在訓練時有效) |<br>
-| sample_weight | None | 對每個樣本的損失值作加權(僅在訓練時有效) |<br>
-| initial_epoch | 0 | 開始訓練的輪次 |<br>
-</details></p>
+<p><details><summary>參數表(若依照此順序輸入可省略"key=")</p></summary>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>keyname</th>
+<th>默認值</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>None</td>
+<td>樣本資料</td>
+</tr>
+<tr>
+<td>y</td>
+<td>None</td>
+<td>目標資料</td>
+</tr>
+<tr>
+<td>batch_size</td>
+<td>32</td>
+<td>每一批次輸入資料的樣本數</td>
+</tr>
+<tr>
+<td>epochs</td>
+<td>1</td>
+<td>重複訓練的次數</td>
+</tr>
+<tr>
+<td>verdose</td>
+<td>1</td>
+<td>記錄檔資訊的顯示模式 0:不輸出 1:進度指示器 2: 每個epoch一行</td>
+</tr>
+<tr>
+<td>callbacks</td>
+<td>None</td>
+<td>回呼函數，用於過程中的細節操作</td>
+</tr>
+<tr>
+<td>validation_split</td>
+<td>0.0</td>
+<td>用於將訓練資料的一部分拆出作為驗證資料之比例</td>
+</tr>
+<tr>
+<td>validation_data</td>
+<td>None</td>
+<td>驗證資料，會覆蓋validation_split</td>
+</tr>
+<tr>
+<td>shuffle</td>
+<td>True</td>
+<td>是否在每一輪訓練中打亂資料順序</td>
+</tr>
+<tr>
+<td>class_weight</td>
+<td>None</td>
+<td>若包含不同類別的樣本資料，可對不同類別的損失值作加權(僅在訓練時有效)</td>
+</tr>
+<tr>
+<td>sample_weight</td>
+<td>None</td>
+<td>對每個樣本的損失值作加權(僅在訓練時有效)</td>
+</tr>
+<tr>
+<td>initial_epoch</td>
+<td>0</td>
+<td>開始訓練的輪次</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <h3 id="_12">測試</h3>
 <p>透過測試資料求出損失值及評估值</p>
 <div class="codehilite"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>

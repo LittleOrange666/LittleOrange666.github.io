@@ -102,6 +102,7 @@ history = model.fit_generator(train_inputs,train_outputs,epochs=訓練次數) # 
 history = model.train_on_batch(train_input,train_output,epochs=訓練次數) # 一次訓練一筆資料
 ```
 :::spoiler 參數表(若依照此順序輸入可省略"key=")
+
 | keyname | 默認值 | 意義 |
 | --- | --- | --- |
 | x | None | 樣本資料 |
@@ -116,6 +117,7 @@ history = model.train_on_batch(train_input,train_output,epochs=訓練次數) # �
 | class_weight | None | 若包含不同類別的樣本資料，可對不同類別的損失值作加權(僅在訓練時有效) |
 | sample_weight | None | 對每個樣本的損失值作加權(僅在訓練時有效) |
 | initial_epoch | 0 | 開始訓練的輪次 |
+
 :::
 ### 測試
 透過測試資料求出損失值及評估值
