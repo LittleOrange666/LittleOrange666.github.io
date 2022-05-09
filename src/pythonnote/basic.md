@@ -462,8 +462,8 @@ input_str = input()
  |12    |左至右    |a = b   |賦值計算符    |
  
 :::
-
-## 條件判斷
+## 語法結構
+### 條件判斷
 條件判斷可以指定在特定條件符合值才執行部分程式碼
 
 ```python
@@ -477,6 +477,119 @@ else: #非必要
     程式碼
 ```
 
+### 例外處理
+例外處理語法可以接收執行過程中出現的錯誤，並做適當地處理
+
+```python
+try:
+    #主程式
+except 錯誤類型 as 變數名: #'as 變數名'非必要 #可以有很多
+    #例外處理
+else: #非必要
+    #沒例外時的處理
+finally: #非必要
+    #無論如何都會執行
+```
+此語法通常用於對不可預防的錯誤(例如：IOError)做處理
+例外處理可以快速的跳出迴圈/函數，但不建議這樣用
+
+#### 丟出例外
+
+```python
+raise 例外物件
+```
+
+除了直接丟出以外，還可以用assert表示在不符合條件時自動丟出例外
+
+```python
+assert 條件
+```
+
+等同於
+
+```python
+if not 條件:
+    raise AssertionError
+```
+
+### 上下文管理(with語法)
+with語法可以更簡潔的語法確保資源被正確釋放
+常用於檔案的操作
+
+```python
+with 表達式 as 變數: #as不是必須
+    #主程式
+```
+
+等同於
+
+```python
+_contextmanager=表達式
+_value = _contextmanager.__enter__()
+_success = True
+try:
+    變數 = _value
+    #主程式
+except:
+    _success = False
+    if not _contextmanager.__exit__(*sys.exc_info()):
+        raise
+finally:
+    if _success:
+        _contextmanager.__exit__(None,None,None)
+```
+
+表達式必須產出一個contextmanager
+with語法也可以用於使中間的程式展現特定的行為
+例如：指定cpu/gpu
+:::spoiler Example: 檔案的開啟
+```python
+name = input("filename:")
+with open(name) as file:
+    print("content of " +repr(name)+" :")
+    print(file.read())
+```
+:::
+:::spoiler Example: 列印時間
+```python
+import time,traceback
+class TimePrinter:
+    def __init__(self):
+        self.old_print = __builtins__.print
+    def __call__(self,*args,**kws):
+        self.old_print(f"[INFO][{time.ctime()}]: ",end="")
+        self.old_print(*args,**kws)
+class PrintTime:
+    def __init__(self):
+        self.on = False
+        self.old_print = None
+    def __enter__(self):
+        if not isinstance(__builtins__.print,TimePrinter):
+            self.on = True
+            self.old_print = __builtins__.print
+            __builtins__.print = TimePrinter()
+        return __builtins__.print
+    def __exit__(self,exc_type, exc_value, exc_traceback):
+        if self.on:
+            self.on = False
+            __builtins__.print = self.old_print
+            if exc_type is not None:
+                print(f"[EXCEPTION][{time.ctime()}]")
+                traceback.print_tb(exc_traceback)
+                print(f"{exc_type.__name__ }{': '+str(exc_value) if exc_value else ''}")
+            return True
+if __name__=='__main__':
+    for i in range(1,11):
+        print(i)
+    with PrintTime():
+        for i in range(1,11):
+            print(i)
+    for i in range(1,11):
+        print(i)
+```
+:::
+
+
 ## 迴圈
 
 ### for迴圈：
@@ -488,6 +601,7 @@ for 變數 in 可迭代物件:
 ```
 需要注意的是，直接對字典進行迭代與對鍵值進行迭代效果相同
 可迭代物件中 有兩個常用在for迴圈裡
+
 1. range
 2. enumerate
 
@@ -514,7 +628,7 @@ enumerate輸入一個`可迭代物件`，輸出的每一元素為(編號,值)的
 通常寫作
 
 ```python
-for index, value in enumerate(o):
+for index, value in enumerate(obj):
     #do something
 ```
 

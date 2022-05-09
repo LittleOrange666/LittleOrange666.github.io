@@ -610,7 +610,8 @@ D.values() -> an object providing a view on D's values<br>
 </tbody>
 </table>
 <p></details></p>
-<h2 id="_23">條件判斷</h2>
+<h2 id="_23">語法結構</h2>
+<h3 id="_24">條件判斷</h3>
 <p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">#縮排是必須的</span>
 <span class="k">if</span> <span class="n">條件</span><span class="p">:</span>
@@ -621,7 +622,106 @@ D.values() -> an object providing a view on D's values<br>
     <span class="n">程式碼</span>
 </code></pre></div>
 
-<h2 id="_24">迴圈</h2>
+<h3 id="_25">例外處理</h3>
+<p>例外處理語法可以接收執行過程中出現的錯誤，並做適當地處理</p>
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="c1">#主程式</span>
+<span class="k">except</span> <span class="n">錯誤類型</span> <span class="k">as</span> <span class="n">變數名</span><span class="p">:</span> <span class="c1">#'as 變數名'非必要 #可以有很多</span>
+    <span class="c1">#例外處理</span>
+<span class="k">else</span><span class="p">:</span> <span class="c1">#非必要</span>
+    <span class="c1">#沒例外時的處理</span>
+<span class="k">finally</span><span class="p">:</span> <span class="c1">#非必要</span>
+    <span class="c1">#無論如何都會執行</span>
+</code></pre></div>
+
+<p>此語法通常用於對不可預防的錯誤(例如：IOError)做處理<br>
+例外處理可以快速的跳出迴圈/函數，但不建議這樣用</p>
+<h4 id="_26">丟出例外</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">raise</span> <span class="n">例外物件</span>
+</code></pre></div>
+
+<p>除了直接丟出以外，還可以用assert表示在不符合條件時自動丟出例外</p>
+<div class="codehilite"><pre><span></span><code><span class="k">assert</span> <span class="n">條件</span>
+</code></pre></div>
+
+<p>等同於</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">條件</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">AssertionError</span>
+</code></pre></div>
+
+<h3 id="with">上下文管理(with語法)</h3>
+<p>with語法可以更簡潔的語法確保資源被正確釋放<br>
+常用於檔案的操作</p>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#as不是必須</span>
+    <span class="c1">#主程式</span>
+</code></pre></div>
+
+<p>等同於</p>
+<div class="codehilite"><pre><span></span><code><span class="n">_contextmanager</span><span class="o">=</span><span class="n">表達式</span>
+<span class="n">_value</span> <span class="o">=</span> <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
+<span class="n">_success</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">變數</span> <span class="o">=</span> <span class="n">_value</span>
+    <span class="c1">#主程式</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">_success</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="o">*</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()):</span>
+        <span class="k">raise</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">_success</span><span class="p">:</span>
+        <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+<p>表達式必須產出一個contextmanager<br>
+with語法也可以用於使中間的程式展現特定的行為<br>
+例如：指定cpu/gpu<br>
+<details><summary>Example:</summary> 檔案的開啟</p>
+<div class="codehilite"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"filename:"</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"content of "</span> <span class="o">+</span><span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">+</span><span class="s2">" :"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></div>
+
+<p></details><br>
+<details><summary>Example:</summary> 列印時間</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
+<span class="k">class</span> <span class="nc">TimePrinter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[INFO][</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span><span class="si">}</span><span class="s2">]: "</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PrintTime</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span><span class="p">,</span><span class="n">TimePrinter</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
+            <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span> <span class="o">=</span> <span class="n">TimePrinter</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">exc_traceback</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span>
+            <span class="k">if</span> <span class="n">exc_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[EXCEPTION][</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+                <span class="n">traceback</span><span class="o">.</span><span class="n">print_tb</span><span class="p">(</span><span class="n">exc_traceback</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">exc_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="si">}{</span><span class="s1">': '</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">exc_value</span><span class="p">)</span> <span class="k">if</span> <span class="n">exc_value</span> <span class="k">else</span> <span class="s1">''</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">PrintTime</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+
+<p></details></p>
+<h2 id="_27">迴圈</h2>
 <h3 id="for">for迴圈：</h3>
 <p>for迴圈可以對可迭代物件中的每一項進行相同的處理</p>
 <div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">變數</span> <span class="ow">in</span> <span class="n">可迭代物件</span><span class="p">:</span>
@@ -629,9 +729,11 @@ D.values() -> an object providing a view on D's values<br>
 </code></pre></div>
 
 <p>需要注意的是，直接對字典進行迭代與對鍵值進行迭代效果相同<br>
-可迭代物件中 有兩個常用在for迴圈裡<br>
-1. range<br>
-2. enumerate</p>
+可迭代物件中 有兩個常用在for迴圈裡</p>
+<ol>
+<li>range</li>
+<li>enumerate</li>
+</ol>
 <h4 id="range">range</h4>
 <p>range有三種寫法</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">range</span><span class="p">(</span><span class="n">結尾</span><span class="p">)</span>
@@ -650,7 +752,7 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
 
 <p>enumerate輸入一個<code>可迭代物件</code>，輸出的每一元素為(編號,值)的元組<br>
 通常寫作</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="c1">#do something</span>
 </code></pre></div>
 
@@ -660,7 +762,7 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
     <span class="n">程式碼</span>
 </code></pre></div>
 
-<h2 id="_25">自訂函數</h2>
+<h2 id="_28">自訂函數</h2>
 <p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
@@ -668,7 +770,7 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
     <span class="k">return</span> <span class="n">回傳值</span> <span class="c1">#非必要 不一定要在最後一行</span>
 </code></pre></div>
 
-<h2 id="_26">三元運算子</h2>
+<h2 id="_29">三元運算子</h2>
 <p>三元運算子可以簡化條件判斷<br>
 語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">值1</span> <span class="k">if</span> <span class="n">條件</span> <span class="k">else</span> <span class="n">值2</span>

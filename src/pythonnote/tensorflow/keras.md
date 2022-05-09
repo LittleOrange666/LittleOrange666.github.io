@@ -1,5 +1,5 @@
 ---
-title: python tensorflow-keras架構
+title: python tensorflow keras架構
 ---
 # keras架構
 Keras 是一個用 Python 編寫的高級神經網絡 API，它能夠以 TensorFlow, CNTK, 或者 Theano 作為後端運行。 Keras 的開發重點是支持快速的實驗。能夠以最少的時間把想法轉換為實驗結果，是做好研究的關鍵。
@@ -98,7 +98,7 @@ model.compile(optimizer='RMSprop',loss='mean_squared_error',metrics=['mae'])
 透過訓練資料進行訓練
 ```python
 history = model.fit(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入
-history = model.fit_generator(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料，支援使用generator作為輸入
+history = model.fit_generator(train_inputs,train_outputs,epochs=訓練次數) # 一次訓練很多資料，使用generator作為輸入
 history = model.train_on_batch(train_input,train_output,epochs=訓練次數) # 一次訓練一筆資料
 ```
 :::spoiler 參數表(若依照此順序輸入可省略"key=")
@@ -156,7 +156,7 @@ open(檔名,"w").write(model.to_json())
 model = models.model_from_json(open(檔名).read())
 ```
 ### 範例
-:::spoiler 範例：$y=A\dot X+b$
+:::spoiler 範例：y=A*X+b
 ```python
 param_count = 10 # 參數數量
 
