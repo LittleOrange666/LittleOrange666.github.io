@@ -33,6 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                        </li>
                 </div>
             </div>
         </nav>
@@ -876,6 +879,14 @@ Python中的推導式有4種，分別是</p>
             e.classList.remove("a_content_inview");
             update_inview();
         });
+    let prebtn = document.getElementById("previous");
+    prebtn.onclick = ()=>{
+        if (location.href.endsWith("/")){
+            location.href="../";
+        }else{
+            location.href="./";
+        }
+    };
     </script>
 </body>
 
