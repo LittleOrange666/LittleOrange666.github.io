@@ -9,14 +9,20 @@ import re
 import shutil
 import os
 
-prepares = ["language-python"]
+prepares = ("language-python",)
+the_headers = ("h1", "h2", "h3")
+the_contents = ("h1", "h2", "h3", "h4", "h5", "h6", "p", "pre", "ol", "ul")
 
 
-def addattr(old,new):
-    return old+" "+new if old else new
+def addattr(attrs: dict[str, str], name: str, new: str):
+    if name in attrs:
+        attrs[name] += " " + new
+    else:
+        attrs[name] = new
+
 
 class Codehightlighter(HTMLParser):
-    __slots__ = ("text", "prepare", "makeindex", "index", "indexs", "names", "wait")
+    __slots__ = ("text", "prepare", "makeindex", "index", "names", "wait")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,7 +30,6 @@ class Codehightlighter(HTMLParser):
         self.prepare: str = ""
         self.makeindex: bool = True
         self.index: int = 0
-        self.indexs: list[list[int | list[int | list[int]]]] = []
         self.names: list[str] = []
         self.wait: str = ""
 
@@ -34,7 +39,6 @@ class Codehightlighter(HTMLParser):
         self.makeindex = True
         self.wait = ""
         self.index = 0
-        self.indexs: list[list[int | list[int | list[int]]]] = []
         self.names = []
 
     def handle_starttag(self, tag, attrs):
@@ -44,32 +48,19 @@ class Codehightlighter(HTMLParser):
                 if k == "class" and v in prepares:
                     self.prepare = v
         if self.prepare == "":
-            waiting = self.makeindex
-            if self.makeindex:
-                if tag == "h1":
-                    self.indexs.append([self.index])
-                elif tag == "h2":
-                    if len(self.indexs) == 0:
-                        self.indexs.append([-1])
-                    self.indexs[-1].append([self.index])
-                elif tag == "h3":
-                    if len(self.indexs) == 0:
-                        self.indexs.append([-1])
-                    if len(self.indexs[-1]) == 1:
-                        self.indexs[-1].append([-1])
-                    self.indexs[-1][-1].append([self.index])
-                else:
-                    waiting = False
-            if waiting:
-                attrs["id"] = f"item-{self.index}"
+            if self.makeindex and tag in the_headers:
+                self.index += 1
+                attrs["id"] = f"header-{self.index}"
                 self.wait = tag
                 self.names.append("")
-                self.index += 1
+                addattr(attrs, "class", "a_header")
             if tag == "table":
-                attrs["class"] = addattr(attrs["class"] if "class" in attrs else "","table table-striped table-bordered")
-            atl = ' '.join(k if v is None else k + '="' + v + '"' for k, v in attrs.items() if k is not None)
-            if len(attrs):
-                atl = ' ' + atl
+                addattr(attrs, "class", "table table-striped table-bordered")
+            if tag in the_contents:
+                ppp = f"header-{self.index if self.index > 0 else 'root'}"
+                attrs["data-connectedheader"] = ppp
+                addattr(attrs, "class", "a_content")
+            atl = ''.join(' ' + (k if v is None else k + '="' + v + '"') for k, v in attrs.items() if k is not None)
             if tag != "br" or len(self.text) == 0 or self.text[-1] != "<br>":
                 self.text.append(f"<{tag}{atl}>")
 
@@ -95,42 +86,9 @@ class Codehightlighter(HTMLParser):
         self.makeindex = makeindex
         self.wait = ""
         self.index = 0
-        self.indexs: list[list[int | list[int | list[int]]]] = []
         self.names = []
         self.feed(text)
         r = "".join(self.text)
-        if makeindex:
-            lines = ['<nav id="indexbar" class="navbar navbar-light bg-light flex-column align-items-stretch">',
-                     '<a class="navbar-brand" href="#">索引</a>', '<nav class="nav nav-pills flex-column">']
-            for l1 in self.indexs:
-                if l1[0] != -1:
-                    lines.append(f'<a class="nav-link" href="#item-{l1[0]}">{self.names[l1[0]]}</a>')
-                if len(l1) > 1:
-                    lines.append('<nav class="nav nav-pills flex-column">')
-                    for l2 in l1[1:]:
-                        if l2[0] != -1:
-                            lines.append(f'<a class="nav-link" href="#item-{l2[0]}">{self.names[l2[0]]}</a>')
-                        if len(l2) > 1:
-                            lines.append('<nav class="nav nav-pills flex-column">')
-                            for l3 in l2[1:]:
-                                lines.append(f'<a class="nav-link" href="#item-{l3[0]}">{self.names[l3[0]]}</a>')
-                            lines.append('</nav>')
-                    lines.append('</nav>')
-            lines.append('</nav>')
-            lines.append('</nav>')
-            linejoin = "\n".join(lines)
-            r = f"""<div class="container">
-  <div class="row">
-    <div class="col">{linejoin}
-    </div>
-    <div class="col">
-      <div data-bs-spy="scroll" data-bs-target="#indexbar" data-bs-offset="0" tabindex="0">
-{r}
-      </div>
-    <div class="col">
-    </div>
-    </div>
-  </div>"""
         return r
 
 
@@ -203,7 +161,7 @@ def main(logger: Callable[[str], None]):
             new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "src"), os.pardir), f)
             if os.path.splitext(name)[-1] == ".md":
                 new_name = new_name[:-3] + ".html"
-                dat = run_markdown(open(name, encoding="utf8").read(), False)
+                dat = run_markdown(open(name, encoding="utf8").read())
                 try:
                     open(new_name, "w", encoding="utf8").write(dat)
                 except FileNotFoundError:
