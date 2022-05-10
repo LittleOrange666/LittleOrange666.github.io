@@ -6,13 +6,15 @@
 
 #center_area {
     width: 100%;
-    padding-top: 50px;
+    padding-top: 60px;
     font-family: "微軟正黑UI";
 }
 
 #main_area {}
 
-#indexbar {}
+#indexbar {
+    padding-top: 20px;
+}
 
 #indexbar a {
     background-color: transparent;
