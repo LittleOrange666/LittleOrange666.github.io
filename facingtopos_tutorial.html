@@ -4,21 +4,10 @@
     <title>LittleOrange's page</title>
     <base target="_top">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="https://littleorange666.github.io/script/jquery.js"></script>
-    <style type="text/css">
-    #top_area {
-        position: fixed;
-        left: 0px;
-        right: 0px;
-    }
-
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
-    </style>
 </head>
 
 <body>
@@ -41,45 +30,57 @@
             </div>
         </nav>
     </div>
-    <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="header-1" class="a_header a_content" data-connectedheader="header-1">方位找點基本功能說明</h1>
-<h4 id="_2" data-connectedheader="header-1" class="a_content"><a href="facingtopos">連結</a></h4>
-<h3 id="header-2" class="a_header a_content" data-connectedheader="header-2">這份說明未完成，未說明到的內容請自行摸索</h3>
-<h3 id="header-3" class="a_header a_content" data-connectedheader="header-3">示意圖</h3>
-<p data-connectedheader="header-3" class="a_content"><img alt="" src="https://i.imgur.com/QV1deNF.png"></img></p>
-<h4 id="app" data-connectedheader="header-3" class="a_content">方位找點App主要區域包含</h4>
-<ul data-connectedheader="header-3" class="a_content">
+    <div id="center_area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="indexbar" class="toc"></div>
+                </div>
+                <div class="col-8">
+                    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+                        <h1 id="_1">方位找點基本功能說明</h1>
+<h4 id="_2"><a href="facingtopos">連結</a></h4>
+<h3 id="_3">這份說明未完成，未說明到的內容請自行摸索</h3>
+<h3 id="_4">示意圖</h3>
+<p><img alt="" src="https://i.imgur.com/QV1deNF.png"></img></p>
+<h4 id="app">方位找點App主要區域包含</h4>
+<ul>
 <li>左側的物件列表/設定檔</li>
 <li>上方的工具列</li>
 <li>中央的繪圖區</li>
 <li>右側的設定/屬性</li>
 </ul>
-<h4 id="_5" data-connectedheader="header-3" class="a_content">物件列表</h4>
-<p data-connectedheader="header-3" class="a_content">顯示有哪些已創建物件的名稱、類型<br>
+<h4 id="_5">物件列表</h4>
+<p>顯示有哪些已創建物件的名稱、類型<br>
 選取按鈕會在選取物件時顯示屬性欄</p>
-<h4 id="_6" data-connectedheader="header-3" class="a_content">設定</h4>
-<p data-connectedheader="header-3" class="a_content">可設置兩基本參考點的相對方位角以求出各點正確的相對位置<br>
+<h4 id="_6">設定</h4>
+<p>可設置兩基本參考點的相對方位角以求出各點正確的相對位置<br>
 可設置兩基本參考點的相對距離以求出各點正確的相對距離<br>
 可設置一基本參考點的座標以求出各點正確的座標</p>
-<h4 id="_7" data-connectedheader="header-3" class="a_content">方位找點(和設定放在一起)</h4>
-<p data-connectedheader="header-3" class="a_content">可透過與兩個參考點的相對方位角求出未知點的位置<br>
+<h4 id="_7">方位找點(和設定放在一起)</h4>
+<p>可透過與兩個參考點的相對方位角求出未知點的位置<br>
 左側的下拉選單可選擇參考的參考點(生成後不可變)<br>
 右側輸入相對方位角(生成後可變)<br>
 設定點的名稱、顏色<br>
 按下"生成"生成所求點</p>
-<p data-connectedheader="header-3" class="a_content"><strong>三參考點模式</strong><br>
+<p><strong>三參考點模式</strong><br>
 此模式要先存在至少三個可用參考點<br>
 可選三個參考點A,B,C<br>
 不能選顏色<br>
 按下"生成"生成所求點時、會生成三個不同的點，分別參考AB、AC、BC<br>
 顏色由兩個參考點的平均決定<br>
 名稱相同</p>
-<h4 id="_8" data-connectedheader="header-3" class="a_content">屬性</h4>
-<p data-connectedheader="header-3" class="a_content">可讀寫物件屬性<br>
+<h4 id="_8">屬性</h4>
+<p>可讀寫物件屬性<br>
 按下刷新可刷新該物件(編輯屬性時本來就會自動刷新)<br>
 按下刪除後可刪除該物件(可用參考點/基本參考點不可刪除)<br>
 "用作參考點"選項可將點標記為可用參考點</p>
-<h4 id="_9" data-connectedheader="header-3" class="a_content">工具列</h4>
+<h4 id="_9">工具列</h4>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -91,27 +92,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
     <script src="https://littleorange666.github.io/script/in_view.js"></script>
-    <script>
-    function update_inview() {
-        $(".a_header_targeted").removeClass("a_header_targeted");
-        $("#"+$(".a_content_inview:first").data("connectedheader")).addClass("a_header_targeted");
-    }
-    inView(".a_content").on('enter', e => {
-            e.classList.add("a_content_inview");
-            update_inview();
-        })
-        .on('exit', e => {
-            e.classList.remove("a_content_inview");
-            update_inview();
-        });
-    $("#previous").click(()=>{
-        if (location.href.endsWith("/")){
-            location.href="../";
-        }else{
-            location.href="./";
-        }
-    });
-    </script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
 </body>
 
 </html>

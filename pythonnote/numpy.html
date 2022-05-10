@@ -4,21 +4,10 @@
     <title>python numpy</title>
     <base target="_top">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="https://littleorange666.github.io/script/jquery.js"></script>
-    <style type="text/css">
-    #top_area {
-        position: fixed;
-        left: 0px;
-        right: 0px;
-    }
-
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
-    </style>
 </head>
 
 <body>
@@ -41,10 +30,17 @@
             </div>
         </nav>
     </div>
-    <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="header-1" class="a_header a_content" data-connectedheader="header-1">numpy</h1>
-<h4 id="numpypython" data-connectedheader="header-1" class="a_content">NumPy是Python語言的一個擴充程式庫。支援高階大量的維度陣列與矩陣運算，此外也針對陣列運算提供大量的數學函式函式庫。</h4>
-<p data-connectedheader="header-1" class="a_content"><strong>通常使用"import numpy as np"來載入numpy</strong><br>
+    <div id="center_area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="indexbar" class="toc"></div>
+                </div>
+                <div class="col-8">
+                    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+                        <h1 id="numpy">numpy</h1>
+<h4 id="numpypython">NumPy是Python語言的一個擴充程式庫。支援高階大量的維度陣列與矩陣運算，此外也針對陣列運算提供大量的數學函式函式庫。</h4>
+<p><strong>通常使用"import numpy as np"來載入numpy</strong><br>
 簡寫：<br>
 np -> numpy<br>
 arr -> numpy 陣列<br>
@@ -53,16 +49,16 @@ pyarr -> 基於python list 的陣列(有時也可以是可迭代物件)<br>
 shape -> 陣列形狀，使用n個數字的元組表示n維陣列大小，或使用單個數字表示一維陣列大小<br>
 dtype -> numpy數據類型，為np.dtype物件<br>
 value -> numpy陣列中的資料，由陣列的數據類型決定實際型別</p>
-<h2 id="header-2" class="a_header a_content" data-connectedheader="header-2">numpy基本常數</h2>
-<p data-connectedheader="header-2" class="a_content"><strong>np.<strong>version</strong>: str</strong><br>
+<h2 id="numpy_1">numpy基本常數</h2>
+<p><strong>np.<strong>version</strong>: str</strong><br>
 numpy版本<br>
 <strong>np.nan: float</strong><br>
 獲取NaN<br>
 <strong>np.inf: float</strong><br>
 獲取Infinity</p>
-<h2 id="header-3" class="a_header a_content" data-connectedheader="header-3">numpy常用函數</h2>
-<h3 id="header-4" class="a_header a_content" data-connectedheader="header-4">--陣列生成--(未指定類型則默認為np.float64)</h3>
-<p data-connectedheader="header-4" class="a_content"><strong>np.array(pyarr, dtype={dtype}) -> arr</strong><br>
+<h2 id="numpy_2">numpy常用函數</h2>
+<h3 id="-npfloat64">--陣列生成--(未指定類型則默認為np.float64)</h3>
+<p><strong>np.array(pyarr, dtype={dtype}) -> arr</strong><br>
 將python 陣列轉換為numpy陣列，依據原始陣列資料決定默認數據類型，內容只能是數字<br>
 默認索引是從零開始，就和一般的陣列一樣<br>
 <strong>np.zeros(shape, dtype={dtype}) -> arr</strong><br>
@@ -89,8 +85,8 @@ numpy版本<br>
 若要堅持使用<code>tuple</code>可以使用星號，如：<code>np.random.rand(*(3,7,5))</code><br>
 <strong>np.random.randn(*shape)</strong><br>
 生成 標準常態分配 的浮點數陣列，默認數據類型為<code>float64</code></p>
-<h3 id="header-5" class="a_header a_content" data-connectedheader="header-5">--陣列處理--</h3>
-<p data-connectedheader="header-5" class="a_content"><strong>np.diag(arr/pyarr,k: int) -> arr</strong><br>
+<h3 id="-">--陣列處理--</h3>
+<p><strong>np.diag(arr/pyarr,k: int) -> arr</strong><br>
 k表示偏移量，正表示向右、負表示向下，默認為0<br>
 case 1:原陣列為一維：將原陣列的元素由左上到左下排列於新矩陣中，新矩陣邊長為len(原陣列)+abs(k)<br>
 case 2:原陣列為二維(不一定是矩陣)：將原陣列的元素由左上到左下取出於新一維陣列中<br>
@@ -103,15 +99,15 @@ case 2:原陣列為二維：矩陣乘法<br>
 取出同時存在於兩陣列的值<br>
 <strong>np.random.shuffle(arr)</strong><br>
 隨機打亂陣列</p>
-<h3 id="header-6" class="a_header a_content" data-connectedheader="header-6">--其他--</h3>
-<p data-connectedheader="header-6" class="a_content"><strong>np.nonzero(arr/pyarr) -> tuple[arr]</strong><br>
+<h3 id="-_1">--其他--</h3>
+<p><strong>np.nonzero(arr/pyarr) -> tuple[arr]</strong><br>
 尋找陣列中的非零項目(對bool則是!=False)，用n個一維的numpy陣列紀錄n維陣列非零項目位置，一維的numpy陣列維非零項目總數，默認數據類型為<code>int64</code><br>
 <strong>np.unravel_index(index:int,shape) -> shape</strong><br>
 將<code>index</code>轉換為大小為<code>shape</code>的矩陣中的位置座標</p>
-<h2 id="header-7" class="a_header a_content" data-connectedheader="header-7">numpy數據類型</h2>
-<h4 id="numpy_4" data-connectedheader="header-7" class="a_content">numpy數據類型多用來標示陣列的數據類型</h4>
-<h3 id="header-8" class="a_header a_content" data-connectedheader="header-8">以下為基礎數據類型，實際使用須加上"np."前綴</h3>
-<p data-connectedheader="header-8" class="a_content">bool_   布爾型數據類型（True 或者 False）<strong>數學運算時True視為1，False視為0</strong><br>
+<h2 id="numpy_3">numpy數據類型</h2>
+<h4 id="numpy_4">numpy數據類型多用來標示陣列的數據類型</h4>
+<h3 id="np">以下為基礎數據類型，實際使用須加上"np."前綴</h3>
+<p>bool_   布爾型數據類型（True 或者 False）<strong>數學運算時True視為1，False視為0</strong><br>
 int_    默認的整數類型（類似於 C 語言中的 long，int32 或 int64）<br>
 intc    與 C 的 int 類型一樣，一般是 int32 或 int 64<br>
 intp    用於索引的整數類型（類似於 C 的 ssize_t，一般情況下仍然是 int32 或 int64）<br>
@@ -130,14 +126,14 @@ float64 雙精度浮點數，包括：1 個符號位，11 個指數位，52 個�
 complex_    complex128 類型的簡寫，即 128 位複數<br>
 complex64   複數，表示雙 32 位浮點數（實數部分和虛數部分）<br>
 complex128  複數，表示雙 64 位浮點數（實數部分和虛數部分）</p>
-<h3 id="header-9" class="a_header a_content" data-connectedheader="header-9">在指定數據類型，使用python傳統類型的結果：</h3>
-<p data-connectedheader="header-9" class="a_content">bool -> np.bool_<br>
+<h3 id="python">在指定數據類型，使用python傳統類型的結果：</h3>
+<p>bool -> np.bool_<br>
 int -> np.int_ -> np.int32<br>
 float -> np.float_ -> np.float64<br>
 complex -> np.complex_ -> np.complex128</p>
-<h2 id="header-10" class="a_header a_content" data-connectedheader="header-10">陣列方法及屬性</h2>
-<h3 id="header-11" class="a_header a_content" data-connectedheader="header-11">陣列基礎運算</h3>
-<p data-connectedheader="header-11" class="a_content">對於多數陣列基礎計算，有下列三種情形：<br>
+<h2 id="_1">陣列方法及屬性</h2>
+<h3 id="_2">陣列基礎運算</h3>
+<p>對於多數陣列基礎計算，有下列三種情形：<br>
 number {運算子} arr<br>
 arr {運算子} number<br>
 arr {運算子} arr<br>
@@ -146,8 +142,8 @@ arr {運算子} arr<br>
 完全符合此規則的運算子：<br>
 "+"  "-"  "*"  "/"  "//"  "<<"  ">>"  "\=\="  "!\="  "<\="  ">\="  ">"  "<"  "|"  "&"  "^"<br>
 注：比較兩布林陣列需使用"|", "&", "^"等運算子，不可使用"and", "or"</p>
-<h3 id="header-12" class="a_header a_content" data-connectedheader="header-12">陣列元素讀寫</h3>
-<p data-connectedheader="header-12" class="a_content">讀取：<br>
+<h3 id="_3">陣列元素讀寫</h3>
+<p>讀取：<br>
 <em>數據</em> = arr[<em>索引</em>]<br>
 此處<em>數據</em>可能是單一數值或陣列，視<em>索引</em>而定<br>
 寫入：<br>
@@ -155,8 +151,8 @@ arr[<em>索引</em>] = <em>數據</em><br>
 此處<em>數據</em>可以是單一數值或陣列。<br>
 1.若<em>索引</em>指向非單一數值，<em>數據</em>可以選擇輸入單一數值或與<em>索引</em>指向的內容相同形狀的陣列，若輸入單一數值，則將<em>索引</em>指向的內容全部改為該數值，若輸入與<em>索引</em>指向的內容相同形狀的陣列，則將<em>索引</em>指向的內容改為對應位置的值<br>
 2.若<em>索引</em>指向單一數值，<em>數據</em>只能是單一數值</p>
-<h4 id="_4" data-connectedheader="header-12" class="a_content">索引表示法</h4>
-<p data-connectedheader="header-12" class="a_content"><strong>1.依坐標軸填入索引</strong><br>
+<h4 id="_4">索引表示法</h4>
+<p><strong>1.依坐標軸填入索引</strong><br>
     依坐標軸填入、缺少的部分自動填上None，但最好自己加(會和4.搞混)<br>
     每個座標軸中可填入的參數如下：<br>
     a.純數值<br>
@@ -169,17 +165,17 @@ arr[<em>索引</em>] = <em>數據</em><br>
 <strong>2.使用與原陣列形狀相同的布林陣列</strong><br>
 這種用法中的布林陣列通常是使用原陣列生成<br>
 例如：取出正數</p>
-<div class="codehilite"><pre data-connectedheader="header-12" class="a_content"><span></span><code><span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">></span><span class="mi">0</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">></span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 
-<p data-connectedheader="header-12" class="a_content"><strong>3.複合索引(使用tuple)</strong><br>
+<p><strong>3.複合索引(使用tuple)</strong><br>
 把1.打包成一個tuple來和4.合用<br>
 <strong>4.多重索引(使用list或與2./3.合用)</strong><br>
 將多個結果並列儲存在一個陣列裡輸出<br>
 其中每一個索引必須指向相同形狀的陣列否則即使有加中括號也會被視為1.<br>
 與2./3.合用可省略list的外框，但建議不要省略(會和1.搞混)</p>
-<h3 id="header-13" class="a_header a_content" data-connectedheader="header-13">陣列屬性</h3>
-<p data-connectedheader="header-13" class="a_content"><strong>arr.shape: tuple</strong><br>
+<h3 id="_5">陣列屬性</h3>
+<p><strong>arr.shape: tuple</strong><br>
 陣列形狀<br>
 <strong>arr.size: int</strong><br>
 陣列元素數目(同<code>len(arr)</code>)<br>
@@ -193,8 +189,8 @@ arr[<em>索引</em>] = <em>數據</em><br>
 陣列維度數，同<code>len(arr.shape)</code><br>
 <strong>arr.T: arr</strong><br>
 轉置矩陣</p>
-<h3 id="header-14" class="a_header a_content" data-connectedheader="header-14">陣列方法</h3>
-<p data-connectedheader="header-14" class="a_content"><strong>arr.resize(shape) -> None</strong><br>
+<h3 id="_6">陣列方法</h3>
+<p><strong>arr.resize(shape) -> None</strong><br>
 在不改變陣列元素數目的前提下，改變原陣列形狀<br>
 <strong>arr.reshape(shape) -> arr</strong><br>
 在不改變陣列元素數目的前提下，生成形狀不同的陣列<br>
@@ -224,7 +220,7 @@ class ndarray(builtins.object)<br>
   methods and attributes of an array.<br>
   Parameters</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">(for the __new__ method; see Notes below)<br>
+<p>(for the __new__ method; see Notes below)<br>
   shape : tuple of ints<br>
       Shape of created array.<br>
   dtype : data-type, optional<br>
@@ -239,7 +235,7 @@ class ndarray(builtins.object)<br>
       Row-major (C-style) or column-major (Fortran-style) order.<br>
   Attributes</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">T : ndarray<br>
+<p>T : ndarray<br>
       Transpose of the array.<br>
   data : buffer<br>
       The array's elements, in memory.<br>
@@ -283,7 +279,7 @@ class ndarray(builtins.object)<br>
       array data is actually stored.<br>
   See Also</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">array : Construct an array.<br>
+<p>array : Construct an array.<br>
   zeros : Create an array, each element of which is zero.<br>
   empty : Create an array, but leave its allocated memory unchanged (i.e.,<br>
           it contains "garbage").<br>
@@ -292,7 +288,7 @@ class ndarray(builtins.object)<br>
                          of ndarray.<br>
   Notes</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">There are two modes of creating an array using <code>__new__</code>:<br>
+<p>There are two modes of creating an array using <code>__new__</code>:<br>
   1. If <code>buffer</code> is None, then only <code>shape</code>, <code>dtype</code>, and <code>order</code><br>
      are used.<br>
   2. If <code>buffer</code> is an object exposing the buffer interface, then<br>
@@ -301,14 +297,14 @@ class ndarray(builtins.object)<br>
   after the <code>__new__</code> method.<br>
   Examples</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">These examples illustrate the low-level <code>ndarray</code> constructor.  Refer<br>
+<p>These examples illustrate the low-level <code>ndarray</code> constructor.  Refer<br>
   to the <code>See Also</code> section above for easier ways of constructing an<br>
   ndarray.<br>
   First mode, <code>buffer</code> is None:</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p data-connectedheader="header-14" class="a_content">np.ndarray(shape=(2,2), dtype=float, order='F')<br>
+<p>np.ndarray(shape=(2,2), dtype=float, order='F')<br>
   array([[0.0e+000, 0.0e+000], # random<br>
          [     nan, 2.5e-323]])<br>
   Second mode:<br>
@@ -1569,11 +1565,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
 </blockquote>
 </blockquote>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">Static methods defined here:<br>
+<p>Static methods defined here:<br>
   __new __(<em>args, </em>*kwargs) from builtins.type<br>
       Create and return a new object.  See help(type) for accurate signature.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">Data descriptors defined here:<br>
+<p>Data descriptors defined here:<br>
   T<br>
       The transposed array.<br>
       Same as <code>self.transpose()</code>.<br>
@@ -1947,9 +1943,14 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       >>> offset / x.itemsize<br>
       813</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">Data and other attributes defined here:<br>
+<p>Data and other attributes defined here:<br>
   __hash__ = None<br>
 </details></p>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -1961,27 +1962,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
     <script src="https://littleorange666.github.io/script/in_view.js"></script>
-    <script>
-    function update_inview() {
-        $(".a_header_targeted").removeClass("a_header_targeted");
-        $("#"+$(".a_content_inview:first").data("connectedheader")).addClass("a_header_targeted");
-    }
-    inView(".a_content").on('enter', e => {
-            e.classList.add("a_content_inview");
-            update_inview();
-        })
-        .on('exit', e => {
-            e.classList.remove("a_content_inview");
-            update_inview();
-        });
-    $("#previous").click(()=>{
-        if (location.href.endsWith("/")){
-            location.href="../";
-        }else{
-            location.href="./";
-        }
-    });
-    </script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
 </body>
 
 </html>

@@ -22,24 +22,16 @@ def addattr(attrs: dict[str, str], name: str, new: str):
 
 
 class Codehightlighter(HTMLParser):
-    __slots__ = ("text", "prepare", "makeindex", "index", "names", "wait")
+    __slots__ = ("text", "prepare", "index")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.text: list[str] = []
         self.prepare: str = ""
-        self.makeindex: bool = True
-        self.index: int = 0
-        self.names: list[str] = []
-        self.wait: str = ""
 
     def init(self):
         self.text = []
         self.prepare = ""
-        self.makeindex = True
-        self.wait = ""
-        self.index = 0
-        self.names = []
 
     def handle_starttag(self, tag, attrs):
         attrs = {k: v for k, v in attrs}
@@ -48,24 +40,11 @@ class Codehightlighter(HTMLParser):
                 if k == "class" and v in prepares:
                     self.prepare = v
         if self.prepare == "":
-            if self.makeindex and tag in the_headers:
-                self.index += 1
-                attrs["id"] = f"header-{self.index}"
-                self.wait = tag
-                self.names.append("")
-                addattr(attrs, "class", "a_header")
-            if tag == "table":
-                addattr(attrs, "class", "table table-striped table-bordered")
-            if tag in the_contents:
-                ppp = f"header-{self.index if self.index > 0 else 'root'}"
-                attrs["data-connectedheader"] = ppp
-                addattr(attrs, "class", "a_content")
             atl = ''.join(' ' + (k if v is None else k + '="' + v + '"') for k, v in attrs.items() if k is not None)
             if tag != "br" or len(self.text) == 0 or self.text[-1] != "<br>":
                 self.text.append(f"<{tag}{atl}>")
 
     def handle_endtag(self, tag):
-        self.wait = ""
         if self.prepare != "":
             self.prepare = ""
         else:
@@ -74,19 +53,13 @@ class Codehightlighter(HTMLParser):
     def handle_data(self, data):
         if self.prepare == "":
             self.text.append(data)
-            if self.wait != "":
-                self.names[-1] = data
         else:
             if self.prepare == "language-python":
                 self.text.append(highlight(data, PythonLexer(), HtmlFormatter()))
 
-    def solve(self, text: str, makeindex: bool = True):
+    def solve(self, text: str):
         self.text = []
         self.prepare = ""
-        self.makeindex = makeindex
-        self.wait = ""
-        self.index = 0
-        self.names = []
         self.feed(text)
         r = "".join(self.text)
         return r
@@ -96,7 +69,7 @@ parse = Codehightlighter()
 template: str = open("template.html", encoding="utf8").read()
 
 
-def run_markdown(source: str, makeindex: bool = True) -> str:
+def run_markdown(source: str) -> str:
     # 處理參數
     args: dict[str, str] = {"title": "LittleOrange's page"}
     if source.startswith("---"):
@@ -147,7 +120,7 @@ def run_markdown(source: str, makeindex: bool = True) -> str:
         get = reg0.search(html)
     html = html.replace(" NEXTLINE ", "<br>")
     #
-    html = parse.solve(html, makeindex)
+    html = parse.solve(html)
     # 載入模板
     html = template.replace("MAIN_HTML", html).replace("THE_TITLE", args["title"])
     html = re.sub("<br>\\s*<br>", "<br>", html.replace("</br>", "<br>"))

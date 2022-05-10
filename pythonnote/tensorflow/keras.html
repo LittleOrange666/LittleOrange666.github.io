@@ -4,21 +4,10 @@
     <title>python tensorflow keras架構</title>
     <base target="_top">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="https://littleorange666.github.io/script/jquery.js"></script>
-    <style type="text/css">
-    #top_area {
-        position: fixed;
-        left: 0px;
-        right: 0px;
-    }
-
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
-    </style>
 </head>
 
 <body>
@@ -41,23 +30,30 @@
             </div>
         </nav>
     </div>
-    <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="header-1" class="a_header a_content" data-connectedheader="header-1">keras架構</h1>
-<p data-connectedheader="header-1" class="a_content">Keras 是一個用 Python 編寫的高級神經網絡 API，它能夠以 TensorFlow, CNTK, 或者 Theano 作為後端運行。 Keras 的開發重點是支持快速的實驗。能夠以最少的時間把想法轉換為實驗結果，是做好研究的關鍵。</p>
-<h2 id="header-2" class="a_header a_content" data-connectedheader="header-2">基本使用</h2>
-<p data-connectedheader="header-2" class="a_content">先import</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
+    <div id="center_area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="indexbar" class="toc"></div>
+                </div>
+                <div class="col-8">
+                    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+                        <h1 id="keras">keras架構</h1>
+<p>Keras 是一個用 Python 編寫的高級神經網絡 API，它能夠以 TensorFlow, CNTK, 或者 Theano 作為後端運行。 Keras 的開發重點是支持快速的實驗。能夠以最少的時間把想法轉換為實驗結果，是做好研究的關鍵。</p>
+<h2 id="_1">基本使用</h2>
+<p>先import</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
 </code></pre></div>
 
-<h3 id="header-3" class="a_header a_content" data-connectedheader="header-3">建立模型</h3>
-<p data-connectedheader="header-3" class="a_content">模型有兩種建立方式</p>
-<ol data-connectedheader="header-3" class="a_content">
+<h3 id="_2">建立模型</h3>
+<p>模型有兩種建立方式</p>
+<ol>
 <li>順序模型</li>
 <li>函數式 API</li>
 </ol>
-<h4 id="_3" data-connectedheader="header-3" class="a_content">順序模型</h4>
-<p data-connectedheader="header-3" class="a_content">寫法一、</p>
-<div class="codehilite"><pre data-connectedheader="header-3" class="a_content"><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+<h4 id="_3">順序模型</h4>
+<p>寫法一、</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
     <span class="n">第一層</span>
     <span class="n">第二層</span>
     <span class="o">..</span>
@@ -65,16 +61,16 @@
     <span class="p">])</span>
 </code></pre></div>
 
-<p data-connectedheader="header-3" class="a_content">寫法二、</p>
-<div class="codehilite"><pre data-connectedheader="header-3" class="a_content"><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<p>寫法二、</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">第一層</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">第二層</span><span class="p">)</span>
 <span class="o">..</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">最後一層</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="api" data-connectedheader="header-3" class="a_content">函數式 API</h4>
-<div class="codehilite"><pre data-connectedheader="header-3" class="a_content"><span></span><code><span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">輸入陣列形狀</span><span class="p">)</span>
+<h4 id="api">函數式 API</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">輸入陣列形狀</span><span class="p">)</span>
 <span class="n">第一層</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
 <span class="n">第二層</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">第一層</span><span class="p">)</span>
 <span class="o">..</span>
@@ -82,64 +78,64 @@
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">outputs</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="_4" data-connectedheader="header-3" class="a_content">層</h4>
-<p data-connectedheader="header-3" class="a_content">keras中最基本的層是layers.Dense<br>
+<h4 id="_4">層</h4>
+<p>keras中最基本的層是layers.Dense<br>
 Dense(units)表示這一層中有units個節點<br>
 可以用class設計不同行為的曾</p>
-<h4 id="_5" data-connectedheader="header-3" class="a_content">激活函數</h4>
-<p data-connectedheader="header-3" class="a_content">激活函數可以用layers.Activation作為一個單獨的層<br>
+<h4 id="_5">激活函數</h4>
+<p>激活函數可以用layers.Activation作為一個單獨的層<br>
 或著用Dense(units,activation=激活函數)來使用<br>
 通常使用內建的<br>
 也可以自己設計，但自己設計的激活函數要支援對張量(tf.Tensor)作操作<br>
 <details><summary>內建激活函數(都在keras.backend底下)</summary><br>
 </details></p>
-<h3 id="header-4" class="a_header a_content" data-connectedheader="header-4">編譯</h3>
-<p data-connectedheader="header-4" class="a_content">建構完模型要對模型作編譯</p>
-<div class="codehilite"><pre data-connectedheader="header-4" class="a_content"><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<h3 id="_6">編譯</h3>
+<p>建構完模型要對模型作編譯</p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
 </code></pre></div>
 
-<p data-connectedheader="header-4" class="a_content">編譯需要兩個參數</p>
-<ul data-connectedheader="header-4" class="a_content">
+<p>編譯需要兩個參數</p>
+<ul>
 <li>損失函數loss</li>
 <li>優化器optimizers</li>
 </ul>
-<p data-connectedheader="header-4" class="a_content">還有一些常用的參數</p>
-<ul data-connectedheader="header-4" class="a_content">
+<p>還有一些常用的參數</p>
+<ul>
 <li>評估函數metrics</li>
 </ul>
-<h4 id="_7" data-connectedheader="header-4" class="a_content">損失函數</h4>
-<p data-connectedheader="header-4" class="a_content">損失函數輸入真實值與預測值後，回傳一個損失值<br>
+<h4 id="_7">損失函數</h4>
+<p>損失函數輸入真實值與預測值後，回傳一個損失值<br>
 通常使用內建的，也可以自己設計<br>
 <details><summary>內建損失函數(都在keras.losses底下)</summary><br>
 </details></p>
-<h4 id="_8" data-connectedheader="header-4" class="a_content">優化器</h4>
-<p data-connectedheader="header-4" class="a_content">優化器是一個物件<br>
+<h4 id="_8">優化器</h4>
+<p>優化器是一個物件<br>
 通常使用內建的<br>
 <details><summary>內建優化器(都在keras.optimizers底下)</summary><br>
 </details></p>
-<h4 id="_9" data-connectedheader="header-4" class="a_content">評估函數</h4>
-<p data-connectedheader="header-4" class="a_content">評估函數輸入真實值與預測值後，回傳一個評估值<br>
+<h4 id="_9">評估函數</h4>
+<p>評估函數輸入真實值與預測值後，回傳一個評估值<br>
 通常使用內建的，也可以自己設計<br>
 用於評估模型的性能<br>
 可以同時使用多個<br>
 <details><summary>內建評估函數(都在keras.metrics底下)</summary><br>
 </details></p>
-<h4 id="_10" data-connectedheader="header-4" class="a_content">使用名稱</h4>
-<p data-connectedheader="header-4" class="a_content">編譯時使用內建的東西可以直接傳入名稱<br>
+<h4 id="_10">使用名稱</h4>
+<p>編譯時使用內建的東西可以直接傳入名稱<br>
 如以下兩者意義相同</p>
-<div class="codehilite"><pre data-connectedheader="header-4" class="a_content"><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'RMSprop'</span><span class="p">,</span><span class="n">loss</span><span class="o">=</span><span class="s1">'mean_squared_error'</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'mae'</span><span class="p">])</span>
 </code></pre></div>
 
-<h3 id="header-5" class="a_header a_content" data-connectedheader="header-5">訓練</h3>
-<p data-connectedheader="header-5" class="a_content">透過訓練資料進行訓練</p>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入</span>
+<h3 id="_11">訓練</h3>
+<p>透過訓練資料進行訓練</p>
+<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，使用generator作為輸入</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span><span class="n">train_output</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練一筆資料</span>
 </code></pre></div>
 
-<p data-connectedheader="header-5" class="a_content"><details><summary>參數表(若依照此順序輸入可省略"key=")</p></summary>
-<table class="table table-striped table-bordered">
+<p><details><summary>參數表(若依照此順序輸入可省略"key=")</p></summary>
+<table>
 <thead>
 <tr>
 <th>keyname</th>
@@ -210,45 +206,45 @@ Dense(units)表示這一層中有units個節點<br>
 </tr>
 </tbody>
 </table>
-<p data-connectedheader="header-5" class="a_content"></details></p>
-<h3 id="header-6" class="a_header a_content" data-connectedheader="header-6">測試</h3>
-<p data-connectedheader="header-6" class="a_content">透過測試資料求出損失值及評估值</p>
-<div class="codehilite"><pre data-connectedheader="header-6" class="a_content"><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
+<p></details></p>
+<h3 id="_12">測試</h3>
+<p>透過測試資料求出損失值及評估值</p>
+<div class="codehilite"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="header-7" class="a_header a_content" data-connectedheader="header-7">使用</h3>
-<p data-connectedheader="header-7" class="a_content">使用模型預測結果</p>
-<div class="codehilite"><pre data-connectedheader="header-7" class="a_content"><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<h3 id="_13">使用</h3>
+<p>使用模型預測結果</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="header-8" class="a_header a_content" data-connectedheader="header-8">儲存與載入</h3>
-<p data-connectedheader="header-8" class="a_content">keras模型可以用三種格式儲存</p>
-<ul data-connectedheader="header-8" class="a_content">
+<h3 id="_14">儲存與載入</h3>
+<p>keras模型可以用三種格式儲存</p>
+<ul>
 <li>h5</li>
 <li>json(只包含形狀)</li>
 </ul>
-<h4 id="h5py" data-connectedheader="header-8" class="a_content">h5py</h4>
-<p data-connectedheader="header-8" class="a_content">副檔名建議用".h5"或".keras"<br>
+<h4 id="h5py">h5py</h4>
+<p>副檔名建議用".h5"或".keras"<br>
 <strong>儲存：</strong></p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-8" class="a_content"><strong>載入：</strong></p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
+<p><strong>載入：</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="json" data-connectedheader="header-8" class="a_content">json</h4>
-<p data-connectedheader="header-8" class="a_content"><strong>儲存：</strong></p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">,</span><span class="s2">"w"</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+<h4 id="json">json</h4>
+<p><strong>儲存：</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">,</span><span class="s2">"w"</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
 </code></pre></div>
 
-<p data-connectedheader="header-8" class="a_content"><strong>載入：</strong></p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">model_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<p><strong>載入：</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">model_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div>
 
-<h3 id="header-9" class="a_header a_content" data-connectedheader="header-9">範例</h3>
-<p data-connectedheader="header-9" class="a_content"><details><summary>範例：y=A*X+b</p></summary>
-<div class="codehilite"><pre data-connectedheader="header-9" class="a_content"><span></span><code><span class="n">param_count</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 參數數量</span>
+<h3 id="_15">範例</h3>
+<p><details><summary>範例：y=A*X+b</p></summary>
+<div class="codehilite"><pre><span></span><code><span class="n">param_count</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 參數數量</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -304,7 +300,12 @@ Dense(units)表示這一層中有units個節點<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">x_predict</span><span class="p">,</span><span class="n">y_predict</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y_should</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-9" class="a_content"></details></p>
+<p></details></p>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -316,27 +317,7 @@ Dense(units)表示這一層中有units個節點<br>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
     <script src="https://littleorange666.github.io/script/in_view.js"></script>
-    <script>
-    function update_inview() {
-        $(".a_header_targeted").removeClass("a_header_targeted");
-        $("#"+$(".a_content_inview:first").data("connectedheader")).addClass("a_header_targeted");
-    }
-    inView(".a_content").on('enter', e => {
-            e.classList.add("a_content_inview");
-            update_inview();
-        })
-        .on('exit', e => {
-            e.classList.remove("a_content_inview");
-            update_inview();
-        });
-    $("#previous").click(()=>{
-        if (location.href.endsWith("/")){
-            location.href="../";
-        }else{
-            location.href="./";
-        }
-    });
-    </script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
 </body>
 
 </html>

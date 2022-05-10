@@ -4,21 +4,10 @@
     <title>python pandas</title>
     <base target="_top">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="https://littleorange666.github.io/script/jquery.js"></script>
-    <style type="text/css">
-    #top_area {
-        position: fixed;
-        left: 0px;
-        right: 0px;
-    }
-
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
-    </style>
 </head>
 
 <body>
@@ -41,52 +30,59 @@
             </div>
         </nav>
     </div>
-    <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="header-1" class="a_header a_content" data-connectedheader="header-1">pandas</h1>
-<p data-connectedheader="header-1" class="a_content">先載入</p>
-<div class="codehilite"><pre data-connectedheader="header-1" class="a_content"><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <div id="center_area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="indexbar" class="toc"></div>
+                </div>
+                <div class="col-8">
+                    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+                        <h1 id="pandas">pandas</h1>
+<p>先載入</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </code></pre></div>
 
-<p data-connectedheader="header-1" class="a_content">pandas包含了numpy和matplotlib的部分功能，要用到的時候不用額外import</p>
-<h4 id="pandas-series-dataframe" data-connectedheader="header-1" class="a_content">pandas主要包含兩種資料型別 Series 和 DataFrame</h4>
-<h2 id="header-2" class="a_header a_content" data-connectedheader="header-2">Series</h2>
-<p data-connectedheader="header-2" class="a_content">Series像是能自訂索引的numpy陣列<br>
+<p>pandas包含了numpy和matplotlib的部分功能，要用到的時候不用額外import</p>
+<h4 id="pandas-series-dataframe">pandas主要包含兩種資料型別 Series 和 DataFrame</h4>
+<h2 id="series">Series</h2>
+<p>Series像是能自訂索引的numpy陣列<br>
 建立：</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">數據</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">數據</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">"數據"可以是list\/tuple\/可迭代物件\/numpy陣列，內容只能是數字<br>
+<p>"數據"可以是list\/tuple\/可迭代物件\/numpy陣列，內容只能是數字<br>
 默認索引是從零開始，就和一般的陣列一樣<br>
 也可以自訂索引：</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">數據</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">索引</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">數據</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">索引</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">"索引"可以是list\/tuple\/可迭代物件\/numpy陣列，內容可以是任何內容，可以重複<br>
+<p>"索引"可以是list\/tuple\/可迭代物件\/numpy陣列，內容可以是任何內容，可以重複<br>
 可以使用像是numpy的方式取出資料，若取出不只一筆資料則輸出Series就和一般的陣列一樣<br>
 注意如果有用自訂索引就不一定能用數字索引<br>
 也可以像numpy的方式直接四則運算，但計算結果仍然是Series</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">></span><span class="mi">0</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">></span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">Series有一個特別的運算可以逐個進行<code>in</code>計算</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">物件</span><span class="p">)</span>
+<p>Series有一個特別的運算可以逐個進行<code>in</code>計算</p>
+<div class="codehilite"><pre><span></span><code><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">物件</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content"><code>isin</code>輸出一個Series[bool]表示每個元素是否在<code>物件</code>中<br>
+<p><code>isin</code>輸出一個Series[bool]表示每個元素是否在<code>物件</code>中<br>
 常用於DataFrame的索引<br>
 單獨取出索引/資料：</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1">#索引 類型為 "Index" 或其子類別</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1">#索引 類型為 "Index" 或其子類別</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c1">#資料 類型為 "numpy.ndarray"</span>
 </code></pre></div>
 
-<h2 id="header-3" class="a_header a_content" data-connectedheader="header-3">DataFrame</h2>
-<p data-connectedheader="header-3" class="a_content">DataFrame是pandas的核心功能所在<br>
+<h2 id="dataframe">DataFrame</h2>
+<p>DataFrame是pandas的核心功能所在<br>
 結構類似表格或試算表<br>
 包含多個有序的欄位每個欄位是固定資料型態，不同欄位可以是不同資料型態<br>
 每個欄位都是一個Series<br>
 可以用默認索引，也可以用自訂索引<br>
 Ex:</p>
-<div class="codehilite"><pre data-connectedheader="header-3" class="a_content"><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"數量"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
+<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"數量"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
        <span class="s2">"價格"</span><span class="p">:[</span><span class="mf">3.49</span><span class="p">,</span><span class="mf">5.25</span><span class="p">,</span><span class="mf">2.22</span><span class="p">]}</span>
 <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"蘋果"</span><span class="p">,</span><span class="s2">"水梨"</span><span class="p">,</span><span class="s2">"香蕉"</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
@@ -94,15 +90,15 @@ Ex:</p>
 <span class="n">df</span>
 </code></pre></div>
 
-<p data-connectedheader="header-3" class="a_content">用Jupyter顯示：<br>
+<p>用Jupyter顯示：<br>
 <img alt="" src="https://i.imgur.com/VUsJEUn.png"></img></p>
-<h3 id="header-4" class="a_header a_content" data-connectedheader="header-4">匯入與匯出</h3>
-<p data-connectedheader="header-4" class="a_content">DataFrame可以直接由檔案匯入/匯出至檔案<br>
+<h3 id="_1">匯入與匯出</h3>
+<p>DataFrame可以直接由檔案匯入/匯出至檔案<br>
 支援.csv .json .html .xlsx格式<br>
 注意：要支援.xlsx格式需要額外安裝<code>openpyxl</code>(不需要import)<br>
 直接<code>pip install openpyxl</code>就可以了<br>
 語法：</p>
-<div class="codehilite"><pre data-connectedheader="header-4" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>      <span class="c1"># 匯出到.csv檔</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>      <span class="c1"># 匯出到.csv檔</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>     <span class="c1"># 匯出到.json檔</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>     <span class="c1"># 匯出到.html檔</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>    <span class="c1"># 匯出到.xlsx檔</span>
@@ -112,30 +108,30 @@ Ex:</p>
 <span class="n">df</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>  <span class="c1"># 匯入自.xlsx檔</span>
 </code></pre></div>
 
-<h3 id="header-5" class="a_header a_content" data-connectedheader="header-5">取出/顯示資料</h3>
-<h4 id="_3" data-connectedheader="header-5" class="a_content">前/後幾筆資料</h4>
-<p data-connectedheader="header-5" class="a_content">用head/tail可以取出前/後幾筆資料<br>
+<h3 id="_2">取出/顯示資料</h3>
+<h4 id="_3">前/後幾筆資料</h4>
+<p>用head/tail可以取出前/後幾筆資料<br>
 輸出依然是DataFrame格式</p>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">count</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 前幾筆資料，默認5筆(Series也支援此操作)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">count</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 前幾筆資料，默認5筆(Series也支援此操作)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">count</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 後幾筆資料，默認5筆(Series也支援此操作)</span>
 </code></pre></div>
 
-<h4 id="_4" data-connectedheader="header-5" class="a_content">內部資料</h4>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">index</span>    <span class="c1"># 索引    類型為 "Index" 或其子類別</span>
+<h4 id="_4">內部資料</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">index</span>    <span class="c1"># 索引    類型為 "Index" 或其子類別</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span>  <span class="c1"># 欄位標籤 類型為 "Index" 或其子類別</span>
 <span class="n">df</span><span class="o">.</span><span class="n">values</span>   <span class="c1"># 資料    為numpy陣列</span>
 </code></pre></div>
 
-<h4 id="_5" data-connectedheader="header-5" class="a_content">摘要</h4>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>    <span class="c1"># 有幾筆資料</span>
+<h4 id="_5">摘要</h4>
+<div class="codehilite"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>    <span class="c1"># 有幾筆資料</span>
 <span class="n">df</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># (有幾筆資料, 有幾欄)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>  <span class="c1"># 摘要</span>
 </code></pre></div>
 
-<h3 id="header-6" class="a_header a_content" data-connectedheader="header-6">索引</h3>
-<p data-connectedheader="header-6" class="a_content">DataFrame類似於二維列表，第一維是欄位標籤<br>
+<h3 id="_6">索引</h3>
+<p>DataFrame類似於二維列表，第一維是欄位標籤<br>
 可用寫法</p>
-<div class="codehilite"><pre data-connectedheader="header-6" class="a_content"><span></span><code><span class="n">df</span><span class="p">[(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">欄位標籤</span>    <span class="c1">#不能用於創建新欄位</span>
 <span class="n">df</span><span class="p">[(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="p">][</span><span class="n">索引</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">欄位標籤</span><span class="o">.</span><span class="n">索引</span>
@@ -144,53 +140,53 @@ Ex:</p>
 <span class="n">df</span><span class="p">[</span><span class="n">Series</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]</span><span class="o">.</span><span class="n">欄位標籤</span>
 </code></pre></div>
 
-<p data-connectedheader="header-6" class="a_content">若要使用類似numpy的雙索引系統，可使用：</p>
-<div class="codehilite"><pre data-connectedheader="header-6" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">索引</span><span class="p">]</span>
+<p>若要使用類似numpy的雙索引系統，可使用：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">索引</span><span class="p">]</span>
 </code></pre></div>
 
-<p data-connectedheader="header-6" class="a_content">在此處第一維是欄位標籤，且索引要用欄位標籤和自訂索引名稱<br>
+<p>在此處第一維是欄位標籤，且索引要用欄位標籤和自訂索引名稱<br>
 若要用數字索引，可用：</p>
-<div class="codehilite"><pre data-connectedheader="header-6" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">索引</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">索引</span><span class="p">]</span>
 </code></pre></div>
 
-<h3 id="header-7" class="a_header a_content" data-connectedheader="header-7">排序</h3>
-<div class="codehilite"><pre data-connectedheader="header-7" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="err">`</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="n">是否遞增</span><span class="p">)</span>
+<h3 id="_7">排序</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="err">`</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="n">是否遞增</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-7" class="a_content">照<code>(單/多個)欄位標籤</code>決定排序優先程度<br>
+<p>照<code>(單/多個)欄位標籤</code>決定排序優先程度<br>
 <code>ascending=True</code>為遞增排序<br>
 回傳排序過的DataFrame，不更改原來的</p>
-<h3 id="header-8" class="a_header a_content" data-connectedheader="header-8">資料增刪</h3>
-<p data-connectedheader="header-8" class="a_content">利用索引可以進行資料讀取/編輯<br>
+<h3 id="_8">資料增刪</h3>
+<p>利用索引可以進行資料讀取/編輯<br>
 寫入不存在的索引可以進行資料新增<br>
 資料刪除則使用<code>drop</code></p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">名稱</span><span class="err">`</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="n">軸</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">名稱</span><span class="err">`</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="n">軸</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-8" class="a_content">axis決定是要刪掉一些資料還是刪掉一些欄位<br>
+<p>axis決定是要刪掉一些資料還是刪掉一些欄位<br>
 <code>axis=0</code>(默認)表示刪掉一些資料<br>
 <code>axis=1</code>(默認)表示刪掉一些欄位</p>
-<h3 id="header-9" class="a_header a_content" data-connectedheader="header-9">資料視覺化</h3>
-<p data-connectedheader="header-9" class="a_content">pandas有整合matplotlib的繪製圖表功能<br>
+<h3 id="_9">資料視覺化</h3>
+<p>pandas有整合matplotlib的繪製圖表功能<br>
 但如果要用中文還是需要在繪圖的程式碼以前寫下</p>
-<div class="codehilite"><pre data-connectedheader="header-9" class="a_content"><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft JhengHei'</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
 
-<p data-connectedheader="header-9" class="a_content">繪圖語法：</p>
-<div class="codehilite"><pre data-connectedheader="header-9" class="a_content"><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"類型"</span><span class="p">)</span>
+<p>繪圖語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"類型"</span><span class="p">)</span>
 
 <span class="c1">#或著</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">類型</span><span class="p">()</span>
 </code></pre></div>
 
-<p data-connectedheader="header-9" class="a_content">如果用的是Jupyter會在執行完此行後顯示(只能放在Cell的結尾)<br>
+<p>如果用的是Jupyter會在執行完此行後顯示(只能放在Cell的結尾)<br>
 其他情況可用</p>
-<div class="codehilite"><pre data-connectedheader="header-9" class="a_content"><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 
-<p data-connectedheader="header-9" class="a_content">來強制顯示<br>
+<p>來強制顯示<br>
 可用的類型包含：<br>
 名稱|中文名稱<br>
 ---|---<br>
@@ -208,6 +204,11 @@ hexbin|六邊形分箱圖<br>
 圓餅圖需要<code>y="欄位名稱"</code>來定義要畫圖的欄位<br>
 或使用<code>subplots=True</code>表達每一個欄位都畫一個圖<br>
 散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸</p>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -219,27 +220,7 @@ hexbin|六邊形分箱圖<br>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
     <script src="https://littleorange666.github.io/script/in_view.js"></script>
-    <script>
-    function update_inview() {
-        $(".a_header_targeted").removeClass("a_header_targeted");
-        $("#"+$(".a_content_inview:first").data("connectedheader")).addClass("a_header_targeted");
-    }
-    inView(".a_content").on('enter', e => {
-            e.classList.add("a_content_inview");
-            update_inview();
-        })
-        .on('exit', e => {
-            e.classList.remove("a_content_inview");
-            update_inview();
-        });
-    $("#previous").click(()=>{
-        if (location.href.endsWith("/")){
-            location.href="../";
-        }else{
-            location.href="./";
-        }
-    });
-    </script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
 </body>
 
 </html>

@@ -4,21 +4,10 @@
     <title>Python基礎語法</title>
     <base target="_top">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="https://littleorange666.github.io/script/jquery.js"></script>
-    <style type="text/css">
-    #top_area {
-        position: fixed;
-        left: 0px;
-        right: 0px;
-    }
-
-    #main_area {
-        width: 80%;
-        padding-top: 50px;
-    }
-    </style>
 </head>
 
 <body>
@@ -41,38 +30,45 @@
             </div>
         </nav>
     </div>
-    <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="header-1" class="a_header a_content" data-connectedheader="header-1">基礎語法</h1>
-<h2 id="header-2" class="a_header a_content" data-connectedheader="header-2">換行</h2>
-<p data-connectedheader="header-2" class="a_content">在Python裡每換一行就代表下一段程式碼，不需要也不能有分號<br>
+    <div id="center_area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="indexbar" class="toc"></div>
+                </div>
+                <div class="col-8">
+                    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+                        <h1 id="_1">基礎語法</h1>
+<h2 id="_2">換行</h2>
+<p>在Python裡每換一行就代表下一段程式碼，不需要也不能有分號<br>
 但在以下兩個情況電腦會將不同行看成同一段程式碼</p>
-<p data-connectedheader="header-2" class="a_content">一、 括號未完成</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<p>一、 括號未完成</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">可以寫成</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span>
+<p>可以寫成</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span>
 <span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">二、行結尾是反斜槓</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">87</span>
+<p>二、行結尾是反斜槓</p>
+<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">87</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">可以寫成</p>
-<div class="codehilite"><pre data-connectedheader="header-2" class="a_content"><span></span><code><span class="n">a</span> <span class="o">=</span> \
+<p>可以寫成</p>
+<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> \
 <span class="mi">87</span>
 </code></pre></div>
 
-<p data-connectedheader="header-2" class="a_content">這兩種寫法一般用在一行程式碼太長的時候，換行寫比較好看</p>
-<h2 id="header-3" class="a_header a_content" data-connectedheader="header-3">註解</h2>
-<p data-connectedheader="header-3" class="a_content">有時候在程式中需要注明一些程式的功能，就可以用註解<br>
+<p>這兩種寫法一般用在一行程式碼太長的時候，換行寫比較好看</p>
+<h2 id="_3">註解</h2>
+<p>有時候在程式中需要注明一些程式的功能，就可以用註解<br>
 單行註解用一個井字號開頭：</p>
-<div class="codehilite"><pre data-connectedheader="header-3" class="a_content"><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#把a設置為1</span>
+<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#把a設置為1</span>
 </code></pre></div>
 
-<p data-connectedheader="header-3" class="a_content">多行註解用三個引號包起來：</p>
-<div class="codehilite"><pre data-connectedheader="header-3" class="a_content"><span></span><code><span class="sd">"""</span>
+<p>多行註解用三個引號包起來：</p>
+<div class="codehilite"><pre><span></span><code><span class="sd">"""</span>
 <span class="sd">常數設置</span>
 <span class="sd">a->1, b->2</span>
 <span class="sd">"""</span>
@@ -80,33 +76,33 @@
 <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
 </code></pre></div>
 
-<h2 id="header-4" class="a_header a_content" data-connectedheader="header-4">變數</h2>
-<p data-connectedheader="header-4" class="a_content">變數是給資料值的一個"暱稱"，可以告訴電腦該資料值之後可能會用到，不要刪掉。</p>
-<h3 id="header-5" class="a_header a_content" data-connectedheader="header-5">賦值</h3>
-<p data-connectedheader="header-5" class="a_content">賦值即是把一個"暱稱"設定給一個資料值</p>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">資料值</span>
+<h2 id="_4">變數</h2>
+<p>變數是給資料值的一個"暱稱"，可以告訴電腦該資料值之後可能會用到，不要刪掉。</p>
+<h3 id="_5">賦值</h3>
+<p>賦值即是把一個"暱稱"設定給一個資料值</p>
+<div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">資料值</span>
 </code></pre></div>
 
-<p data-connectedheader="header-5" class="a_content">或著</p>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">另一個變數名稱</span>
+<p>或著</p>
+<div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">另一個變數名稱</span>
 </code></pre></div>
 
-<p data-connectedheader="header-5" class="a_content"><details><summary>注：</summary><br>
+<p><details><summary>注：</summary><br>
 這種寫法在資料值可變時會使兩個變數代表同個值，使其連動<br>
 可以用這樣的寫法來做淺複製(詳細的"變數與型別"再說)</p>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-5" class="a_content"></details><br>
+<p></details><br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-5" class="a_content"><span></span><code><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="codehilite"><pre><span></span><code><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">真的</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">你好</span> <span class="o">=</span> <span class="s2">"Hello"</span>
 <span class="n">こんにちは</span> <span class="o">=</span> <span class="s1">'안녕하세요'</span>
 <span class="n">日期</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-5" class="a_content">變數名稱可以是任何的文字，可以用任何語言，但通常建議用英文<br>
+<p>變數名稱可以是任何的文字，可以用任何語言，但通常建議用英文<br>
 且不能和保留字重複<br>
 也建議不要和內建的函數、常數、類型重名(可能會有非預期的結果)<br>
 不能以數字開頭(可以包含數字)，不能包含計算符號(加減乘除之類的符號)<br>
@@ -118,17 +114,17 @@ ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOEr
 </details><br>
 辨別方法：<br>
 通常編輯器在碰到以上名稱時，都會有特殊顏色，若有出現則盡量避免使用該名稱，或是在結尾加一個底線</p>
-<h3 id="header-6" class="a_header a_content" data-connectedheader="header-6">使用</h3>
-<p data-connectedheader="header-6" class="a_content">變數名稱可以直接當作一個資料值來處理</p>
-<h2 id="header-7" class="a_header a_content" data-connectedheader="header-7">常用資料類型</h2>
-<p data-connectedheader="header-7" class="a_content">在程式中，所有的資料值都有類型，用來讓電腦分辨要如何處裡資料<br>
+<h3 id="_6">使用</h3>
+<p>變數名稱可以直接當作一個資料值來處理</p>
+<h2 id="_7">常用資料類型</h2>
+<p>在程式中，所有的資料值都有類型，用來讓電腦分辨要如何處裡資料<br>
 可以用</p>
-<div class="codehilite"><pre data-connectedheader="header-7" class="a_content"><span></span><code><span class="nb">type</span><span class="p">(</span><span class="n">資料值</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">type</span><span class="p">(</span><span class="n">資料值</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-7" class="a_content">來獲取資料值的類型</p>
-<h4 id="_8" data-connectedheader="header-7" class="a_content">常用資料類型包括：</h4>
-<ul data-connectedheader="header-7" class="a_content">
+<p>來獲取資料值的類型</p>
+<h4 id="_8">常用資料類型包括：</h4>
+<ul>
 <li>布林值 bool</li>
 <li>整數 int</li>
 <li>浮點數 float</li>
@@ -136,57 +132,57 @@ ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOEr
 <li>字串 str</li>
 <li>空值 NoneType</li>
 </ul>
-<h4 id="_9" data-connectedheader="header-7" class="a_content">還有一些類型是用來儲存多個資料的，包括：</h4>
-<ul data-connectedheader="header-7" class="a_content">
+<h4 id="_9">還有一些類型是用來儲存多個資料的，包括：</h4>
+<ul>
 <li>元組 tuple</li>
 <li>清單 list (可變)</li>
 <li>集合 set (可變)</li>
 <li>不可變集合 frozenset</li>
 <li>字典 dict (可變)</li>
 </ul>
-<h3 id="header-8" class="a_header a_content" data-connectedheader="header-8">布林值</h3>
-<p data-connectedheader="header-8" class="a_content">布林值是表示"是"和"否"的資料<br>
+<h3 id="_10">布林值</h3>
+<p>布林值是表示"是"和"否"的資料<br>
 "是"寫作</p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="kc">True</span>
+<div class="codehilite"><pre><span></span><code><span class="kc">True</span>
 </code></pre></div>
 
-<p data-connectedheader="header-8" class="a_content">"否"寫作</p>
-<div class="codehilite"><pre data-connectedheader="header-8" class="a_content"><span></span><code><span class="kc">False</span>
+<p>"否"寫作</p>
+<div class="codehilite"><pre><span></span><code><span class="kc">False</span>
 </code></pre></div>
 
-<p data-connectedheader="header-8" class="a_content"><strong>大小寫必須正確</strong><br>
+<p><strong>大小寫必須正確</strong><br>
 布林值可以和數字混在一起計算<br>
 True=1, False=0</p>
-<h3 id="header-9" class="a_header a_content" data-connectedheader="header-9">數字</h3>
-<p data-connectedheader="header-9" class="a_content">數字就是數字<br>
+<h3 id="_11">數字</h3>
+<p>數字就是數字<br>
 比較需要注意的是虛數符號要用"j"而非"i"<br>
 且"1j"不能簡記為"j"<br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-9" class="a_content"><span></span><code><span class="mi">123</span>      <span class="c1">#整數</span>
+<div class="codehilite"><pre><span></span><code><span class="mi">123</span>      <span class="c1">#整數</span>
 <span class="mf">123.0</span>    <span class="c1">#浮點數</span>
 <span class="mf">12.33</span>    <span class="c1">#浮點數</span>
 <span class="p">(</span><span class="mf">1.2</span><span class="o">+</span><span class="mi">3</span><span class="n">j</span><span class="p">)</span> <span class="c1">#複數</span>
 </code></pre></div>
 
-<h3 id="header-10" class="a_header a_content" data-connectedheader="header-10">字串</h3>
-<p data-connectedheader="header-10" class="a_content">字串表示一段文字<br>
+<h3 id="_12">字串</h3>
+<p>字串表示一段文字<br>
 在程式中要用英文引號包起來<br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-10" class="a_content"><span></span><code><span class="s1">'你好'</span>
+<div class="codehilite"><pre><span></span><code><span class="s1">'你好'</span>
 <span class="s2">"阿"</span>
 </code></pre></div>
 
-<h3 id="header-11" class="a_header a_content" data-connectedheader="header-11">空值</h3>
-<p data-connectedheader="header-11" class="a_content">空值用於標記不存在/未確定的值<br>
+<h3 id="_13">空值</h3>
+<p>空值用於標記不存在/未確定的值<br>
 表示為：</p>
-<div class="codehilite"><pre data-connectedheader="header-11" class="a_content"><span></span><code><span class="kc">None</span>
+<div class="codehilite"><pre><span></span><code><span class="kc">None</span>
 </code></pre></div>
 
-<h3 id="header-12" class="a_header a_content" data-connectedheader="header-12">元組</h3>
-<p data-connectedheader="header-12" class="a_content">元組表示並列且有序的一組任意長度的資料值<br>
+<h3 id="_14">元組</h3>
+<p>元組表示並列且有序的一組任意長度的資料值<br>
 長度不可改變，元素不可寫入<br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-12" class="a_content"><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span> <span class="c1">#用小括號包住用半形逗號分隔的資料</span>
+<div class="codehilite"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span> <span class="c1">#用小括號包住用半形逗號分隔的資料</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">13</span>   <span class="c1">#如果沒有歧義，可以省略小括號，這行和上一行同義</span>
 <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="s2">"你好"</span><span class="p">)</span> <span class="c1">#可以包含不同型別的資料</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#True</span>
@@ -195,20 +191,20 @@ True=1, False=0</p>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#直接加東西在結尾</span>
 </code></pre></div>
 
-<p data-connectedheader="header-12" class="a_content"><details><summary>可用方法詳細介紹：</summary><br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 count(value):<br>
 Return number of occurrences of value.</p>
 <hr></hr>
-<p data-connectedheader="header-12" class="a_content">index(value, start=0, stop=9223372036854775807):<br>
+<p>index(value, start=0, stop=9223372036854775807):<br>
 Return first index of value.<br>
 Raises ValueError if the value is not present.<br>
 </details></p>
-<h3 id="header-13" class="a_header a_content" data-connectedheader="header-13">清單</h3>
-<p data-connectedheader="header-13" class="a_content">清單表示並列且有序的一組任意長度的資料值<br>
+<h3 id="_15">清單</h3>
+<p>清單表示並列且有序的一組任意長度的資料值<br>
 可插入/刪除資料<br>
 類似C++的vector<br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-13" class="a_content"><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#空清單</span>
+<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#空清單</span>
 <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="c1">#還是空清單</span>
 <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="s2">"haha"</span><span class="p">]</span> <span class="c1">#可以包含不同型別的資料</span>
 <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span> <span class="c1">#在結尾加入資料</span>
@@ -217,41 +213,41 @@ Raises ValueError if the value is not present.<br>
 <span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">"owo"</span><span class="p">,</span><span class="mi">1234</span><span class="p">])</span> <span class="c1">#和上一行類似，但可加上任意型別且在原地操作</span>
 </code></pre></div>
 
-<p data-connectedheader="header-13" class="a_content"><details><summary>可用方法詳細介紹：</summary><br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 append(object):<br>
 Append object to the end of the list.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">clear():<br>
+<p>clear():<br>
 Remove all items from list.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">copy():<br>
+<p>copy():<br>
 Return a shallow copy of the list.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">count(value):<br>
+<p>count(value):<br>
 Return number of occurrences of value.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">extend(iterable):<br>
+<p>extend(iterable):<br>
 Extend list by appending elements from the iterable.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">index(value, start=0, stop=9223372036854775807):<br>
+<p>index(value, start=0, stop=9223372036854775807):<br>
 Return first index of value.<br>
 Raises ValueError if the value is not present.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">insert(index, object):<br>
+<p>insert(index, object):<br>
 Insert object before index.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">pop(index=-1):<br>
+<p>pop(index=-1):<br>
 Remove and return item at index (default last).<br>
 Raises IndexError if list is empty or index is out of range.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">remove(value):<br>
+<p>remove(value):<br>
 Remove first occurrence of value.<br>
 Raises ValueError if the value is not present.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">reverse():<br>
+<p>reverse():<br>
 Reverse *IN PLACE*.</p>
 <hr></hr>
-<p data-connectedheader="header-13" class="a_content">sort(key=None, reverse=False):<br>
+<p>sort(key=None, reverse=False):<br>
 Sort the list in ascending order and return None.<br>
 The sort is in-place (i.e. the list itself is modified) and stable (i.e. the<br>
 order of two equal elements is maintained).<br>
@@ -259,167 +255,167 @@ If a key function is given, apply it once to each list item and sort them,<br>
 ascending or descending, according to their function values.<br>
 The reverse flag can be set to sort in descending order.<br>
 </details></p>
-<h3 id="header-14" class="a_header a_content" data-connectedheader="header-14">集合</h3>
-<p data-connectedheader="header-14" class="a_content">清單表示無序不重複的一組任意長度的資料值<br>
+<h3 id="_16">集合</h3>
+<p>清單表示無序不重複的一組任意長度的資料值<br>
 並能夠在常數時間裡檢查一元素是否在集合中<br>
 類似數學上的集合<br>
 類似C++的unordered_set<br>
 不能存可變的值，如：list、set、dict<br>
 要存其他set必須轉換成frozenset<br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-14" class="a_content"><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> <span class="c1">#集合</span>
+<div class="codehilite"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> <span class="c1">#集合</span>
 <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">}</span> <span class="c1">#和上一行一樣</span>
 <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1">#加一個</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span> <span class="c1">#集合合併</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1">#{8, 4, 5, 7}</span>
 </code></pre></div>
 
-<p data-connectedheader="header-14" class="a_content"><details><summary>可用方法詳細介紹：</summary><br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 add():<br>
 Add an element to a set.<br>
 This has no effect if the element is already present.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">clear():<br>
+<p>clear():<br>
 Remove all elements from this set.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">copy():<br>
+<p>copy():<br>
 Return a shallow copy of a set.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">difference():<br>
+<p>difference():<br>
 Return the difference of two or more sets as a new set.<br>
 (i.e. all elements that are in this set but not the others.)</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">difference_update():<br>
+<p>difference_update():<br>
 Remove all elements of another set from this set.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">discard():<br>
+<p>discard():<br>
 Remove an element from a set if it is a member.<br>
 If the element is not a member, do nothing.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">intersection():<br>
+<p>intersection():<br>
 Return the intersection of two sets as a new set.<br>
 (i.e. all elements that are in both sets.)</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">intersection_update():<br>
+<p>intersection_update():<br>
 Update a set with the intersection of itself and another.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">isdisjoint():<br>
+<p>isdisjoint():<br>
 Return True if two sets have a null intersection.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">issubset():<br>
+<p>issubset():<br>
 Report whether another set contains this set.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">issuperset():<br>
+<p>issuperset():<br>
 Report whether this set contains another set.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">pop():<br>
+<p>pop():<br>
 Remove and return an arbitrary set element.<br>
 Raises KeyError if the set is empty.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">remove():<br>
+<p>remove():<br>
 Remove an element from a set; it must be a member.<br>
 If the element is not a member, raise a KeyError.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">symmetric_difference():<br>
+<p>symmetric_difference():<br>
 Return the symmetric difference of two sets as a new set.<br>
 (i.e. all elements that are in exactly one of the sets.)</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">symmetric_difference_update():<br>
+<p>symmetric_difference_update():<br>
 Update a set with the symmetric difference of itself and another.</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">union():<br>
+<p>union():<br>
 Return the union of sets as a new set.<br>
 (i.e. all elements that are in either set.)</p>
 <hr></hr>
-<p data-connectedheader="header-14" class="a_content">update():<br>
+<p>update():<br>
 Update a set with the union of itself and others.<br>
 </details></p>
-<h3 id="header-15" class="a_header a_content" data-connectedheader="header-15">字典</h3>
-<p data-connectedheader="header-15" class="a_content">字典是鍵-值對的資料結構<br>
+<h3 id="_17">字典</h3>
+<p>字典是鍵-值對的資料結構<br>
 鍵是唯一的，值不一定唯一<br>
 在較新的python版本(3.7+)中鍵會按照加入的順序排列<br>
 類似C++的unordered_map</p>
-<div class="codehilite"><pre data-connectedheader="header-15" class="a_content"><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span><span class="mi">34</span><span class="p">}</span> <span class="c1">#字典</span>
+<div class="codehilite"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span><span class="mi">34</span><span class="p">}</span> <span class="c1">#字典</span>
 <span class="n">d</span><span class="p">[</span><span class="s2">"c"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">56</span> <span class="c1">#新增資料</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"a"</span><span class="p">])</span> <span class="c1">#12</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#{'a': 12, 'b': 34, 'c': 56}</span>
 </code></pre></div>
 
-<p data-connectedheader="header-15" class="a_content"><details><summary>可用方法詳細介紹：</summary><br>
+<p><details><summary>可用方法詳細介紹：</summary><br>
 clear():<br>
 D.clear() -> None.  Remove all items from D.</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">copy():<br>
+<p>copy():<br>
 D.copy() -> a shallow copy of D</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">fromkeys(iterable, value=None):<br>
+<p>fromkeys(iterable, value=None):<br>
 Create a new dictionary with keys from iterable and values set to value.</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">get(key, default=None):<br>
+<p>get(key, default=None):<br>
 Return the value for key if key is in the dictionary, else default.</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">items():<br>
+<p>items():<br>
 D.items() -> a set-like object providing a view on D's items</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">keys():<br>
+<p>keys():<br>
 D.keys() -> a set-like object providing a view on D's keys</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">pop():<br>
+<p>pop():<br>
 D.pop(k[,d]) -> v, remove specified key and return the corresponding value.<br>
 If the key is not found, return the default if given; otherwise,<br>
 raise a KeyError.</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">popitem():<br>
+<p>popitem():<br>
 Remove and return a (key, value) pair as a 2-tuple.<br>
 Pairs are returned in LIFO (last-in, first-out) order.<br>
 Raises KeyError if the dict is empty.</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">setdefault(key, default=None):<br>
+<p>setdefault(key, default=None):<br>
 Insert key with a value of default if key is not in the dictionary.<br>
 Return the value for key if key is in the dictionary, else default.</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">update():<br>
+<p>update():<br>
 D.update([E, ]**F) -> None.  Update D from dict/iterable E and F.<br>
 If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]<br>
 If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v<br>
 In either case, this is followed by: for k in F:  D[k] = F[k]</p>
 <hr></hr>
-<p data-connectedheader="header-15" class="a_content">values():<br>
+<p>values():<br>
 D.values() -> an object providing a view on D's values<br>
 </details></p>
-<h3 id="header-16" class="a_header a_content" data-connectedheader="header-16">順帶一提</h3>
-<p data-connectedheader="header-16" class="a_content">類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型<br>
+<h3 id="_18">順帶一提</h3>
+<p>類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型<br>
 較常用的有int(),float(),str(),bool(),list()<br>
 範例：</p>
-<div class="codehilite"><pre data-connectedheader="header-16" class="a_content"><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">"123"</span><span class="p">)</span> <span class="c1">#123 #轉換為整數</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">"123"</span><span class="p">)</span> <span class="c1">#123 #轉換為整數</span>
 <span class="nb">float</span><span class="p">(</span><span class="s2">"8.7"</span><span class="p">)</span> <span class="c1">#8.7 #轉換為浮點數</span>
 <span class="nb">str</span><span class="p">(</span><span class="mi">666</span><span class="p">)</span> <span class="c1">#'666' #轉換為字串</span>
 <span class="nb">bool</span><span class="p">(</span><span class="s2">"xxx"</span><span class="p">)</span> <span class="c1">#True #轉換為布林值</span>
 <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1">#[0,1,2] #轉換為列表</span>
 </code></pre></div>
 
-<h2 id="header-17" class="a_header a_content" data-connectedheader="header-17">輸出和輸入</h2>
-<h3 id="header-18" class="a_header a_content" data-connectedheader="header-18">輸出</h3>
-<div class="codehilite"><pre data-connectedheader="header-18" class="a_content"><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">)</span>
+<h2 id="_19">輸出和輸入</h2>
+<h3 id="_20">輸出</h3>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-18" class="a_content">把數值列印到螢幕上，並換行<br>
+<p>把數值列印到螢幕上，並換行<br>
 不想要結尾換行可以這樣寫：</p>
-<div class="codehilite"><pre data-connectedheader="header-18" class="a_content"><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="header-19" class="a_header a_content" data-connectedheader="header-19">輸入</h3>
-<div class="codehilite"><pre data-connectedheader="header-19" class="a_content"><span></span><code><span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"問題"</span><span class="p">)</span>
+<h3 id="_21">輸入</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"問題"</span><span class="p">)</span>
 
 <span class="c1">#同義於</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"問題"</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
 </code></pre></div>
 
-<p data-connectedheader="header-19" class="a_content">先輸出一行字(不換行)(可選)，再接收一行字串</p>
-<h2 id="header-20" class="a_header a_content" data-connectedheader="header-20">基礎計算符</h2>
-<p data-connectedheader="header-20" class="a_content">常用的計算符包含：</p>
-<ul data-connectedheader="header-20" class="a_content">
+<p>先輸出一行字(不換行)(可選)，再接收一行字串</p>
+<h2 id="_22">基礎計算符</h2>
+<p>常用的計算符包含：</p>
+<ul>
 <li>數學計算符 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>//</code> <code>%</code> <code>**</code></li>
 <li>比較計算符 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code></li>
 <li>位元計算符 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code></li>
@@ -427,8 +423,8 @@ D.values() -> an object providing a view on D's values<br>
 <li>賦值計算符 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code></li>
 <li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></li>
 </ul>
-<p data-connectedheader="header-20" class="a_content"><details><summary>總表</p></summary>
-<table class="table table-striped table-bordered">
+<p><details><summary>總表</p></summary>
+<table>
 <thead>
 <tr>
 <th>順序</th>
@@ -614,11 +610,11 @@ D.values() -> an object providing a view on D's values<br>
 </tr>
 </tbody>
 </table>
-<p data-connectedheader="header-20" class="a_content"></details></p>
-<h2 id="header-21" class="a_header a_content" data-connectedheader="header-21">語法結構</h2>
-<h3 id="header-22" class="a_header a_content" data-connectedheader="header-22">條件判斷</h3>
-<p data-connectedheader="header-22" class="a_content">條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
-<div class="codehilite"><pre data-connectedheader="header-22" class="a_content"><span></span><code><span class="c1">#縮排是必須的</span>
+<p></details></p>
+<h2 id="_23">語法結構</h2>
+<h3 id="_24">條件判斷</h3>
+<p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">#縮排是必須的</span>
 <span class="k">if</span> <span class="n">條件</span><span class="p">:</span>
     <span class="n">程式碼</span>
 <span class="k">elif</span> <span class="n">另一個條件</span><span class="p">:</span> <span class="c1">#非必要，可以有很多</span>
@@ -627,9 +623,9 @@ D.values() -> an object providing a view on D's values<br>
     <span class="n">程式碼</span>
 </code></pre></div>
 
-<h3 id="header-23" class="a_header a_content" data-connectedheader="header-23">例外處理</h3>
-<p data-connectedheader="header-23" class="a_content">例外處理語法可以接收執行過程中出現的錯誤，並做適當地處理</p>
-<div class="codehilite"><pre data-connectedheader="header-23" class="a_content"><span></span><code><span class="k">try</span><span class="p">:</span>
+<h3 id="_25">例外處理</h3>
+<p>例外處理語法可以接收執行過程中出現的錯誤，並做適當地處理</p>
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
     <span class="c1">#主程式</span>
 <span class="k">except</span> <span class="n">錯誤類型</span> <span class="k">as</span> <span class="n">變數名</span><span class="p">:</span> <span class="c1">#'as 變數名'非必要 #可以有很多</span>
     <span class="c1">#例外處理</span>
@@ -639,30 +635,30 @@ D.values() -> an object providing a view on D's values<br>
     <span class="c1">#無論如何都會執行</span>
 </code></pre></div>
 
-<p data-connectedheader="header-23" class="a_content">此語法通常用於對不可預防的錯誤(例如：IOError)做處理<br>
+<p>此語法通常用於對不可預防的錯誤(例如：IOError)做處理<br>
 例外處理可以快速的跳出迴圈/函數，但不建議這樣用</p>
-<h4 id="_26" data-connectedheader="header-23" class="a_content">丟出例外</h4>
-<div class="codehilite"><pre data-connectedheader="header-23" class="a_content"><span></span><code><span class="k">raise</span> <span class="n">例外物件</span>
+<h4 id="_26">丟出例外</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">raise</span> <span class="n">例外物件</span>
 </code></pre></div>
 
-<p data-connectedheader="header-23" class="a_content">除了直接丟出以外，還可以用assert表示在不符合條件時自動丟出例外</p>
-<div class="codehilite"><pre data-connectedheader="header-23" class="a_content"><span></span><code><span class="k">assert</span> <span class="n">條件</span>
+<p>除了直接丟出以外，還可以用assert表示在不符合條件時自動丟出例外</p>
+<div class="codehilite"><pre><span></span><code><span class="k">assert</span> <span class="n">條件</span>
 </code></pre></div>
 
-<p data-connectedheader="header-23" class="a_content">等同於</p>
-<div class="codehilite"><pre data-connectedheader="header-23" class="a_content"><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">條件</span><span class="p">:</span>
+<p>等同於</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">條件</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">AssertionError</span>
 </code></pre></div>
 
-<h3 id="header-24" class="a_header a_content" data-connectedheader="header-24">上下文管理(with語法)</h3>
-<p data-connectedheader="header-24" class="a_content">with語法可以更簡潔的語法確保資源被正確釋放<br>
+<h3 id="with">上下文管理(with語法)</h3>
+<p>with語法可以更簡潔的語法確保資源被正確釋放<br>
 常用於檔案的操作</p>
-<div class="codehilite"><pre data-connectedheader="header-24" class="a_content"><span></span><code><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#as不是必須</span>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#as不是必須</span>
     <span class="c1">#主程式</span>
 </code></pre></div>
 
-<p data-connectedheader="header-24" class="a_content">等同於</p>
-<div class="codehilite"><pre data-connectedheader="header-24" class="a_content"><span></span><code><span class="n">_contextmanager</span><span class="o">=</span><span class="n">表達式</span>
+<p>等同於</p>
+<div class="codehilite"><pre><span></span><code><span class="n">_contextmanager</span><span class="o">=</span><span class="n">表達式</span>
 <span class="n">_value</span> <span class="o">=</span> <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
 <span class="n">_success</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">try</span><span class="p">:</span>
@@ -677,19 +673,19 @@ D.values() -> an object providing a view on D's values<br>
         <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-24" class="a_content">表達式必須產出一個contextmanager<br>
+<p>表達式必須產出一個contextmanager<br>
 with語法也可以用於使中間的程式展現特定的行為<br>
 例如：指定cpu/gpu<br>
 <details><summary>Example:</summary> 檔案的開啟</p>
-<div class="codehilite"><pre data-connectedheader="header-24" class="a_content"><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"filename:"</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"filename:"</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"content of "</span> <span class="o">+</span><span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">+</span><span class="s2">" :"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div>
 
-<p data-connectedheader="header-24" class="a_content"></details><br>
+<p></details><br>
 <details><summary>Example:</summary> 列印時間</p>
-<div class="codehilite"><pre data-connectedheader="header-24" class="a_content"><span></span><code><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
 <span class="k">class</span> <span class="nc">TimePrinter</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
@@ -725,131 +721,136 @@ with語法也可以用於使中間的程式展現特定的行為<br>
         <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-24" class="a_content"></details></p>
-<h2 id="header-25" class="a_header a_content" data-connectedheader="header-25">迴圈</h2>
-<h3 id="header-26" class="a_header a_content" data-connectedheader="header-26">for迴圈：</h3>
-<p data-connectedheader="header-26" class="a_content">for迴圈可以對可迭代物件中的每一項進行相同的處理</p>
-<div class="codehilite"><pre data-connectedheader="header-26" class="a_content"><span></span><code><span class="k">for</span> <span class="n">變數</span> <span class="ow">in</span> <span class="n">可迭代物件</span><span class="p">:</span>
+<p></details></p>
+<h2 id="_27">迴圈</h2>
+<h3 id="for">for迴圈：</h3>
+<p>for迴圈可以對可迭代物件中的每一項進行相同的處理</p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">變數</span> <span class="ow">in</span> <span class="n">可迭代物件</span><span class="p">:</span>
     <span class="n">程式碼</span>
 </code></pre></div>
 
-<p data-connectedheader="header-26" class="a_content">需要注意的是，直接對字典進行迭代與對鍵值進行迭代效果相同<br>
+<p>需要注意的是，直接對字典進行迭代與對鍵值進行迭代效果相同<br>
 可迭代物件中 有兩個常用在for迴圈裡</p>
-<ol data-connectedheader="header-26" class="a_content">
+<ol>
 <li>range</li>
 <li>enumerate</li>
 </ol>
-<h4 id="range" data-connectedheader="header-26" class="a_content">range</h4>
-<p data-connectedheader="header-26" class="a_content">range有三種寫法</p>
-<div class="codehilite"><pre data-connectedheader="header-26" class="a_content"><span></span><code><span class="nb">range</span><span class="p">(</span><span class="n">結尾</span><span class="p">)</span>
+<h4 id="range">range</h4>
+<p>range有三種寫法</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">range</span><span class="p">(</span><span class="n">結尾</span><span class="p">)</span>
 <span class="nb">range</span><span class="p">(</span><span class="n">開頭</span><span class="p">,</span><span class="n">結尾</span><span class="p">)</span>
 <span class="nb">range</span><span class="p">(</span><span class="n">開頭</span><span class="p">,</span><span class="n">結尾</span><span class="p">,</span><span class="n">步長</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-26" class="a_content">range代表一個從<code>開頭</code>到<code>結尾</code>間隔<code>步長</code>的等差數列(不包含結尾)<br>
+<p>range代表一個從<code>開頭</code>到<code>結尾</code>間隔<code>步長</code>的等差數列(不包含結尾)<br>
 <code>開頭</code>默認為<code>0</code>，<code>步長</code>默認為<code>1</code><br>
 三個值都可以是負的<br>
 range不會直接產生數列，而是在要用到的時候才計算</p>
-<h4 id="enumerate" data-connectedheader="header-26" class="a_content">enumerate</h4>
-<p data-connectedheader="header-26" class="a_content">enumerate語法如下</p>
-<div class="codehilite"><pre data-connectedheader="header-26" class="a_content"><span></span><code><span class="nb">enumerate</span><span class="p">(</span><span class="n">可迭代物件</span><span class="p">)</span>
+<h4 id="enumerate">enumerate</h4>
+<p>enumerate語法如下</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">enumerate</span><span class="p">(</span><span class="n">可迭代物件</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-26" class="a_content">enumerate輸入一個<code>可迭代物件</code>，輸出的每一元素為(編號,值)的元組<br>
+<p>enumerate輸入一個<code>可迭代物件</code>，輸出的每一元素為(編號,值)的元組<br>
 通常寫作</p>
-<div class="codehilite"><pre data-connectedheader="header-26" class="a_content"><span></span><code><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="c1">#do something</span>
 </code></pre></div>
 
-<h3 id="header-27" class="a_header a_content" data-connectedheader="header-27">while迴圈：</h3>
-<p data-connectedheader="header-27" class="a_content">while迴圈可以在條件符合時不斷重複相同程式碼</p>
-<div class="codehilite"><pre data-connectedheader="header-27" class="a_content"><span></span><code><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
+<h3 id="while">while迴圈：</h3>
+<p>while迴圈可以在條件符合時不斷重複相同程式碼</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
     <span class="n">程式碼</span>
 </code></pre></div>
 
-<h2 id="header-28" class="a_header a_content" data-connectedheader="header-28">自訂函數</h2>
-<p data-connectedheader="header-28" class="a_content">自訂函數可以把重複用到的功能打包起來，方便使用<br>
+<h2 id="_28">自訂函數</h2>
+<p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
-<div class="codehilite"><pre data-connectedheader="header-28" class="a_content"><span></span><code><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
     <span class="n">程式碼</span>
     <span class="k">return</span> <span class="n">回傳值</span> <span class="c1">#非必要 不一定要在最後一行</span>
 </code></pre></div>
 
-<h2 id="header-29" class="a_header a_content" data-connectedheader="header-29">三元運算子</h2>
-<p data-connectedheader="header-29" class="a_content">三元運算子可以簡化條件判斷<br>
+<h2 id="_29">三元運算子</h2>
+<p>三元運算子可以簡化條件判斷<br>
 語法：</p>
-<div class="codehilite"><pre data-connectedheader="header-29" class="a_content"><span></span><code><span class="n">值1</span> <span class="k">if</span> <span class="n">條件</span> <span class="k">else</span> <span class="n">值2</span>
+<div class="codehilite"><pre><span></span><code><span class="n">值1</span> <span class="k">if</span> <span class="n">條件</span> <span class="k">else</span> <span class="n">值2</span>
 </code></pre></div>
 
-<p data-connectedheader="header-29" class="a_content">空格不能省略<br>
+<p>空格不能省略<br>
 這一整個可以視為一個值<br>
 當條件成立，輸出值1；當條件不成立，輸出值2<br>
 Ex:</p>
-<div class="codehilite"><pre data-connectedheader="header-29" class="a_content"><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"input:"</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"input:"</span><span class="p">))</span>
 <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"odd"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"even"</span><span class="p">)</span>
 </code></pre></div>
 
-<p data-connectedheader="header-29" class="a_content">可簡化為</p>
-<div class="codehilite"><pre data-connectedheader="header-29" class="a_content"><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"input:"</span><span class="p">))</span>
+<p>可簡化為</p>
+<div class="codehilite"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"input:"</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"odd"</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="s2">"even"</span><span class="p">)</span>
 </code></pre></div>
 
-<h2 id="header-30" class="a_header a_content" data-connectedheader="header-30">推導式(Comprehension)</h2>
-<p data-connectedheader="header-30" class="a_content">這沒有統一的翻譯，在此暫時稱之為推導式<br>
+<h2 id="comprehension">推導式(Comprehension)</h2>
+<p>這沒有統一的翻譯，在此暫時稱之為推導式<br>
 推導式來源於數學中的集合建構式<br>
 如下：<br>
 <script type="math/tex; mode=display">集合={輸出表達式|變量\in輸入集合, 謂詞}</script>
 <br>
 Python中的推導式有4種，分別是</p>
-<ul data-connectedheader="header-30" class="a_content">
+<ul>
 <li>列表推導式(List Comprehension)</li>
 <li>集合推導式(Set Comprehension)</li>
 <li>字典推導式(Dictionary Comprehension)</li>
 <li>生成器表達式(Generator Expression)<br>
 共通語法：</li>
 </ul>
-<div class="codehilite"><pre data-connectedheader="header-30" class="a_content"><span></span><code><span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="n">右括號</span>
+<div class="codehilite"><pre><span></span><code><span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="n">右括號</span>
 
 <span class="c1">#或著加上謂詞</span>
 <span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="k">if</span> <span class="n">謂詞</span> <span class="n">右括號</span>
 </code></pre></div>
 
-<h3 id="header-31" class="a_header a_content" data-connectedheader="header-31">列表推導式(List Comprehension)</h3>
-<p data-connectedheader="header-31" class="a_content">算是其中較常用的一種<br>
+<h3 id="list-comprehension">列表推導式(List Comprehension)</h3>
+<p>算是其中較常用的一種<br>
 元素的順序會被保留<br>
 使用中括號[]</p>
-<h3 id="header-32" class="a_header a_content" data-connectedheader="header-32">集合推導式(Set Comprehension)</h3>
-<p data-connectedheader="header-32" class="a_content">與列表推導式類似，會去除相同的元素<br>
+<h3 id="set-comprehension">集合推導式(Set Comprehension)</h3>
+<p>與列表推導式類似，會去除相同的元素<br>
 元素的順序會不被保留<br>
 使用大括號{}</p>
-<h3 id="header-33" class="a_header a_content" data-connectedheader="header-33">字典推導式(Dictionary Comprehension)</h3>
-<p data-connectedheader="header-33" class="a_content">與集合推導式類似，會覆蓋鍵值相同的元素<br>
+<h3 id="dictionary-comprehension">字典推導式(Dictionary Comprehension)</h3>
+<p>與集合推導式類似，會覆蓋鍵值相同的元素<br>
 輸出表達式必須為 <code>鍵值:值</code> 的格式<br>
 元素的順序會被保留<br>
 使用大括號{}</p>
-<h3 id="header-34" class="a_header a_content" data-connectedheader="header-34">生成器表達式(Generator Expression)</h3>
-<p data-connectedheader="header-34" class="a_content">雖然名稱不同但用法類似<br>
+<h3 id="generator-expression">生成器表達式(Generator Expression)</h3>
+<p>雖然名稱不同但用法類似<br>
 但它並不會在表達式完成前求出所有元素的值<br>
 而是產生一個生成器，用到的時候再求出元素的值<br>
 若各元素只會被用到一次，相較於列表推導式可節省記憶體與時間<br>
 元素的順序會被保留<br>
 使用小括號()</p>
-<h2 id="header-35" class="a_header a_content" data-connectedheader="header-35">關於main</h2>
-<p data-connectedheader="header-35" class="a_content">Python程式不需要包含在main函數裡就可執行<br>
+<h2 id="main">關於main</h2>
+<p>Python程式不需要包含在main函數裡就可執行<br>
 若是要長期維護的代碼會建議用如下語法：</p>
-<div class="codehilite"><pre data-connectedheader="header-35" class="a_content"><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c1"># 主要程式碼</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 
-<p data-connectedheader="header-35" class="a_content">這種寫法可以使程式碼在被import時不自動執行主要程式碼<br>
+<p>這種寫法可以使程式碼在被import時不自動執行主要程式碼<br>
 但同時可以手動執行main<br>
 而且有一些函數庫會要求把程式碼寫在<code>if __name__ == '__main__':</code>裡面(例如：PyQt)<br>
 並能明確的標示出主要程式碼的位置</p>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -861,27 +862,7 @@ Python中的推導式有4種，分別是</p>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
     <script src="https://littleorange666.github.io/script/in_view.js"></script>
-    <script>
-    function update_inview() {
-        $(".a_header_targeted").removeClass("a_header_targeted");
-        $("#"+$(".a_content_inview:first").data("connectedheader")).addClass("a_header_targeted");
-    }
-    inView(".a_content").on('enter', e => {
-            e.classList.add("a_content_inview");
-            update_inview();
-        })
-        .on('exit', e => {
-            e.classList.remove("a_content_inview");
-            update_inview();
-        });
-    $("#previous").click(()=>{
-        if (location.href.endsWith("/")){
-            location.href="../";
-        }else{
-            location.href="./";
-        }
-    });
-    </script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
 </body>
 
 </html>
