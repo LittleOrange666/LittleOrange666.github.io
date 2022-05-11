@@ -13,12 +13,13 @@
 
 #main_area {
      padding-left: 20%;
-     padding-right: 20%;
+     padding-right: 5%;
 }
 
 #indexbar {
     padding-top: 20px;
     padding-left:5%;
+    padding-right:70%;
 }
 
 #indexbar a {
