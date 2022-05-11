@@ -57,7 +57,7 @@ function update_inview() {
     let o = $(".a_content_inview:first");
     let target = o.attr("connectedheader");
     if (o.hasClass("a_header")) target = o.attr("id");
-    if (target) $("#" + target).addClass("a_header_targeted");
+    if (target) document.getElementById(target).classList.add("a_header_targeted");
     $(".activated").removeClass("activated");
     $(".a_header_targeted").each(function() {
         for (let o of actdict[$(this).text()]) {
