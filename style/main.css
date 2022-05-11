@@ -1,21 +1,22 @@
-.top_area {
+#top_area {
     position: fixed;
     left: 0px;
     right: 0px;
+    z-index: 30
 }
 
 #center_area {
-    padding-top: 60px;
-    font-family: "微軟正黑UI";
-    float: left;
-    margin-left: 10%;
-    z-index: 20
 }
 
 #main_area {
     position: relative;
     margin-left: 20%;
     margin-right: 5%;
+    padding-top: 60px;
+    font-family: "微軟正黑UI";
+    float: left;
+    margin-left: 10%;
+    z-index: 20
 }
 
 #indexbar {
@@ -26,10 +27,6 @@
     margin-left: 5%;
     margin-right: 70%;
     z-index: -10
-}
-
-#navbar {
-    z-index: 30
 }
 
 #indexbar a {

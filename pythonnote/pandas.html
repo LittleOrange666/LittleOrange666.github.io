@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <div class="top_area">
+    <div id="top_area">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" id="navbar">
+            <div class="container-fluid">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
@@ -29,9 +29,8 @@
         </nav>
     </div>
     <div id="indexbar" class="toc"></div>
-    <div id="center_area">
-        <div id="main_area" class="container-fluid" data-hard-breaks="true">
-            <h1 id="pandas">pandas</h1>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="pandas">pandas</h1>
 <p>先載入</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </code></pre></div>
@@ -197,7 +196,6 @@ hexbin|六邊形分箱圖<br>
 圓餅圖需要<code>y="欄位名稱"</code>來定義要畫圖的欄位<br>
 或使用<code>subplots=True</code>表達每一個欄位都畫一個圖<br>
 散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸</p>
-        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

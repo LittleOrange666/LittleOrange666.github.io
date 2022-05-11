@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <div class="top_area">
+    <div id="top_area">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" id="navbar">
+            <div class="container-fluid">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
@@ -29,9 +29,8 @@
         </nav>
     </div>
     <div id="indexbar" class="toc"></div>
-    <div id="center_area">
-        <div id="main_area" class="container-fluid" data-hard-breaks="true">
-            <h1 id="_1">基礎語法</h1>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="_1">基礎語法</h1>
 <h2 id="_2">換行</h2>
 <p>在Python裡每換一行就代表下一段程式碼，不需要也不能有分號<br>
 但在以下兩個情況電腦會將不同行看成同一段程式碼</p>
@@ -839,7 +838,6 @@ Python中的推導式有4種，分別是</p>
 但同時可以手動執行main<br>
 而且有一些函數庫會要求把程式碼寫在<code>if __name__ == '__main__':</code>裡面(例如：PyQt)<br>
 並能明確的標示出主要程式碼的位置</p>
-        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

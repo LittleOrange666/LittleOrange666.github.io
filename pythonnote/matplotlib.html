@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <div class="top_area">
+    <div id="top_area">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" id="navbar">
+            <div class="container-fluid">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
@@ -29,9 +29,8 @@
         </nav>
     </div>
     <div id="indexbar" class="toc"></div>
-    <div id="center_area">
-        <div id="main_area" class="container-fluid" data-hard-breaks="true">
-            <h1 id="matplotlib">matplotlib</h1>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="matplotlib">matplotlib</h1>
 <p>因為和通常numpy一起用，所以開頭要寫</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -274,7 +273,6 @@
 
 <p>建立一個與原來子圖共用x軸的子圖<br>
 再分別對兩個子圖做操作即可</p>
-        </div>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
