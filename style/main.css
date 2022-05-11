@@ -19,7 +19,10 @@
 }
 
 #indexbar {
-    padding-top: 20px;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    padding-top: 80px;
     margin-left: 5%;
     margin-right: 70%;
     z-index: -10
