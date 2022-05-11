@@ -8,18 +8,18 @@
     padding-top: 60px;
     font-family: "微軟正黑UI";
     float: left;
-    padding-left:10%
+    margin-left:10%
 }
 
 #main_area {
-     padding-left: 20%;
-     padding-right: 5%;
+     margin-left: 20%;
+     margin-right: 5%;
 }
 
 #indexbar {
     padding-top: 20px;
-    padding-left:5%;
-    padding-right:70%;
+    margin-left:5%;
+    margin-right:70%;
 }
 
 #indexbar a {
