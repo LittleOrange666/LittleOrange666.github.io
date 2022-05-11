@@ -68,7 +68,9 @@ function update_inview() {
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
 //init index
-initindex();
+if (!(location.href.endsWith("/")||location.href.endsWith("/index"))){
+    initindex();
+}
 //init view detect
 inView(".a_content").on('enter', e => {
         e.classList.add("a_content_inview");
