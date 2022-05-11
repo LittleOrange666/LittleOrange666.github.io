@@ -8,9 +8,13 @@
     width: 100%;
     padding-top: 60px;
     font-family: "微軟正黑UI";
+    float: left;
+    padding-left:10%
 }
 
-#main_area {}
+#main_area {
+     padding: 0px 20% 0px 20%;
+}
 
 #indexbar {
     padding-top: 20px;
