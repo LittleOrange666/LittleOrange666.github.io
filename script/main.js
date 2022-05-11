@@ -18,7 +18,7 @@ function initindex() {
     });
     let index = $("#indexbar");
     let createul = () => $('<ul class="nav"></ul>');
-    let createli = (name) => $('<li><a href="#' + name + '" title="' + name + '" smoothhashscroll>' + name + '</a></li>');
+    let createli = (name) => $('<li><a href="#' + name + '" title="' + name + '" class="text-truncate" smoothhashscroll>' + name + '</a></li>');
     let p0 = createul();
     index.append(p0);
     let p1 = p0;
