@@ -88,7 +88,7 @@ def run_markdown(source: str) -> str:
     # spoiler轉成details
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
                                                                                                     " NEXTLINE ")
-    reg = re.compile("^:::spoiler\\s+(\\S+(?:\\s+\\S+)*)\\s*$", re.M)
+    reg = re.compile("^:::spoiler\\s+(\\S.*)$", re.M)
     reg0 = re.compile(":::", re.M)
     get = reg.search(html)
     # spoiler_count = 0 #已棄用
