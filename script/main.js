@@ -109,3 +109,20 @@ $("#previous").click(() => {
         location.href = "./";
     }
 });
+//code copy
+var copyer = document.createElement("input");
+document.body.appendChild(copyer);
+$(copyer).hide();
+$("code").each(function() {
+    let p = $(this).parent();
+    let copy = $('<button type="button" class="copy_btn">');
+    p.append(copy);
+    p.css("position","relative");
+    let text = $(this).text();
+    copy.click(function() {
+        copyer.value = text;
+        copyer.select();
+        copyer.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyer.value);
+    });
+});
