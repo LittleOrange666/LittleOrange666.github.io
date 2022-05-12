@@ -9,7 +9,7 @@
     position: relative;
     margin-left: 20%;
     margin-right: 5%;
-    padding-top: 60px;
+    margin-top: 60px;
     font-family: "微軟正黑UI";
     float: left;
     width: 60%;
@@ -20,7 +20,7 @@
     position: fixed;
     left: 0px;
     right: 0px;
-    padding-top: 80px;
+    margin-top: 80px;
     margin-left: 5%;
     margin-right: 70%;
     z-index: -10
@@ -46,7 +46,7 @@
 
 #indexbar ul {
     display: block;
-    padding-left: 15px;
+    margin-left: 15px;
 }
 
 #indexbar li {

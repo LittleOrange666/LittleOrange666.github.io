@@ -18,6 +18,7 @@ function initindex() {
     });
     let index = $("#indexbar");
     let createul = () => $('<ul class="nav"></ul>');
+    let createcollapse = () => $('<div class="collapse collapse_for_header"></div>');
     let createli = (name) => $('<li><a href="#' + name + '" title="' + name + '" class="text-truncate" smoothhashscroll>' + name + '</a></li>');
     let p0 = createul();
     index.append(p0);
@@ -32,15 +33,18 @@ function initindex() {
             case "H1":
                 p0.append(l);
                 p1 = createul();
-                p2 = p1;
+                p2 = createcollapse();
+                p1.append(p2);
                 l2 = l1 = l;
                 l.append(p1);
                 actdict[name] = [l];
                 break;
             case "H2":
                 p1.append(l);
-                p2 = createul();
-                l.append(p2);
+                let pp2 = createul();
+                p2 = createcollapse();
+                pp2.append(p2);
+                l.append(pp2);
                 l2 = l;
                 actdict[name] = [l, l1];
                 break;
@@ -56,6 +60,9 @@ function update_inview() {
     $(".a_content").each(function() {
         let rect = this.getBoundingClientRect();
         let inView = rect.top >= 0 && rect.left >= 0 && rect.bottom <= $(window).height() && rect.right <= $(window).width();
+        if (inView&&this.parentNode.tagName=="DETAILS"){
+            inView = inView&&this.parentNode.open;
+        }
         if (inView != $(this).hasClass("a_content_inview")) {
             if (inView) $(this).addClass("a_content_inview");
             else $(this).removeClass("a_content_inview");
