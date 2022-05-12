@@ -13,7 +13,7 @@ function initindex() {
             header = $(this).text();
             $(this).attr("id", header);
         } else {
-            $(this).attr("connectedheader", header)
+            $(this).attr("connectedheader", header);
         }
     });
     let index = $("#indexbar");
@@ -27,7 +27,7 @@ function initindex() {
     let l1 = null;
     let l2 = null;
     $(".a_header").each(function() {
-        let name = $(this).text()
+        let name = $(this).text();
         let l = createli(name);
         let pp2 = createcollapse();
         switch ($(this).prop("tagName")) {
@@ -87,7 +87,7 @@ function update_inview() {
             if (showing) $(this).addClass("show");
             else $(this).removeClass("show");
         }
-    }
+    });
 }
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
