@@ -29,11 +29,11 @@ function initindex() {
     $(".a_header").each(function() {
         let name = $(this).text()
         let l = createli(name);
+        let pp2 = createcollapse();
         switch ($(this).prop("tagName")) {
             case "H1":
                 p0.append(l);
                 p1 = createul();
-                let pp2 = createcollapse();
                 p2 = createul();
                 pp2.append(p2);
                 p1.append(pp2);
@@ -43,7 +43,6 @@ function initindex() {
                 break;
             case "H2":
                 p1.append(l);
-                let pp2 = createcollapse();
                 p2 = createul();
                 pp2.append(p2);
                 l.append(pp2);
