@@ -110,7 +110,7 @@ $("#previous").click(() => {
     }
 });
 //code copy
-var copyer = document.createElement("input");
+var copyer = document.createElement("textarea");
 document.body.appendChild(copyer);
 $(copyer).hide();
 $("code").each(function() {
