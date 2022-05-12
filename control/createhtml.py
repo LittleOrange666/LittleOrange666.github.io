@@ -82,18 +82,24 @@ def run_markdown(source: str) -> str:
                     v = v[1:]
                 args[k] = v
         source = source[end + 4:]
+    # 預處理spoiler
+    reg1 = re.compile("^:::spoiler\\s+(\\S+ +.*)$", re.M)
+    get = reg1.search(source)
+    while get:
+        source = f"{source[:get.span(1)[0]]}{get.group(1).replace(' ','&nbsp;')}{source[get.span(1)[1]:]}"
+        get = reg1.search(source)
     # 主要部分
     html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
                                                  'codehilite', 'mdx_math', 'nl2br'])
     # spoiler轉成details
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
                                                                                                     " NEXTLINE ")
-    reg = re.compile("^:::spoiler\\s+(\\S.*)$", re.M)
+    reg = re.compile(":::spoiler\\s(\\S+)", re.M)
     reg0 = re.compile(":::", re.M)
     get = reg.search(html)
     # spoiler_count = 0 #已棄用
     while get:
-        html = f"{html[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{html[get.span()[1] - 1:]}"
+        html = f"{html[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{html[get.span()[1]:]}"
         # spoiler_count += 1 #已棄用
         # i = spoiler_count
         # html = f"""{html[:get.span()[0]]}<div class="accordion accordion-flush" id="accordion_{i}">

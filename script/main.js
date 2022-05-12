@@ -91,6 +91,10 @@ function update_inview() {
 }
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
+//remove empty
+main.find("h1,h2,h3,h4,h5,h6,p,pre,ol,ul").each(function(){
+    if ($(this).text()=="")$(this).remove();
+});
 //init index
 if (!(location.href.endsWith("/") || location.href.endsWith("/index"))) {
     initindex();
