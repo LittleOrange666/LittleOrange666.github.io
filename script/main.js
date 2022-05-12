@@ -53,6 +53,15 @@ function initindex() {
 }
 
 function update_inview() {
+    $(".a_content").each(function() {
+        let rect = this.getBoundingClientRect();
+        let inView = rect.top >= 0 && rect.left >= 0 && rect.bottom <= $(window).height() && rect.right <= $(window).width();
+        if (inView != $(this).hasClass("a_content_inview")) {
+            if (inView) $(this).addClass("a_content_inview");
+            else $(this).removeClass("a_content_inview");
+        }
+
+    });
     $(".a_header_targeted").removeClass("a_header_targeted");
     let o = $(".a_content_inview:first");
     let target = o.attr("connectedheader");
@@ -68,19 +77,11 @@ function update_inview() {
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
 //init index
-if (!(location.href.endsWith("/")||location.href.endsWith("/index"))){
+if (!(location.href.endsWith("/") || location.href.endsWith("/index"))) {
     initindex();
 }
 //init view detect
-inView(".a_content").on('enter', e => {
-        e.classList.add("a_content_inview");
-        update_inview();
-    })
-    .on('exit', e => {
-        e.classList.remove("a_content_inview");
-        update_inview();
-    });
-update_inview();
+$(window).on('DOMContentLoaded load resize scroll', update_inview);
 //previous btn action
 $("#previous").click(() => {
     if (location.href.endsWith("/")) {
