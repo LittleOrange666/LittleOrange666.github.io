@@ -79,7 +79,7 @@
 <div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">另一個變數名稱</span>
 </code></pre></div>
 
-<p><details><summary>注：</summary><br>
+<p></details>spoiler 注：<br>
 這種寫法在資料值可變時會使兩個變數代表同個值，使其連動<br>
 可以用這樣的寫法來做淺複製(詳細的"變數與型別"再說)</p>
 <div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
@@ -98,10 +98,10 @@
 且不能和保留字重複<br>
 也建議不要和內建的函數、常數、類型重名(可能會有非預期的結果)<br>
 不能以數字開頭(可以包含數字)，不能包含計算符號(加減乘除之類的符號)<br>
-<details><summary>保留字</summary><br>
+<details><summary>保留字 NEXTLINE</summary> 
 False、None、True、and、as、assert、async、await、break、class、continue、def、del、elif、else、except、finally、for、from、global、if、import、in、is、lambda、nonlocal、not、or、pass、raise、return、try、while、with、yield<br>
 </details><br>
-<details><summary>內建函數、常數、類型名稱</summary><br>
+<details><summary>內建函數、常數、類型名稱 NEXTLINE</summary> 
 ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOError、BrokenPipeError、BufferError、BytesWarning、ChildProcessError、ConnectionAbortedError、ConnectionError、ConnectionRefusedError、ConnectionResetError、DeprecationWarning、EOFError、Ellipsis、EncodingWarning、EnvironmentError、Exception、False、FileExistsError、FileNotFoundError、FloatingPointError、FutureWarning、GeneratorExit、IOError、ImportError、ImportWarning、IndentationError、IndexError、InterruptedError、IsADirectoryError、KeyError、KeyboardInterrupt、LookupError、MemoryError、ModuleNotFoundError、NameError 、None、NotADirectoryError、NotImplemented、NotImplementedError、OSError、OverflowError、PendingDeprecationWarning、PermissionError、ProcessLookupError、RecursionError、ReferenceError、ResourceWarning、RuntimeError、RuntimeWarning、StopAsyncIteration、StopIteration、SyntaxError、SyntaxWarning、SystemError、SystemExit、TabError、TimeoutError、True、TypeError 、UnboundLocalError、UnicodeDecodeError、UnicodeEncodeError、UnicodeError、UnicodeTranslateError、UnicodeWarning、UserWarning、ValueError、Warning、WindowsError、ZeroDivisionError、__build_class__、__debug__、__doc__、__import__、__loader__、__name__、__package__、__spec__、abs、aiter、all、anext、any、ascii、bin、bool、breakpoint、bytearray、bytes、callable、chr、classmethod、compile、complex、copyright、credits、delattr、dict、dir、divmod、enumerate、eval、exec、exit、filter、float、format、frozenset、getattr、globals、hasattr、hash、help、hex、id、input、int、isinstance、issubclass、iter、len、license、list、locals、map、max、memoryview、min、next、object、oct、open、ord、pow、print、property、quit、range、repr、reversed、round、set、setattr、slice、sorted、staticmethod、str、sum、super、tuple、type、vars、zip<br>
 </details><br>
 辨別方法：<br>
@@ -183,7 +183,7 @@ True=1, False=0</p>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#直接加東西在結尾</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
+<p></details>spoiler 可用方法詳細介紹：<br>
 count(value):<br>
 Return number of occurrences of value.</p>
 <hr></hr>
@@ -205,7 +205,7 @@ Raises ValueError if the value is not present.<br>
 <span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">"owo"</span><span class="p">,</span><span class="mi">1234</span><span class="p">])</span> <span class="c1">#和上一行類似，但可加上任意型別且在原地操作</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
+<p></details>spoiler 可用方法詳細介紹：<br>
 append(object):<br>
 Append object to the end of the list.</p>
 <hr></hr>
@@ -262,7 +262,7 @@ The reverse flag can be set to sort in descending order.<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1">#{8, 4, 5, 7}</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
+<p></details>spoiler 可用方法詳細介紹：<br>
 add():<br>
 Add an element to a set.<br>
 This has no effect if the element is already present.</p>
@@ -333,7 +333,7 @@ Update a set with the union of itself and others.<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#{'a': 12, 'b': 34, 'c': 56}</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
+<p></details>spoiler 可用方法詳細介紹：<br>
 clear():<br>
 D.clear() -> None.  Remove all items from D.</p>
 <hr></hr>
@@ -415,7 +415,7 @@ D.values() -> an object providing a view on D's values<br>
 <li>賦值計算符 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code></li>
 <li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></li>
 </ul>
-<p><details><summary>總表</p></summary>
+<p></details>spoiler 總表</p>
 <table>
 <thead>
 <tr>
@@ -668,7 +668,7 @@ D.values() -> an object providing a view on D's values<br>
 <p>表達式必須產出一個contextmanager<br>
 with語法也可以用於使中間的程式展現特定的行為<br>
 例如：指定cpu/gpu<br>
-<details><summary>Example:</summary> 檔案的開啟</p>
+<details><summary>Example: 檔案的開啟</p></summary>>
 <div class="codehilite"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"filename:"</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"content of "</span> <span class="o">+</span><span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">+</span><span class="s2">" :"</span><span class="p">)</span>
@@ -676,7 +676,7 @@ with語法也可以用於使中間的程式展現特定的行為<br>
 </code></pre></div>
 
 <p></details><br>
-<details><summary>Example:</summary> 列印時間</p>
+<details><summary>Example: 列印時間</p></summary>>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
 <span class="k">class</span> <span class="nc">TimePrinter</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
