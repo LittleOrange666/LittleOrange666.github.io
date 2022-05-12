@@ -33,16 +33,18 @@ function initindex() {
             case "H1":
                 p0.append(l);
                 p1 = createul();
-                p2 = createcollapse();
-                p1.append(p2);
+                let pp2 = createcollapse();
+                p2 = createul();
+                pp2.append(p2);
+                p1.append(pp2);
                 l2 = l1 = l;
                 l.append(p1);
                 actdict[name] = [l];
                 break;
             case "H2":
                 p1.append(l);
-                let pp2 = createul();
-                p2 = createcollapse();
+                let pp2 = createcollapse();
+                p2 = createul();
                 pp2.append(p2);
                 l.append(pp2);
                 l2 = l;
@@ -80,6 +82,13 @@ function update_inview() {
             o.addClass("activated");
         }
     });
+    $(".collapse_for_header").each(function() {
+        let showing = $(this).parent().hasClass("activated");
+        if (showing != $(this).hasClass("show")) {
+            if (showing) $(this).addClass("show");
+            else $(this).removeClass("show");
+        }
+    }
 }
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
