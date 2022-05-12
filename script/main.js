@@ -115,7 +115,7 @@ document.body.appendChild(copyer);
 $(copyer).hide();
 $("code").each(function() {
     let p = $(this).parent();
-    let copy = $("<button style='background-color: rgba(255,255,255,0.2);position:absolute;right:0px;top:0px;font-size:10px;padding:0px;margin:0px;border:0px;></button>");
+    let copy = $("<button style='background-color: rgba(255,255,255,0.2);position:absolute;right:0px;top:0px;font-size:10px;padding:0px;margin:0px;border:0px;'></button>");
     p.append(copy);
     p.css("position","relative");
     let text = $(this).text();
