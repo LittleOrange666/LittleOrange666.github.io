@@ -2,14 +2,13 @@ from typing import Callable
 
 import markdown
 from html.parser import HTMLParser
-from pygments import highlight
-from pygments.lexers import PythonLexer
+from pygments import highlight, lexers
 from pygments.formatters import HtmlFormatter
 import re
 import shutil
 import os
 
-prepares = ("language-python",)
+prepares = {"language-" + k: lexers.get_lexer_by_name(k) for lexer in lexers.get_all_lexers() for k in lexer[1]}
 the_headers = ("h1", "h2", "h3")
 the_contents = ("h1", "h2", "h3", "h4", "h5", "h6", "p", "pre", "ol", "ul")
 
@@ -54,8 +53,7 @@ class Codehightlighter(HTMLParser):
         if self.prepare == "":
             self.text.append(data)
         else:
-            if self.prepare == "language-python":
-                self.text.append(highlight(data, PythonLexer(), HtmlFormatter()))
+            self.text.append(highlight(data, prepares[self.prepare](), HtmlFormatter()))
 
     def solve(self, text: str):
         self.text = []
@@ -86,7 +84,7 @@ def run_markdown(source: str) -> str:
     reg1 = re.compile("^:::spoiler\\s+(\\S+ +.*)$", re.M)
     get = reg1.search(source)
     while get:
-        source = f"{source[:get.span(1)[0]]}{get.group(1).replace(' ','&nbsp;')}{source[get.span(1)[1]:]}"
+        source = f"{source[:get.span(1)[0]]}{get.group(1).replace(' ', '&nbsp;')}{source[get.span(1)[1]:]}"
         get = reg1.search(source)
     # 主要部分
     html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
