@@ -8,9 +8,10 @@ function initindex() {
     main.find("h1,h2,h3,h4,h5,h6,p,pre,ol,ul").addClass("a_content");
     main.find("h1,h2,h3").addClass("a_header");
     let header = "";
+    let count = 0;
     $(".a_content").each(function() {
         if ($(this).hasClass("a_header")) {
-            header = $(this).text();
+            header = "header_"+(++count);
             $(this).attr("id", header);
         } else {
             $(this).attr("connectedheader", header);
@@ -19,7 +20,7 @@ function initindex() {
     let index = $("#indexbar");
     let createul = () => $('<ul class="nav"></ul>');
     let createcollapse = () => $('<div class="collapse collapse_for_header"></div>');
-    let createli = (name) => $('<li><a href="#' + name + '" title="' + name + '" class="text-truncate" smoothhashscroll>' + name + '</a></li>');
+    let createli = (id,name) => $('<li><a href="#' + id + '" class="text-truncate" smoothhashscroll>' + name + '</a></li>');
     let p0 = createul();
     index.append(p0);
     let p1 = p0;
@@ -27,8 +28,9 @@ function initindex() {
     let l1 = null;
     let l2 = null;
     $(".a_header").each(function() {
+        let id = $(this).attr("id");
         let name = $(this).text();
-        let l = createli(name);
+        let l = createli(id,name);
         let pp2 = createcollapse();
         switch ($(this).prop("tagName")) {
             case "H1":
@@ -39,7 +41,7 @@ function initindex() {
                 p1.append(pp2);
                 l2 = l1 = l;
                 l.append(p1);
-                actdict[name] = [l];
+                actdict[id] = [l];
                 break;
             case "H2":
                 p1.append(l);
@@ -47,11 +49,11 @@ function initindex() {
                 pp2.append(p2);
                 l.append(pp2);
                 l2 = l;
-                actdict[name] = [l, l1];
+                actdict[id] = [l, l1];
                 break;
             case "H3":
                 p2.append(l);
-                actdict[name] = [l, l1, l2];
+                actdict[id] = [l, l1, l2];
                 break;
         }
     });
@@ -77,7 +79,7 @@ function update_inview() {
     if (target) document.getElementById(target).classList.add("a_header_targeted");
     $(".activated").removeClass("activated");
     $(".a_header_targeted").each(function() {
-        for (let o of actdict[$(this).text()]) {
+        for (let o of actdict[$(this).attr("id")]) {
             o.addClass("activated");
         }
     });
