@@ -21,9 +21,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" id="previous">回到頂部</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -31,6 +28,7 @@
     <div id="indexbar" class="toc"></div>
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
         <h1 id="builtins">談談builtins</h1>
+<h2 id="python">Python內建</h2>
 <p>未完成，先隨便放點東西</p>
 <h2 id="_1">常數:</h2>
 <h3 id="ellipsis">Ellipsis</h3>
@@ -151,7 +149,7 @@ This is done by calling getattr(obj, name) and catching AttributeError.</p>
 <p>Return the hash value for the given object.<br>
 Two objects that compare equal must also have the same hash value, but the<br>
 reverse is not necessarily true.</p>
-<h3 id="helpargs-kwds">help(<em>args, </em>*kwds):</h3>
+<h3 id="helpargs-kwds">help(*args, **kwds):</h3>
 <p>Define the builtin 'help'.<br>
     This is a wrapper around pydoc.help that provides a helpful message<br>
     when 'help' is typed at the Python interactive prompt.<br>
@@ -344,7 +342,7 @@ The return value is an integer if ndigits is omitted or None.  Otherwise<br>
 the return value has the same type as the number.  ndigits may be negative.</p>
 <h3 id="setattrobj-name-value">setattr(obj, name, value):</h3>
 <p>Sets the named attribute on the given object to the specified value.<br>
-setattr(x, 'y', v) is equivalent to ``x.y = v''</p>
+setattr(x, 'y', v) is equivalent to <code>x.y = v</code></p>
 <h3 id="sortediterable-keynone-reversefalse">sorted(iterable, key=None, reverse=False):</h3>
 <p>Return a new list containing all items from the iterable in ascending order.<br>
 A custom key function can be supplied to customize the sort order, and the<br>

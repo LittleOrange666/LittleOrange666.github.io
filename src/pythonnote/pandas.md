@@ -14,7 +14,7 @@ pandas包含了numpy和matplotlib的部分功能，要用到的時候不用額�
 
 ## Series
 Series像是能自訂索引的numpy陣列
-建立：
+### 建立：
 
 ```python
 s = pd.Series(數據)
@@ -34,6 +34,7 @@ s = pd.Series(數據,index=索引)
 ```python
 print(s[s>0])
 ```
+### 使用
 Series有一個特別的運算可以逐個進行`in`計算
 
 ```python
@@ -43,6 +44,13 @@ s.isin(物件)
 常用於DataFrame的索引
 單獨取出索引/資料：
 
+#### 常用方法
+```py
+s.unique() # 回傳有哪些不重複的值 類型為 "numpy.ndarray"
+s.value_counts() # 回傳不重複的值出現次數 類型為 "Series"
+```
+
+#### 常用屬性
 ```python
 print(s.index)  #索引 類型為 "Index" 或其子類別
 print(s.values) #資料 類型為 "numpy.ndarray"
@@ -65,7 +73,7 @@ df["總價"] = df["數量"] * df["價格"]
 df
 ```
 用Jupyter顯示：
-![](https://i.imgur.com/VUsJEUn.png)
+![](/resource/img/pythonnote_pandas_0.png)
 
 ### 匯入與匯出
 DataFrame可以直接由檔案匯入/匯出至檔案
@@ -140,7 +148,7 @@ df.iloc[索引]
 ### 排序
 
 ```python
-df.sort_values(`(單/多個)欄位標籤`,ascending=是否遞增)
+df.sort_values((單/多個)欄位標籤,ascending=是否遞增)
 ```
 照`(單/多個)欄位標籤`決定排序優先程度
 `ascending=True`為遞增排序
@@ -152,7 +160,7 @@ df.sort_values(`(單/多個)欄位標籤`,ascending=是否遞增)
 資料刪除則使用`drop`
 
 ```python
-df.drop(`(單/多個)名稱`,axis=軸)
+df.drop((單/多個)名稱,axis=軸)
 ```
 axis決定是要刪掉一些資料還是刪掉一些欄位
 `axis=0`(默認)表示刪掉一些資料
@@ -170,10 +178,10 @@ plt.rcParams['axes.unicode_minus'] = False
 繪圖語法：
 
 ```python
-pd.plot(kind="類型")
+df.plot(kind="類型")
 
 #或著
-pd.plot.類型()
+df.plot.類型()
 ```
 如果用的是Jupyter會在執行完此行後顯示(只能放在Cell的結尾)
 其他情況可用
@@ -183,19 +191,22 @@ plt.show()
 ```
 來強制顯示
 可用的類型包含：
-名稱|中文名稱
----|---
-line|折線圖
-bar|長條圖
-barh|橫長條圖
-box|箱形圖
-hist|直方圖
-kde|核密度估計圖
-area|塗色折線圖
-pie|圓餅圖
-scatter|散佈圖
-hexbin|六邊形分箱圖
+
+|名稱|中文名稱|
+|---|---|
+|line|折線圖|
+|bar|長條圖|
+|barh|橫長條圖|
+|box|箱形圖|
+|hist|直方圖|
+|kde|核密度估計圖|
+|area|塗色折線圖|
+|pie|圓餅圖|
+|scatter|散佈圖|
+|hexbin|六邊形分箱圖|
+
 部分類型需要額外參數
 圓餅圖需要`y="欄位名稱"`來定義要畫圖的欄位
 或使用`subplots=True`表達每一個欄位都畫一個圖
 散佈圖、六邊形分箱圖需要`x="欄位名稱"`,`y="欄位名稱"`來定義x,y軸
+其它參數與[matplotlib](matplotlib)大致相同

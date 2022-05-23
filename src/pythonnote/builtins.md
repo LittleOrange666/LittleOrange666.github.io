@@ -3,6 +3,7 @@ title: python builtins
 ---
 
 # 談談builtins
+## Python內建
 未完成，先隨便放點東西
 
 ## 常數:
@@ -70,7 +71,7 @@ __call__() method.
 ### chr(i):
 Return a Unicode string of one character with ordinal i; 0 <= i <= 0x10ffff.
 
-### compile(source, filename, mode, flags=0, dont_inherit=False, optimize=-1, _feature_version=-1):
+### compile(source, filename, mode, flags=0, dont_inherit=False, optimize=-1, \_feature_version=-1):
 Compile source into a code object that can be executed by exec() or eval().
 The source code may represent a Python module, statement or expression.
 The filename will be used for run-time error messages.
@@ -155,7 +156,7 @@ Return the hash value for the given object.
 Two objects that compare equal must also have the same hash value, but the
 reverse is not necessarily true.
 
-### help(*args, **kwds):
+### help(\*args, \*\*kwds):
 Define the builtin 'help'.
     This is a wrapper around pydoc.help that provides a helpful message
     when 'help' is typed at the Python interactive prompt.
@@ -369,7 +370,7 @@ the return value has the same type as the number.  ndigits may be negative.
 
 ### setattr(obj, name, value):
 Sets the named attribute on the given object to the specified value.
-setattr(x, 'y', v) is equivalent to ``x.y = v''
+setattr(x, 'y', v) is equivalent to ``x.y = v``
 
 ### sorted(iterable, key=None, reverse=False):
 Return a new list containing all items from the iterable in ascending order.
@@ -527,22 +528,22 @@ Property attribute.
     docstring
 Typical use is to define a managed attribute x:
 class C(object):
-    def getx(self): return self._x
-    def setx(self, value): self._x = value
-    def delx(self): del self._x
+    def getx(self): return self.\_x
+    def setx(self, value): self.\_x = value
+    def delx(self): del self.\_x
     x = property(getx, setx, delx, "I'm the 'x' property.")
 Decorators make defining new properties or modifying existing ones easy:
 class C(object):
     @property
     def x(self):
         "I am the 'x' property."
-        return self._x
+        return self.\_x
     @x.setter
     def x(self, value):
-        self._x = value
+        self.\_x = value
     @x.deleter
     def x(self):
-        del self._x
+        del self.\_x
 
 ### range:
 range(stop) -> range object

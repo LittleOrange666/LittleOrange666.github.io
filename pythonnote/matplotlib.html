@@ -21,9 +21,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" id="previous">回到頂部</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -92,7 +89,8 @@
 
 <p>lines是一個儲存折線的列表，幾組資料就幾條折線<br>
 <details><summary>折線圖樣式</summary><br>
-樣式是一個字串，由三個部分組成<br>
+設定折線圖外觀的時候可以直接用樣式字串或單獨設置三個部分<br>
+樣式字串由三個部分組成<br>
 1. 色彩字元</p>
 <table>
 <thead>
@@ -204,7 +202,38 @@
 <div class="codehilite"><pre><span></span><code><span class="s2">"b-^"</span>
 </code></pre></div>
 
-<p></details></p>
+<p></details><br>
+<details><summary>常用參數</p></summary>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>顏色</td>
+</tr>
+<tr>
+<td>marker</td>
+<td>點的樣式</td>
+</tr>
+<tr>
+<td>linestyle</td>
+<td>線段的樣式</td>
+</tr>
+<tr>
+<td>fmt</td>
+<td>樣式字串</td>
+</tr>
+<tr>
+<td></details></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="_6">散佈圖</h4>
 <div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">點大小</span><span class="p">,</span><span class="n">色彩</span><span class="p">)</span>
 </code></pre></div>
@@ -231,17 +260,87 @@
 </code></pre></div>
 
 <p><code>bar</code>指令可重複執行來疊加資料<br>
-並按照索引排列</p>
+並按照索引排列<br>
+<details><summary>常用參數</p></summary>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>線條寬度(比例)</td>
+</tr>
+<tr>
+<td>align</td>
+<td>對齊方式</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
 <h4 id="_8">直方圖</h4>
-<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">資料</span><span class="p">,)</span>
 </code></pre></div>
 
-<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code>，只能有一組</p>
+<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code>，可以包含多組，但是要用list包起來<br>
+<details><summary>常用參數</p></summary>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bins</td>
+<td>組距</td>
+</tr>
+<tr>
+<td>range</td>
+<td>範圍</td>
+</tr>
+<tr>
+<td>stacked</td>
+<td>有多組資料時是否把多個直方圖堆疊起來</td>
+</tr>
+<tr>
+<td>density</td>
+<td>是否用密度做顯示</td>
+</tr>
+<tr>
+<td>cumulative</td>
+<td>是否用累積函數做顯示</td>
+</tr>
+<tr>
+<td></details></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="_9">圓餅圖</h4>
 <div class="codehilite"><pre><span></span><code><span class="n">patches</span><span class="p">,</span> <span class="n">texts</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">資料</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">標籤</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="_10">圖例</h3>
+<h4 id="data">data參數</h4>
+<p>在繪製任何資料時，都可以用data參數指定資料來源<br>
+如：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s2">"y"</span><span class="p">])</span>
+</code></pre></div>
+
+<p>可改為：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span><span class="s2">"y"</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="_10">畫線</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y座標</span><span class="p">,</span><span class="n">顏色</span><span class="p">,</span><span class="n">樣式</span><span class="p">,</span><span class="n">寬度</span><span class="p">)</span> <span class="c1"># 畫橫線</span>
+<span class="n">axe</span><span class="o">.</span><span class="n">avhline</span><span class="p">(</span><span class="n">x座標</span><span class="p">,</span><span class="n">顏色</span><span class="p">,</span><span class="n">樣式</span><span class="p">,</span><span class="n">寬度</span><span class="p">)</span> <span class="c1"># 畫直線</span>
+</code></pre></div>
+
+<h3 id="_11">圖例</h3>
 <p>在繪製任何資料時，都可在結尾加上<code>label="xxx"</code>來設置資料集名稱<br>
 如：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"sin()"</span><span class="p">)</span>
@@ -252,7 +351,7 @@
 </code></pre></div>
 
 <p>顯示圖例</p>
-<h3 id="_11">標籤</h3>
+<h3 id="_12">標籤</h3>
 <div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 標題</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># Y軸名稱</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># X軸名稱</span>
@@ -261,12 +360,16 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 對於使用plt的情況</span>
 </code></pre></div>
 
-<h3 id="_12">外觀</h3>
+<h3 id="_13">標記</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">文字</span><span class="p">,</span> <span class="n">標記位置</span><span class="p">,</span> <span class="n">文字位置</span><span class="p">,</span> <span class="n">箭頭標記的屬性</span><span class="p">)</span> <span class="c1"># 位置用(x,y)表示，xy皆與資料使用相同座標軸</span>
+</code></pre></div>
+
+<h3 id="_14">外觀</h3>
 <div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">showgrid</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="c1"># 是否顯示網格</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">,</span><span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="p">])</span> <span class="c1"># 設置座標軸範圍</span>
 </code></pre></div>
 
-<h3 id="_13">多軸圖表</h3>
+<h3 id="_15">多軸圖表</h3>
 <p>要建立多軸圖表可以用</p>
 <div class="codehilite"><pre><span></span><code><span class="n">twin_axe</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 </code></pre></div>

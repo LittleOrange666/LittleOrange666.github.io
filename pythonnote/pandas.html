@@ -21,9 +21,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" id="previous">回到頂部</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -38,8 +35,8 @@
 <p>pandas包含了numpy和matplotlib的部分功能，要用到的時候不用額外import</p>
 <h4 id="pandas-series-dataframe">pandas主要包含兩種資料型別 Series 和 DataFrame</h4>
 <h2 id="series">Series</h2>
-<p>Series像是能自訂索引的numpy陣列<br>
-建立：</p>
+<p>Series像是能自訂索引的numpy陣列</p>
+<h3 id="_1">建立：</h3>
 <div class="codehilite"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">數據</span><span class="p">)</span>
 </code></pre></div>
 
@@ -56,6 +53,7 @@
 <div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">></span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div>
 
+<h3 id="_2">使用</h3>
 <p>Series有一個特別的運算可以逐個進行<code>in</code>計算</p>
 <div class="codehilite"><pre><span></span><code><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">物件</span><span class="p">)</span>
 </code></pre></div>
@@ -63,6 +61,12 @@
 <p><code>isin</code>輸出一個Series[bool]表示每個元素是否在<code>物件</code>中<br>
 常用於DataFrame的索引<br>
 單獨取出索引/資料：</p>
+<h4 id="_3">常用方法</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">s</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="c1"># 回傳有哪些不重複的值 類型為 "numpy.ndarray"</span>
+<span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="c1"># 回傳不重複的值出現次數 類型為 "Series"</span>
+</code></pre></div>
+
+<h4 id="_4">常用屬性</h4>
 <div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1">#索引 類型為 "Index" 或其子類別</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c1">#資料 類型為 "numpy.ndarray"</span>
 </code></pre></div>
@@ -83,8 +87,8 @@ Ex:</p>
 </code></pre></div>
 
 <p>用Jupyter顯示：<br>
-<img alt="" src="https://i.imgur.com/VUsJEUn.png"></img></p>
-<h3 id="_1">匯入與匯出</h3>
+<img alt="" src="/resource/img/pythonnote_pandas_0.png"></img></p>
+<h3 id="_5">匯入與匯出</h3>
 <p>DataFrame可以直接由檔案匯入/匯出至檔案<br>
 支援.csv .json .html .xlsx格式<br>
 注意：要支援.xlsx格式需要額外安裝<code>openpyxl</code>(不需要import)<br>
@@ -100,27 +104,27 @@ Ex:</p>
 <span class="n">df</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>  <span class="c1"># 匯入自.xlsx檔</span>
 </code></pre></div>
 
-<h3 id="_2">取出/顯示資料</h3>
-<h4 id="_3">前/後幾筆資料</h4>
+<h3 id="_6">取出/顯示資料</h3>
+<h4 id="_7">前/後幾筆資料</h4>
 <p>用head/tail可以取出前/後幾筆資料<br>
 輸出依然是DataFrame格式</p>
 <div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">count</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 前幾筆資料，默認5筆(Series也支援此操作)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">count</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 後幾筆資料，默認5筆(Series也支援此操作)</span>
 </code></pre></div>
 
-<h4 id="_4">內部資料</h4>
+<h4 id="_8">內部資料</h4>
 <div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">index</span>    <span class="c1"># 索引    類型為 "Index" 或其子類別</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span>  <span class="c1"># 欄位標籤 類型為 "Index" 或其子類別</span>
 <span class="n">df</span><span class="o">.</span><span class="n">values</span>   <span class="c1"># 資料    為numpy陣列</span>
 </code></pre></div>
 
-<h4 id="_5">摘要</h4>
+<h4 id="_9">摘要</h4>
 <div class="codehilite"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>    <span class="c1"># 有幾筆資料</span>
 <span class="n">df</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># (有幾筆資料, 有幾欄)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>  <span class="c1"># 摘要</span>
 </code></pre></div>
 
-<h3 id="_6">索引</h3>
+<h3 id="_10">索引</h3>
 <p>DataFrame類似於二維列表，第一維是欄位標籤<br>
 可用寫法</p>
 <div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="p">]</span>
@@ -141,24 +145,24 @@ Ex:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">索引</span><span class="p">]</span>
 </code></pre></div>
 
-<h3 id="_7">排序</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="err">`</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="n">是否遞增</span><span class="p">)</span>
+<h3 id="_11">排序</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">((</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="n">是否遞增</span><span class="p">)</span>
 </code></pre></div>
 
 <p>照<code>(單/多個)欄位標籤</code>決定排序優先程度<br>
 <code>ascending=True</code>為遞增排序<br>
 回傳排序過的DataFrame，不更改原來的</p>
-<h3 id="_8">資料增刪</h3>
+<h3 id="_12">資料增刪</h3>
 <p>利用索引可以進行資料讀取/編輯<br>
 寫入不存在的索引可以進行資料新增<br>
 資料刪除則使用<code>drop</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="err">`</span><span class="p">(</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">名稱</span><span class="err">`</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="n">軸</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">((</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">名稱</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="n">軸</span><span class="p">)</span>
 </code></pre></div>
 
 <p>axis決定是要刪掉一些資料還是刪掉一些欄位<br>
 <code>axis=0</code>(默認)表示刪掉一些資料<br>
 <code>axis=1</code>(默認)表示刪掉一些欄位</p>
-<h3 id="_9">資料視覺化</h3>
+<h3 id="_13">資料視覺化</h3>
 <p>pandas有整合matplotlib的繪製圖表功能<br>
 但如果要用中文還是需要在繪圖的程式碼以前寫下</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -167,10 +171,10 @@ Ex:</p>
 </code></pre></div>
 
 <p>繪圖語法：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"類型"</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"類型"</span><span class="p">)</span>
 
 <span class="c1">#或著</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">類型</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">類型</span><span class="p">()</span>
 </code></pre></div>
 
 <p>如果用的是Jupyter會在執行完此行後顯示(只能放在Cell的結尾)<br>
@@ -179,23 +183,62 @@ Ex:</p>
 </code></pre></div>
 
 <p>來強制顯示<br>
-可用的類型包含：<br>
-名稱|中文名稱<br>
----|---<br>
-line|折線圖<br>
-bar|長條圖<br>
-barh|橫長條圖<br>
-box|箱形圖<br>
-hist|直方圖<br>
-kde|核密度估計圖<br>
-area|塗色折線圖<br>
-pie|圓餅圖<br>
-scatter|散佈圖<br>
-hexbin|六邊形分箱圖<br>
-部分類型需要額外參數<br>
+可用的類型包含：</p>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>中文名稱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>line</td>
+<td>折線圖</td>
+</tr>
+<tr>
+<td>bar</td>
+<td>長條圖</td>
+</tr>
+<tr>
+<td>barh</td>
+<td>橫長條圖</td>
+</tr>
+<tr>
+<td>box</td>
+<td>箱形圖</td>
+</tr>
+<tr>
+<td>hist</td>
+<td>直方圖</td>
+</tr>
+<tr>
+<td>kde</td>
+<td>核密度估計圖</td>
+</tr>
+<tr>
+<td>area</td>
+<td>塗色折線圖</td>
+</tr>
+<tr>
+<td>pie</td>
+<td>圓餅圖</td>
+</tr>
+<tr>
+<td>scatter</td>
+<td>散佈圖</td>
+</tr>
+<tr>
+<td>hexbin</td>
+<td>六邊形分箱圖</td>
+</tr>
+</tbody>
+</table>
+<p>部分類型需要額外參數<br>
 圓餅圖需要<code>y="欄位名稱"</code>來定義要畫圖的欄位<br>
 或使用<code>subplots=True</code>表達每一個欄位都畫一個圖<br>
-散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸</p>
+散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸<br>
+其它參數與<a href="matplotlib">matplotlib</a>大致相同</p>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

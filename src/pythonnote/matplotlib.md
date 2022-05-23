@@ -79,7 +79,8 @@ lines = axe.plot(x軸資料1,y軸資料1,x軸資料2,y軸資料2,樣式)
 ```
 lines是一個儲存折線的列表，幾組資料就幾條折線
 :::spoiler 折線圖樣式
-樣式是一個字串，由三個部分組成
+設定折線圖外觀的時候可以直接用樣式字串或單獨設置三個部分
+樣式字串由三個部分組成
 1. 色彩字元
 
 |色彩字元|說明|
@@ -116,6 +117,15 @@ Ex.藍色實線並用三角形符號記做
 "b-^"
 ```
 :::
+:::spoiler 常用參數
+
+|名稱|意義|
+|--- | --- |
+|color|顏色|
+|marker|點的樣式|
+|linestyle|線段的樣式|
+|fmt|樣式字串|
+:::
 
 #### 散佈圖
 
@@ -149,18 +159,53 @@ np.arange(len(標籤))
 ```
 `bar`指令可重複執行來疊加資料
 並按照索引排列
+:::spoiler 常用參數
+
+|名稱|意義|
+|--- | --- |
+|width|線條寬度(比例)|
+|align|對齊方式|
+
+:::
 
 #### 直方圖
 
 ```py
-axe.hist(x軸資料,y軸資料)
+axe.hist(資料,)
 ```
-"資料"可以是`list`或是一維的`numpy陣列`，只能有一組
+"資料"可以是`list`或是一維的`numpy陣列`，可以包含多組，但是要用list包起來
+:::spoiler 常用參數
+
+|名稱|意義|
+|--- | --- |
+|bins|組距|
+|range|範圍|
+|stacked|有多組資料時是否把多個直方圖堆疊起來|
+|density|是否用密度做顯示|
+|cumulative|是否用累積函數做顯示|
+:::
 
 #### 圓餅圖
 
 ```py
 patches, texts = axe.pie(資料,labels=標籤)
+```
+
+#### data參數
+在繪製任何資料時，都可以用data參數指定資料來源
+如：
+```py
+axe.plot(df["x"],df["y"])
+```
+可改為：
+```py
+axe.plot("x","y",data=df)
+```
+
+#### 畫線
+```py
+axe.axhline(y座標,顏色,樣式,寬度) # 畫橫線
+axe.avhline(x座標,顏色,樣式,寬度) # 畫直線
 ```
 
 ### 圖例
@@ -186,6 +231,11 @@ axe.set_xlabel(text: str) # X軸名稱
 plt.title(text: str) # 對於使用plt的情況
 plt.ylabel(text: str) # 對於使用plt的情況
 plt.xlabel(text: str) # 對於使用plt的情況
+```
+
+### 標記
+```py
+axe.annotate(文字, 標記位置, 文字位置, 箭頭標記的屬性) # 位置用(x,y)表示，xy皆與資料使用相同座標軸
 ```
 
 ### 外觀
