@@ -4,6 +4,7 @@ title: 目錄
 
 ## Coding
 - [Python](pythonnote)
+- [C++](cppnote)
 
 ## 自製小遊戲
 - [象棋](Chess)
