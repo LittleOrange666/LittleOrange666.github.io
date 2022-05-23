@@ -1,7 +1,7 @@
 ---
-title: STD 函數
+title: std 函數
 ---
-# STD 函數
+# std 函數
 這裡的多數內容都在```<algorithm>```標頭檔底下
 ## std::range的函數
 以下所有有(start: iterator, end: iterator)的函數在C++20以上都可以用std::range來簡化

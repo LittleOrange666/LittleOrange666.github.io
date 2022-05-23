@@ -1,6 +1,7 @@
 from typing import Callable
 
 import markdown
+import mdx_math
 from html.parser import HTMLParser
 from pygments import highlight, lexers
 from pygments.formatters import HtmlFormatter
@@ -88,7 +89,7 @@ def run_markdown(source: str) -> str:
         get = reg1.search(source)
     # 主要部分
     html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
-                                                 'codehilite', 'mdx_math', 'nl2br'])
+                                                 'codehilite', 'nl2br', mdx_math.makeExtension(enable_dollar_delimiter=True)])
     # spoiler轉成details
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
                                                                                                     " NEXTLINE ")

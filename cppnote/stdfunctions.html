@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>STD 函數</title>
+    <title>std 函數</title>
     <base target="_top">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
     <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     </div>
     <div id="indexbar" class="toc"></div>
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="std">STD 函數</h1>
+        <h1 id="std">std 函數</h1>
 <p>這裡的多數內容都在<code><algorithm></code>標頭檔底下</p>
 <h2 id="stdrange">std::range的函數</h2>
 <p>以下所有有(start: iterator, end: iterator)的函數在C++20以上都可以用std::range來簡化<br>
@@ -46,7 +46,8 @@
 cmp表示排序方法，可省略，默認為"小於"<br>
 若a應排在b之前，cmp(a,b)應回傳true<br>
 不回傳資料，直接原地修改<br>
-時間：$O(NlogN)$</p>
+時間：<script type="math/tex">O(NlogN)</script>
+</p>
 <h3 id="_2">二分搜</h3>
 <p>語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="nf">std::lower_bound</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">comparer</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
@@ -68,7 +69,8 @@ equal_range回傳一個範圍表示value出現在那些地方<br>
 
 <p>大致相同<br>
 注："std::range::equal_range"回傳"std::ranges::subrange"<br>
-時間：$O(logN)$</p>
+時間：<script type="math/tex">O(logN)</script>
+</p>
 <h3 id="n">第n個值</h3>
 <p>語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::sort</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="w"> </span><span class="n">nth</span><span class="p">,</span><span class="n">iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">comparer</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
@@ -79,7 +81,8 @@ equal_range回傳一個範圍表示value出現在那些地方<br>
 nth表示目標位置<br>
 cmp表示排序方法，可省略，默認為"小於"，應與資料排序時相同</p>
 <p>保證nth的順序正確<br>
-時間：$O(N)$</p>
+時間：<script type="math/tex">O(N)</script>
+</p>
 <h3 id="_3">是否有排序</h3>
 <p>語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">std::is_sorted</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">comparer</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
@@ -90,7 +93,8 @@ cmp表示排序方法，可省略，默認為"小於"，應與資料排序時相
 cmp表示排序方法，可省略，默認為"小於"，應與資料排序時相同</p>
 <p>is_sorted判斷是否有排序<br>
 is_sorted_until判斷從start到哪裡有排序<br>
-時間：$O(N)$</p>
+時間：<script type="math/tex">O(N)</script>
+</p>
 <h2 id="_4">區間操作</h2>
 <h2 id="_5">區間讀取</h2>
     </div>
