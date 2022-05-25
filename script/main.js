@@ -128,6 +128,6 @@ $("code").each(function() {
         navigator.clipboard.writeText(copyer.value);
     });
 });
-// padding-top
-main.css("padding-top",($("#top_area").height()+4)+"px");
-$("#indexbar").css("padding-top",($("#top_area").height()+24)+"px");
+// margin-top
+main.css("margin-top",($("#top_area").height()+4)+"px");
+$("#indexbar").css("margin-top",($("#top_area").height()+24)+"px");
