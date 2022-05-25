@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <title>C++編譯與預處理指令</title>
+    <base target="_top">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="indexbar" class="toc"></div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="_1">編譯與預處理指令</h1>
+<h2 id="_2">預處理指令</h2>
+<p>預處理指令以"#"開頭<br>
+大致可分為三類<br>
++ include<br>
++ define<br>
++ if</p>
+<h3 id="include">include</h3>
+<p>include指令是最常用的一個指令<br>
+可以用來載入標頭檔<br>
+有兩種用法<br>
+一、從標準函數庫載入</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><header></span><span class="cp"></span>
+</code></pre></div>
+
+<p>二、從目前資料夾載入</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf">"header"</span><span class="cp"></span>
+</code></pre></div>
+
+<p>include指令實際上只是把標頭檔複製過來而已</p>
+<h3 id="define">define</h3>
+<p>define用來定義識別字<br>
+有三種語法<br>
+一、只是定義，用於if判斷</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define identifier</span>
+</code></pre></div>
+
+<p>二、覆蓋</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define identifier replacement</span>
+</code></pre></div>
+
+<p>三、類函數式覆蓋</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define identifier(args) expression</span>
+</code></pre></div>
+
+<p>Ex. 用all(obj)來表示整個range</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define all(o) o.begin(),o.end()</span>
+</code></pre></div>
+
+<p>因為define會使其下方的所有關鍵字受到影響，最好不要寫在include上方</p>
+<h4 id="undef">undef</h4>
+<p>undef可以取消define的效果<br>
+語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#undef identifier</span>
+</code></pre></div>
+
+<h3 id="if">if語句</h3>
+<p>if語句可以依照情況搭配define做選擇式編譯<br>
+總是由endif做結尾<br>
+有三種語法<br>
+一、if</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#if const_expression</span>
+<span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
+
+<p>若常數運算式為真則編譯以下內容</p>
+<p>二、ifdef</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#ifdef identifier</span>
+<span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
+
+<p>若識別字已定義則編譯以下內容</p>
+<p>三、ifndef</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#ifndef identifier</span>
+<span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
+
+<p>若識別字未定義則編譯以下內容</p>
+<h4 id="elif">elif</h4>
+<p>預處理指令也有elif</p>
+<p>Example1: 避免重複引用標頭檔導致出錯</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#ifndef MY_HEADER_IS_INCLUDED</span>
+<span class="cp">#define MY_HEADER_IS_INCLUDED</span>
+
+<span class="n">header_content</span><span class="p">;</span><span class="w"></span>
+
+<span class="cp">#endif</span>
+</code></pre></div>
+
+<p>Example2: 用一個define控制多種分支結果</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define MY_VERSION 1</span>
+
+<span class="cp">#if MY_VERSION == 1</span>
+<span class="cp">#define WELCOME_MSG "this is first version"</span>
+<span class="cp">#elif MY_VERSION == 2</span>
+<span class="cp">#define WELCOME_MSG "this is second version"</span>
+<span class="cp">#elif MY_VERSION == 3</span>
+<span class="cp">#define WELCOME_MSG "this is third version"</span>
+<span class="cp">#endif</span>
+</code></pre></div>
+
+<h2 id="_3">編譯</h2>
+<p>C++編譯可大致分為三個階段</p>
+<ol>
+<li>預處理</li>
+<li>編譯&組譯</li>
+<li>連結</li>
+</ol>
+<h3 id="_4">預處理</h3>
+<p>執行預處理指令並去除註解</p>
+<h3 id="_5">編譯&組譯</h3>
+<p>把預處理完的原始碼編譯為組合語言後再組譯為目標代碼</p>
+<h3 id="_6">連結</h3>
+<p>連結一個或多個目標檔，產生一個完整的可執行檔</p>
+<h2 id="g">編譯指令(g++)</h2>
+<p>基本語法：</p>
+<div class="codehilite"><pre><span></span><code>g++ 來源檔名 -o 輸出檔名
+</code></pre></div>
+
+<p>或著</p>
+<div class="codehilite"><pre><span></span><code>g++ -o 輸出檔名 來源檔名
+</code></pre></div>
+
+<p>這裡的來源檔名可以是.cpp檔或.o檔案，可用空白隔開多個輸入檔案，編譯器就會把它們連結在一起(或著分別部分編譯)</p>
+<h3 id="_7">常用編譯參數</h3>
+<p>常用編譯參數大致有四類</p>
+<ol>
+<li>指定版本</li>
+<li>優化</li>
+<li>編譯警告</li>
+<li>define</li>
+</ol>
+<h4 id="_8">指定版本</h4>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code>-std=版本名稱
+</code></pre></div>
+
+<p>可用的版本名稱有：</p>
+<ul>
+<li>c++11</li>
+<li>c++14</li>
+<li>c++17</li>
+<li>c++20</li>
+</ul>
+<h4 id="_9">優化</h4>
+<p>優化最簡單的就是優化等級<br>
+語法：</p>
+<div class="codehilite"><pre><span></span><code>-優化等級
+</code></pre></div>
+
+<p>等級包含</p>
+<ul>
+<li>O1</li>
+<li>O2</li>
+<li>O3</li>
+</ul>
+<p>O2較常用<br>
+O3似乎是在較舊版本會出一些問題所以比較少用</p>
+<h4 id="_10">編譯警告</h4>
+<p>可以利用編譯參數控制編譯警告的顯示<br>
+可用參數包含</p>
+<ul>
+<li>-w 只要編譯過了就不顯示警告</li>
+<li>-Wall 顯示編譯器覺得重要的警告</li>
+<li>-Wextra 顯示編譯器覺得可疑的代碼</li>
+<li>-Wconversion 顯示可能會出錯的型別轉換</li>
+<li>-Wshadow 在重複使用相同變數名稱時顯示警告</li>
+</ul>
+<h4 id="define_1">define</h4>
+<p>可以利用編譯參數定義識別字，效果與在檔案開頭使用define相同<br>
+語法：</p>
+<div class="codehilite"><pre><span></span><code>-D identifier
+</code></pre></div>
+
+<p>或</p>
+<div class="codehilite"><pre><span></span><code>-D identifier=replacement
+</code></pre></div>
+
+<p>有必要時可以適當使用引號</p>
+<h3 id="_11">部分編譯</h3>
+<p>可以用編譯參數要求g++只完成部分編譯步驟<br>
+有以下參數可以用</p>
+<ul>
+<li>-E 只做預處理</li>
+<li>-S 只做到編譯，輸出組合語言</li>
+<li>-C 只做到組譯，輸出目標代碼</li>
+</ul>
+<h4 id="-o">沒有設定-o會怎樣?</h4>
+<p>只做預處理=>顯示在終端機<br>
+只做到編譯=>輸出"原檔名.s"<br>
+只做到組譯=>輸出"原檔名.o"<br>
+完整編譯=>輸出"a.exe"<br>
+注：不管來源檔來自哪裡，未設定-o時都會輸出到當前資料夾</p>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"],
+            enable_dollar_delimiter: true
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+</body>
+
+</html>

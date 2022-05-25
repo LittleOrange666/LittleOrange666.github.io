@@ -81,13 +81,30 @@
 <li>func 要做定積分的函數<br>
   可以在參數列結尾加一個tuple做為傳給func的額外參數</li>
 <li>x0 搜尋起始點</li>
-<li>result 回傳結果，是它自己獨有的資料型別，常用屬性如下<br>
-|屬性名|意義|<br>
-|---|---|<br>
-|x|一個陣列，表示找到的最小值位置(可能有多個) |<br>
-|func|最小值的值 |<br>
-|success|有沒有找到 |</li>
+<li>result 回傳結果，是它自己獨有的資料型別，常用屬性如下</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>屬性名</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>一個陣列，表示找到的最小值位置(可能有多個)</td>
+</tr>
+<tr>
+<td>func</td>
+<td>最小值的值</td>
+</tr>
+<tr>
+<td>success</td>
+<td>有沒有找到</td>
+</tr>
+</tbody>
+</table>
 <h2 id="interpolate">內插 interpolate</h2>
 <div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </code></pre></div>
