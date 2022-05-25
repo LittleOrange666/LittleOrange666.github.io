@@ -105,7 +105,7 @@ if (!(location.href.endsWith("/") || location.href.endsWith("/index"))) {
 $(window).on('DOMContentLoaded load resize scroll', update_inview);
 //previous btn action
 $("#previous").click(() => {
-    if (location.href.endsWith("/")) {
+    if (location.href.endsWith("/") || location.href.endsWith("/index")) {
         location.href = "../";
     } else {
         location.href = "./";
@@ -128,3 +128,6 @@ $("code").each(function() {
         navigator.clipboard.writeText(copyer.value);
     });
 });
+// padding-top
+main.css("padding-top",($("#top_area").height()+4)+"px");
+$("#indexbar").css("padding-top",($("#top_area").height()+24)+"px");
