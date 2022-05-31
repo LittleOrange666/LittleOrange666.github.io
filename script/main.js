@@ -108,7 +108,7 @@ function initspoiler(){
             tttt.after(got.clone());
         }
     }).remove();
-    for (let o of spoilermap) o.remove();
+    for (let o in spoilermap) spoilermap[o].remove();
 }
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
