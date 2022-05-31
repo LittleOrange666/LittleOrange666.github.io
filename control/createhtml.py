@@ -82,7 +82,7 @@ def run_markdown(source: str) -> str:
                 args[k] = v
         source = source[end + 4:]
     # 預處理spoiler
-    reg1 = re.compile("^:::spoiler\\s+(\\S+ +.*)$", re.M)
+    reg1 = re.compile("^:::spoiler(?:_template|_repeat)?\\s+(\\S+ +.*)$", re.M)
     get = reg1.search(source)
     while get:
         source = f"{source[:get.span(1)[0]]}{get.group(1).replace(' ', '&nbsp;')}{source[get.span(1)[1]:]}"
@@ -94,34 +94,28 @@ def run_markdown(source: str) -> str:
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
                                                                                                     " NEXTLINE ")
     reg = re.compile(":::spoiler\\s(\\S+)", re.M)
+    reg1 = re.compile(":::spoiler_template\\s(\\S+)", re.M)
+    reg2 = re.compile(":::spoiler_repeat\\s(\\S+)", re.M)
     reg0 = re.compile(":::", re.M)
+
     get = reg.search(html)
-    # spoiler_count = 0 #已棄用
     while get:
         html = f"{html[:get.span()[0]]}<details><summary>{get.group(1)}</summary>{html[get.span()[1]:]}"
-        # spoiler_count += 1 #已棄用
-        # i = spoiler_count
-        # html = f"""{html[:get.span()[0]]}<div class="accordion accordion-flush" id="accordion_{i}">
-        #  <div class="accordion-item">
-        #    <p class="accordion-header" id="heading_{i}">
-        #      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-        #      data-bs-target="#collapse_{i}" aria-expanded="false" aria-controls="collapse_{i}">
-        #        {get.group(1)}
-        #      </button>
-        #    </p>
-        #    <div id="collapse_{i}" class="accordion-collapse collapse"
-        #    aria-labelledby="headingOne" data-bs-parent="#accordion_{i}">
-        #      <div class="accordion-body">
-        #        {html[get.span()[1] - 1:]}
-        #      </div>
-        #    </div>
-        #  </div>
-        # </div>"""
         get = reg.search(html)
+
+    get = reg1.search(html)
+    while get:
+        html = f"{html[:get.span()[0]]}<details class='spoiler_template'><summary>{get.group(1)}</summary>{html[get.span()[1]:]}"
+        get = reg1.search(html)
+
+    get = reg2.search(html)
+    while get:
+        html = f"{html[:get.span()[0]]}<div class='spoiler_repeat'>{get.group(1)}</div>{html[get.span()[1]:]}"
+        get = reg2.search(html)
+
     get = reg0.search(html)
     while get:
         html = f"{html[:get.span()[0]]}</details>{html[get.span()[1]:]}"
-        # html = f"{html[:get.span()[0]]}</div></div></div></div>{html[get.span()[1]:]}" #已棄用
         get = reg0.search(html)
     html = html.replace(" NEXTLINE ", "<br>")
     #

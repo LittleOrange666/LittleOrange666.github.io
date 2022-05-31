@@ -180,14 +180,6 @@ print(t[1]) #87
 print(t[-1]) #你好
 t = t+(1,2,3) #直接加東西在結尾
 ```
-:::spoiler 可用方法詳細介紹：
-count(value):
-Return number of occurrences of value.
-***
-index(value, start=0, stop=9223372036854775807):
-Return first index of value.
-Raises ValueError if the value is not present.
-:::
 
 ### 清單
 清單表示並列且有序的一組任意長度的資料值
@@ -204,51 +196,9 @@ print(a) #[7, 8, "haha", "1"]
 a = a+["owo",1234] #直接加東西在結尾
 a.extend(["owo",1234]) #和上一行類似，但可加上任意型別且在原地操作
 ```
-:::spoiler 可用方法詳細介紹：
-append(object):
-Append object to the end of the list.
-***
-clear():
-Remove all items from list.
-***
-copy():
-Return a shallow copy of the list.
-***
-count(value):
-Return number of occurrences of value.
-***
-extend(iterable):
-Extend list by appending elements from the iterable.
-***
-index(value, start=0, stop=9223372036854775807):
-Return first index of value.
-Raises ValueError if the value is not present.
-***
-insert(index, object):
-Insert object before index.
-***
-pop(index=-1):
-Remove and return item at index (default last).
-Raises IndexError if list is empty or index is out of range.
-***
-remove(value):
-Remove first occurrence of value.
-Raises ValueError if the value is not present.
-***
-reverse():
-Reverse \*IN PLACE\*.
-***
-sort(key=None, reverse=False):
-Sort the list in ascending order and return None.
-The sort is in-place (i.e. the list itself is modified) and stable (i.e. the
-order of two equal elements is maintained).
-If a key function is given, apply it once to each list item and sort them,
-ascending or descending, according to their function values.
-The reverse flag can be set to sort in descending order.
-:::
 
 ### 集合
-清單表示無序不重複的一組任意長度的資料值
+集合表示無序不重複的一組任意長度的資料值
 並能夠在常數時間裡檢查一元素是否在集合中
 類似數學上的集合
 類似C++的unordered_set
@@ -263,66 +213,6 @@ s.add(7) #加一個
 s = s + {1,2,3} #集合合併
 print(s) #{8, 4, 5, 7}
 ```
-:::spoiler 可用方法詳細介紹：
-add():
-Add an element to a set.
-This has no effect if the element is already present.
-***
-clear():
-Remove all elements from this set.
-***
-copy():
-Return a shallow copy of a set.
-***
-difference():
-Return the difference of two or more sets as a new set.
-(i.e. all elements that are in this set but not the others.)
-***
-difference_update():
-Remove all elements of another set from this set.
-***
-discard():
-Remove an element from a set if it is a member.
-If the element is not a member, do nothing.
-***
-intersection():
-Return the intersection of two sets as a new set.
-(i.e. all elements that are in both sets.)
-***
-intersection_update():
-Update a set with the intersection of itself and another.
-***
-isdisjoint():
-Return True if two sets have a null intersection.
-***
-issubset():
-Report whether another set contains this set.
-***
-issuperset():
-Report whether this set contains another set.
-***
-pop():
-Remove and return an arbitrary set element.
-Raises KeyError if the set is empty.
-***
-remove():
-Remove an element from a set; it must be a member.
-If the element is not a member, raise a KeyError.
-***
-symmetric_difference():
-Return the symmetric difference of two sets as a new set.
-(i.e. all elements that are in exactly one of the sets.)
-***
-symmetric_difference_update():
-Update a set with the symmetric difference of itself and another.
-***
-union():
-Return the union of sets as a new set.
-(i.e. all elements that are in either set.)
-***
-update():
-Update a set with the union of itself and others.
-:::
 
 ### 字典
 字典是鍵-值對的資料結構
@@ -336,48 +226,6 @@ d["c"] = 56 #新增資料
 print(d["a"]) #12
 print(d) #{'a': 12, 'b': 34, 'c': 56}
 ```
-:::spoiler 可用方法詳細介紹：
-clear():
-D.clear() -> None.  Remove all items from D.
-***
-copy():
-D.copy() -> a shallow copy of D
-***
-fromkeys(iterable, value=None):
-Create a new dictionary with keys from iterable and values set to value.
-***
-get(key, default=None):
-Return the value for key if key is in the dictionary, else default.
-***
-items():
-D.items() -> a set-like object providing a view on D's items
-***
-keys():
-D.keys() -> a set-like object providing a view on D's keys
-***
-pop():
-D.pop(k[,d]) -> v, remove specified key and return the corresponding value.
-If the key is not found, return the default if given; otherwise,
-raise a KeyError.
-***
-popitem():
-Remove and return a (key, value) pair as a 2-tuple.
-Pairs are returned in LIFO (last-in, first-out) order.
-Raises KeyError if the dict is empty.
-***
-setdefault(key, default=None):
-Insert key with a value of default if key is not in the dictionary.
-Return the value for key if key is in the dictionary, else default.
-***
-update():
-D.update([E, ]\*\*F) -> None.  Update D from dict/iterable E and F.
-If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
-If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
-In either case, this is followed by: for k in F:  D[k] = F[k]
-***
-values():
-D.values() -> an object providing a view on D's values
-:::
 
 ### 順帶一提
 類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型

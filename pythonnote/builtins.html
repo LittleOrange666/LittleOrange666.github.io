@@ -27,684 +27,813 @@
     </div>
     <div id="indexbar" class="toc"></div>
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h1 id="builtins">談談builtins</h1>
-<h2 id="python">Python內建</h2>
-<p>未完成，先隨便放點東西</p>
-<h2 id="_1">常數:</h2>
+        <h1 id="python">Python內建物件</h1>
+<h2 id="_1">類別</h2>
+<h3 id="bool">bool</h3>
+<p>布林值，只有<strong>True</strong>和<strong>False</strong>兩個值<br>
+是<strong>int</strong>的子類別<br>
+可用方法：與<strong>int</strong>相同<br>
+可用<strong>bool()</strong>取得任意類型的布林值</p>
+<h3 id="int">int</h3>
+<p>整數，可正可負，沒有大小限制，不會失真<br>
+可用<strong>int()</strong>把其他類型轉換為整數<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_2">屬性：</h4>
+<p><strong>denominator: int</strong><br>
+化為分數的分母</p>
+<p><strong>imag: int</strong><br>
+虛部</p>
+<p><strong>numerator: int</strong><br>
+化為分數的分子</p>
+<p><strong>real: int</strong><br>
+實部</p>
+<h4 id="_3">方法：</h4>
+<p><strong>as_integer_ratio() -> tuple[int, int]</strong><br>
+化為分數</p>
+<p><strong>bit_count()->int</strong><br>
+在二進位表示法下有幾個<strong>1</strong></p>
+<p><strong>bit_length()->int</strong><br>
+至少占用了多少個位元</p>
+<p><strong>conjugate()->int</strong><br>
+共軛複數</p>
+<p><strong>to_bytes(length: int, byteorder: str)->bytes</strong><br>
+轉換成<strong>bytes</strong><br>
+byteorder表示位元組順序<br>
+用"little"表示小端序、"big"表示大端序<br>
+可用<strong>sys.byteorder</strong>取得系統慣用的位元組順序</p>
+<h4 id="_4">類別方法：</h4>
+<p><strong>from_bytes(sources: bytes, byteorder: str)->int</strong><br>
+把<strong>bytes</strong>轉換為<strong>int</strong><br>
+byteorder表示位元組順序<br>
+用"little"表示小端序、"big"表示大端序<br>
+可用<strong>sys.byteorder</strong>取得系統慣用的位元組順序<br>
+</details></p>
+<h3 id="float">float</h3>
+<p>浮點數(實數)，可正可負，有大小限制，是雙倍精度浮點數<br>
+要更高精度可以用<strong>decimal</strong>函數庫<br>
+可用<strong>float()</strong>把其他類型轉換為浮點數<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_5">屬性：</h4>
+<p><strong>imag: float</strong><br>
+虛部</p>
+<p><strong>real: float</strong><br>
+實部</p>
+<h4 id="_6">方法：</h4>
+<p><strong>as_integer_ratio() -> tuple[int, int]</strong><br>
+化為分數(實際儲存的值)</p>
+<p><strong>conjugate()->float</strong><br>
+共軛複數</p>
+<p><strong>hex()->str</strong><br>
+產生十六進位的浮點數表示法<br>
+不會失真</p>
+<p><strong>is_integer()->bool</strong><br>
+是否為整數</p>
+<h4 id="_7">類別方法：</h4>
+<p><strong>fromhex(sources: str)->float</strong><br>
+由十六進位的浮點數表示法得到浮點值<br>
+不會失真<br>
+</details></p>
+<h3 id="complex">complex</h3>
+<p>虛數，可正可負，有大小限制，是雙倍精度浮點數<br>
+要更高精度可以用<strong>decimal</strong>函數庫<br>
+可用<strong>complex()</strong>把其他類型轉換為虛數<br>
+<details><summary>可用屬性與方法+</p></summary>
+<h4 id="_8">屬性：</h4>
+<p><strong>imag: float</strong><br>
+虛部</p>
+<p><strong>real: float</strong><br>
+實部</p>
+<h4 id="_9">方法：</h4>
+<p><strong>conjugate()->complex</strong><br>
+共軛複數<br>
+</details></p>
+<h3 id="str">str</h3>
+<p>字串，unicode字元的序列，沒有長度限制<br>
+可用<strong>str()</strong>把其他類型轉換為字串<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_10">方法：</h4>
+<p><strong>isalnum()->bool</strong><br>
+判斷是否所有字元都是字母或數字<br>
+空字串回傳False</p>
+<p><strong>isalpha()->bool</strong><br>
+判斷是否所有字元都是字母<br>
+空字串回傳False</p>
+<p><strong>isascii()->bool</strong><br>
+判斷是否所有字元都是ASCII字元<br>
+空字串回傳True</p>
+<p><strong>isdecimal()->bool</strong><br>
+判斷是否所有字元都是數字<br>
+空字串回傳False</p>
+<p><strong>isdigit()->bool</strong><br>
+判斷是否所有字元都是數字<br>
+空字串回傳False.</p>
+<p><strong>isnumeric()->bool</strong><br>
+判斷是否所有字元都是數字<br>
+空字串回傳False.</p>
+<p><strong>isspace()->bool</strong><br>
+判斷是否所有字元都是空白字元<br>
+空字串回傳False</p>
+<p><strong>islower()->bool</strong><br>
+判斷是否所有字母都是字小寫<br>
+空字串回傳False</p>
+<p><strong>isupper()->bool</strong><br>
+判斷是否所有字母都是字大寫<br>
+空字串回傳False</p>
+<p><strong>startswith(prefix: str, start: int, end: int)->bool</strong><br>
+判斷[start:end]的範圍是否以<strong>prefix</strong>開頭</p>
+<p><strong>endswith(suffix: str, start: int, end: int)->bool</strong><br>
+判斷[start:end]的範圍是否以<strong>suffix</strong>結尾</p>
+<p><strong>find(sub: str, start: int, end: int)->int</strong><br>
+找[start:end]的範圍中第一個<strong>sub</strong>的索引<br>
+找不到時回傳<strong>-1</strong></p>
+<p><strong>index(sub: str, start: int, end: int)->int</strong><br>
+找[start:end]的範圍中第一個<strong>sub</strong>的索引，<br>
+找不到時拋出<strong>ValueError</strong></p>
+<p><strong>rfind(sub: str, start: int, end: int)->int</strong><br>
+找[start:end]的範圍中最後一個<strong>sub</strong>的索引<br>
+找不到時回傳<strong>-1</strong></p>
+<p><strong>rindex(sub: str, start: int, end: int)->int</strong><br>
+找[start:end]的範圍中最後一個<strong>sub</strong>的索引，<br>
+找不到時拋出<strong>ValueError</strong></p>
+<p><strong>count(sub: str, start: int, end: int)->int</strong><br>
+計算在[start:end]的範圍中有幾個<strong>sub</strong></p>
+<p><strong>join(Iterable[str])->str</strong><br>
+用自身把一系列字串連接起來</p>
+<p><strong>split(sep: None | str = None, maxsplit: int = -1)->list[str]</strong><br>
+用<strong>sep</strong>把字串分割成一個字串列表<br>
+最多進行<strong>maxsplit</strong>次分割<br>
+<strong>maxsplit=-1</strong>表示無上限</p>
+<p><strong>rsplit(sep: None | str = None, maxsplit: int = -1)->list[str]</strong><br>
+與split相似<br>
+只有<strong>maxsplit</strong>有設置的時候會不太一樣</p>
+<p><strong>splitlines(keepends: bool = False)->list[str]</strong><br>
+逐行分割字串<br>
+<strong>keepends</strong>表示是否保留換行符</p>
+<p><strong>lower()->str</strong><br>
+產生小寫字串</p>
+<p><strong>upper()->str</strong><br>
+產生大寫字串</p>
+<p><strong>capitalize()->str</strong><br>
+產生首字元大寫的字串</p>
+<p><strong>casefold()->str</strong><br>
+產生適合無大小寫比較的字符串版本。</p>
+<p>使用指定的填充字符（默認為空格）完成填充。</p>
+<p><strong>center()->str</strong><br>
+產生一個居中的長度寬度字符串。</p>
+<p><strong>encode(encoding: str,errors: str = "strict")->bytes</strong><br>
+將字串編碼為bytes<br>
+errors表示對錯誤的處理方式，包括<br>
+"strict": 總是丟出UnicodeEncodeError<br>
+"ignore": 忽略無法編碼的字元<br>
+"replace": 無法編碼則換成奇怪字元</p>
+<p><strong>replace(old: str,new: str, count: int = -1)->str</strong><br>
+產生把<strong>old</strong>替換成<strong>new</strong>之後的字串<br>
+最多進行<strong>count</strong>次替換<br>
+<strong>count=-1</strong>表示無上限</p>
+<p><strong>strip(chars: None | str = None)</strong><br>
+產生一個把頭尾出現在chars裡的字元刪掉後的字串<br>
+若不設置則刪掉空白字元</p>
+<p><strong>lstrip(chars: None | str = None)</strong><br>
+產生一個把開頭出現在chars裡的字元刪掉後的字串<br>
+若不設置則刪掉空白字元</p>
+<p><strong>rstrip(chars: None | str = None)</strong><br>
+產生一個把結尾出現在chars裡的字元刪掉後的字串<br>
+若不設置則刪掉空白字元</p>
+<p><strong>expandtabs</strong><br>
+Return a copy where all tab characters are expanded using spaces.</p>
+<p>If tabsize is not given, a tab size of 8 characters is assumed.</p>
+<p><strong>format</strong><br>
+The substitutions are identified by braces ('{' and '}').</p>
+<p>Return a formatted version of S, using substitutions from args and kwargs.</p>
+<p><strong>format_map</strong><br>
+S.format_map(mapping) -> str</p>
+<p>Return a formatted version of S, using substitutions from mapping.<br>
+The substitutions are identified by braces ('{' and '}').</p>
+<p><strong>isidentifier</strong><br>
+Return True if the string is a valid Python identifier, False otherwise.</p>
+<p>Call keyword.iskeyword(s) to test whether string s is a reserved identifier,<br>
+such as "def" or "class".</p>
+<p>A string is lowercase if all cased characters in the string are lowercase and<br>
+there is at least one cased character in the string.</p>
+<p><strong>isprintable</strong><br>
+Return True if the string is printable, False otherwise.</p>
+<p>A string is printable if all of its characters are considered printable in<br>
+repr() or if it is empty.</p>
+<p><strong>istitle</strong><br>
+Return True if the string is a title-cased string, False otherwise.</p>
+<p>In a title-cased string, upper- and title-case characters may only<br>
+follow uncased characters and lowercase characters only cased ones.</p>
+<p><strong>ljust</strong><br>
+Return a left-justified string of length width.</p>
+<p>Padding is done using the specified fill character (default is a space).</p>
+<p><strong>partition</strong><br>
+Partition the string into three parts using the given separator.</p>
+<p>This will search for the separator in the string.  If the separator is found,<br>
+returns a 3-tuple containing the part before the separator, the separator<br>
+itself, and the part after it.</p>
+<p>If the separator is not found, returns a 3-tuple containing the original string<br>
+and two empty strings.</p>
+<p><strong>removeprefix</strong><br>
+Return a str with the given prefix string removed if present.</p>
+<p>If the string starts with the prefix string, return string[len(prefix):].<br>
+Otherwise, return a copy of the original string.</p>
+<p><strong>removesuffix</strong><br>
+Return a str with the given suffix string removed if present.</p>
+<p>If the string ends with the suffix string and that suffix is not empty,<br>
+return string[:-len(suffix)]. Otherwise, return a copy of the original<br>
+string.</p>
+<p><strong>rjust</strong><br>
+Return a right-justified string of length width.</p>
+<p>Padding is done using the specified fill character (default is a space).</p>
+<p><strong>rpartition</strong><br>
+Partition the string into three parts using the given separator.</p>
+<p>This will search for the separator in the string, starting at the end. If<br>
+the separator is found, returns a 3-tuple containing the part before the<br>
+separator, the separator itself, and the part after it.</p>
+<p>If the separator is not found, returns a 3-tuple containing two empty strings<br>
+and the original string.</p>
+<p><strong>swapcase</strong><br>
+Convert uppercase characters to lowercase and lowercase characters to uppercase.</p>
+<p><strong>title</strong><br>
+Return a version of the string where each word is titlecased.</p>
+<p>More specifically, words start with uppercased characters and all remaining<br>
+cased characters have lower case.</p>
+<p><strong>translate</strong><br>
+Replace each character in the string using the given translation table.</p>
+<p>table<br>
+    Translation table, which must be a mapping of Unicode ordinals to<br>
+    Unicode ordinals, strings, or None.</p>
+<p>The table must implement lookup/indexing via <strong>getitem</strong>, for instance a<br>
+dictionary or list.  If this operation raises LookupError, the character is<br>
+left untouched.  Characters mapped to None are deleted.</p>
+<p><strong>zfill</strong><br>
+Pad a numeric string with zeros on the left, to fill a field of the given width.</p>
+<p>The string is never truncated.</p>
+<h4 id="_11">類別方法：</h4>
+<p><strong>maketrans</strong><br>
+Return a translation table usable for str.translate().</p>
+<p>If there is only one argument, it must be a dictionary mapping Unicode<br>
+ordinals (integers) or characters to Unicode ordinals, strings or None.<br>
+Character keys will be then converted to ordinals.<br>
+If there are two arguments, they must be strings of equal length, and<br>
+in the resulting dictionary, each character in x will be mapped to the<br>
+character at the same position in y. If there is a third argument, it<br>
+must be a string, whose characters will be mapped to None in the result.</p>
+<p></details></p>
+<h3 id="tuple">tuple</h3>
+<p>元組，並列且有序的一組任意長度的資料值<br>
+長度不可改變，元素不可寫入<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_12">方法：</h4>
+<p><strong>count(target: Any)->int</strong><br>
+計算<strong>target</strong>出現了幾次</p>
+<p><strong>index(target: Any)->int</strong><br>
+找出<strong>target</strong>第一次出現的索引<br>
+找不到時丟出ValueError<br>
+</details></p>
+<h3 id="list">list</h3>
+<p>列表，並列且有序的一組任意長度的資料值<br>
+可插入/刪除資料<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_13">方法：</h4>
+<p><strong>append(value: Any)->None</strong><br>
+在結尾加上一項</p>
+<p><strong>clear()->None</strong><br>
+清空列表</p>
+<p><strong>copy()->list[Any]</strong><br>
+淺拷貝</p>
+<p><strong>count(target: Any)->int</strong><br>
+計算<strong>target</strong>出現了幾次</p>
+<p><strong>extend(it: Iterable[Any])</strong><br>
+把it裡的所有值接在列表後方</p>
+<p><strong>index(target: Any)->int</strong><br>
+找出<strong>target</strong>第一次出現的索引<br>
+找不到時丟出ValueError</p>
+<p><strong>insert</strong><br>
+Insert object before index.</p>
+<p><strong>pop(index: int = -1)->Any</strong><br>
+把指定的索引刪除並回傳該值<br>
+若索引不存在則丟出<strong>IndexError</strong></p>
+<p><strong>remove(target: Any)->None</strong><br>
+刪除第一個在列表中出現的<strong>value</strong><br>
+若該值不存在則丟出<strong>ValueError</strong></p>
+<p><strong>reverse()->None</strong><br>
+原地反轉列表</p>
+<p><strong>sort(*, key: Callable[[Any],Any] = None, reverse: bool = False)</strong><br>
+以升序在原地排列列表，是穩定排列<br>
+若有定義<strong>key</strong>，則會把所有值都丟到<strong>key</strong>中之後再排列<br>
+<strong>reverse=True</strong>可改為升序<br>
+</details></p>
+<h3 id="set">set</h3>
+<p>集合，無序不重複的一組任意長度的資料值<br>
+並能夠在常數時間裡檢查一元素是否在集合中<br>
+類似數學上的集合<br>
+類似C++的unordered_set<br>
+不能存可變的值，如：list、set、dict<br>
+要存其他set必須轉換成frozenset<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_14">方法：</h4>
+<p><strong>add(value: Any)->None</strong><br>
+在集合中加入一個值</p>
+<p><strong>clear()->None</strong><br>
+清空集合</p>
+<p><strong>discard(value: Any)->None</strong><br>
+在集合中刪除一個值<br>
+該值不存在時無效果</p>
+<p><strong>remove(value: Any)->None</strong><br>
+在集合中刪除一個值<br>
+該值不存在時丟出KeyError</p>
+<p><strong>pop()->Any</strong><br>
+在集合中任意<strong>不是隨機的</strong>刪除一個值並回傳<br>
+集合為空時丟出KeyError</p>
+<p><strong>isdisjoint(other: Iterable)->bool</strong><br>
+是否與<strong>other</strong>互斥</p>
+<p><strong>issubset(other: Iterable)->bool</strong><br>
+是否是<strong>other</strong>的子集</p>
+<p><strong>issuperset(other: Iterable)->bool</strong><br>
+是否是<strong>other</strong>的超集</p>
+<p><strong>copy()->frozenset</strong><br>
+淺拷貝</p>
+<p><strong>difference(*others: Iterable)->set</strong><br>
+回傳差集，可以用逗號區隔多個集合</p>
+<p><strong>intersection(*others: Iterable)->set</strong><br>
+回傳交集，可以用逗號區隔多個集合</p>
+<p><strong>symmetric_difference(other: Iterable)->set</strong><br>
+回傳對稱差</p>
+<p><strong>difference_update(*others: Iterable)->None</strong><br>
+原地求差集，可以用逗號區隔多個集合</p>
+<p><strong>intersection_update(*others: Iterable)->None</strong><br>
+原地求交集，可以用逗號區隔多個集合</p>
+<p><strong>symmetric_difference_update(other: Iterable)->None</strong><br>
+原地求對稱差</p>
+<p><strong>union(*others: Iterable)->set</strong><br>
+求聯集，可以用逗號區隔多個集合</p>
+<p><strong>update(*others: Iterable)->None</strong><br>
+原地求聯集<br>
+</details></p>
+<h3 id="frozenset">frozenset</h3>
+<p>與<strong>set</strong>相同，只是不能修改內部的值<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_15">方法：</h4>
+<p><strong>isdisjoint(other: Iterable)->bool</strong><br>
+是否與<strong>other</strong>互斥</p>
+<p><strong>issubset(other: Iterable)->bool</strong><br>
+是否是<strong>other</strong>的子集</p>
+<p><strong>issuperset(other: Iterable)->bool</strong><br>
+是否是<strong>other</strong>的超集</p>
+<p><strong>copy()->frozenset</strong><br>
+淺拷貝</p>
+<p><strong>difference(*others: Iterable)->frozenset</strong><br>
+求差集，可以用逗號區隔多個集合</p>
+<p><strong>intersection(*others: Iterable)->frozenset</strong><br>
+求交集，可以用逗號區隔多個集合</p>
+<p><strong>symmetric_difference(other: Iterable)->frozenset</strong><br>
+求對稱差</p>
+<p><strong>union(*others: Iterable)->frozenset</strong><br>
+求聯集，可以用逗號區隔多個集合<br>
+</details></p>
+<h3 id="dict">dict</h3>
+<p>字典，鍵-值對的資料結構<br>
+鍵保證唯一，值不保證唯一<br>
+在較新的python版本(3.7+)中鍵會按照加入的順序排列<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_16">方法：</h4>
+<p><strong>clear()->None</strong><br>
+清空字典</p>
+<p><strong>copy()->dict</strong><br>
+淺拷貝</p>
+<p><strong>get(key: Any, default: Any = None)->Any</strong><br>
+取得<strong>key</strong>代表的值，若不存在則回傳<strong>default</strong></p>
+<p><strong>keys()->dict_keys</strong><br>
+獲取所有鍵值的鏡像<br>
+dict_keys與原字典綁定<br>
+且是可迭代物件</p>
+<p><strong>values()->dict_values</strong><br>
+獲取所有值的鏡像<br>
+dict_values與原字典綁定<br>
+且是可迭代物件</p>
+<p><strong>items()->dict_items</strong><br>
+獲取所有鍵-值對的鏡像<br>
+dict_items與原字典綁定<br>
+且是可迭代物件，每一項都是<strong>(key,value)</strong></p>
+<p><strong>pop(key: Any, default: Any)</strong><br>
+取得並刪除<strong>key</strong>代表的值，若不存在則回傳<strong>default</strong><br>
+若<strong>key</strong>不存在且<strong>default</strong>未設置則丟出KeyError</p>
+<p><strong>popitem()->tuple[Any, Any]</strong><br>
+在字典中刪除第一個鍵-值對並回傳<br>
+自店為空時丟出KeyError</p>
+<p><strong>setdefault(key: Any, value: Any)->Any</strong><br>
+如果<strong>key</strong>不存在則把<strong>key</strong>的值設為<strong>value</strong><br>
+回傳<strong>key</strong>最後的值</p>
+<p><strong>update(other: Iterable)->None</strong><br>
+試圖用<strong>other</strong>來更新自身<br>
+<strong>other</strong>應該是一系列的鍵-值對<br>
+或可以用<strong>keys()</strong>獲取所有鍵值的類dict結構</p>
+<h4 id="_17">類別方法：</h4>
+<p><strong>fromkeys(keys: Iterable, value: Any = None)</strong><br>
+以<strong>keys</strong>的鍵值建立一個字典<br>
+並把值都設為<strong>value</strong><br>
+</details></p>
+<h3 id="bytearray">bytearray</h3>
+<p>位元陣列，專門儲存位元序列，可寫入<br>
+<details><summary>可用屬性與方法</p></summary>
+<h4 id="_18">方法：</h4>
+<p><strong>append</strong><br>
+Append a single item to the end of the bytearray.</p>
+<p>item<br>
+    The item to be appended.</p>
+<p><strong>capitalize</strong><br>
+B.capitalize() -> copy of B</p>
+<p>Return a copy of B with only its first character capitalized (ASCII)<br>
+and the rest lower-cased.</p>
+<p><strong>center</strong><br>
+Return a centered string of length width.</p>
+<p>Padding is done using the specified fill character.</p>
+<p><strong>clear</strong><br>
+Remove all items from the bytearray.</p>
+<p><strong>copy</strong><br>
+Return a copy of B.</p>
+<p><strong>count</strong><br>
+B.count(sub[, start[, end]]) -> int</p>
+<p>Return the number of non-overlapping occurrences of subsection sub in<br>
+bytes B[start:end].  Optional arguments start and end are interpreted<br>
+as in slice notation.</p>
+<p><strong>decode</strong><br>
+Decode the bytearray using the codec registered for encoding.</p>
+<p>encoding<br>
+    The encoding with which to decode the bytearray.<br>
+  errors<br>
+    The error handling scheme to use for the handling of decoding errors.<br>
+    The default is 'strict' meaning that decoding errors raise a<br>
+    UnicodeDecodeError. Other possible values are 'ignore' and 'replace'<br>
+    as well as any other name registered with codecs.register_error that<br>
+    can handle UnicodeDecodeErrors.</p>
+<p><strong>endswith</strong><br>
+B.endswith(suffix[, start[, end]]) -> bool</p>
+<p>Return True if B ends with the specified suffix, False otherwise.<br>
+With optional start, test B beginning at that position.<br>
+With optional end, stop comparing B at that position.<br>
+suffix can also be a tuple of bytes to try.</p>
+<p><strong>expandtabs</strong><br>
+Return a copy where all tab characters are expanded using spaces.</p>
+<p>If tabsize is not given, a tab size of 8 characters is assumed.</p>
+<p><strong>extend</strong><br>
+Append all the items from the iterator or sequence to the end of the bytearray.</p>
+<p>iterable_of_ints<br>
+    The iterable of items to append.</p>
+<p><strong>find</strong><br>
+B.find(sub[, start[, end]]) -> int</p>
+<p>Return the lowest index in B where subsection sub is found,<br>
+such that sub is contained within B[start,end].  Optional<br>
+arguments start and end are interpreted as in slice notation.</p>
+<p>Return -1 on failure.</p>
+<p><strong>hex</strong><br>
+Create a string of hexadecimal numbers from a bytearray object.</p>
+<p>sep<br>
+    An optional single character or byte to separate hex bytes.<br>
+  bytes_per_sep<br>
+    How many bytes between separators.  Positive values count from the<br>
+    right, negative values count from the left.</p>
+<p>Example:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>value = bytearray([0xb9, 0x01, 0xef])<br>
+value.hex()<br>
+'b901ef'<br>
+value.hex(':')<br>
+'b9:01:ef'<br>
+value.hex(':', 2)<br>
+'b9:01ef'<br>
+value.hex(':', -2)<br>
+'b901:ef'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><strong>index</strong><br>
+B.index(sub[, start[, end]]) -> int</p>
+<p>Return the lowest index in B where subsection sub is found,<br>
+such that sub is contained within B[start,end].  Optional<br>
+arguments start and end are interpreted as in slice notation.</p>
+<p>Raises ValueError when the subsection is not found.</p>
+<p><strong>insert</strong><br>
+Insert a single item into the bytearray before the given index.</p>
+<p>index<br>
+    The index where the value is to be inserted.<br>
+  item<br>
+    The item to be inserted.</p>
+<p><strong>isalnum</strong><br>
+B.isalnum() -> bool</p>
+<p>Return True if all characters in B are alphanumeric<br>
+and there is at least one character in B, False otherwise.</p>
+<p><strong>isalpha</strong><br>
+B.isalpha() -> bool</p>
+<p>Return True if all characters in B are alphabetic<br>
+and there is at least one character in B, False otherwise.</p>
+<p><strong>isascii</strong><br>
+B.isascii() -> bool</p>
+<p>Return True if B is empty or all characters in B are ASCII,<br>
+False otherwise.</p>
+<p><strong>isdigit</strong><br>
+B.isdigit() -> bool</p>
+<p>Return True if all characters in B are digits<br>
+and there is at least one character in B, False otherwise.</p>
+<p><strong>islower</strong><br>
+B.islower() -> bool</p>
+<p>Return True if all cased characters in B are lowercase and there is<br>
+at least one cased character in B, False otherwise.</p>
+<p><strong>isspace</strong><br>
+B.isspace() -> bool</p>
+<p>Return True if all characters in B are whitespace<br>
+and there is at least one character in B, False otherwise.</p>
+<p><strong>istitle</strong><br>
+B.istitle() -> bool</p>
+<p>Return True if B is a titlecased string and there is at least one<br>
+character in B, i.e. uppercase characters may only follow uncased<br>
+characters and lowercase characters only cased ones. Return False<br>
+otherwise.</p>
+<p><strong>isupper</strong><br>
+B.isupper() -> bool</p>
+<p>Return True if all cased characters in B are uppercase and there is<br>
+at least one cased character in B, False otherwise.</p>
+<p><strong>join</strong><br>
+Concatenate any number of bytes/bytearray objects.</p>
+<p>The bytearray whose method is called is inserted in between each pair.</p>
+<p>The result is returned as a new bytearray object.</p>
+<p><strong>ljust</strong><br>
+Return a left-justified string of length width.</p>
+<p>Padding is done using the specified fill character.</p>
+<p><strong>lower</strong><br>
+B.lower() -> copy of B</p>
+<p>Return a copy of B with all ASCII characters converted to lowercase.</p>
+<p><strong>lstrip</strong><br>
+Strip leading bytes contained in the argument.</p>
+<p>If the argument is omitted or None, strip leading ASCII whitespace.</p>
+<p><strong>partition</strong><br>
+Partition the bytearray into three parts using the given separator.</p>
+<p>This will search for the separator sep in the bytearray. If the separator is<br>
+found, returns a 3-tuple containing the part before the separator, the<br>
+separator itself, and the part after it as new bytearray objects.</p>
+<p>If the separator is not found, returns a 3-tuple containing the copy of the<br>
+original bytearray object and two empty bytearray objects.</p>
+<p><strong>pop</strong><br>
+Remove and return a single item from B.</p>
+<p>index<br>
+    The index from where to remove the item.<br>
+    -1 (the default value) means remove the last item.</p>
+<p>If no index argument is given, will pop the last item.</p>
+<p><strong>remove</strong><br>
+Remove the first occurrence of a value in the bytearray.</p>
+<p>value<br>
+    The value to remove.</p>
+<p><strong>removeprefix</strong><br>
+Return a bytearray with the given prefix string removed if present.</p>
+<p>If the bytearray starts with the prefix string, return<br>
+bytearray[len(prefix):].  Otherwise, return a copy of the original<br>
+bytearray.</p>
+<p><strong>removesuffix</strong><br>
+Return a bytearray with the given suffix string removed if present.</p>
+<p>If the bytearray ends with the suffix string and that suffix is not<br>
+empty, return bytearray[:-len(suffix)].  Otherwise, return a copy of<br>
+the original bytearray.</p>
+<p><strong>replace</strong><br>
+Return a copy with all occurrences of substring old replaced by new.</p>
+<p>count<br>
+    Maximum number of occurrences to replace.<br>
+    -1 (the default value) means replace all occurrences.</p>
+<p>If the optional argument count is given, only the first count occurrences are<br>
+replaced.</p>
+<p><strong>reverse</strong><br>
+Reverse the order of the values in B in place.</p>
+<p><strong>rfind</strong><br>
+B.rfind(sub[, start[, end]]) -> int</p>
+<p>Return the highest index in B where subsection sub is found,<br>
+such that sub is contained within B[start,end].  Optional<br>
+arguments start and end are interpreted as in slice notation.</p>
+<p>Return -1 on failure.</p>
+<p><strong>rindex</strong><br>
+B.rindex(sub[, start[, end]]) -> int</p>
+<p>Return the highest index in B where subsection sub is found,<br>
+such that sub is contained within B[start,end].  Optional<br>
+arguments start and end are interpreted as in slice notation.</p>
+<p>Raise ValueError when the subsection is not found.</p>
+<p><strong>rjust</strong><br>
+Return a right-justified string of length width.</p>
+<p>Padding is done using the specified fill character.</p>
+<p><strong>rpartition</strong><br>
+Partition the bytearray into three parts using the given separator.</p>
+<p>This will search for the separator sep in the bytearray, starting at the end.<br>
+If the separator is found, returns a 3-tuple containing the part before the<br>
+separator, the separator itself, and the part after it as new bytearray<br>
+objects.</p>
+<p>If the separator is not found, returns a 3-tuple containing two empty bytearray<br>
+objects and the copy of the original bytearray object.</p>
+<p><strong>rsplit</strong><br>
+Return a list of the sections in the bytearray, using sep as the delimiter.</p>
+<p>sep<br>
+    The delimiter according which to split the bytearray.<br>
+    None (the default value) means split on ASCII whitespace characters<br>
+    (space, tab, return, newline, formfeed, vertical tab).<br>
+  maxsplit<br>
+    Maximum number of splits to do.<br>
+    -1 (the default value) means no limit.</p>
+<p>Splitting is done starting at the end of the bytearray and working to the front.</p>
+<p><strong>rstrip</strong><br>
+Strip trailing bytes contained in the argument.</p>
+<p>If the argument is omitted or None, strip trailing ASCII whitespace.</p>
+<p><strong>split</strong><br>
+Return a list of the sections in the bytearray, using sep as the delimiter.</p>
+<p>sep<br>
+    The delimiter according which to split the bytearray.<br>
+    None (the default value) means split on ASCII whitespace characters<br>
+    (space, tab, return, newline, formfeed, vertical tab).<br>
+  maxsplit<br>
+    Maximum number of splits to do.<br>
+    -1 (the default value) means no limit.</p>
+<p><strong>splitlines</strong><br>
+Return a list of the lines in the bytearray, breaking at line boundaries.</p>
+<p>Line breaks are not included in the resulting list unless keepends is given and<br>
+true.</p>
+<p><strong>startswith</strong><br>
+B.startswith(prefix[, start[, end]]) -> bool</p>
+<p>Return True if B starts with the specified prefix, False otherwise.<br>
+With optional start, test B beginning at that position.<br>
+With optional end, stop comparing B at that position.<br>
+prefix can also be a tuple of bytes to try.</p>
+<p><strong>strip</strong><br>
+Strip leading and trailing bytes contained in the argument.</p>
+<p>If the argument is omitted or None, strip leading and trailing ASCII whitespace.</p>
+<p><strong>swapcase</strong><br>
+B.swapcase() -> copy of B</p>
+<p>Return a copy of B with uppercase ASCII characters converted<br>
+to lowercase ASCII and vice versa.</p>
+<p><strong>title</strong><br>
+B.title() -> copy of B</p>
+<p>Return a titlecased version of B, i.e. ASCII words start with uppercase<br>
+characters, all remaining cased characters have lowercase.</p>
+<p><strong>translate</strong><br>
+Return a copy with each character mapped by the given translation table.</p>
+<p>table<br>
+    Translation table, which must be a bytes object of length 256.</p>
+<p>All characters occurring in the optional argument delete are removed.<br>
+The remaining characters are mapped through the given translation table.</p>
+<p><strong>upper</strong><br>
+B.upper() -> copy of B</p>
+<p>Return a copy of B with all ASCII characters converted to uppercase.</p>
+<p><strong>zfill</strong><br>
+Pad a numeric string with zeros on the left, to fill a field of the given width.</p>
+<p>The original string is never truncated.</p>
+<h4 id="_19">類別方法：</h4>
+<p><strong>fromhex</strong><br>
+Create a bytearray object from a string of hexadecimal numbers.</p>
+<p>Spaces between two numbers are accepted.<br>
+Example: bytearray.fromhex('B9 01EF') -> bytearray(b'\xb9\x01\xef')</p>
+<p><strong>maketrans</strong><br>
+Return a translation table useable for the bytes or bytearray translate method.</p>
+<p>The returned table will be one where each byte in frm is mapped to the byte at<br>
+the same position in to.</p>
+<p>The bytes objects frm and to must be of the same length.</p>
+<p></details></p>
+<h3 id="bytes">bytes</h3>
+<h3 id="enumerate">enumerate</h3>
+<h3 id="filter">filter</h3>
+<h3 id="map">map</h3>
+<h3 id="zip">zip</h3>
+<h3 id="memoryview">memoryview</h3>
+<h3 id="range">range</h3>
+<h3 id="slice">slice</h3>
+<h3 id="reversed">reversed</h3>
+<h3 id="classmethod">classmethod</h3>
+<h3 id="staticmethod">staticmethod</h3>
+<h3 id="property">property</h3>
+<h3 id="super">super</h3>
+<h3 id="type">type</h3>
+<h3 id="object">object</h3>
+<h2 id="_20">函數</h2>
+<h3 id="abs">abs</h3>
+<h3 id="pow">pow</h3>
+<h3 id="round">round</h3>
+<h3 id="divmod">divmod</h3>
+<h3 id="max">max</h3>
+<h3 id="min">min</h3>
+<h3 id="sum">sum</h3>
+<h3 id="sorted">sorted</h3>
+<h3 id="print">print</h3>
+<h3 id="input">input</h3>
+<h3 id="open">open</h3>
+<h3 id="all">all</h3>
+<h3 id="any">any</h3>
+<h3 id="hex">hex</h3>
+<h3 id="oct">oct</h3>
+<h3 id="bin">bin</h3>
+<h3 id="ascii">ascii</h3>
+<h3 id="chr">chr</h3>
+<h3 id="ord">ord</h3>
+<h3 id="repr">repr</h3>
+<h3 id="format">format</h3>
+<h3 id="id">id</h3>
+<h3 id="len">len</h3>
+<h3 id="hash">hash</h3>
+<h3 id="iter">iter</h3>
+<h3 id="next">next</h3>
+<h3 id="aiter">aiter</h3>
+<h3 id="anext">anext</h3>
+<h3 id="compile">compile</h3>
+<h3 id="breakpoint">breakpoint</h3>
+<h3 id="dir">dir</h3>
+<h3 id="eval">eval</h3>
+<h3 id="exec">exec</h3>
+<h3 id="getattr">getattr</h3>
+<h3 id="setattr">setattr</h3>
+<h3 id="delattr">delattr</h3>
+<h3 id="hasattr">hasattr</h3>
+<h3 id="isinstance">isinstance</h3>
+<h3 id="issubclass">issubclass</h3>
+<h3 id="callable">callable</h3>
+<h3 id="locals">locals</h3>
+<h3 id="globals">globals</h3>
+<h3 id="quit">quit</h3>
+<h3 id="exit">exit</h3>
+<h3 id="vars">vars</h3>
+<h3 id="copyright">copyright</h3>
+<h3 id="credits">credits</h3>
+<h3 id="license">license</h3>
+<h3 id="help">help</h3>
+<h2 id="_21">特殊</h2>
+<h3 id="false">False</h3>
+<h3 id="true">True</h3>
 <h3 id="ellipsis">Ellipsis</h3>
-<h3 id="false">False:</h3>
-<p>bool(x) -> bool<br>
-Returns True when the argument x is true, False otherwise.<br>
-The builtins True and False are the only two instances of the class bool.<br>
-The class bool is a subclass of the class int, and cannot be subclassed.</p>
 <h3 id="none">None</h3>
 <h3 id="notimplemented">NotImplemented</h3>
-<h3 id="true">True:</h3>
-<p>bool(x) -> bool<br>
-Returns True when the argument x is true, False otherwise.<br>
-The builtins True and False are the only two instances of the class bool.<br>
-The class bool is a subclass of the class int, and cannot be subclassed.</p>
-<h2 id="_2">函數:</h2>
-<h3 id="absx">abs(x):</h3>
-<p>Return the absolute value of the argument.</p>
-<h3 id="aiterasync_iterable">aiter(async_iterable):</h3>
-<p>Return an AsyncIterator for an AsyncIterable object.</p>
-<h3 id="alliterable">all(iterable):</h3>
-<p>Return True if bool(x) is True for all values x in the iterable.<br>
-If the iterable is empty, return True.</p>
-<h3 id="anext">anext():</h3>
-<p>Return the next item from the async iterator.</p>
-<h3 id="anyiterable">any(iterable):</h3>
-<p>Return True if bool(x) is True for any x in the iterable.<br>
-If the iterable is empty, return False.</p>
-<h3 id="asciiobj">ascii(obj):</h3>
-<p>Return an ASCII-only representation of an object.<br>
-As repr(), return a string containing a printable representation of an<br>
-object, but escape the non-ASCII characters in the string returned by<br>
-repr() using \x, \u or \U escapes. This generates a string similar<br>
-to that returned by repr() in Python 2.</p>
-<h3 id="binnumber">bin(number):</h3>
-<p>Return the binary representation of an integer.<br>
-   >>> bin(2796202)<br>
-   '0b1010101010101010101010'</p>
-<h3 id="breakpoint">breakpoint():</h3>
-<p>breakpoint(*args, **kws)<br>
-Call sys.breakpointhook(*args, **kws).  sys.breakpointhook() must accept<br>
-whatever arguments are passed.<br>
-By default, this drops you into the pdb debugger.</p>
-<h3 id="callableobj">callable(obj):</h3>
-<p>Return whether the object is callable (i.e., some kind of function).<br>
-Note that classes are callable, as are instances of classes with a<br>
-<strong>call</strong>() method.</p>
-<h3 id="chri">chr(i):</h3>
-<p>Return a Unicode string of one character with ordinal i; 0 <= i <= 0x10ffff.</p>
-<h3 id="compilesource-filename-mode-flags0-dont_inheritfalse-optimize-1-_feature_version-1">compile(source, filename, mode, flags=0, dont_inherit=False, optimize=-1, _feature_version=-1):</h3>
-<p>Compile source into a code object that can be executed by exec() or eval().<br>
-The source code may represent a Python module, statement or expression.<br>
-The filename will be used for run-time error messages.<br>
-The mode must be 'exec' to compile a module, 'single' to compile a<br>
-single (interactive) statement, or 'eval' to compile an expression.<br>
-The flags argument, if present, controls which future statements influence<br>
-the compilation of the code.<br>
-The dont_inherit argument, if true, stops the compilation inheriting<br>
-the effects of any future statements in effect in the code calling<br>
-compile; if absent or false these statements do influence the compilation,<br>
-in addition to any features explicitly specified.</p>
-<h3 id="copyright">copyright():</h3>
-<p>interactive prompt objects for printing the license text, a list of<br>
-    contributors and the copyright notice.</p>
-<h3 id="credits">credits():</h3>
-<p>interactive prompt objects for printing the license text, a list of<br>
-    contributors and the copyright notice.</p>
-<h3 id="delattrobj-name">delattr(obj, name):</h3>
-<p>Deletes the named attribute from the given object.<br>
-delattr(x, 'y') is equivalent to ''del x.y''</p>
-<h3 id="dir">dir():</h3>
-<p>dir([object]) -> list of strings<br>
-If called without an argument, return the names in the current scope.<br>
-Else, return an alphabetized list of names comprising (some of) the attributes<br>
-of the given object, and of attributes reachable from it.<br>
-If the object supplies a method named <strong>dir</strong>, it will be used; otherwise<br>
-the default dir() logic is used and returns:<br>
-  for a module object: the module's attributes.<br>
-  for a class object:  its attributes, and recursively the attributes<br>
-    of its bases.<br>
-  for any other object: its attributes, its class's attributes, and<br>
-    recursively the attributes of its class's base classes.</p>
-<h3 id="divmodx-y">divmod(x, y):</h3>
-<p>Return the tuple (x//y, x%y).  Invariant: div*y + mod == x.</p>
-<h3 id="evalsource-globalsnone-localsnone">eval(source, globals=None, locals=None):</h3>
-<p>Evaluate the given source in the context of globals and locals.<br>
-The source may be a string representing a Python expression<br>
-or a code object as returned by compile().<br>
-The globals must be a dictionary and locals can be any mapping,<br>
-defaulting to the current globals and locals.<br>
-If only globals is given, locals defaults to it.</p>
-<h3 id="execsource-globalsnone-localsnone">exec(source, globals=None, locals=None):</h3>
-<p>Execute the given source in the context of globals and locals.<br>
-The source may be a string representing one or more Python statements<br>
-or a code object as returned by compile().<br>
-The globals must be a dictionary and locals can be any mapping,<br>
-defaulting to the current globals and locals.<br>
-If only globals is given, locals defaults to it.</p>
-<h3 id="exitcodenone">exit(code=None):</h3>
-<h3 id="formatvalue-format_spec">format(value, format_spec=''):</h3>
-<p>Return value.<strong>format</strong>(format_spec)<br>
-format_spec defaults to the empty string.<br>
-See the Format Specification Mini-Language section of help('FORMATTING') for<br>
-details.</p>
-<h3 id="getattr">getattr():</h3>
-<p>getattr(object, name[, default]) -> value<br>
-Get a named attribute from an object; getattr(x, 'y') is equivalent to x.y.<br>
-When a default argument is given, it is returned when the attribute doesn't<br>
-exist; without it, an exception is raised in that case.</p>
-<h3 id="globals">globals():</h3>
-<p>Return the dictionary containing the current scope's global variables.<br>
-NOTE: Updates to this dictionary *will* affect name lookups in the current<br>
-global scope and vice-versa.</p>
-<h3 id="hasattrobj-name">hasattr(obj, name):</h3>
-<p>Return whether the object has an attribute with the given name.<br>
-This is done by calling getattr(obj, name) and catching AttributeError.</p>
-<h3 id="hashobj">hash(obj):</h3>
-<p>Return the hash value for the given object.<br>
-Two objects that compare equal must also have the same hash value, but the<br>
-reverse is not necessarily true.</p>
-<h3 id="helpargs-kwds">help(*args, **kwds):</h3>
-<p>Define the builtin 'help'.<br>
-    This is a wrapper around pydoc.help that provides a helpful message<br>
-    when 'help' is typed at the Python interactive prompt.<br>
-    Calling help() at the Python prompt starts an interactive help session.<br>
-    Calling help(thing) prints help for the python object 'thing'.</p>
-<h3 id="hexnumber">hex(number):</h3>
-<p>Return the hexadecimal representation of an integer.<br>
-   >>> hex(12648430)<br>
-   '0xc0ffee'</p>
-<h3 id="idobj">id(obj):</h3>
-<p>Return the identity of an object.<br>
-This is guaranteed to be unique among simultaneously existing objects.<br>
-(CPython uses the object's memory address.)</p>
-<h3 id="inputpromptnone">input(prompt=None):</h3>
-<p>Read a string from standard input.  The trailing newline is stripped.<br>
-The prompt string, if given, is printed to standard output without a<br>
-trailing newline before reading input.<br>
-If the user hits EOF (*nix: Ctrl-D, Windows: Ctrl-Z+Return), raise EOFError.<br>
-On *nix systems, readline is used if available.</p>
-<h3 id="isinstanceobj-class_or_tuple">isinstance(obj, class_or_tuple):</h3>
-<p>Return whether an object is an instance of a class or of a subclass thereof.<br>
-A tuple, as in <code>isinstance(x, (A, B, ...))</code>, may be given as the target to<br>
-check against. This is equivalent to <code>isinstance(x, A) or isinstance(x, B)
-or ...</code> etc.</p>
-<h3 id="issubclasscls-class_or_tuple">issubclass(cls, class_or_tuple):</h3>
-<p>Return whether 'cls' is derived from another class or is the same class.<br>
-A tuple, as in <code>issubclass(x, (A, B, ...))</code>, may be given as the target to<br>
-check against. This is equivalent to <code>issubclass(x, A) or issubclass(x, B)
-or ...</code>.</p>
-<h3 id="iter">iter():</h3>
-<p>iter(iterable) -> iterator<br>
-iter(callable, sentinel) -> iterator<br>
-Get an iterator from an object.  In the first form, the argument must<br>
-supply its own iterator, or be a sequence.<br>
-In the second form, the callable is called until it returns the sentinel.</p>
-<h3 id="lenobj">len(obj):</h3>
-<p>Return the number of items in a container.</p>
-<h3 id="license">license():</h3>
-<p>interactive prompt objects for printing the license text, a list of<br>
-    contributors and the copyright notice.</p>
-<h3 id="locals">locals():</h3>
-<p>Return a dictionary containing the current scope's local variables.<br>
-NOTE: Whether or not updates to this dictionary will affect name lookups in<br>
-the local scope and vice-versa is *implementation dependent* and not<br>
-covered by any backwards compatibility guarantees.</p>
-<h3 id="max">max():</h3>
-<p>max(iterable, *[, default=obj, key=func]) -> value<br>
-max(arg1, arg2, *args, *[, key=func]) -> value<br>
-With a single iterable argument, return its biggest item. The<br>
-default keyword-only argument specifies an object to return if<br>
-the provided iterable is empty.<br>
-With two or more arguments, return the largest argument.</p>
-<h3 id="min">min():</h3>
-<p>min(iterable, *[, default=obj, key=func]) -> value<br>
-min(arg1, arg2, *args, *[, key=func]) -> value<br>
-With a single iterable argument, return its smallest item. The<br>
-default keyword-only argument specifies an object to return if<br>
-the provided iterable is empty.<br>
-With two or more arguments, return the smallest argument.</p>
-<h3 id="next">next():</h3>
-<p>next(iterator[, default])<br>
-Return the next item from the iterator. If default is given and the iterator<br>
-is exhausted, it is returned instead of raising StopIteration.</p>
-<h3 id="octnumber">oct(number):</h3>
-<p>Return the octal representation of an integer.<br>
-   >>> oct(342391)<br>
-   '0o1234567'</p>
-<h3 id="openfile-moder-buffering-1-encodingnone-errorsnone-newlinenone-closefdtrue-openernone">open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None):</h3>
-<p>Open file and return a stream.  Raise OSError upon failure.<br>
-file is either a text or byte string giving the name (and the path<br>
-if the file isn't in the current working directory) of the file to<br>
-be opened or an integer file descriptor of the file to be<br>
-wrapped. (If a file descriptor is given, it is closed when the<br>
-returned I/O object is closed, unless closefd is set to False.)<br>
-mode is an optional string that specifies the mode in which the file<br>
-is opened. It defaults to 'r' which means open for reading in text<br>
-mode.  Other common values are 'w' for writing (truncating the file if<br>
-it already exists), 'x' for creating and writing to a new file, and<br>
-'a' for appending (which on some Unix systems, means that all writes<br>
-append to the end of the file regardless of the current seek position).<br>
-In text mode, if encoding is not specified the encoding used is platform<br>
-dependent: locale.getpreferredencoding(False) is called to get the<br>
-current locale encoding. (For reading and writing raw bytes use binary<br>
-mode and leave encoding unspecified.) The available modes are:<br>
-========= ===============================================================<br>
-Character Meaning</p>
-<hr></hr>
-<p>'r'       open for reading (default)<br>
-'w'       open for writing, truncating the file first<br>
-'x'       create a new file and open it for writing<br>
-'a'       open for writing, appending to the end of the file if it exists<br>
-'b'       binary mode<br>
-'t'       text mode (default)<br>
-'+'       open a disk file for updating (reading and writing)<br>
-'U'       universal newline mode (deprecated)<br>
-========= ===============================================================<br>
-The default mode is 'rt' (open for reading text). For binary random<br>
-access, the mode 'w+b' opens and truncates the file to 0 bytes, while<br>
-'r+b' opens the file without truncation. The 'x' mode implies 'w' and<br>
-raises an <code>FileExistsError</code> if the file already exists.<br>
-Python distinguishes between files opened in binary and text modes,<br>
-even when the underlying operating system doesn't. Files opened in<br>
-binary mode (appending 'b' to the mode argument) return contents as<br>
-bytes objects without any decoding. In text mode (the default, or when<br>
-'t' is appended to the mode argument), the contents of the file are<br>
-returned as strings, the bytes having been first decoded using a<br>
-platform-dependent encoding or using the specified encoding if given.<br>
-'U' mode is deprecated and will raise an exception in future versions<br>
-of Python.  It has no effect in Python 3.  Use newline to control<br>
-universal newlines mode.<br>
-buffering is an optional integer used to set the buffering policy.<br>
-Pass 0 to switch buffering off (only allowed in binary mode), 1 to select<br>
-line buffering (only usable in text mode), and an integer > 1 to indicate<br>
-the size of a fixed-size chunk buffer.  When no buffering argument is<br>
-given, the default buffering policy works as follows:<br>
-* Binary files are buffered in fixed-size chunks; the size of the buffer<br>
-  is chosen using a heuristic trying to determine the underlying device's<br>
-  "block size" and falling back on <code>io.DEFAULT_BUFFER_SIZE</code>.<br>
-  On many systems, the buffer will typically be 4096 or 8192 bytes long.<br>
-* "Interactive" text files (files for which isatty() returns True)<br>
-  use line buffering.  Other text files use the policy described above<br>
-  for binary files.<br>
-encoding is the name of the encoding used to decode or encode the<br>
-file. This should only be used in text mode. The default encoding is<br>
-platform dependent, but any encoding supported by Python can be<br>
-passed.  See the codecs module for the list of supported encodings.<br>
-errors is an optional string that specifies how encoding errors are to<br>
-be handled---this argument should not be used in binary mode. Pass<br>
-'strict' to raise a ValueError exception if there is an encoding error<br>
-(the default of None has the same effect), or pass 'ignore' to ignore<br>
-errors. (Note that ignoring encoding errors can lead to data loss.)<br>
-See the documentation for codecs.register or run 'help(codecs.Codec)'<br>
-for a list of the permitted encoding error strings.<br>
-newline controls how universal newlines works (it only applies to text<br>
-mode). It can be None, '', '\n', '\r', and '\r\n'.  It works as<br>
-follows:<br>
-* On input, if newline is None, universal newlines mode is<br>
-  enabled. Lines in the input can end in '\n', '\r', or '\r\n', and<br>
-  these are translated into '\n' before being returned to the<br>
-  caller. If it is '', universal newline mode is enabled, but line<br>
-  endings are returned to the caller untranslated. If it has any of<br>
-  the other legal values, input lines are only terminated by the given<br>
-  string, and the line ending is returned to the caller untranslated.<br>
-* On output, if newline is None, any '\n' characters written are<br>
-  translated to the system default line separator, os.linesep. If<br>
-  newline is '' or '\n', no translation takes place. If newline is any<br>
-  of the other legal values, any '\n' characters written are translated<br>
-  to the given string.<br>
-If closefd is False, the underlying file descriptor will be kept open<br>
-when the file is closed. This does not work when a file name is given<br>
-and must be True in that case.<br>
-A custom opener can be used by passing a callable as *opener*. The<br>
-underlying file descriptor for the file object is then obtained by<br>
-calling *opener* with (*file*, *flags*). *opener* must return an open<br>
-file descriptor (passing os.open as *opener* results in functionality<br>
-similar to passing None).<br>
-open() returns a file object whose type depends on the mode, and<br>
-through which the standard file operations such as reading and writing<br>
-are performed. When open() is used to open a file in a text mode ('w',<br>
-'r', 'wt', 'rt', etc.), it returns a TextIOWrapper. When used to open<br>
-a file in a binary mode, the returned class varies: in read binary<br>
-mode, it returns a BufferedReader; in write binary and append binary<br>
-modes, it returns a BufferedWriter, and in read/write mode, it returns<br>
-a BufferedRandom.<br>
-It is also possible to use a string or bytearray as a file for both<br>
-reading and writing. For strings StringIO can be used like a file<br>
-opened in a text mode, and for bytes a BytesIO can be used like a file<br>
-opened in a binary mode.</p>
-<h3 id="ordc">ord(c):</h3>
-<p>Return the Unicode code point for a one-character string.</p>
-<h3 id="powbase-exp-modnone">pow(base, exp, mod=None):</h3>
-<p>Equivalent to base**exp with 2 arguments or base**exp % mod with 3 arguments<br>
-Some types, such as ints, are able to use a more efficient algorithm when<br>
-invoked using the three argument form.</p>
-<h3 id="print">print():</h3>
-<p>print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)<br>
-Prints the values to a stream, or to sys.stdout by default.<br>
-Optional keyword arguments:<br>
-file:  a file-like object (stream); defaults to the current sys.stdout.<br>
-sep:   string inserted between values, default a space.<br>
-end:   string appended after the last value, default a newline.<br>
-flush: whether to forcibly flush the stream.</p>
-<h3 id="quitcodenone">quit(code=None):</h3>
-<h3 id="reprobj">repr(obj):</h3>
-<p>Return the canonical string representation of the object.<br>
-For many object types, including most builtins, eval(repr(obj)) == obj.</p>
-<h3 id="roundnumber-ndigitsnone">round(number, ndigits=None):</h3>
-<p>Round a number to a given precision in decimal digits.<br>
-The return value is an integer if ndigits is omitted or None.  Otherwise<br>
-the return value has the same type as the number.  ndigits may be negative.</p>
-<h3 id="setattrobj-name-value">setattr(obj, name, value):</h3>
-<p>Sets the named attribute on the given object to the specified value.<br>
-setattr(x, 'y', v) is equivalent to <code>x.y = v</code></p>
-<h3 id="sortediterable-keynone-reversefalse">sorted(iterable, key=None, reverse=False):</h3>
-<p>Return a new list containing all items from the iterable in ascending order.<br>
-A custom key function can be supplied to customize the sort order, and the<br>
-reverse flag can be set to request the result in descending order.</p>
-<h3 id="sumiterable-start0">sum(iterable, start=0):</h3>
-<p>Return the sum of a 'start' value (default: 0) plus an iterable of numbers<br>
-When the iterable is empty, return the start value.<br>
-This function is intended specifically for use with numeric values and may<br>
-reject non-numeric types.</p>
-<h3 id="vars">vars():</h3>
-<p>vars([object]) -> dictionary<br>
-Without arguments, equivalent to locals().<br>
-With an argument, equivalent to object.<strong>dict</strong>.</p>
-<h2 id="_3">類別:</h2>
-<h3 id="unicodedecodeerror">UnicodeDecodeError:</h3>
-<p>Unicode decoding error.</p>
-<h3 id="unicodeencodeerror">UnicodeEncodeError:</h3>
-<p>Unicode encoding error.</p>
-<h3 id="unicodetranslateerror">UnicodeTranslateError:</h3>
-<p>Unicode translation error.</p>
-<h3 id="bool">bool:</h3>
-<p>bool(x) -> bool<br>
-Returns True when the argument x is true, False otherwise.<br>
-The builtins True and False are the only two instances of the class bool.<br>
-The class bool is a subclass of the class int, and cannot be subclassed.</p>
-<h3 id="bytearray">bytearray:</h3>
-<p>bytearray(iterable_of_ints) -> bytearray<br>
-bytearray(string, encoding[, errors]) -> bytearray<br>
-bytearray(bytes_or_buffer) -> mutable copy of bytes_or_buffer<br>
-bytearray(int) -> bytes array of size given by the parameter initialized with null bytes<br>
-bytearray() -> empty bytes array<br>
-Construct a mutable bytearray object from:<br>
-  - an iterable yielding integers in range(256)<br>
-  - a text string encoded using the specified encoding<br>
-  - a bytes or a buffer object<br>
-  - any object implementing the buffer API.<br>
-  - an integer</p>
-<h3 id="bytes">bytes:</h3>
-<p>bytes(iterable_of_ints) -> bytes<br>
-bytes(string, encoding[, errors]) -> bytes<br>
-bytes(bytes_or_buffer) -> immutable copy of bytes_or_buffer<br>
-bytes(int) -> bytes object of size given by the parameter initialized with null bytes<br>
-bytes() -> empty bytes object<br>
-Construct an immutable array of bytes from:<br>
-  - an iterable yielding integers in range(256)<br>
-  - a text string encoded using the specified encoding<br>
-  - any object implementing the buffer API.<br>
-  - an integer</p>
-<h3 id="classmethod">classmethod:</h3>
-<p>classmethod(function) -> method<br>
-Convert a function to be a class method.<br>
-A class method receives the class as implicit first argument,<br>
-just like an instance method receives the instance.<br>
-To declare a class method, use this idiom:<br>
-  class C:<br>
-      @classmethod<br>
-      def f(cls, arg1, arg2, ...):<br>
-          ...<br>
-It can be called either on the class (e.g. C.f()) or on an instance<br>
-(e.g. C().f()).  The instance is ignored except for its class.<br>
-If a class method is called for a derived class, the derived class<br>
-object is passed as the implied first argument.<br>
-Class methods are different than C++ or Java static methods.<br>
-If you want those, see the staticmethod builtin.</p>
-<h3 id="complex">complex:</h3>
-<p>Create a complex number from a real part and an optional imaginary part.<br>
-This is equivalent to (real + imag*1j) where imag defaults to 0.</p>
-<h3 id="dict">dict:</h3>
-<p>dict() -> new empty dictionary<br>
-dict(mapping) -> new dictionary initialized from a mapping object's<br>
-    (key, value) pairs<br>
-dict(iterable) -> new dictionary initialized as if via:<br>
-    d = {}<br>
-    for k, v in iterable:<br>
-        d[k] = v<br>
-dict(**kwargs) -> new dictionary initialized with the name=value pairs<br>
-    in the keyword argument list.  For example:  dict(one=1, two=2)</p>
-<h3 id="enumerate">enumerate:</h3>
-<p>Return an enumerate object.<br>
-  iterable<br>
-    an object supporting iteration<br>
-The enumerate object yields pairs containing a count (from start, which<br>
-defaults to zero) and a value yielded by the iterable argument.<br>
-enumerate is useful for obtaining an indexed list:<br>
-    (0, seq[0]), (1, seq[1]), (2, seq[2]), ...</p>
-<h3 id="filter">filter:</h3>
-<p>filter(function or None, iterable) --> filter object<br>
-Return an iterator yielding those items of iterable for which function(item)<br>
-is true. If function is None, return the items that are true.</p>
-<h3 id="float">float:</h3>
-<p>Convert a string or number to a floating point number, if possible.</p>
-<h3 id="frozenset">frozenset:</h3>
-<p>frozenset() -> empty frozenset object<br>
-frozenset(iterable) -> frozenset object<br>
-Build an immutable unordered collection of unique elements.</p>
-<h3 id="int">int:</h3>
-<p>int([x]) -> integer<br>
-int(x, base=10) -> integer<br>
-Convert a number or string to an integer, or return 0 if no arguments<br>
-are given.  If x is a number, return x.<strong>int</strong>().  For floating point<br>
-numbers, this truncates towards zero.<br>
-If x is not a number or if base is given, then x must be a string,<br>
-bytes, or bytearray instance representing an integer literal in the<br>
-given base.  The literal can be preceded by '+' or '-' and be surrounded<br>
-by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.<br>
-Base 0 means to interpret the base from the string as an integer literal.<br>
->>> int('0b100', base=0)<br>
-4</p>
-<h3 id="list">list:</h3>
-<p>Built-in mutable sequence.<br>
-If no argument is given, the constructor creates a new empty list.<br>
-The argument must be an iterable if specified.</p>
-<h3 id="map">map:</h3>
-<p>map(func, *iterables) --> map object<br>
-Make an iterator that computes the function using arguments from<br>
-each of the iterables.  Stops when the shortest iterable is exhausted.</p>
-<h3 id="memoryview">memoryview:</h3>
-<p>Create a new memoryview object which references the given object.</p>
-<h3 id="object">object:</h3>
-<p>The base class of the class hierarchy.<br>
-When called, it accepts no arguments and returns a new featureless<br>
-instance that has no instance attributes and cannot be given any.</p>
-<h3 id="property">property:</h3>
-<p>Property attribute.<br>
-  fget<br>
-    function to be used for getting an attribute value<br>
-  fset<br>
-    function to be used for setting an attribute value<br>
-  fdel<br>
-    function to be used for del'ing an attribute<br>
-  doc<br>
-    docstring<br>
-Typical use is to define a managed attribute x:<br>
-class C(object):<br>
-    def getx(self): return self._x<br>
-    def setx(self, value): self._x = value<br>
-    def delx(self): del self._x<br>
-    x = property(getx, setx, delx, "I'm the 'x' property.")<br>
-Decorators make defining new properties or modifying existing ones easy:<br>
-class C(object):<br>
-    @property<br>
-    def x(self):<br>
-        "I am the 'x' property."<br>
-        return self._x<br>
-    @x.setter<br>
-    def x(self, value):<br>
-        self._x = value<br>
-    @x.deleter<br>
-    def x(self):<br>
-        del self._x</p>
-<h3 id="range">range:</h3>
-<p>range(stop) -> range object<br>
-range(start, stop[, step]) -> range object<br>
-Return an object that produces a sequence of integers from start (inclusive)<br>
-to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.<br>
-start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.<br>
-These are exactly the valid indices for a list of 4 elements.<br>
-When step is given, it specifies the increment (or decrement).</p>
-<h3 id="reversed">reversed:</h3>
-<p>Return a reverse iterator over the values of the given sequence.</p>
-<h3 id="set">set:</h3>
-<p>set() -> new empty set object<br>
-set(iterable) -> new set object<br>
-Build an unordered collection of unique elements.</p>
-<h3 id="slice">slice:</h3>
-<p>slice(stop)<br>
-slice(start, stop[, step])<br>
-Create a slice object.  This is used for extended slicing (e.g. a[0:10:2]).</p>
-<h3 id="staticmethod">staticmethod:</h3>
-<p>staticmethod(function) -> method<br>
-Convert a function to be a static method.<br>
-A static method does not receive an implicit first argument.<br>
-To declare a static method, use this idiom:<br>
-     class C:<br>
-         @staticmethod<br>
-         def f(arg1, arg2, ...):<br>
-             ...<br>
-It can be called either on the class (e.g. C.f()) or on an instance<br>
-(e.g. C().f()). Both the class and the instance are ignored, and<br>
-neither is passed implicitly as the first argument to the method.<br>
-Static methods in Python are similar to those found in Java or C++.<br>
-For a more advanced concept, see the classmethod builtin.</p>
-<h3 id="str">str:</h3>
-<p>str(object='') -> str<br>
-str(bytes_or_buffer[, encoding[, errors]]) -> str<br>
-Create a new string object from the given object. If encoding or<br>
-errors is specified, then the object must expose a data buffer<br>
-that will be decoded using the given encoding and error handler.<br>
-Otherwise, returns the result of object.<strong>str</strong>() (if defined)<br>
-or repr(object).<br>
-encoding defaults to sys.getdefaultencoding().<br>
-errors defaults to 'strict'.</p>
-<h3 id="super">super:</h3>
-<p>super() -> same as super(<strong>class</strong>, <first argument>)<br>
-super(type) -> unbound super object<br>
-super(type, obj) -> bound super object; requires isinstance(obj, type)<br>
-super(type, type2) -> bound super object; requires issubclass(type2, type)<br>
-Typical use to call a cooperative superclass method:<br>
-class C(B):<br>
-    def meth(self, arg):<br>
-        super().meth(arg)<br>
-This works for class methods too:<br>
-class C(B):<br>
-    @classmethod<br>
-    def cmeth(cls, arg):<br>
-        super().cmeth(arg)</p>
-<h3 id="tuple">tuple:</h3>
-<p>Built-in immutable sequence.<br>
-If no argument is given, the constructor returns an empty tuple.<br>
-If iterable is specified the tuple is initialized from iterable's items.<br>
-If the argument is a tuple, the return value is the same object.</p>
-<h3 id="type">type:</h3>
-<p>type(object_or_name, bases, dict)<br>
-type(object) -> the object's type<br>
-type(name, bases, dict) -> a new type</p>
-<h3 id="zip">zip:</h3>
-<p>zip(*iterables, strict=False) --> Yield tuples until an input is exhausted.<br>
-   >>> list(zip('abcdefg', range(3), range(4)))<br>
-   [('a', 0, 0), ('b', 1, 1), ('c', 2, 2)]<br>
-The zip object yields n-length tuples, where n is the number of iterables<br>
-passed as positional arguments to zip().  The i-th element in every tuple<br>
-comes from the i-th iterable argument to zip().  This continues until the<br>
-shortest argument is exhausted.<br>
-If strict is true and one of the arguments is exhausted before the others,<br>
-raise a ValueError.</p>
-<h2 id="_4">例外:</h2>
-<h3 id="arithmeticerror">ArithmeticError:</h3>
-<p>Base class for arithmetic errors.</p>
-<h3 id="assertionerror">AssertionError:</h3>
-<p>Assertion failed.</p>
-<h3 id="attributeerror">AttributeError:</h3>
-<p>Attribute not found.</p>
-<h3 id="baseexception">BaseException:</h3>
-<p>Common base class for all exceptions</p>
-<h3 id="blockingioerror">BlockingIOError:</h3>
-<p>I/O operation would block.</p>
-<h3 id="brokenpipeerror">BrokenPipeError:</h3>
-<p>Broken pipe.</p>
-<h3 id="buffererror">BufferError:</h3>
-<p>Buffer error.</p>
-<h3 id="byteswarning">BytesWarning:</h3>
-<p>Base class for warnings about bytes and buffer related problems, mostly<br>
-related to conversion from str or comparing to str.</p>
-<h3 id="childprocesserror">ChildProcessError:</h3>
-<p>Child process error.</p>
-<h3 id="connectionabortederror">ConnectionAbortedError:</h3>
-<p>Connection aborted.</p>
-<h3 id="connectionerror">ConnectionError:</h3>
-<p>Connection error.</p>
-<h3 id="connectionrefusederror">ConnectionRefusedError:</h3>
-<p>Connection refused.</p>
-<h3 id="connectionreseterror">ConnectionResetError:</h3>
-<p>Connection reset.</p>
-<h3 id="deprecationwarning">DeprecationWarning:</h3>
-<p>Base class for warnings about deprecated features.</p>
-<h3 id="eoferror">EOFError:</h3>
-<p>Read beyond end of file.</p>
-<h3 id="encodingwarning">EncodingWarning:</h3>
-<p>Base class for warnings about encodings.</p>
-<h3 id="environmenterror">EnvironmentError:</h3>
-<p>Base class for I/O related errors.</p>
-<h3 id="exception">Exception:</h3>
-<p>Common base class for all non-exit exceptions.</p>
-<h3 id="fileexistserror">FileExistsError:</h3>
-<p>File already exists.</p>
-<h3 id="filenotfounderror">FileNotFoundError:</h3>
-<p>File not found.</p>
-<h3 id="floatingpointerror">FloatingPointError:</h3>
-<p>Floating point operation failed.</p>
-<h3 id="futurewarning">FutureWarning:</h3>
-<p>Base class for warnings about constructs that will change semantically<br>
-in the future.</p>
-<h3 id="generatorexit">GeneratorExit:</h3>
-<p>Request that a generator exit.</p>
-<h3 id="ioerror">IOError:</h3>
-<p>Base class for I/O related errors.</p>
-<h3 id="importerror">ImportError:</h3>
-<p>Import can't find module, or can't find name in module.</p>
-<h3 id="importwarning">ImportWarning:</h3>
-<p>Base class for warnings about probable mistakes in module imports</p>
-<h3 id="indentationerror">IndentationError:</h3>
-<p>Improper indentation.</p>
-<h3 id="indexerror">IndexError:</h3>
-<p>Sequence index out of range.</p>
-<h3 id="interruptederror">InterruptedError:</h3>
-<p>Interrupted by signal.</p>
-<h3 id="isadirectoryerror">IsADirectoryError:</h3>
-<p>Operation doesn't work on directories.</p>
-<h3 id="keyerror">KeyError:</h3>
-<p>Mapping key not found.</p>
-<h3 id="keyboardinterrupt">KeyboardInterrupt:</h3>
-<p>Program interrupted by user.</p>
-<h3 id="lookuperror">LookupError:</h3>
-<p>Base class for lookup errors.</p>
-<h3 id="memoryerror">MemoryError:</h3>
-<p>Out of memory.</p>
-<h3 id="modulenotfounderror">ModuleNotFoundError:</h3>
-<p>Module not found.</p>
-<h3 id="nameerror">NameError:</h3>
-<p>Name not found globally.</p>
-<h3 id="notadirectoryerror">NotADirectoryError:</h3>
-<p>Operation only works on directories.</p>
-<h3 id="notimplementederror">NotImplementedError:</h3>
-<p>Method or function hasn't been implemented yet.</p>
-<h3 id="oserror">OSError:</h3>
-<p>Base class for I/O related errors.</p>
-<h3 id="overflowerror">OverflowError:</h3>
-<p>Result too large to be represented.</p>
-<h3 id="pendingdeprecationwarning">PendingDeprecationWarning:</h3>
-<p>Base class for warnings about features which will be deprecated<br>
-in the future.</p>
-<h3 id="permissionerror">PermissionError:</h3>
-<p>Not enough permissions.</p>
-<h3 id="processlookuperror">ProcessLookupError:</h3>
-<p>Process not found.</p>
-<h3 id="recursionerror">RecursionError:</h3>
-<p>Recursion limit exceeded.</p>
-<h3 id="referenceerror">ReferenceError:</h3>
-<p>Weak ref proxy used after referent went away.</p>
-<h3 id="resourcewarning">ResourceWarning:</h3>
-<p>Base class for warnings about resource usage.</p>
-<h3 id="runtimeerror">RuntimeError:</h3>
-<p>Unspecified run-time error.</p>
-<h3 id="runtimewarning">RuntimeWarning:</h3>
-<p>Base class for warnings about dubious runtime behavior.</p>
-<h3 id="stopasynciteration">StopAsyncIteration:</h3>
-<p>Signal the end from iterator.<strong>anext</strong>().</p>
-<h3 id="stopiteration">StopIteration:</h3>
-<p>Signal the end from iterator.<strong>next</strong>().</p>
-<h3 id="syntaxerror">SyntaxError:</h3>
-<p>Invalid syntax.</p>
-<h3 id="syntaxwarning">SyntaxWarning:</h3>
-<p>Base class for warnings about dubious syntax.</p>
-<h3 id="systemerror">SystemError:</h3>
-<p>Internal error in the Python interpreter.<br>
-Please report this to the Python maintainer, along with the traceback,<br>
-the Python version, and the hardware/OS platform and version.</p>
-<h3 id="systemexit">SystemExit:</h3>
-<p>Request to exit from the interpreter.</p>
-<h3 id="taberror">TabError:</h3>
-<p>Improper mixture of spaces and tabs.</p>
-<h3 id="timeouterror">TimeoutError:</h3>
-<p>Timeout expired.</p>
-<h3 id="typeerror">TypeError:</h3>
-<p>Inappropriate argument type.</p>
-<h3 id="unboundlocalerror">UnboundLocalError:</h3>
-<p>Local name referenced but not bound to a value.</p>
-<h3 id="unicodeerror">UnicodeError:</h3>
-<p>Unicode related error.</p>
-<h3 id="unicodewarning">UnicodeWarning:</h3>
-<p>Base class for warnings about Unicode related problems, mostly<br>
-related to conversion problems.</p>
-<h3 id="userwarning">UserWarning:</h3>
-<p>Base class for warnings generated by user code.</p>
-<h3 id="valueerror">ValueError:</h3>
-<p>Inappropriate argument value (of correct type).</p>
-<h3 id="warning">Warning:</h3>
-<p>Base class for warning categories.</p>
-<h3 id="windowserror">WindowsError:</h3>
-<p>Base class for I/O related errors.</p>
-<h3 id="zerodivisionerror">ZeroDivisionError:</h3>
-<p>Second argument to a division or modulo operation was zero</p>
+<h2 id="_22">例外</h2>
+<h3 id="arithmeticerror">ArithmeticError</h3>
+<h3 id="assertionerror">AssertionError</h3>
+<h3 id="attributeerror">AttributeError</h3>
+<h3 id="baseexception">BaseException</h3>
+<h3 id="blockingioerror">BlockingIOError</h3>
+<h3 id="brokenpipeerror">BrokenPipeError</h3>
+<h3 id="buffererror">BufferError</h3>
+<h3 id="byteswarning">BytesWarning</h3>
+<h3 id="childprocesserror">ChildProcessError</h3>
+<h3 id="connectionabortederror">ConnectionAbortedError</h3>
+<h3 id="connectionerror">ConnectionError</h3>
+<h3 id="connectionrefusederror">ConnectionRefusedError</h3>
+<h3 id="connectionreseterror">ConnectionResetError</h3>
+<h3 id="deprecationwarning">DeprecationWarning</h3>
+<h3 id="eoferror">EOFError</h3>
+<h3 id="encodingwarning">EncodingWarning</h3>
+<h3 id="environmenterror">EnvironmentError</h3>
+<h3 id="exception">Exception</h3>
+<h3 id="fileexistserror">FileExistsError</h3>
+<h3 id="filenotfounderror">FileNotFoundError</h3>
+<h3 id="floatingpointerror">FloatingPointError</h3>
+<h3 id="futurewarning">FutureWarning</h3>
+<h3 id="generatorexit">GeneratorExit</h3>
+<h3 id="ioerror">IOError</h3>
+<h3 id="importerror">ImportError</h3>
+<h3 id="importwarning">ImportWarning</h3>
+<h3 id="indentationerror">IndentationError</h3>
+<h3 id="indexerror">IndexError</h3>
+<h3 id="interruptederror">InterruptedError</h3>
+<h3 id="isadirectoryerror">IsADirectoryError</h3>
+<h3 id="keyerror">KeyError</h3>
+<h3 id="keyboardinterrupt">KeyboardInterrupt</h3>
+<h3 id="lookuperror">LookupError</h3>
+<h3 id="memoryerror">MemoryError</h3>
+<h3 id="modulenotfounderror">ModuleNotFoundError</h3>
+<h3 id="nameerror">NameError</h3>
+<h3 id="notadirectoryerror">NotADirectoryError</h3>
+<h3 id="notimplementederror">NotImplementedError</h3>
+<h3 id="oserror">OSError</h3>
+<h3 id="overflowerror">OverflowError</h3>
+<h3 id="pendingdeprecationwarning">PendingDeprecationWarning</h3>
+<h3 id="permissionerror">PermissionError</h3>
+<h3 id="processlookuperror">ProcessLookupError</h3>
+<h3 id="recursionerror">RecursionError</h3>
+<h3 id="referenceerror">ReferenceError</h3>
+<h3 id="resourcewarning">ResourceWarning</h3>
+<h3 id="runtimeerror">RuntimeError</h3>
+<h3 id="runtimewarning">RuntimeWarning</h3>
+<h3 id="stopasynciteration">StopAsyncIteration</h3>
+<h3 id="stopiteration">StopIteration</h3>
+<h3 id="syntaxerror">SyntaxError</h3>
+<h3 id="syntaxwarning">SyntaxWarning</h3>
+<h3 id="systemerror">SystemError</h3>
+<h3 id="systemexit">SystemExit</h3>
+<h3 id="taberror">TabError</h3>
+<h3 id="timeouterror">TimeoutError</h3>
+<h3 id="typeerror">TypeError</h3>
+<h3 id="unboundlocalerror">UnboundLocalError</h3>
+<h3 id="unicodedecodeerror">UnicodeDecodeError</h3>
+<h3 id="unicodeencodeerror">UnicodeEncodeError</h3>
+<h3 id="unicodeerror">UnicodeError</h3>
+<h3 id="unicodetranslateerror">UnicodeTranslateError</h3>
+<h3 id="unicodewarning">UnicodeWarning</h3>
+<h3 id="userwarning">UserWarning</h3>
+<h3 id="valueerror">ValueError</h3>
+<h3 id="warning">Warning</h3>
+<h3 id="windowserror">WindowsError</h3>
+<h3 id="zerodivisionerror">ZeroDivisionError</h3>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

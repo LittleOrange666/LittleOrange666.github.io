@@ -1,0 +1,202 @@
+<html>
+
+<head>
+    <title>STL 函數</title>
+    <base target="_top">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="indexbar" class="toc"></div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="stl">STL 函數</h1>
+<p>這裡的多數內容都在<code><algorithm></code>標頭檔底下</p>
+<h2 id="stdrange">std::range的函數</h2>
+<p>以下所有有(start: iterator\<T>, end: iterator\<T>)的函數在C++20以上都可以用std::range來簡化<br>
+例如：以下兩種寫法效果相同</p>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">begin</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">end</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">range</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="_1">排序</h2>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::sort</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">std::stable_sort</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要排序的範圍<br>
+cmp表示排序方法，可省略，默認為"小於"<br>
+若a應排在b之前，cmp(a,b)應回傳true<br>
+不回傳資料，直接原地修改<br>
+時間：<script type="math/tex">O(NlogN)</script>
+</p>
+<h3 id="_2">二分搜</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">upper_bound</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">std::binary_search</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o"><</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">>></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">equal_range</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要排序的範圍<br>
+value表示要找的值<br>
+cmp表示排序方法，可省略，默認為"小於"，應與資料排序時相同</p>
+<p>lower_bound找出不小於value的最小值位置<br>
+upper_bound找出大於value的最小值位置<br>
+binary_search判斷value是否存在<br>
+equal_range回傳一個範圍表示value出現在那些地方<br>
+與</p>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">),</span><span class="n">std</span><span class="o">::</span><span class="n">upper_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">));</span><span class="w"></span>
+</code></pre></div>
+
+<p>大致相同<br>
+注："std::range::equal_range"回傳"std::ranges::subrange"<br>
+時間：<script type="math/tex">O(logN)</script>
+</p>
+<h3 id="n">第n個值</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::sort</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">nth</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">std::range::sort</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="n">range</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">nth</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要排序的範圍<br>
+nth表示目標位置<br>
+cmp表示排序方法，可省略，默認為"小於"，應與資料排序時相同</p>
+<p>保證nth的順序正確<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h3 id="_3">是否有排序</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">std::is_sorted</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">is_sorted_until</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要排序的範圍<br>
+cmp表示排序方法，可省略，默認為"小於"，應與資料排序時相同</p>
+<p>is_sorted判斷是否有排序<br>
+is_sorted_until判斷從start到哪裡有排序<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h2 id="_4">區間讀取</h2>
+<h3 id="_5">線性搜尋</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find_if</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+<span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find_if_not</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要搜尋的範圍<br>
+value表示要找的值<br>
+pre表示條件</p>
+<p>find尋找第一個value<br>
+find_if尋找第一個符合條件的<br>
+find_if_not尋找第一個不符合條件的<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h3 id="_6">計數</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">>::</span><span class="n">difference_type</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">>::</span><span class="n">difference_type</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要搜尋的範圍<br>
+value表示要找的值<br>
+pre表示條件</p>
+<p>count計算有幾個value<br>
+count_if計算有幾個符合條件的<br>
+difference_type我也不太知道是甚麼，大概是uint?<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h3 id="_7">布林判斷</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">std::all_of</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">std::any_of</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">std::none_of</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示要搜尋的範圍<br>
+pre表示條件</p>
+<p>all_of判斷是否所有值都符合條件<br>
+any_of判斷是否有值符合條件<br>
+none_of判斷是否所有值都不符合條件<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h2 id="_8">區間操作</h2>
+<h3 id="_9">複製</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::copy</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">out</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">std::copy_if</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="kt">bool</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">pre</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示來源的範圍<br>
+out表示輸出起點<br>
+pre表示條件</p>
+<p>把所有符合條件的複製到輸出<br>
+out建議使用std::back_insert_iterator<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h3 id="_10">映射</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::transform</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="o"><</span><span class="n">V</span><span class="o">></span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">function</span><span class="o"><</span><span class="n">V</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">func</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">std::transform</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start1</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="o"><</span><span class="n">U</span><span class="o">></span><span class="w"> </span><span class="n">start2</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="o"><</span><span class="n">V</span><span class="o">></span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">function</span><span class="o"><</span><span class="n">V</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">U</span><span class="p">)</span><span class="o">></span><span class="w"> </span><span class="n">func</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示來源的範圍<br>
+out表示輸出起點<br>
+func表示映射函數</p>
+<p>把所有數值映射到新的位置<br>
+out建議使用std::back_insert_iterator<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h3 id="_11">反轉</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::reverse</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示來源的範圍</p>
+<p>反轉序列<br>
+不回傳資料，直接原地修改<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+<h3 id="_12">打亂</h3>
+<p>語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">std::shuffle</span><span class="p">(</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="n">function</span><span class="o"><</span><span class="n">iterator</span><span class="o"><</span><span class="n">T</span><span class="o">>::</span><span class="n">difference_type</span><span class="p">()</span><span class="o">></span><span class="w"> </span><span class="n">random</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<p>start,end表示來源的範圍<br>
+random表示隨機函數，可省略，默認為rand</p>
+<p>打亂序列<br>
+不回傳資料，直接原地修改<br>
+時間：<script type="math/tex">O(N)</script>
+</p>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+</body>
+
+</html>

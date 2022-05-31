@@ -180,14 +180,6 @@ True=1, False=0</p>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#直接加東西在結尾</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
-count(value):<br>
-Return number of occurrences of value.</p>
-<hr></hr>
-<p>index(value, start=0, stop=9223372036854775807):<br>
-Return first index of value.<br>
-Raises ValueError if the value is not present.<br>
-</details></p>
 <h3 id="_15">清單</h3>
 <p>清單表示並列且有序的一組任意長度的資料值<br>
 可插入/刪除資料<br>
@@ -202,50 +194,8 @@ Raises ValueError if the value is not present.<br>
 <span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">"owo"</span><span class="p">,</span><span class="mi">1234</span><span class="p">])</span> <span class="c1">#和上一行類似，但可加上任意型別且在原地操作</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
-append(object):<br>
-Append object to the end of the list.</p>
-<hr></hr>
-<p>clear():<br>
-Remove all items from list.</p>
-<hr></hr>
-<p>copy():<br>
-Return a shallow copy of the list.</p>
-<hr></hr>
-<p>count(value):<br>
-Return number of occurrences of value.</p>
-<hr></hr>
-<p>extend(iterable):<br>
-Extend list by appending elements from the iterable.</p>
-<hr></hr>
-<p>index(value, start=0, stop=9223372036854775807):<br>
-Return first index of value.<br>
-Raises ValueError if the value is not present.</p>
-<hr></hr>
-<p>insert(index, object):<br>
-Insert object before index.</p>
-<hr></hr>
-<p>pop(index=-1):<br>
-Remove and return item at index (default last).<br>
-Raises IndexError if list is empty or index is out of range.</p>
-<hr></hr>
-<p>remove(value):<br>
-Remove first occurrence of value.<br>
-Raises ValueError if the value is not present.</p>
-<hr></hr>
-<p>reverse():<br>
-Reverse *IN PLACE*.</p>
-<hr></hr>
-<p>sort(key=None, reverse=False):<br>
-Sort the list in ascending order and return None.<br>
-The sort is in-place (i.e. the list itself is modified) and stable (i.e. the<br>
-order of two equal elements is maintained).<br>
-If a key function is given, apply it once to each list item and sort them,<br>
-ascending or descending, according to their function values.<br>
-The reverse flag can be set to sort in descending order.<br>
-</details></p>
 <h3 id="_16">集合</h3>
-<p>清單表示無序不重複的一組任意長度的資料值<br>
+<p>集合表示無序不重複的一組任意長度的資料值<br>
 並能夠在常數時間裡檢查一元素是否在集合中<br>
 類似數學上的集合<br>
 類似C++的unordered_set<br>
@@ -259,66 +209,6 @@ The reverse flag can be set to sort in descending order.<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1">#{8, 4, 5, 7}</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
-add():<br>
-Add an element to a set.<br>
-This has no effect if the element is already present.</p>
-<hr></hr>
-<p>clear():<br>
-Remove all elements from this set.</p>
-<hr></hr>
-<p>copy():<br>
-Return a shallow copy of a set.</p>
-<hr></hr>
-<p>difference():<br>
-Return the difference of two or more sets as a new set.<br>
-(i.e. all elements that are in this set but not the others.)</p>
-<hr></hr>
-<p>difference_update():<br>
-Remove all elements of another set from this set.</p>
-<hr></hr>
-<p>discard():<br>
-Remove an element from a set if it is a member.<br>
-If the element is not a member, do nothing.</p>
-<hr></hr>
-<p>intersection():<br>
-Return the intersection of two sets as a new set.<br>
-(i.e. all elements that are in both sets.)</p>
-<hr></hr>
-<p>intersection_update():<br>
-Update a set with the intersection of itself and another.</p>
-<hr></hr>
-<p>isdisjoint():<br>
-Return True if two sets have a null intersection.</p>
-<hr></hr>
-<p>issubset():<br>
-Report whether another set contains this set.</p>
-<hr></hr>
-<p>issuperset():<br>
-Report whether this set contains another set.</p>
-<hr></hr>
-<p>pop():<br>
-Remove and return an arbitrary set element.<br>
-Raises KeyError if the set is empty.</p>
-<hr></hr>
-<p>remove():<br>
-Remove an element from a set; it must be a member.<br>
-If the element is not a member, raise a KeyError.</p>
-<hr></hr>
-<p>symmetric_difference():<br>
-Return the symmetric difference of two sets as a new set.<br>
-(i.e. all elements that are in exactly one of the sets.)</p>
-<hr></hr>
-<p>symmetric_difference_update():<br>
-Update a set with the symmetric difference of itself and another.</p>
-<hr></hr>
-<p>union():<br>
-Return the union of sets as a new set.<br>
-(i.e. all elements that are in either set.)</p>
-<hr></hr>
-<p>update():<br>
-Update a set with the union of itself and others.<br>
-</details></p>
 <h3 id="_17">字典</h3>
 <p>字典是鍵-值對的資料結構<br>
 鍵是唯一的，值不一定唯一<br>
@@ -330,48 +220,6 @@ Update a set with the union of itself and others.<br>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#{'a': 12, 'b': 34, 'c': 56}</span>
 </code></pre></div>
 
-<p><details><summary>可用方法詳細介紹：</summary><br>
-clear():<br>
-D.clear() -> None.  Remove all items from D.</p>
-<hr></hr>
-<p>copy():<br>
-D.copy() -> a shallow copy of D</p>
-<hr></hr>
-<p>fromkeys(iterable, value=None):<br>
-Create a new dictionary with keys from iterable and values set to value.</p>
-<hr></hr>
-<p>get(key, default=None):<br>
-Return the value for key if key is in the dictionary, else default.</p>
-<hr></hr>
-<p>items():<br>
-D.items() -> a set-like object providing a view on D's items</p>
-<hr></hr>
-<p>keys():<br>
-D.keys() -> a set-like object providing a view on D's keys</p>
-<hr></hr>
-<p>pop():<br>
-D.pop(k[,d]) -> v, remove specified key and return the corresponding value.<br>
-If the key is not found, return the default if given; otherwise,<br>
-raise a KeyError.</p>
-<hr></hr>
-<p>popitem():<br>
-Remove and return a (key, value) pair as a 2-tuple.<br>
-Pairs are returned in LIFO (last-in, first-out) order.<br>
-Raises KeyError if the dict is empty.</p>
-<hr></hr>
-<p>setdefault(key, default=None):<br>
-Insert key with a value of default if key is not in the dictionary.<br>
-Return the value for key if key is in the dictionary, else default.</p>
-<hr></hr>
-<p>update():<br>
-D.update([E, ]**F) -> None.  Update D from dict/iterable E and F.<br>
-If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]<br>
-If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v<br>
-In either case, this is followed by: for k in F:  D[k] = F[k]</p>
-<hr></hr>
-<p>values():<br>
-D.values() -> an object providing a view on D's values<br>
-</details></p>
 <h3 id="_18">順帶一提</h3>
 <p>類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型<br>
 較常用的有int(),float(),str(),bool(),list()<br>

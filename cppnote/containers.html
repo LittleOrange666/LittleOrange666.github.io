@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <title>STL 容器</title>
+    <base target="_top">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="indexbar" class="toc"></div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="stl">STL 容器</h1>
+<h2 id="_1">序列容器</h2>
+<h3 id="array">array</h3>
+<h3 id="vector">vector</h3>
+<p>vector是一個動態陣列，可以用常數的時間在結尾增刪物件<br>
+定義：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">template</span><span class="o"><</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"></span>
+<span class="o">></span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">vector</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<h4 id="_2">初始化</h4>
+<p>vector初始化參數有兩個部分，都可省略<br>
+1. 初始資料<br>
+2. 分配器<br>
+初始資料可以是"另一個vector"或"數量, 初始值"<br>
+(若T()有意義則初始值可省略)</p>
+<h4 id="_3">可用方法</h4>
+<p><div class="spoiler_repeat">STL容器通用方法</div><br>
+<div class="spoiler_repeat">序列容器通用方法</div><br>
+讀取的時間都是<script type="math/tex">O(1)</script>
+<br>
+<strong>T* data()</strong><br>
+取得底層陣列的開頭指標<br>
+容器為空時可能回傳空指標也可能回傳有效指標</p>
+<p><strong>void clear()</strong><br>
+清空容器</p>
+<p><strong>std::size_t capacity()</strong><br>
+取得已分配內存大小</p>
+<p><strong>void reserve(std::size_t capacity)</strong><br>
+預先申請內存</p>
+<p><strong>void shrink_to_fit()</strong><br>
+釋放多餘內存以符合元素數量</p>
+<h3 id="deque">deque</h3>
+<h3 id="forward_list">forward_list</h3>
+<h3 id="list">list</h3>
+<h2 id="_4">容器適配器</h2>
+<h3 id="stack">stack</h3>
+<h3 id="queue">queue</h3>
+<h3 id="priority_queue">priority_queue</h3>
+<h2 id="_5">關聯容器</h2>
+<p><details class="spoiler_template"><summary>STL容器通用方法</summary><br>
+<strong>bool empty()</strong><br>
+判斷是否為空</p>
+<p><strong>std::size_t size()</strong><br>
+取得元素數量</p>
+<p><strong>void swap(container &other)</strong><br>
+與另一容器交換資料<br>
+</details></p>
+<p><details class="spoiler_template"><summary>序列容器通用方法</summary><br>
+<strong>T& operator[]<script type="math/tex">std::size_t index</script></strong><br>
+用索引取得值<br>
+存取越界時是未定義行為</p>
+<p><strong>T& at(std::size_t index)</strong><br>
+用索引取得值<br>
+存取越界時拋出<strong>std::out_of_range</strong></p>
+<p><strong>T& front()</strong><br>
+取得第一個值<br>
+容器為空時是未定義行為</p>
+<p><strong>T& back()</strong><br>
+取得最後一個值<br>
+容器為空時是未定義行為<br>
+</details></p>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+</body>
+
+</html>

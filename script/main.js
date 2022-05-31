@@ -91,6 +91,25 @@ function update_inview() {
         }
     });
 }
+
+function initspoiler(){
+    //init template
+    let spoilermap = {};
+    $(".spoiler_template").each(function() {
+        let tttt = $(this);
+        spoilermap[tttt.find("summary").text()]=tttt;
+        tttt.removeClass("spoiler_template");
+    });
+    $(".spoiler_repeat").each(function(){
+        let tttt = $(this);
+        let myname = tttt.text();
+        let got = spoilermap[myname];
+        if (got){
+            tttt.after(got.clone());
+        }
+    }).remove();
+    for (let o of spoilermap) o.remove();
+}
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
 //remove empty
@@ -100,6 +119,7 @@ main.find("h1,h2,h3,h4,h5,h6,p,pre,ol,ul").each(function(){
 //init index
 if (!(location.href.endsWith("/") || location.href.endsWith("/index"))) {
     initindex();
+    initspoiler();
 }
 //init view detect
 $(window).on('DOMContentLoaded load resize scroll', update_inview);
