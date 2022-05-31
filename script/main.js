@@ -109,6 +109,7 @@ function initspoiler(){
         }
     }).remove();
     for (let o in spoilermap) spoilermap[o].remove();
+    $("details").next().filter("br").remove();
 }
 //table style
 main.find("table").addClass("table").addClass("table-striped").addClass("table-bordered");
