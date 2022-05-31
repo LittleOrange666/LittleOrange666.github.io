@@ -96,7 +96,7 @@ def run_markdown(source: str) -> str:
     reg = re.compile(":::spoiler\\s(\\S+)", re.M)
     reg1 = re.compile(":::spoiler_template\\s(\\S+)", re.M)
     reg2 = re.compile(":::spoiler_repeat\\s(\\S+)", re.M)
-    reg0 = re.compile(":::\\n")
+    reg0 = re.compile(":::", re.M)
 
     get = reg.search(html)
     while get:

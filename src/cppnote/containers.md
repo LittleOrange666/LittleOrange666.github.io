@@ -61,6 +61,12 @@ vector初始化參數有兩個部分，都可省略
 
 **allocator get_allocator()**
 取得分配器
+
+**iterator begin()**
+取得指向開頭的迭代器
+
+**iterator end()**
+取得指向結尾的迭代器
 :::
 
 :::spoiler_template 序列容器通用方法
