@@ -47,10 +47,8 @@
 (若T()有意義則初始值可省略)</p>
 <h4 id="_3">可用方法</h4>
 <p><div class="spoiler_repeat">STL容器通用方法</div><br>
-<div class="spoiler_repeat">序列容器通用方法</div><br>
-讀取的時間都是<script type="math/tex">O(1)</script>
-<br>
-<strong>T* data()</strong><br>
+<div class="spoiler_repeat">序列容器通用方法</p></div>
+<p><strong>T* data()</strong><br>
 取得底層陣列的開頭指標<br>
 容器為空時可能回傳空指標也可能回傳有效指標</p>
 <p><strong>void clear()</strong><br>
@@ -69,16 +67,18 @@
 <h3 id="queue">queue</h3>
 <h3 id="priority_queue">priority_queue</h3>
 <h2 id="_5">關聯容器</h2>
-<p><details class="spoiler_template"><summary>STL容器通用方法</summary><br>
-<strong>bool empty()</strong><br>
+<p><details class="spoiler_template"><summary>STL容器通用方法</p></summary>
+<p><strong>bool empty()</strong><br>
 判斷是否為空</p>
 <p><strong>std::size_t size()</strong><br>
 取得元素數量</p>
 <p><strong>void swap(container &other)</strong><br>
-與另一容器交換資料<br>
-</details></p>
-<p><details class="spoiler_template"><summary>序列容器通用方法</summary><br>
-<strong>T& operator[]<script type="math/tex">std::size_t index</script></strong><br>
+與另一容器交換資料</p>
+<p><strong>allocator get_allocator()</strong><br>
+取得分配器<br>
+:::</p>
+<p><details class="spoiler_template"><summary>序列容器通用方法</p></summary>
+<p><strong>T& operator[](size_t index)</strong><br>
 用索引取得值<br>
 存取越界時是未定義行為</p>
 <p><strong>T& at(std::size_t index)</strong><br>
@@ -90,7 +90,7 @@
 <p><strong>T& back()</strong><br>
 取得最後一個值<br>
 容器為空時是未定義行為<br>
-</details></p>
+:::</p>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

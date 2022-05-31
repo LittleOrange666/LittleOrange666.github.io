@@ -22,7 +22,7 @@ vector初始化參數有兩個部分，都可省略
 #### 可用方法
 :::spoiler_repeat STL容器通用方法
 :::spoiler_repeat 序列容器通用方法
-讀取的時間都是$O(1)$
+
 **T* data()**
 取得底層陣列的開頭指標
 容器為空時可能回傳空指標也可能回傳有效指標
@@ -49,6 +49,7 @@ vector初始化參數有兩個部分，都可省略
 ## 關聯容器
 
 :::spoiler_template STL容器通用方法
+
 **bool empty()**
 判斷是否為空
 
@@ -57,10 +58,14 @@ vector初始化參數有兩個部分，都可省略
 
 **void swap(container &other)**
 與另一容器交換資料
+
+**allocator get_allocator()**
+取得分配器
 :::
 
 :::spoiler_template 序列容器通用方法
-**T& operator[]\(std::size_t index\)**
+
+**T& operator[]\(size_t index)**
 用索引取得值
 存取越界時是未定義行為
 
