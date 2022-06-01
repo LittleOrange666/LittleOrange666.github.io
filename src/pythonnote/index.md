@@ -1,7 +1,8 @@
 ---
 title: 小橘子的Python筆記
 ---
-
+# Python
+注：此處所有內容皆假設Python版本不會低於Python3.6
 ## 語法
 - [基礎語法](basic)
 - [變數與型別](variable)

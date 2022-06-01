@@ -30,6 +30,10 @@
         <h1 id="stl">STL 容器</h1>
 <h2 id="_1">序列容器</h2>
 <h3 id="array">array</h3>
+<h4 id="_2">可用方法</h4>
+<p><div class="spoiler_repeat">STL容器通用方法</div><br>
+<div class="spoiler_repeat">隨機存取容器通用方法</div><br>
+<div class="spoiler_repeat">有序容器通用方法</p></div>
 <h3 id="vector">vector</h3>
 <p>vector是一個動態陣列，可以用常數的時間在結尾增刪物件<br>
 定義：</p>
@@ -39,49 +43,100 @@
 <span class="o">></span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">vector</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 
-<h4 id="_2">初始化</h4>
+<h4 id="_3">初始化</h4>
 <p>vector初始化參數有兩個部分，都可省略<br>
 1. 初始資料<br>
 2. 分配器<br>
 初始資料可以是"另一個vector"或"數量, 初始值"<br>
 (若T()有意義則初始值可省略)</p>
-<h4 id="_3">可用方法</h4>
+<h4 id="_4">可用方法</h4>
 <p><div class="spoiler_repeat">STL容器通用方法</div><br>
-<div class="spoiler_repeat">序列容器通用方法</p></div>
+<div class="spoiler_repeat">隨機存取容器通用方法</div><br>
+<div class="spoiler_repeat">有序容器通用方法</div><br>
+<div class="spoiler_repeat">動態序列容器通用方法</p></div>
 <p><strong>T* data()</strong><br>
 取得底層陣列的開頭指標<br>
 容器為空時可能回傳空指標也可能回傳有效指標</p>
-<p><strong>void clear()</strong><br>
-清空容器</p>
 <p><strong>std::size_t capacity()</strong><br>
 取得已分配內存大小</p>
 <p><strong>void reserve(std::size_t capacity)</strong><br>
-預先申請內存</p>
+預先申請內存<br>
+<script type="math/tex">O(N)</script>
+</p>
+<p><strong>void shrink_to_fit()</strong><br>
+釋放多餘內存以符合元素數量<br>
+<script type="math/tex">O(N)</script>
+</p>
+<h3 id="deque">deque</h3>
+<p>deque是一個動態雙向序列，可以用常數的時間在頭尾增刪物件<br>
+定義：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">template</span><span class="o"><</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o"><</span><span class="n">T</span><span class="o">></span><span class="w"></span>
+<span class="o">></span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">deque</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<h4 id="_5">初始化</h4>
+<p>vector初始化參數有兩個部分，都可省略<br>
+1. 初始資料<br>
+2. 分配器<br>
+初始資料可以是"另一個deque"或"數量, 初始值"<br>
+(若T()有意義則初始值可省略)</p>
+<h4 id="_6">可用方法</h4>
+<p><div class="spoiler_repeat">STL容器通用方法</div><br>
+<div class="spoiler_repeat">隨機存取容器通用方法</div><br>
+<div class="spoiler_repeat">有序容器通用方法</div><br>
+<div class="spoiler_repeat">動態序列容器通用方法</p></div>
 <p><strong>void shrink_to_fit()</strong><br>
 釋放多餘內存以符合元素數量</p>
-<h3 id="deque">deque</h3>
 <h3 id="forward_list">forward_list</h3>
+<h4 id="_7">可用方法</h4>
+<p><div class="spoiler_repeat">STL容器通用方法</p></div>
 <h3 id="list">list</h3>
-<h2 id="_4">容器適配器</h2>
+<h4 id="_8">可用方法</h4>
+<p><div class="spoiler_repeat">STL容器通用方法</div><br>
+<div class="spoiler_repeat">有序容器通用方法</div><br>
+<div class="spoiler_repeat">動態序列容器通用方法</p></div>
+<h2 id="_9">容器適配器</h2>
 <h3 id="stack">stack</h3>
+<h4 id="_10">可用方法</h4>
 <h3 id="queue">queue</h3>
+<h4 id="_11">可用方法</h4>
 <h3 id="priority_queue">priority_queue</h3>
-<h2 id="_5">關聯容器</h2>
+<h4 id="_12">可用方法</h4>
+<h2 id="_13">關聯容器</h2>
+<h3 id="setmultiset">set/multiset</h3>
+<h4 id="_14">可用方法</h4>
+<p><div class="spoiler_repeat">有序容器通用方法</p></div>
+<h3 id="mapmultimap">map/multimap</h3>
+<h4 id="_15">可用方法</h4>
+<p><div class="spoiler_repeat">有序容器通用方法</p></div>
+<h3 id="unordered">unordered系列</h3>
+<hr></hr>
+<p>注1: 複雜度未特別說明則皆指時間，且 <script type="math/tex">N</script> 代表完成操作後容器內元素數量<br>
+注2: 若無標明複雜度默認為常數時間<br>
+注3: 多數容器皆定義於同名標頭檔內，只有multi系列的和不是multi的在相同標頭檔</p>
 <p><details class="spoiler_template"><summary>STL容器通用方法</p></summary>
 <p><strong>bool empty()</strong><br>
 判斷是否為空</p>
-<p><strong>std::size_t size()</strong><br>
-取得元素數量</p>
 <p><strong>void swap(container &other)</strong><br>
 與另一容器交換資料</p>
 <p><strong>allocator get_allocator()</strong><br>
-取得分配器</p>
+取得分配器<br>
+<em>array沒有這個方法</em></p>
+<p><strong>void clear()</strong><br>
+清空容器<br>
+<em>array沒有這個方法</em></p>
 <p><strong>iterator begin()</strong><br>
 取得指向開頭的迭代器</p>
 <p><strong>iterator end()</strong><br>
-取得指向結尾的迭代器<br>
+取得指向結尾的迭代器</p>
+<p><strong>const_iterator cbegin()</strong><br>
+取得指向開頭的常迭代器</p>
+<p><strong>const_iterator cend()</strong><br>
+取得指向結尾的常迭代器<br>
 </details></p>
-<p><details class="spoiler_template"><summary>序列容器通用方法</p></summary>
+<p><details class="spoiler_template"><summary>隨機存取容器通用方法</p></summary>
 <p><strong>T& operator[](size_t index)</strong><br>
 用索引取得值<br>
 存取越界時是未定義行為</p>
@@ -94,6 +149,75 @@
 <p><strong>T& back()</strong><br>
 取得最後一個值<br>
 容器為空時是未定義行為<br>
+</details></p>
+<p><details class="spoiler_template"><summary>有序容器通用方法</p></summary>
+<p><strong>std::size_t size()</strong><br>
+取得元素數量</p>
+<p><strong>iterator rbegin()</strong><br>
+取得指向反向開頭的迭代器</p>
+<p><strong>iterator rend()</strong><br>
+取得指向反向結尾的迭代器</p>
+<p><strong>const_iterator crbegin()</strong><br>
+取得指向反向開頭的常迭代器</p>
+<p><strong>const_iterator crend()</strong><br>
+取得指向反向結尾的常迭代器<br>
+</details></p>
+<p><details class="spoiler_template"><summary>動態序列容器通用方法</p></summary>
+<p><strong>void resize(std::size_t count, const T& value)</strong><br>
+改變容器的大小，並當count>目前大小時在<strong><em>多出來的格子</em></strong>填入value<br>
+如果省略value則不對多出來的格子做處理<br>
+<script type="math/tex">O(|count - size|)</script>
+<br>
+vector可能會因為重分配導致複雜度變大</p>
+<p><strong>void assign(std::size_t count, const T& value)</strong><br>
+<strong>void assign(iterator source_begin, iterator source_end)</strong><br>
+在容器中覆蓋指定數量的特定值或一個range的資料<br>
+<script type="math/tex">O(N)</script>
+</p>
+<p><strong>iterator insert(cons_iterator pos, const T& value)</strong><br>
+<strong>iterator insert(cons_iterator pos, std::size_t, const T& value)</strong><br>
+<strong>iterator insert(cons_iterator pos, iterator source_begin, iterator source_end)</strong><br>
+在容器的指定位置插入一個或多個值，並回傳插入的第一個值的位置<br>
+list: <script type="math/tex">O(插入資料數目)</script>
+<br>
+vector: <script type="math/tex">O(插入資料數目 + (end-pos))</script>
+<br>
+deque: <script type="math/tex">O(插入資料數目 + min(end-pos,pos-begin))</script>
+</p>
+<p><strong>iterator emplace(const_iterator pos, Args&&... args )</strong><br>
+用args作為參數建構一個物件並插入容器的指定位置，再回傳插入的值的位置<br>
+list: <script type="math/tex">O(1)</script>
+<br>
+vector: <script type="math/tex">O(1 + (end-pos))</script>
+<br>
+deque: <script type="math/tex">O(1 + min(end-pos,pos-begin))</script>
+</p>
+<p><strong>iterator erase(const_iterator pos)</strong><br>
+<strong>iterator erase(const_iterator pos_begin, const_iterator pos_end)</strong><br>
+刪除指定區域的值並回傳刪除區域後的第一個值的位置<br>
+list: <script type="math/tex">O(刪除資料數目)</script>
+<br>
+vector: <script type="math/tex">O(刪除資料數目 + (end-pos))</script>
+<br>
+deque: <script type="math/tex">O(刪除資料數目 + min(end-pos,pos-begin))</script>
+</p>
+<p><strong>void push_back(const T& value)</strong><br>
+<strong>void push_back(T&& value)</strong><br>
+在容器的結尾插入一個值</p>
+<p><strong>void emplace_back(Args&&... args)</strong><br>
+用args作為參數建構一個物件並插入容器的結尾</p>
+<p><strong>void pop_back()</strong><br>
+在容器的結尾刪除一個值</p>
+<p><strong>void push_front(const T& value)</strong><br>
+<strong>void push_front(T&& value)</strong><br>
+在容器的開頭插入一個值<br>
+<em>vector沒有這個方法</em></p>
+<p><strong>void emplace_front(Args&&... args)</strong><br>
+用args作為參數建構一個物件並插入容器的開頭<br>
+<em>vector沒有這個方法</em></p>
+<p><strong>void pop_front()</strong><br>
+在容器的開頭刪除一個值<br>
+<em>vector沒有這個方法</em><br>
 </details></p>
     </div>
     <script type="text/x-mathjax-config">
