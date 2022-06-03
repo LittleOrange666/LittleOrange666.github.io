@@ -68,6 +68,8 @@ case 2:原陣列為二維：矩陣乘法
 取出同時存在於兩陣列的值
 **np.random.shuffle(arr)**
 隨機打亂陣列
+**np.std(arr) -> float**
+求標準差
 
 ### --其他--
 **np.nonzero(arr/pyarr) -> tuple[arr]**

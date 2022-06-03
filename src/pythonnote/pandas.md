@@ -83,14 +83,14 @@ DataFrame可以直接由檔案匯入/匯出至檔案
 語法：
 
 ```python
-df.to_csv(檔名)      # 匯出到.csv檔
-df.to_json(檔名)     # 匯出到.json檔
-df.to_html(檔名)     # 匯出到.html檔
-df.to_excel(檔名)    # 匯出到.xlsx檔
-df.read_csv(檔名)    # 匯入自.csv檔
-df.read_json(檔名)   # 匯入自.json檔
-df.read_html(檔名)   # 匯入自.html檔
-df.read_excel(檔名)  # 匯入自.xlsx檔
+df.to_csv(檔名)           # 匯出到.csv檔
+df.to_json(檔名)          # 匯出到.json檔
+df.to_html(檔名)          # 匯出到.html檔
+df.to_excel(檔名)         # 匯出到.xlsx檔
+df = pd.read_csv(檔名)    # 匯入自.csv檔
+df = pd.read_json(檔名)   # 匯入自.json檔
+df = pd.read_html(檔名)   # 匯入自.html檔
+df = pd.read_excel(檔名)  # 匯入自.xlsx檔
 ```
 
 ### 取出/顯示資料

@@ -125,13 +125,11 @@ if (!(location.href.endsWith("/") || location.href.endsWith("/index"))) {
 //init view detect
 $(window).on('DOMContentLoaded load resize scroll', update_inview);
 //previous btn action
-$("#previous").click(() => {
-    if (location.href.endsWith("/") || location.href.endsWith("/index")) {
-        location.href = "../";
-    } else {
-        location.href = "./";
-    }
-});
+if (location.href.endsWith("/") || location.href.endsWith("/index")) {
+    $("#previous").attr("href","../");
+} else {
+    $("#previous").attr("href","./");
+}
 //code copy
 var copyer = document.createElement("textarea");
 document.body.appendChild(copyer);
