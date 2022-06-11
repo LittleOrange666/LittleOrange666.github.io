@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>輕小說文庫-自製UI</title>
+    <base target="_blank">
+    <style type="text/css">
+    table {
+        border: 1px solid #000;
+        font-family: 微軟正黑體;
+        font-size: 30px;
+        border: 1px solid #000;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    th {
+        padding: 10px;
+        border: 1px solid #000;
+    }
+
+    td {
+        border: 1px solid #000;
+        padding: 5px;
+    }
+
+    p {
+        font-family: 微軟正黑體;
+        font-size: 30px;
+        text-align: left;
+        margin: 0px;
+    }
+
+    button {
+        font-family: 微軟正黑體;
+        font-size: 30px;
+    }
+
+    input {
+        font-family: 微軟正黑體;
+        font-size: 30px;
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .horizontal {
+        font-family: 微軟正黑體;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .between_horizontal {
+        font-family: 微軟正黑體;
+        font-size: 30px;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    #outer {
+        width: 100%;
+    }
+
+    label {
+        padding: 0;
+        margin-right: 3px;
+        cursor: pointer;
+    }
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    input[type=checkbox]+span {
+        display: inline-block;
+        background-color: #aaa;
+        padding: 3px 6px;
+        border: 1px solid gray;
+        color: #444;
+        user-select: none;
+        /* 防止文字被滑鼠選取反白 */
+    }
+
+    input[type=checkbox]:checked+span {
+        color: yellow;
+        background-color: #444;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <details class="horizontal">
+            <summary>外觀設定</summary>
+            <pre><div id="style" class="horizontal">
+            <p>背景顏色：</p>
+            <input id="backcolor" type="color">
+        </div><div id="style" class="horizontal">
+            <p>字體顏色：</p>
+            <input id="fontcolor" type="color">
+        </div><div id="style" class="horizontal">
+            <p>字體大小：</p>
+            <input id="fontsize">
+        </div><div id="style" class="horizontal">
+            <p>頁面高度：</p>
+            <input id="screenheight">
+        </div><div id="style" class="horizontal">
+            <label class="nocustomstyle"><input class="nocustomstyle" type="checkbox" id="splitpage"/><span class="nocustomstyle">分頁顯示</span></label>
+        </div><div id="style" class="horizontal">
+            <label class="nocustomstyle"><input class="nocustomstyle" type="checkbox" id="widbtn"/><span class="nocustomstyle">按鍵靠邊</span></label>
+        </div><div id="style" class="horizontal">
+            <button onclick="loadstyle();">儲存</button>
+        </div></pre>
+        </details>
+        <div id="mainarea"></div>
+        <div id="pages">
+            <div id="novelspage" hidden="true">
+                <div class="horizontal">
+                    <p>搜尋：</p>
+                    <input id="novelsearch" autocomplete="off" placeholder="請輸入搜尋索引" oninput="updateNovels()">
+                    <button onclick="changeToHistory();">歷史紀錄</button>
+                </div>
+                <div class="horizontal">
+                    <table id="novels">
+                        <thead>
+                            <tr>
+                                <th>小說名稱</th>
+                                <th>原始連結</th>
+                                <th>前往閱讀</th>
+                            </tr>
+                        </thead>
+                        <tbody id="novelstbody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="seriespage" hidden="true">
+                <div class="horizontal">
+                    <button onclick="changeToHistory();">歷史紀錄</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="golast();">回上次觀看進度</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="changeToNovels();">回小說清單</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="downloadall(currentSeries);">下載全部</button>
+                </div>
+                <div class="horizontal">
+                    <h1 id="noveltitle"></h1>
+                </div>
+                <div class="horizontal">
+                    <table id="chapterstable">
+                        <tbody id="chapterstbody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="horizontal">
+                    <button onclick="changeToHistory();">歷史紀錄</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="golast();">回上次觀看進度</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="changeToNovels();">回小說清單</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="downloadall(currentSeries);">下載全部</button>
+                </div>
+            </div>
+            <div id="chapterpage" hidden="true">
+                <div class="horizontal" id="chapterbtnline">
+                    <button onclick="goprepage(currentChapter);" id="chapterbtn1">上一頁</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="changeToSeries(sourceData['chapters'][currentChapter]['seriesname']);">回小說目錄</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="gonextpage(currentChapter);" id="chapterbtn2">下一頁</button>
+                </div>
+                <div class="horizontal">
+                    <h1 id="chapterTitle"></h1>
+                </div>
+                <div class="horizontal" style="display: none;">
+                    <a id="chapterlinkprefix"></a>
+                    <a id="chapterlink"></a>
+                </div>
+                <div class="horizontal">
+                    <p id="chaptercontent"></p>
+                    <div id="chapterarea"></div>
+                </div>
+                <div class="horizontal" id="chapterbtnline0">
+                    <button onclick="goprepage(currentChapter);" id="chapterbtn3">上一頁</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="changeToSeries(sourceData['chapters'][currentChapter]['seriesname']);">回小說目錄</button>
+                    <p>&nbsp;&nbsp;</p>
+                    <button onclick="gonextpage(currentChapter);" id="chapterbtn4">下一頁</button>
+                </div>
+            </div>
+            <div id="historypage" hidden="true">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function space() {
+        return createUnsafeText("p", "&nbsp;&nbsp;");
+    }
+    var isBetaTest = false;
+
+    function printout(text) {
+        if (isBetaTest) console.log(text);
+    }
+    //初始設定
+    var sourceData = {};
+    var sourceURL = "https://script.google.com/macros/s/AKfycbzltphHLoGWZj-RwCvBk5IKuxhwm6WAlTZ94WkbvL6ANjB8brDHhy2qMgfTOXgJ3T0V/exec"; //版本12
+    var currentPage = 0; //0:選擇小說 1:小說目錄 2:小說內文 3:歷史紀錄
+    var currentChapter = 0; // 紀錄index
+    var currentSeries = 0; // 紀錄名稱
+
+    //localStorage
+    var storageName = "novelGrab_v3";
+    var storageData;
+    if (localStorage.getItem(storageName) === null) {
+        storageData = {};
+        localStorage.setItem(storageName, JSON.stringify(storageData));
+    } else {
+        storageData = JSON.parse(localStorage.getItem(storageName));
+    };
+    if (storageData["fontsize"] === undefined) {
+        storageData["fontsize"] = "30";
+    }
+    if (storageData["fontcolor"] === undefined) {
+        storageData["fontcolor"] = "000000";
+    }
+    if (storageData["backcolor"] === undefined) {
+        storageData["backcolor"] = "ffffff";
+    }
+    if (storageData["splitpage"] === undefined) {
+        storageData["splitpage"] = "false";
+    }
+    if (storageData["widbtn"] === undefined) {
+        storageData["widbtn"] = "false";
+    }
+    if (storageData["screenheight"] === undefined) {
+        storageData["screenheight"] = "864";
+    }
+    if (storageData["history"] === undefined) {
+        storageData["history"] = new Array();
+    }
+    if (storageData["historycount"] === undefined) {
+        storageData["historycount"] = "50";
+    }
+    saveData();
+    writestyle();
+    document.getElementById("fontsize").value = storageData["fontsize"];
+    document.getElementById("fontcolor").value = "#" + storageData["fontcolor"];
+    document.getElementById("backcolor").value = "#" + storageData["backcolor"];
+    document.getElementById("screenheight").value = storageData["screenheight"];
+    document.getElementById("splitpage").checked = storageData["splitpage"] == "true";
+    document.getElementById("widbtn").checked = storageData["widbtn"] == "true";
+    chapterbtnline0.style["justify-content"] = chapterbtnline.style["justify-content"] = (storageData["widbtn"] == "true") ? "space-between" : "center"
+
+    function issplitpage() {
+        return storageData["splitpage"] == "true" && isTextContent;
+    }
+
+    var scrollData;
+    if (localStorage.getItem(storageName + "_scroll") === null) {
+        scrollData = {};
+        localStorage.setItem(storageName + "_scroll", JSON.stringify(scrollData));
+    } else {
+        scrollData = JSON.parse(localStorage.getItem(storageName + "_scroll"));
+    };
+    var readingData;
+    if (localStorage.getItem(storageName + "_reading") === null) {
+        readingData = {};
+        localStorage.setItem(storageName + "_reading", JSON.stringify(readingData));
+    } else {
+        readingData = JSON.parse(localStorage.getItem(storageName + "_reading"));
+    };
+    var dosavescroll = false;
+
+    function saveScroll() {
+        if (dosavescroll) {
+            scrollData[window.location.hash] = { "x": window.scrollX, "y": window.scrollY };
+        }
+    }
+
+    function saveScrollData() {
+        if (dosavescroll) {
+            try {
+                localStorage.setItem(storageName + "_scroll", JSON.stringify(scrollData));
+            } catch (e) {}
+        }
+    }
+
+    function runscroll() {
+        window.setTimeout(function() {
+            let target = scrollData[window.location.hash];
+            if (target) window.scrollTo(target.x, target.y);
+            dosavescroll = true;
+        }, 300);
+    }
+
+    function saveData() { //儲存localStorage
+        try {
+            localStorage.setItem(storageName, JSON.stringify(storageData));
+        } catch (e) {
+            console.log("無法儲存資料!!!")
+        }
+    }
+
+    function loadstyle() { //儲存外觀設定
+        storageData["fontsize"] = document.getElementById("fontsize").value;
+        storageData["fontcolor"] = document.getElementById("fontcolor").value.substring(1);
+        storageData["backcolor"] = document.getElementById("backcolor").value.substring(1);
+        storageData["screenheight"] = document.getElementById("screenheight").value;
+        storageData["splitpage"] = "" + document.getElementById("splitpage").checked;
+        storageData["widbtn"] = "" + document.getElementById("widbtn").checked;
+        chapterbtnline0.style["justify-content"] = chapterbtnline.style["justify-content"] = (storageData["widbtn"] == "true") ? "space-between" : "center"
+        saveData();
+        writestyle();
+    }
+
+    function writestyle() { //寫入外觀
+        document.body.bgColor = "#" + storageData["backcolor"];
+        writenodestyle(document.body);
+    }
+
+    function writenodestyle(node) { //寫入外觀*
+        if (node.className == "nocustomstyle") return;
+        if (node.children.length > 0) {
+            let nodes = node.children;
+            for (let i = 0; i < nodes.length; i++) {
+                writenodestyle(nodes[i]);
+            }
+        }
+        node.style.backgroundColor = "#" + storageData["backcolor"];
+        node.style.fontSize = storageData["fontsize"] + "px";
+        node.style.color = "#" + storageData["fontcolor"];
+        node.style.padding = node.tagName.toLowerCase()=="button" ?node.style.fontSize:"0px";
+    }
+    var temp = {};
+
+    var functemp = new Array();
+
+    function putfunc(func) { //取得暫時函數名稱
+        let i = 0;
+        while (functemp[i] != undefined) {
+            i++;
+        }
+        functemp[i] = function() {
+            functemp[i] = undefined;
+            func();
+        }
+        return "functemp[" + i + "]";
+    }
+
+    var loadingNode = undefined;
+
+    function startloading(name) { //顯示正在載入
+        loadingNode = createText("p", "正在載入:" + name);
+        document.getElementById("mainarea").appendChild(loadingNode);
+    }
+
+    function stoploading() { //隱藏正在載入
+        if (loadingNode) {
+            document.getElementById("mainarea").removeChild(loadingNode);
+        }
+    }
+
+    function startup() { //初始化
+        downloadSource();
+    }
+
+    function downloadSource() { //下載原始索引
+        startloading("數據");
+        let varname = "temp[\"download_source\"]";
+        readSheet("3", varname, putfunc(completedownloadSource), "novelinfo");
+    }
+
+    function completedownloadSource() { //完成下載原始索引
+        let value = temp["download_source"]["data"];
+        sourceData = JSON.parse(value);
+        sourceData["chapters"] = {};
+        for (let i = 0; i < sourceData["indexs"].length; i++) {
+            let series = sourceData[sourceData["indexs"][i]];
+            let books = series["books"];
+            for (let j = 0; j < books.length; j++) {
+                let book = books[j];
+                for (let k = 0; k < book["chapters"].length; k++) {
+                    let chapter = book["chapters"][k];
+                    sourceData["chapters"][chapter["index"]] = { "seriesname": series["name"], "bookname": book["name"], "name": chapter["name"] };
+                }
+            }
+        }
+        saveData();
+        stoploading();
+        if (window.location.hash == "") changeToNovels();
+        else {
+            let nhash = window.location.hash;
+            hashlistener(nhash.substring(1, nhash.length));
+        }
+        window.setInterval(saveScroll, 300);
+        window.setInterval(saveScrollData, 3000);
+    }
+
+    function readKeySheet(key, row, varname, oncomplete, id) { //讀資料
+        id = id ? id : "novelkey";
+        sendRequest(sourceURL + "?id=" + id + "&page=工作表1&keypage=工作表1&action=readrow&key=" + key + "&row=" + row + "&returntype=js&varname=" + varname + "&oncomplete=" + oncomplete);
+    }
+
+    function readSheet(row, varname, oncomplete, id) { //讀資料
+        id = id ? id : "novel";
+        sendRequest(sourceURL + "?id=" + id + "&page=工作表1&action=readrow&row=" + row + "&returntype=js&varname=" + varname + "&oncomplete=" + oncomplete);
+    }
+
+    function sendRequest(url) { //發請求
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        document.body.appendChild(script);
+        script.src = url;
+        printout(script.src)
+        document.body.removeChild(script);
+    }
+
+    function addlinenode(tbody, node, count) { //加占整行的格子
+        let line = document.createElement("tr");
+        let td = document.createElement("td");
+        td.appendChild(node);
+        td.colSpan = "" + count;
+        line.appendChild(td);
+        tbody.appendChild(line);
+    }
+
+    function addline(tbody, ...nodes) { //加一行
+        let line = document.createElement("tr");
+        for (let i = 0; i < nodes.length; i++) {
+            let td = document.createElement("td");
+            td.appendChild(nodes[i]);
+            line.appendChild(td);
+        }
+        tbody.appendChild(line);
+    }
+
+    function compare(searchtext, text) { //搜尋
+        if (searchtext == "") {
+            return true;
+        }
+        searchtext = searchtext.toLowerCase();
+        let target = text.toLowerCase();
+        let index = 0;
+        for (var i = 0; i < target.length; i++) {
+            if (index >= searchtext.length) {
+                return true;
+            }
+            if (target.charAt(i) == searchtext.charAt(index)) {
+                index++;
+            };
+        }
+        if (index >= searchtext.length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function horizon(...nodes) { //用<div class = "horizontal">包住nodes
+        let div = thediv(...nodes);
+        div.className = "horizontal";
+        return div;
+    }
+
+    function thediv(...nodes) { //用<div>包住nodes
+        let div = document.createElement("div");
+        for (let i = 0; i < nodes.length; i++) {
+            div.appendChild(nodes[i]);
+        }
+        return div;
+    }
+
+    function clearpage() { //清空mainarea
+        document.getElementById("mainarea").querySelectorAll('*').forEach(n => n.remove());
+        loadingNode = undefined;
+        window.scrollTo(0, 0);
+    }
+
+    function createText(type, text) { //創建文字
+        if (text === undefined) {
+            return document.createTextNode(type);
+        }
+        let r = document.createElement(type);
+        r.appendChild(document.createTextNode(text));
+        return r;
+    }
+
+    function createUnsafeText(type, text) { //創建不安全文字
+        if (text === undefined) {
+            return document.createTextNode(type);
+        }
+        let r = document.createElement(type);
+        r.innerHTML = text;
+        return r;
+    }
+
+    function getSeriesIndex(seriesname) { //取得小說索引
+        let l = sourceData["indexs"];
+        for (let i = 0; i < l.length; i++) {
+            if (l[i] == seriesname) {
+                return "" + i;
+            }
+        }
+        return "main";
+    }
+
+    function cleartable(tbody) {
+        for (let i = tbody.rows.length - 1; i >= 0; i--) {
+            tbody.deleteRow(i);
+        }
+    }
+
+    var downloading = {}
+
+    function isDownloading(index) {
+        if (Object.keys(downloading).includes(index)) {
+            if (Number(new Date()) - downloading[index] < 120000) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function downloadall(name) { //下載全部
+        let series = sourceData[name];
+        let books = series["books"];
+        for (let i = 0; i < books.length; i++) {
+            let book = books[i];
+            let chapters = book["chapters"];
+            for (let j = 0; j < chapters.length; j++) {
+                let chapter = chapters[j]
+                let index = chapter["index"];
+                if (!storageData[index] && !isDownloading(index)) {
+                    download(index, function() { downloadall(name); });
+                    return;
+                }
+            }
+        }
+    }
+
+    //hashlistener
+    window.addEventListener('hashchange', function(e) {
+        let t = e.newURL;
+        hashlistener(t.substring(t.indexOf("#") + 1, t.length));
+    }, false);
+
+    var hashlistenerlock = false;
+
+    function hashlistener(hash) { //監聽hash變化
+        if (hashlistenerlock || hash == "") {
+            hashlistenerlock = false;
+            return;
+        }
+        let i = hash.indexOf("_");
+        let type = hash.substring(0, i);
+        let value = hash.substring(i + 1, hash.length);
+        if (type == "main") {
+            changeToNovels_run();
+        }
+        if (type == "series") {
+            changeToSeries_run(sourceData["indexs"][Number(value)]);
+        }
+        if (type == "chapter") {
+            changeToChapter_run(value);
+        }
+        if (type == "history") {
+            changeToHistory_run(value);
+        }
+    }
+
+    function hideall() {
+        novelspage.hidden = currentPage != 0;
+        seriespage.hidden = currentPage != 1;
+        chapterpage.hidden = currentPage != 2;
+        historypage.hidden = currentPage != 3;
+    }
+
+    //頁面0
+    function changeToNovels() {
+        dosavescroll = false;
+        window.location.hash = "main_main";
+    }
+
+    function changeToNovels_run() { //換至頁面0
+        window.document.querySelector("title").innerHTML = "小說清單";
+        //寫入畫面
+        currentPage = 0;
+        hideall();
+        clearpage();
+        document.getElementById('novelsearch').value = searchtext;
+        updateNovels();
+        runscroll();
+    }
+
+    var searchtext = "";
+
+    function updateNovels() { //刷新小說列表
+        searchtext = document.getElementById('novelsearch').value;
+        let table = document.getElementById('novelstbody');
+        cleartable(table);
+        let list = sourceData["indexs"];
+        if (list != undefined) {
+            for (let i = 0; i < list.length; i++) {
+                let index = list[i];
+                let obj = sourceData[index];
+                if (compare(searchtext, obj["name"])) {
+                    let a = createText("a", obj["name"]);
+                    a.href = obj["url"];
+                    let btn = createText("button", "閱讀");
+                    btn.series = obj["name"];
+                    btn.onclick = function() {
+                        changeToSeries(btn.series);
+                    }
+                    addline(table, createText("p", obj["name"]), a, btn);
+                }
+            }
+        }
+        writestyle();
+    }
+
+    //頁面1
+    function changeToSeries(name) {
+        dosavescroll = false;
+        window.location.hash = "series_" + getSeriesIndex(name);
+    }
+
+    function changeToSeries_run(name) { //換至頁面1
+        window.document.querySelector("title").innerHTML = name;
+        let series = sourceData[name];
+        let books = series["books"];
+        currentSeries = name;
+        let page1 = null;
+        cleartable(chapterstbody);
+        for (let i = 0; i < books.length; i++) {
+            let book = books[i];
+            addlinenode(chapterstbody, createText("p", book["name"]), 4);
+            let chapters = book["chapters"];
+            let line = new Array();
+            for (let j = 0; j < chapters.length; j++) {
+                let chapter = chapters[j]
+                let texttips = "(New)*";
+                if (storageData[chapter["index"]] != undefined) {
+                    if (storageData[chapter["index"]]["read"]) texttips = "";
+                    else texttips = "(New)"
+                }
+                let a = createText("a", sourceData["chapters"][chapter["index"]]["name"] + texttips);
+                a.cpindex = chapter["index"];
+                a.href = "#chapter_" + chapter["index"];
+                a.target = "_self";
+                if (page1 == null) page1 = chapter["index"];
+                line[j % 4] = a;
+                if (j % 4 == 3) {
+                    addline(chapterstbody, ...line);
+                    line = new Array();
+                }
+            }
+            if (line.length > 0) {
+                for (let i = 1; i < 4; i++) {
+                    if (line[i] === undefined) {
+                        line[i] = createText("p", " ")
+                    }
+                }
+                addline(chapterstbody, ...line);
+            }
+        }
+        if (!storageData[page1]) download(page1);
+
+        //寫入畫面
+        currentPage = 1;
+        hideall();
+        clearpage();
+        writestyle();
+        runscroll();
+    }
+
+    function refreshSeries(name) {
+        let series = sourceData[name];
+        let books = series["books"];
+        let lines = document.getElementById('chapterstbody').childNodes;
+        let currentline = 0;
+        for (let i = 0; i < books.length; i++) {
+            currentline++;
+            let book = books[i];
+            let chapters = book["chapters"];
+            for (let j = 0; j < chapters.length; j++) {
+                if (j % 4 == 0) {
+                    currentline++;
+                }
+                let chapter = chapters[j]
+                let texttips = "(New)*";
+                if (storageData[chapter["index"]] != undefined) {
+                    if (storageData[chapter["index"]]["read"]) texttips = "";
+                    else texttips = "(New)"
+                }
+                let a = createText("a", sourceData["chapters"][chapter["index"]]["name"] + texttips);
+                a.cpindex = chapter["index"];
+                a.href = "#chapter_" + chapter["index"];
+                a.target = "_self";
+                let e = lines[currentline].childNodes[j % 4];
+                if (e) {
+                    e.removeChild(e.firstElementChild);
+                    e.appendChild(a);
+                }
+            }
+        }
+        writestyle();
+    }
+
+    function golast() {
+        let name = window.document.querySelector("title").innerHTML;
+        let hi = storageData["history"];
+        for (let i = hi.length - 1; i >= 0; i--) {
+            let index = hi[i]["index"];
+            let data = sourceData["chapters"][index];
+            if (data["seriesname"] == name) {
+                changeToChapter(index);
+                return;
+            }
+        }
+        window.alert("您未觀看此小說");
+    }
+
+    function gonextpage(index) { //下一頁
+        if (issplitpage() && currentChapterContentsPos < currentChapterContents.length) {
+            contents = currentChapterContents;
+            chaptercontent.innerHTML = "";
+            let height = heightlimit();
+            let i = currentChapterContentsPos;
+            currentChapterContentsStartPos = currentChapterContentsPos;
+            let started = false;
+            for (; i < contents.length; i++) {
+                let old = chaptercontent.innerHTML;
+                chaptercontent.innerHTML = old + (started ? "<br/>" : "") + contents[i];
+                started = true;
+                if (document.body.clientHeight > height) {
+                    chaptercontent.innerHTML = old;
+                    break;
+                }
+            }
+            while (document.body.clientHeight < height) {
+                let old = chaptercontent.innerHTML;
+                chaptercontent.innerHTML = old + "<br/>";
+                if (document.body.clientHeight > height) {
+                    chaptercontent.innerHTML = old;
+                    break;
+                }
+            }
+            currentChapterContentsPos = i;
+        } else {
+            let target = findnextpage(index);
+            if (target == "notfound") window.alert("沒有下一章了");
+            else changeToChapter(target);
+        }
+        updateChapterButton();
+    }
+
+    function findnextpage(index) {
+        let cpdata = sourceData["chapters"][index];
+        let series = sourceData[cpdata["seriesname"]];
+        let bookid = 0;
+        while (series["books"][bookid]["name"] != cpdata["bookname"]) {
+            bookid++;
+        }
+        let book = series["books"][bookid];
+        let chapterid = 0;
+        while (book["chapters"][chapterid]["index"] != index) {
+            chapterid++;
+        }
+        if (book["chapters"][chapterid + 1] === undefined) {
+            if (series["books"][bookid + 1] === undefined) {
+                return "notfound";
+            } else {
+                return series["books"][bookid + 1]["chapters"][0]["index"];
+            }
+        } else {
+            return book["chapters"][chapterid + 1]["index"];
+        }
+    }
+
+    function goprepage(index) { //前一頁
+        if (issplitpage() && currentChapterContentsStartPos > 0) {
+            contents = currentChapterContents;
+            chaptercontent.innerHTML = "";
+            let height = heightlimit();
+            let i = currentChapterContentsStartPos - 1;
+            currentChapterContentsPos = currentChapterContentsStartPos;
+            let started = false;
+            for (; i >= 0; i--) {
+                let old = chaptercontent.innerHTML;
+                chaptercontent.innerHTML = contents[i] + (started ? "<br/>" : "") + old;
+                started = true;
+                if (document.body.clientHeight > height) {
+                    chaptercontent.innerHTML = old;
+                    break;
+                }
+            }
+            while (document.body.clientHeight < height) {
+                let old = chaptercontent.innerHTML;
+                chaptercontent.innerHTML = old + "<br/>";
+                if (document.body.clientHeight > height) {
+                    chaptercontent.innerHTML = old;
+                    break;
+                }
+            }
+            currentChapterContentsStartPos = i + 1;
+        } else {
+            let target = findprepage(index);
+            if (target == "notfound") window.alert("沒有上一章了");
+            else {
+                startAtEnd = issplitpage();
+                changeToChapter(target);
+            }
+        }
+        updateChapterButton();
+    }
+
+    function findprepage(index) {
+        let cpdata = sourceData["chapters"][index];
+        let series = sourceData[cpdata["seriesname"]];
+        let bookid = 0;
+        while (series["books"][bookid]["name"] != cpdata["bookname"]) {
+            bookid++;
+        }
+        let book = series["books"][bookid];
+        let chapterid = 0;
+        while (book["chapters"][chapterid]["index"] != index) {
+            chapterid++;
+        }
+        if (book["chapters"][chapterid - 1] === undefined) {
+            if (series["books"][bookid - 1] === undefined) {
+                return "notfound";
+            } else {
+                let cps = series["books"][bookid - 1]["chapters"];
+                return cps[cps.length - 1]["index"];
+            }
+        } else {
+            return book["chapters"][chapterid - 1]["index"];
+        }
+    }
+
+    function changeToChapter(index) {
+        dosavescroll = false;
+        window.location.hash = "chapter_" + index;
+    }
+    //頁面2
+    function changeToChapter_run(index) { //換至頁面2
+        currentSeries = sourceData["chapters"][index]["seriesname"];
+        currentChapter = index;
+        //歷史紀錄
+        let hi = storageData["history"];
+        hi.push({ "time": Number(new Date()), "index": index });
+        saveData();
+        let cpdata = sourceData["chapters"][index];
+        let t = cpdata["seriesname"] + " " + cpdata["bookname"] + " " + cpdata["name"];
+        window.document.querySelector("title").innerHTML = t;
+        //寫入畫面
+        currentPage = 2;
+        hideall();
+        clearpage();
+        writestyle();
+
+        //載入頁面
+        let data = storageData[index];
+        if (!data) {
+            if (!isDownloading(index)) {
+                download(index);
+            }
+            startloading(t);
+        } else {
+            writeChapter(index);
+        }
+        let pre = findprepage(index);
+        if (pre != "notfound" && !storageData[pre]) download(pre);
+        let next = findnextpage(index);
+        if (next != "notfound" && !storageData[next]) download(next);
+
+        function hasher(cp) {
+            return cp == "notfound" ? "#series_" + getSeriesIndex(sourceData['chapters'][currentChapter]['seriesname']) : "#chapter_" + cp;
+        }
+        window.history.replaceState({}, "", hasher(findprepage(index)));
+        window.history.pushState({}, "", "#chapter_" + index);
+        window.history.pushState({}, "", hasher(findnextpage(index)));
+        hashlistenerlock = true;
+        window.history.back();
+        runscroll();
+    }
+
+    function updateChapterButton() {
+        chapterbtn1.innerHTML = chapterbtn3.innerHTML = (issplitpage() && currentChapterContentsStartPos > 0) ? "上一頁" : "上一章";
+        chapterbtn2.innerHTML = chapterbtn4.innerHTML = (issplitpage() && currentChapterContentsPos < currentChapterContents.length) ? "下一頁" : "下一章";
+        chapterbtnline0.style.display = issplitpage() ? "none" : "";
+        readingData = { "chapter": currentChapter, "position": currentChapterContentsStartPos }
+        localStorage.setItem(storageName + "_reading", JSON.stringify(readingData));
+        let cpdata = sourceData["chapters"][currentChapter];
+        let t = cpdata["seriesname"] + " " + cpdata["bookname"] + " " + cpdata["name"];
+        if (issplitpage()) {
+            let p = "" + Math.floor(1000 * currentChapterContentsPos / currentChapterContents.length);
+            if (p.length <= 1) p = "0" + p;
+            p = p.substring(0, p.length - 1) + "." + p.substring(p.length - 1, p.length);
+            t += " " + p + "%";
+        }
+        document.getElementById("chapterTitle").innerHTML = t;
+    }
+
+    var currentChapterContents = [];
+    var currentChapterContentsPos = 0; //目前結束點(右開)
+    var currentChapterContentsStartPos = 0; //目前起始點(左閉)
+    var startAtEnd = false;
+    var isTextContent = true;
+
+    function heightlimit() {
+        let r = Number(storageData["screenheight"]);
+        if (isNaN(r)) r = 864;
+        return r;
+    }
+
+    function writeChapter(index) { //寫入內容
+        console.log(index);
+        if (currentChapter != index || currentPage != 2) {
+            return;
+        }
+        stoploading();
+        printout('show ' + JSON.stringify(sourceData["chapters"][index]));
+        let data = storageData[index];
+        let cpdata = sourceData["chapters"][index];
+        data["read"] = true;
+        let t = cpdata["seriesname"] + " " + cpdata["bookname"] + " " + cpdata["name"];
+        document.getElementById("chapterTitle").innerHTML = t;
+        let div = document.getElementById("chapterarea");
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+        isTextContent = (data["type"] == "text");
+        if (data["type"] == "text") {
+            let content = data["content"];
+            let contents = content.split("<br/>").filter((s) => s && s.trim());
+            currentChapterContents = contents;
+            chaptercontent.innerHTML = "";
+            let height = heightlimit();
+            let i = 0;
+            if (readingData["chapter"] == index) {
+                i = readingData["position"];
+            }
+            if (startAtEnd) {
+                startAtEnd = false;
+                currentChapterContentsPos = contents.length;
+                i = contents.length - 1;
+                let started = false;
+                for (; i >= 0; i--) {
+                    let old = chaptercontent.innerHTML;
+                    chaptercontent.innerHTML = contents[i] + (started ? "<br/>" : "") + old;
+                    started = true;
+                    if (issplitpage() && document.body.clientHeight > height) {
+                        chaptercontent.innerHTML = old;
+                        break;
+                    }
+                }
+                while (document.body.clientHeight < height) {
+                    let old = chaptercontent.innerHTML;
+                    chaptercontent.innerHTML = old + "<br/>";
+                    if (document.body.clientHeight > height) {
+                        chaptercontent.innerHTML = old;
+                        break;
+                    }
+                }
+                currentChapterContentsStartPos = i + 1;
+            } else {
+                currentChapterContentsStartPos = i;
+                let started = false;
+                for (; i < contents.length; i++) {
+                    let old = chaptercontent.innerHTML;
+                    chaptercontent.innerHTML = old + (started ? "<br/>" : "") + contents[i];
+                    started = true;
+                    if (issplitpage() && document.body.clientHeight > height) {
+                        chaptercontent.innerHTML = old;
+                        break;
+                    }
+                }
+                while (document.body.clientHeight < height) {
+                    let old = chaptercontent.innerHTML;
+                    chaptercontent.innerHTML = old + "<br/>";
+                    if (document.body.clientHeight > height) {
+                        chaptercontent.innerHTML = old;
+                        break;
+                    }
+                }
+                currentChapterContentsPos = i;
+            }
+        }
+        if (data["type"] == "imags") {
+            chaptercontent.innerHTML = "";
+            let imags = data["imags"];
+            for (let i = 0; i < imags.length; i++) {
+                let img = document.createElement("img");
+                img.src = imags[i];
+                img.alt = imags[i];
+                div.appendChild(img);
+            }
+        }
+        document.getElementById('chapterlinkprefix').innerHTML = "原文連結：";
+        let linker = document.getElementById('chapterlink');
+        linker.innerHTML = data["url"];
+        linker.href = data["url"];
+        writestyle();
+        saveData();
+        updateChapterButton();
+    }
+
+    function download(index, oncomplete) { //下載章節
+        if (isDownloading(index)) {
+            return;
+        }
+        downloading[index] = Number(new Date());
+        if (!oncomplete) {
+            oncomplete = function() {};
+        }
+        printout('download ' + JSON.stringify(sourceData["chapters"][index]));
+        let varname = "temp[\"download_" + index + "\"]";
+        let func = function() {
+            completedownload(index, oncomplete);
+        }
+        let il = index.split("_");
+        readKeySheet(il[0], il[1], varname, putfunc(func));
+    }
+
+    function completedownload(index, oncomplete) { //完成下載章節
+        printout('completedownload ' + JSON.stringify(sourceData["chapters"][index]));
+        let value = temp["download_" + index]["data"];
+        storageData[index] = JSON.parse(value);
+        if (storageData[index]["type"] == "text") {
+            let text = storageData[index]["content"];
+            text = text.replace(/\n/g, "<br/>");
+            text = text.replace(/<br\/>\r<br\/>/g, "<br/>");
+            storageData[index]["content"] = text.replace(/ /g, "&nbsp;");
+        }
+        oncomplete();
+        if (currentPage == 2 && currentChapter == index) {
+            writeChapter(index);
+        }
+        if (currentPage == 1 && currentSeries == sourceData["chapters"][index]["seriesname"]) {
+            refreshSeries(currentSeries);
+        }
+        saveData();
+    }
+
+    function getTimeStr(date) { //顯示時間
+        return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    }
+
+    function changeToHistory(seriesname, page) {
+        dosavescroll = false;
+        let index;
+        if (seriesname === undefined) {
+            index = "main";
+        } else {
+            index = getSeriesIndex(seriesname);
+        }
+        if (page == undefined) {
+            page = "1";
+        }
+        window.location.hash = "history_" + index + "_" + page;
+    }
+    //頁面3
+    function changeToHistory_run(value) { //換至頁面3
+        let deletetime = Number(new Date()) - 258000000;
+        let startindex = 0;
+        while (storageData["history"][startindex]["time"] < deletetime) startindex++;
+        storageData["history"] = storageData["history"].slice(startindex, storageData["history"].length);
+        let i0 = value.indexOf("_");
+        let index = value.substring(0, i0);
+        let page = value.substring(i0 + 1, value.length);
+        let series = (index == "main") ? undefined : sourceData["indexs"][Number(index)];
+        let t = ((index == "main") ? "" : series + " ") + "歷史紀錄 第" + page + "頁";
+        window.document.querySelector("title").innerHTML = t;
+        let historycount = Number(storageData["historycount"]);
+        //按鍵
+        let goprebtn = createText("button", "上一頁");
+        goprebtn.onclick = function() {
+            changeToHistory(series, "" + (Number(page) - 1));
+        }
+        let gonextbtn = createText("button", "下一頁");
+        gonextbtn.onclick = function() {
+            changeToHistory(series, "" + (Number(page) + 1));
+        }
+        let gobackbtn = createText("button", "回前頁");
+        gobackbtn.onclick = function() {
+            if (series === undefined) {
+                changeToNovels();
+            } else {
+                changeToSeries(series);
+            }
+        }
+        //repeat
+        let goprebtn0 = createText("button", "上一頁");
+        goprebtn0.onclick = goprebtn.onclick;
+        let gonextbtn0 = createText("button", "下一頁");
+        gonextbtn0.onclick = gonextbtn.onclick;
+        let gobackbtn0 = createText("button", "回前頁");
+        gobackbtn0.onclick = gobackbtn.onclick;
+        //
+        let btnline = new Array();
+        let btnline0 = new Array();
+        if (Number(page) > 1) {
+            btnline[btnline.length] = goprebtn;
+            btnline0[btnline0.length] = goprebtn0;
+            btnline[btnline.length] = space();
+            btnline0[btnline0.length] = space();
+        }
+        btnline[btnline.length] = gobackbtn;
+        btnline0[btnline0.length] = gobackbtn0;
+        //列表
+        let historytable = document.createElement("table");
+        historytable.id = "historytable";
+        let thead = document.createElement("thead");
+        let headline = document.createElement("tr");
+        headline.appendChild(createText("th", "序號"));
+        headline.appendChild(createText("th", "時間"));
+        if (index == "main") {
+            headline.appendChild(createText("th", "小說名稱"));
+        }
+        headline.appendChild(createText("th", "卷名"));
+        headline.appendChild(createText("th", "篇名"));
+        headline.appendChild(createText("th", "前往"));
+        thead.appendChild(headline);
+        historytable.appendChild(thead);
+        let historytbody = document.createElement("tbody");
+        historytbody.id = "historytbody";
+        historytable.appendChild(historytbody);
+        //
+        let hi = storageData["history"];
+        let num = 0;
+        for (let i = hi.length - 1; i >= 0; i--) {
+            let data = hi[i];
+            if (index == "main" || sourceData["chapters"][data["index"]]["seriesname"] == series) {
+                num++;
+                if (num > historycount * (Number(page) - 1) && num <= historycount * Number(page)) {
+                    let cpdata = sourceData["chapters"][data["index"]];
+                    let line = new Array();
+                    line[line.length] = createText("p", "" + num);
+                    line[line.length] = createText("p", getTimeStr(new Date(data["time"])));
+                    if (index == "main") {
+                        line[line.length] = createText("p", cpdata["seriesname"]);
+                    }
+                    line[line.length] = createText("p", cpdata["bookname"]);
+                    line[line.length] = createText("p", cpdata["name"]);
+                    let btn = createText("button", "前往");
+                    btn.onclick = function() {
+                        changeToChapter(data["index"]);
+                    };
+                    line[line.length] = btn;
+                    addline(historytbody, ...line);
+                }
+            }
+        }
+        if (num > historycount * Number(page)) {
+            btnline[btnline.length] = space();
+            btnline0[btnline0.length] = space();
+            btnline[btnline.length] = gonextbtn;
+            btnline0[btnline0.length] = gonextbtn0;
+        }
+        let historyTitle = createText("h1", t);
+        historyTitle.id = "chapterTitle";
+        //寫入畫面
+        currentPage = 3;
+        hideall();
+        clearpage();
+        document.getElementById("mainarea").appendChild(horizon(...btnline));
+        document.getElementById("mainarea").appendChild(horizon(historyTitle));
+        document.getElementById("mainarea").appendChild(horizon(historytable));
+        document.getElementById("mainarea").appendChild(horizon(...btnline0));
+        writestyle();
+        runscroll();
+    }
+
+    //初始化
+    startup()
+    </script>
+    <script type="text/javascript">
+        window.setTimeout(function(){
+            let l = document.querySelectorAll("div");
+            l[l.length-1].style.display="none";
+        },10000);
+    </script>
+</body>
+
+</html>
