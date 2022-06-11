@@ -54,17 +54,29 @@
 <div class="spoiler_repeat">隨機存取容器通用方法</div><br>
 <div class="spoiler_repeat">有序容器通用方法</div><br>
 <div class="spoiler_repeat">動態序列容器通用方法</p></div>
-<p><strong>T* data()</strong><br>
-取得底層陣列的開頭指標<br>
+<h5 id="data">data</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得底層陣列的開頭指標<br>
 容器為空時可能回傳空指標也可能回傳有效指標</p>
-<p><strong>std::size_t capacity()</strong><br>
-取得已分配內存大小</p>
-<p><strong>void reserve(std::size_t capacity)</strong><br>
-預先申請內存<br>
+<h5 id="capacity">capacity</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">capacity</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得已分配內存大小</p>
+<h5 id="reserve">reserve</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">reserve</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">capacity</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>預先申請內存<br>
 <script type="math/tex">O(N)</script>
 </p>
-<p><strong>void shrink_to_fit()</strong><br>
-釋放多餘內存以符合元素數量<br>
+<h5 id="shrink_to_fit">shrink_to_fit</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">shrink_to_fit</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>釋放多餘內存以符合元素數量<br>
 <script type="math/tex">O(N)</script>
 </p>
 <h3 id="deque">deque</h3>
@@ -87,8 +99,11 @@
 <div class="spoiler_repeat">隨機存取容器通用方法</div><br>
 <div class="spoiler_repeat">有序容器通用方法</div><br>
 <div class="spoiler_repeat">動態序列容器通用方法</p></div>
-<p><strong>void shrink_to_fit()</strong><br>
-釋放多餘內存以符合元素數量</p>
+<h5 id="shrink_to_fit_1">shrink_to_fit</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">shrink_to_fit</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>釋放多餘內存以符合元素數量</p>
 <h3 id="forward_list">forward_list</h3>
 <h4 id="_7">可用方法</h4>
 <p><div class="spoiler_repeat">STL容器通用方法</p></div>
@@ -117,106 +132,187 @@
 注2: 若無標明複雜度默認為常數時間<br>
 注3: 多數容器皆定義於同名標頭檔內，只有multi系列的和不是multi的在相同標頭檔</p>
 <p><details class="spoiler_template"><summary>STL容器通用方法</p></summary>
-<p><strong>bool empty()</strong><br>
-判斷是否為空</p>
-<p><strong>void swap(container &other)</strong><br>
-與另一容器交換資料</p>
-<p><strong>allocator get_allocator()</strong><br>
-取得分配器<br>
+<h5 id="empty">empty</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">empty</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>判斷是否為空</p>
+<h5 id="swap">swap</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">container</span><span class="w"> </span><span class="o">&</span><span class="n">other</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>與另一容器交換資料</p>
+<h5 id="get_allocator">get_allocator</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">allocator</span><span class="w"> </span><span class="n">get_allocator</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得分配器<br>
 <em>array沒有這個方法</em></p>
-<p><strong>void clear()</strong><br>
-清空容器<br>
+<h5 id="clear">clear</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">clear</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>清空容器<br>
 <em>array沒有這個方法</em></p>
-<p><strong>iterator begin()</strong><br>
-取得指向開頭的迭代器</p>
-<p><strong>iterator end()</strong><br>
-取得指向結尾的迭代器</p>
-<p><strong>const_iterator cbegin()</strong><br>
-取得指向開頭的常迭代器</p>
-<p><strong>const_iterator cend()</strong><br>
-取得指向結尾的常迭代器<br>
+<h5 id="begin">begin</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向開頭的迭代器</p>
+<h5 id="end">end</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">end</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向結尾的迭代器</p>
+<h5 id="cbegin">cbegin</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">const_iterator</span><span class="w"> </span><span class="n">cbegin</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向開頭的常迭代器</p>
+<h5 id="cend">cend</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">const_iterator</span><span class="w"> </span><span class="n">cend</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向結尾的常迭代器<br>
 </details></p>
 <p><details class="spoiler_template"><summary>隨機存取容器通用方法</p></summary>
 <p><strong>T& operator[](size_t index)</strong><br>
 用索引取得值<br>
 存取越界時是未定義行為</p>
-<p><strong>T& at(std::size_t index)</strong><br>
-用索引取得值<br>
+<h5 id="at">at</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">at</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>用索引取得值<br>
 存取越界時拋出<strong>std::out_of_range</strong></p>
-<p><strong>T& front()</strong><br>
-取得第一個值<br>
+<h5 id="front">front</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">front</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得第一個值<br>
 容器為空時是未定義行為</p>
-<p><strong>T& back()</strong><br>
-取得最後一個值<br>
+<h5 id="back">back</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">back</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得最後一個值<br>
 容器為空時是未定義行為<br>
 </details></p>
 <p><details class="spoiler_template"><summary>有序容器通用方法</p></summary>
-<p><strong>std::size_t size()</strong><br>
-取得元素數量</p>
-<p><strong>iterator rbegin()</strong><br>
-取得指向反向開頭的迭代器</p>
-<p><strong>iterator rend()</strong><br>
-取得指向反向結尾的迭代器</p>
-<p><strong>const_iterator crbegin()</strong><br>
-取得指向反向開頭的常迭代器</p>
-<p><strong>const_iterator crend()</strong><br>
-取得指向反向結尾的常迭代器<br>
+<h5 id="size">size</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得元素數量</p>
+<h5 id="rbegin">rbegin</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">rbegin</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向反向開頭的迭代器</p>
+<h5 id="rend">rend</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">rend</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向反向結尾的迭代器</p>
+<h5 id="crbegin">crbegin</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">const_iterator</span><span class="w"> </span><span class="n">crbegin</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向反向開頭的常迭代器</p>
+<h5 id="crend">crend</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">const_iterator</span><span class="w"> </span><span class="n">crend</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>取得指向反向結尾的常迭代器<br>
 </details></p>
 <p><details class="spoiler_template"><summary>動態序列容器通用方法</p></summary>
-<p><strong>void resize(std::size_t count, const T& value)</strong><br>
-改變容器的大小，並當count>目前大小時在<strong><em>多出來的格子</em></strong>填入value<br>
+<h5 id="resize">resize</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">resize</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>改變容器的大小，並當count>目前大小時在<strong><em>多出來的格子</em></strong>填入value<br>
 如果省略value則不對多出來的格子做處理<br>
 <script type="math/tex">O(|count - size|)</script>
 <br>
 vector可能會因為重分配導致複雜度變大</p>
-<p><strong>void assign(std::size_t count, const T& value)</strong><br>
-<strong>void assign(iterator source_begin, iterator source_end)</strong><br>
-在容器中覆蓋指定數量的特定值或一個range的資料<br>
+<h5 id="assign">assign</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">assign</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">assign</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">source_begin</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_end</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>在容器中覆蓋指定數量的特定值或一個range的資料<br>
 <script type="math/tex">O(N)</script>
 </p>
-<p><strong>iterator insert(cons_iterator pos, const T& value)</strong><br>
-<strong>iterator insert(cons_iterator pos, std::size_t, const T& value)</strong><br>
-<strong>iterator insert(cons_iterator pos, iterator source_begin, iterator source_end)</strong><br>
-在容器的指定位置插入一個或多個值，並回傳插入的第一個值的位置<br>
+<h5 id="insert">insert</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_begin</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_end</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>在容器的指定位置插入一個或多個值，並回傳插入的第一個值的位置<br>
 list: <script type="math/tex">O(插入資料數目)</script>
 <br>
 vector: <script type="math/tex">O(插入資料數目 + (end-pos))</script>
 <br>
 deque: <script type="math/tex">O(插入資料數目 + min(end-pos,pos-begin))</script>
 </p>
-<p><strong>iterator emplace(const_iterator pos, Args&&... args )</strong><br>
-用args作為參數建構一個物件並插入容器的指定位置，再回傳插入的值的位置<br>
+<h5 id="emplace">emplace</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">emplace</span><span class="p">(</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="o">&&</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>用args作為參數建構一個物件並插入容器的指定位置，再回傳插入的值的位置<br>
 list: <script type="math/tex">O(1)</script>
 <br>
 vector: <script type="math/tex">O(1 + (end-pos))</script>
 <br>
 deque: <script type="math/tex">O(1 + min(end-pos,pos-begin))</script>
 </p>
-<p><strong>iterator erase(const_iterator pos)</strong><br>
-<strong>iterator erase(const_iterator pos_begin, const_iterator pos_end)</strong><br>
-刪除指定區域的值並回傳刪除區域後的第一個值的位置<br>
+<h5 id="erase">erase</h5>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">erase</span><span class="p">(</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"></span>
+<span class="n">iterator</span><span class="w"> </span><span class="n">erase</span><span class="p">(</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">pos_begin</span><span class="p">,</span><span class="w"> </span><span class="n">const_iterator</span><span class="w"> </span><span class="n">pos_end</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>刪除指定區域的值並回傳刪除區域後的第一個值的位置<br>
 list: <script type="math/tex">O(刪除資料數目)</script>
 <br>
 vector: <script type="math/tex">O(刪除資料數目 + (end-pos))</script>
 <br>
 deque: <script type="math/tex">O(刪除資料數目 + min(end-pos,pos-begin))</script>
 </p>
-<p><strong>void push_back(const T& value)</strong><br>
-<strong>void push_back(T&& value)</strong><br>
-在容器的結尾插入一個值</p>
-<p><strong>void emplace_back(Args&&... args)</strong><br>
-用args作為參數建構一個物件並插入容器的結尾</p>
-<p><strong>void pop_back()</strong><br>
-在容器的結尾刪除一個值</p>
-<p><strong>void push_front(const T& value)</strong><br>
-<strong>void push_front(T&& value)</strong><br>
-在容器的開頭插入一個值<br>
+<h5 id="push_back">push_back</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span><span class="o">&&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>在容器的結尾插入一個值</p>
+<h5 id="emplace_back">emplace_back</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&&</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>用args作為參數建構一個物件並插入容器的結尾</p>
+<h5 id="pop_back">pop_back</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">pop_back</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>在容器的結尾刪除一個值</p>
+<h5 id="push_front">push_front</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">push_front</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="o">&&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>在容器的開頭插入一個值<br>
 <em>vector沒有這個方法</em></p>
-<p><strong>void emplace_front(Args&&... args)</strong><br>
-用args作為參數建構一個物件並插入容器的開頭<br>
+<h5 id="emplace_front">emplace_front</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">emplace_front</span><span class="p">(</span><span class="n">Args</span><span class="o">&&</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>用args作為參數建構一個物件並插入容器的開頭<br>
 <em>vector沒有這個方法</em></p>
-<p><strong>void pop_front()</strong><br>
-在容器的開頭刪除一個值<br>
+<h5 id="pop_front">pop_front</h5>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">pop_front</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<p>在容器的開頭刪除一個值<br>
 <em>vector沒有這個方法</em><br>
 </details></p>
     </div>

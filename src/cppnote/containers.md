@@ -29,18 +29,30 @@ vector初始化參數有兩個部分，都可省略
 :::spoiler_repeat 有序容器通用方法
 :::spoiler_repeat 動態序列容器通用方法
 
-**T* data()**
+##### data
+```cpp
+T* data()
+```
 取得底層陣列的開頭指標
 容器為空時可能回傳空指標也可能回傳有效指標
 
-**std::size_t capacity()**
+##### capacity
+```cpp
+size_t capacity()
+```
 取得已分配內存大小
 
-**void reserve(std::size_t capacity)**
+##### reserve
+```cpp
+void reserve(size_t capacity)
+```
 預先申請內存
 $O(N)$
 
-**void shrink_to_fit()**
+##### shrink_to_fit
+```cpp
+void shrink_to_fit()
+```
 釋放多餘內存以符合元素數量
 $O(N)$
 
@@ -65,7 +77,10 @@ vector初始化參數有兩個部分，都可省略
 :::spoiler_repeat 有序容器通用方法
 :::spoiler_repeat 動態序列容器通用方法
 
-**void shrink_to_fit()**
+##### shrink_to_fit
+```cpp
+void shrink_to_fit()
+```
 釋放多餘內存以符合元素數量
 
 ### forward_list
@@ -99,30 +114,54 @@ vector初始化參數有兩個部分，都可省略
 
 :::spoiler_template STL容器通用方法
 
-**bool empty()**
+##### empty
+```cpp
+bool empty()
+```
 判斷是否為空
 
-**void swap(container &other)**
+##### swap
+```cpp
+void swap(container &other)
+```
 與另一容器交換資料
 
-**allocator get_allocator()**
+##### get_allocator
+```cpp
+allocator get_allocator()
+```
 取得分配器
 *array沒有這個方法*
 
-**void clear()**
+##### clear
+```cpp
+void clear()
+```
 清空容器
 *array沒有這個方法*
 
-**iterator begin()**
+##### begin
+```cpp
+iterator begin()
+```
 取得指向開頭的迭代器
 
-**iterator end()**
+##### end
+```cpp
+iterator end()
+```
 取得指向結尾的迭代器
 
-**const_iterator cbegin()**
+##### cbegin
+```cpp
+const_iterator cbegin()
+```
 取得指向開頭的常迭代器
 
-**const_iterator cend()**
+##### cend
+```cpp
+const_iterator cend()
+```
 取得指向結尾的常迭代器
 :::
 
@@ -132,91 +171,148 @@ vector初始化參數有兩個部分，都可省略
 用索引取得值
 存取越界時是未定義行為
 
-**T& at(std::size_t index)**
+##### at
+```cpp
+T& at(size_t index)
+```
 用索引取得值
 存取越界時拋出**std::out_of_range**
 
-**T& front()**
+##### front
+```cpp
+T& front()
+```
 取得第一個值
 容器為空時是未定義行為
 
-**T& back()**
+##### back
+```cpp
+T& back()
+```
 取得最後一個值
 容器為空時是未定義行為
 :::
 
 :::spoiler_template 有序容器通用方法
 
-**std::size_t size()**
+##### size
+```cpp
+size_t size()
+```
 取得元素數量
 
-**iterator rbegin()**
+##### rbegin
+```cpp
+iterator rbegin()
+```
 取得指向反向開頭的迭代器
 
-**iterator rend()**
+##### rend
+```cpp
+iterator rend()
+```
 取得指向反向結尾的迭代器
 
-**const_iterator crbegin()**
+##### crbegin
+```cpp
+const_iterator crbegin()
+```
 取得指向反向開頭的常迭代器
 
-**const_iterator crend()**
+##### crend
+```cpp
+const_iterator crend()
+```
 取得指向反向結尾的常迭代器
 :::
 
 :::spoiler_template 動態序列容器通用方法
     
-**void resize(std::size_t count, const T& value)**
+##### resize
+```cpp
+void resize(size_t count, const T& value)
+```
 改變容器的大小，並當count>目前大小時在***多出來的格子***填入value
 如果省略value則不對多出來的格子做處理
 $O(|count - size|)$
 vector可能會因為重分配導致複雜度變大
 
-**void assign(std::size_t count, const T& value)**
-**void assign(iterator source_begin, iterator source_end)**
+##### assign
+```cpp
+void assign(size_t count, const T& value)
+void assign(iterator source_begin, iterator source_end)
+```
 在容器中覆蓋指定數量的特定值或一個range的資料
 $O(N)$
 
-**iterator insert(cons_iterator pos, const T& value)**
-**iterator insert(cons_iterator pos, std::size_t, const T& value)**
-**iterator insert(cons_iterator pos, iterator source_begin, iterator source_end)**
+##### insert
+```cpp
+iterator insert(cons_iterator pos, const T& value)
+iterator insert(cons_iterator pos, size_t, const T& value)
+iterator insert(cons_iterator pos, iterator source_begin, iterator source_end)
+```
 在容器的指定位置插入一個或多個值，並回傳插入的第一個值的位置
 list: $O(插入資料數目)$
 vector: $O(插入資料數目 + (end-pos))$
 deque: $O(插入資料數目 + min(end-pos,pos-begin))$
 
-**iterator emplace(const_iterator pos, Args&&... args )**
+##### emplace
+```cpp
+iterator emplace(const_iterator pos, Args&&... args )
+```
 用args作為參數建構一個物件並插入容器的指定位置，再回傳插入的值的位置
 list: $O(1)$
 vector: $O(1 + (end-pos))$
 deque: $O(1 + min(end-pos,pos-begin))$
 
-**iterator erase(const_iterator pos)**
-**iterator erase(const_iterator pos_begin, const_iterator pos_end)**
+##### erase
+```cpp
+iterator erase(const_iterator pos)
+iterator erase(const_iterator pos_begin, const_iterator pos_end)
+```
 刪除指定區域的值並回傳刪除區域後的第一個值的位置
 list: $O(刪除資料數目)$
 vector: $O(刪除資料數目 + (end-pos))$
 deque: $O(刪除資料數目 + min(end-pos,pos-begin))$
 
-**void push_back(const T& value)**
-**void push_back(T&& value)**
+##### push_back
+```cpp
+void push_back(const T& value)
+void push_back(T&& value)
+```
 在容器的結尾插入一個值
 
-**void emplace_back(Args&&... args)**
+##### emplace_back
+```cpp
+void emplace_back(Args&&... args)
+```
 用args作為參數建構一個物件並插入容器的結尾
 
-**void pop_back()**
+##### pop_back
+```cpp
+void pop_back()
+```
 在容器的結尾刪除一個值
 
-**void push_front(const T& value)**
-**void push_front(T&& value)**
+##### push_front
+```cpp
+void push_front(const T& value)
+void push_front(T&& value)
+```
 在容器的開頭插入一個值
 *vector沒有這個方法*
 
-**void emplace_front(Args&&... args)**
+##### emplace_front
+```cpp
+void emplace_front(Args&&... args)
+```
 用args作為參數建構一個物件並插入容器的開頭
 *vector沒有這個方法*
 
-**void pop_front()**
+##### pop_front
+```cpp
+void pop_front()
+```
 在容器的開頭刪除一個值
 *vector沒有這個方法*
 :::

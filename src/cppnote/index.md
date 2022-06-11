@@ -11,4 +11,7 @@ title: 小橘子的C++筆記
 + 迭代器
 + [函數](stdfunctions)
 + Range&View
-## STL-extend這裡的東西都在\<bits/extc++.h\>下
+## STL擴展
+這裡的東西都在\<bits/extc++.h\>下
++ pbds
++ rope
