@@ -101,9 +101,18 @@ void shrink_to_fit()
 ## 關聯容器
 ### set/multiset
 #### 可用方法
+:::spoiler_repeat STL容器通用方法
 :::spoiler_repeat 有序容器通用方法
+##### insert
+```cpp
+iterator insert(const T& value)
+iterator insert(iterator source_begin, iterator source_end)
+```
+在容器插入一個或多個值，並回傳插入的值的位置
+
 ### map/multimap
 #### 可用方法
+:::spoiler_repeat STL容器通用方法
 :::spoiler_repeat 有序容器通用方法
 ### unordered系列
 
@@ -111,6 +120,7 @@ void shrink_to_fit()
 注1: 複雜度未特別說明則皆指時間，且 $N$ 代表完成操作後容器內元素數量
 注2: 若無標明複雜度默認為常數時間
 注3: 多數容器皆定義於同名標頭檔內，只有multi系列的和不是multi的在相同標頭檔
+注4: 許多函數允許傳入 const T& 和 T&& ，有些可能只寫了其中一個，但其實都可以
 
 :::spoiler_template STL容器通用方法
 
@@ -248,7 +258,7 @@ $O(N)$
 ##### insert
 ```cpp
 iterator insert(cons_iterator pos, const T& value)
-iterator insert(cons_iterator pos, size_t, const T& value)
+iterator insert(cons_iterator pos, size_t count, const T& value)
 iterator insert(cons_iterator pos, iterator source_begin, iterator source_end)
 ```
 在容器的指定位置插入一個或多個值，並回傳插入的第一個值的位置
