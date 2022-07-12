@@ -150,3 +150,10 @@ $("code").each(function() {
 // margin-top
 main.css("margin-top",($("#top_area").height()+4)+"px");
 $("#indexbar").css("margin-top",($("#top_area").height()+24)+"px");
+// a setting
+$("a").each(function(){
+    let to = $(this).attr("href");
+    if (((to.includes(".")&&(!to.startsWith(".")))||to.startsWith("http://")||to.startsWith("https://"))&&(!to.includes("littleorange666.github.io"))){
+        $(this).attr("target","_blank");
+    }
+})
