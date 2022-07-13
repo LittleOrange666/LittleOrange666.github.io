@@ -2,7 +2,6 @@
     position: fixed;
     left: 0px;
     right: 0px;
-    z-index: 30
 }
 
 #main_area {
@@ -12,7 +11,6 @@
     font-family: "微軟正黑UI";
     float: left;
     width: 60%;
-    z-index: 20
 }
 
 #indexbar {
@@ -21,7 +19,7 @@
     right: 0px;
     margin-left: 5%;
     margin-right: 70%;
-    z-index: -10
+    width: 15%;
 }
 
 #indexbar a {
