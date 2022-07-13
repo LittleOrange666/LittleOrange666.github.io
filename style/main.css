@@ -7,10 +7,9 @@
 #main_area {
     position: relative;
     margin-left: 20%;
-    margin-right: 5%;
+    margin-right: 20%;
     font-family: "微軟正黑UI";
     float: left;
-    width: 60%;
 }
 
 #indexbar {
@@ -18,8 +17,7 @@
     left: 0px;
     right: 0px;
     margin-left: 5%;
-    margin-right: 70%;
-    width: 15%;
+    margin-right: 80%;
 }
 
 #indexbar a {
