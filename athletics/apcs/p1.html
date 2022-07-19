@@ -29,25 +29,27 @@
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
         <h1 id="1">歷屆第1題</h1>
 <h2 id="20163">2016年3月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=b964">成績指標</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=b964">成績指標</a><br>
 <details><summary>提示</summary><br>
 std::sort<br>
 </details><br>
 <details><summary>題解</summary><br>
+一個個掃過去維護最高不及格分數和最低及格分數<br>
+用std::sort排序資料<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="c1">//輸入</span>
+<span class="w">    </span><span class="c1">// 輸入</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">vector</span><span class="o"><</span><span class="kt">int</span><span class="o">></span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">//計算</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">big</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1000</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 計算</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">big</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1000</span><span class="p">;</span><span class="c1">// 最高不及格分數</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="c1">// 最低及格分數</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">>=</span><span class="mi">60</span><span class="p">){</span><span class="w"></span>
 <span class="w">            </span><span class="n">small</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">small</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
@@ -56,10 +58,10 @@ std::sort<br>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">//排序</span>
+<span class="w">    </span><span class="c1">// 排序</span>
 <span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">//輸出</span>
+<span class="w">    </span><span class="c1">// 輸出</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o"><</span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">" "</span><span class="p">;</span><span class="w"></span>
@@ -108,26 +110,28 @@ std::sort<br>
 
 <p></details></p>
 <h2 id="201610">2016年10月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=c294">三角形辨別</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=c294">三角形辨別</a><br>
 <details><summary>提示</summary><br>
 std::sort<br>
 </details><br>
 <details><summary>題解</summary><br>
+輸入三個數之後排序<br>
+再用if判斷<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="c1">//輸入</span>
+<span class="w">    </span><span class="c1">// 輸入</span>
 <span class="w">    </span><span class="n">vector</span><span class="o"><</span><span class="kt">int</span><span class="o">></span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">//排序</span>
+<span class="w">    </span><span class="c1">// 排序</span>
 <span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">//輸出</span>
+<span class="w">    </span><span class="c1">// 輸出</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o"><</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">" "</span><span class="p">;</span><span class="w"></span>
@@ -171,11 +175,18 @@ std::sort<br>
 
 <p></details></p>
 <h2 id="20173">2017年3月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=c290">秘密差</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=c290">秘密差</a><br>
 <details><summary>提示</summary><br>
 std::string<br>
 </details><br>
 <details><summary>題解</summary><br>
+用string輸入<br>
+再掃過去<br>
+C++小技巧：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">數字字元</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'0'</span><span class="w"></span>
+</code></pre></div>
+
+<p>可以得到數字的值<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -187,9 +198,9 @@ std::string<br>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="n">a</span><span class="o">+=</span><span class="n">num</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">a</span><span class="o">+=</span><span class="n">num</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span><span class="c1">// 奇數位數</span>
 <span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">b</span><span class="o">+=</span><span class="n">num</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">b</span><span class="o">+=</span><span class="n">num</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'0'</span><span class="p">;</span><span class="c1">// 偶數位數</span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span><span class="w"></span>
@@ -211,11 +222,13 @@ std::string<br>
 
 <p></details></p>
 <h2 id="201710">2017年10月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=c461">邏輯運算子</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=c461">邏輯運算子</a><br>
 <details><summary>提示</summary><br>
 布林運算<br>
 </details><br>
 <details><summary>題解</summary><br>
+窮舉每一種邏輯運算子<br>
+並維護是否可能得到指定結果<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -259,10 +272,12 @@ std::string<br>
 
 <p></details></p>
 <h2 id="20196">2019年6月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=e286">籃球比賽</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=e286">籃球比賽</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+四局分別是多少分不重要，可以輸入的時候就加起來<br>
+再算主客隊各贏幾場<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -324,16 +339,17 @@ std::string<br>
 
 <p></details></p>
 <h2 id="20201">2020年1月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=h026">猜拳</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=h026">猜拳</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+照題敘模擬<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="n">vector</span><span class="o"><</span><span class="kt">int</span><span class="o">></span><span class="w"> </span><span class="n">better</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">vector</span><span class="o"><</span><span class="kt">int</span><span class="o">></span><span class="w"> </span><span class="n">better</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">// 定義贏過每個拳的拳是甚麼</span>
 <span class="w">    </span><span class="n">better</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">better</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">better</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
@@ -387,10 +403,11 @@ std::string<br>
 
 <p></details></p>
 <h2 id="20207">2020年7月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=f579">購物車</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=f579">購物車</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+對每一個顧客，維護購物車裡有幾個商品 a,b<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -399,7 +416,7 @@ std::string<br>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ca</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cb</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ca</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cb</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">// 購物車裡有幾個商品 a,b</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span><span class="w"></span>
@@ -438,11 +455,13 @@ std::string<br>
 
 <p></details></p>
 <h2 id="202010">2020年10月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=f312">人力分配</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=f312">人力分配</a><br>
 <details><summary>提示</summary><br>
 窮舉<br>
 </details><br>
 <details><summary>題解</summary><br>
+窮舉n+1種分配方法<br>
+找最好<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -473,10 +492,11 @@ std::string<br>
 
 <p></details></p>
 <h2 id="20211">2021年1月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=f605">購買力</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=f605">購買力</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+模擬購買情況<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -507,16 +527,17 @@ std::string<br>
     <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
     <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="o">-</span><span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="o">>=</span><span class="n">d</span><span class="p">:</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">cost</span> <span class="o">+=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">)</span><span class="o">//</span><span class="mi">3</span>
+        <span class="n">cost</span> <span class="o">+=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">)</span><span class="o">//</span> <span class="mi">3</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="n">cost</span><span class="p">)</span>
 </code></pre></div>
 
 <p></details></p>
 <h2 id="20219">2021年9月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=g275">七言對聯</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=g275">七言對聯</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+照題序做判斷<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -529,9 +550,9 @@ std::string<br>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o"><</span><span class="mi">14</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
 <span class="w">            </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">!=</span><span class="n">arr</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">!=</span><span class="n">arr</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w"> </span><span class="c1">// 違反A</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 違反B</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">==</span><span class="n">arr</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w"> </span><span class="c1">// 違反C</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">"A"</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">"B"</span><span class="p">;</span><span class="w"></span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">"C"</span><span class="p">;</span><span class="w"></span>
@@ -562,10 +583,11 @@ std::string<br>
 
 <p></details></p>
 <h2 id="202111">2021年11月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=g595">修補圍籬</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=g595">修補圍籬</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+直接掃描過去<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -602,10 +624,13 @@ std::string<br>
 
 <p></details></p>
 <h2 id="20221">2022年1月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=h081">程式交易</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=h081">程式交易</a><br>
 <details><summary>提示</summary><br>
+模擬<br>
 </details><br>
 <details><summary>題解</summary><br>
+紀錄前一次交易的價格&是否有股票<br>
+硬算<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
@@ -657,10 +682,11 @@ std::string<br>
 
 <p></details></p>
 <h2 id="20226">2022年6月</h2>
-<p><a href="https://zerojudge.tw/ShowProblem?problemid=i399">數字遊戲</a><br>
+<p><a href="https:// zerojudge.tw/ShowProblem?problemid=i399">數字遊戲</a><br>
 <details><summary>提示</summary><br>
 </details><br>
 <details><summary>題解</summary><br>
+紀錄各個數字出現次數同時維護眾數數量，由右往左掃描輸出有哪些數字<br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
