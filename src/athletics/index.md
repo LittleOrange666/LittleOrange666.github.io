@@ -11,6 +11,7 @@ title: 小橘子的競程筆記
 + [搜索](search)
 + [窮舉](exhaustive)
 + [貪心法](greedy)
++ [單調性](monotonicity)
 + [分治](dc)
 + [倍增法](multiply)
 + [動態規劃1](dp1)
