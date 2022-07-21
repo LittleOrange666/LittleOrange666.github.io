@@ -566,7 +566,7 @@ set、二分搜<br>
 把資料量和機器速度分別排序後<br>
 <script type="math/tex">大\times 小、小\times 大</script> 的加在一起<br>
 透過排序不等式可以知道這樣是最好的<br>
-<script type="math/tex">O(n+m)</script>
+<script type="math/tex">O(n+m+n\log n)</script>
 <br>
 </details><br>
 <details><summary>C++範例代碼：</p></summary>
@@ -679,7 +679,7 @@ set<br>
 </details><br>
 <details><summary>題解</summary><br>
 紀錄各行列上有哪些點有鏡子，並排序<br>
-再直接模擬，查詢的時候用<br>
+再直接模擬，查詢的時候用二分搜<br>
 <script type="math/tex">O(n\log n)</script>
 <br>
 </details><br>
