@@ -83,12 +83,21 @@ model.compile()
 #### 損失函數
 損失函數輸入真實值與預測值後，回傳一個損失值
 通常使用內建的，也可以自己設計
+必須為Callable\[\[tf.Tensor,tf.Tensor\],tf.Tensor\]
 :::spoiler 內建損失函數(都在keras.losses底下)
 常用：
 
 + mean_squared_error平均方差(線性回歸)
-+ binary_crossentropy二元交叉熵(分類問題)
++ binary_crossentropy二元交叉熵(二元分類問題)
++ sparse_categorical_crossentropy稀疏分類交叉熵(N元分類問題)
 
+且部分內建損失函數提供參數，可其改為駝峰名稱以取用class版本
+Ex.
+```python
+losses.binary_crossentropy #基礎版
+losses.BinaryCrossentropy() #用class
+losses.BinaryCrossentropy(from_logits=True) #用class加參數
+```
 :::
 #### 優化器
 優化器是一個物件
@@ -106,8 +115,9 @@ model.compile()
 
 #### 使用名稱
 編譯時使用內建的東西可以直接傳入名稱
-如以下兩者意義相同
+如以下三者意義相同
 ```python
+model.compile(optimizer=optimizers.RMSprop(),loss=losses.MeanSquaredError(),metrics=[metrics.mae])
 model.compile(optimizer=optimizers.RMSprop(),loss=losses.mean_squared_error,metrics=[metrics.mae])
 model.compile(optimizer='RMSprop',loss='mean_squared_error',metrics=['mae'])
 ```

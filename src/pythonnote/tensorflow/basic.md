@@ -19,9 +19,17 @@ plt.rcParams['axes.unicode_minus'] = False # 正常顯示負號
 在tensorflow 2中可用tf.Tensor::numpy()轉換成np.ndarray
 #### 變數 tf.Variable
 此類別用以維護一個張量，可以對其進行操作、讀寫，通常用於紀錄模型參數
+是tf.Tensor的子類
 #### 操作 tf.Operation
 用於對張量/變數/Session進行操作
 ### 常用張量計算
+#### 建立基本張量
+用
+```python
+tf.constant(value)
+```
+value可以是 python陣列、numpy陣列、單一數字
+同時[numpy](/pythonnote/numpy)中許多陣列生成的函數都能直接把np換成tf來生成張量(full->fill,arange->range)
 #### 加/減
 直接用加號/減號
 #### 對應值相乘
