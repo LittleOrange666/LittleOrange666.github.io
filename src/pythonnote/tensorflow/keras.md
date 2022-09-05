@@ -52,6 +52,19 @@ Dense(units)表示這一層中有units個節點
 通常使用內建的
 也可以自己設計，但自己設計的激活函數要支援對張量(tf.Tensor)作操作
 :::spoiler 內建激活函數(都在keras.backend底下)
+常用：
+**sigmoid**
+sigmoid函數
+$g(z)=\frac{1}{1+e^{-z}}$
+**relu**
+relu(alpha=0.0, max_value=None, threshold=0.0)
+$g(z) = min(max_value,max(threshold,z)+max(0,(threshold-z)*alpha))$
+**softmax**
+softmax(x, axis=-1)
+$g(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}$
+**linear**
+無變化
+$g(z)=z$
 :::
 ### 編譯
 建構完模型要對模型作編譯
@@ -71,6 +84,11 @@ model.compile()
 損失函數輸入真實值與預測值後，回傳一個損失值
 通常使用內建的，也可以自己設計
 :::spoiler 內建損失函數(都在keras.losses底下)
+常用：
+
++ mean_squared_error平均方差(線性回歸)
++ binary_crossentropy二元交叉熵(分類問題)
+
 :::
 #### 優化器
 優化器是一個物件

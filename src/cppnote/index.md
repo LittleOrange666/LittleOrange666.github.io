@@ -11,7 +11,7 @@ title: 小橘子的C++筆記
 
 + [容器](containers)
 + 迭代器
-+ [函數](stdfunctions)
++ [函數](stlfunctions)
 + Range&View
 ## STL擴展
 這裡的東西都在bits/extc++.h下

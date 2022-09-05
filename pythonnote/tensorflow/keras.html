@@ -77,6 +77,23 @@ Dense(units)表示這一層中有units個節點<br>
 通常使用內建的<br>
 也可以自己設計，但自己設計的激活函數要支援對張量(tf.Tensor)作操作<br>
 <details><summary>內建激活函數(都在keras.backend底下)</summary><br>
+常用：<br>
+<strong>sigmoid</strong><br>
+sigmoid函數<br>
+<script type="math/tex">g(z)=\frac{1}{1+e^{-z}}</script>
+<br>
+<strong>relu</strong><br>
+relu(alpha=0.0, max_value=None, threshold=0.0)<br>
+<script type="math/tex">g(z) = min(max_value,max(threshold,z)+max(0,(threshold-z)*alpha))</script>
+<br>
+<strong>softmax</strong><br>
+softmax(x, axis=-1)<br>
+<script type="math/tex">g(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}</script>
+<br>
+<strong>linear</strong><br>
+無變化<br>
+<script type="math/tex">g(z)=z</script>
+<br>
 </details></p>
 <h3 id="_6">編譯</h3>
 <p>建構完模型要對模型作編譯</p>
@@ -96,7 +113,12 @@ Dense(units)表示這一層中有units個節點<br>
 <p>損失函數輸入真實值與預測值後，回傳一個損失值<br>
 通常使用內建的，也可以自己設計<br>
 <details><summary>內建損失函數(都在keras.losses底下)</summary><br>
-</details></p>
+常用：</p>
+<ul>
+<li>mean_squared_error平均方差(線性回歸)</li>
+<li>binary_crossentropy二元交叉熵(分類問題)</li>
+</ul>
+<p></details></p>
 <h4 id="_8">優化器</h4>
 <p>優化器是一個物件<br>
 通常使用內建的<br>

@@ -2,7 +2,7 @@
 title: STL 函數
 ---
 # STL 函數
-這裡的多數內容都在```<algorithm>```標頭檔底下
+這裡的多數內容都在\<algorithm\>標頭檔底下
 ## std::range的函數
 以下所有有(start: iterator\<T\>, end: iterator\<T\>)的函數在C++20以上都可以用std::range來簡化
 例如：以下兩種寫法效果相同

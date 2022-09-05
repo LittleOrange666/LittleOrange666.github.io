@@ -30,6 +30,7 @@ title: 小橘子的Python筆記
 
 ### 機器學習
 - [tensorflow](tensorflow/)
+- mediapipe
 
 ### GUI
 - 遊戲：pygame
@@ -37,3 +38,4 @@ title: 小橘子的Python筆記
 - 排版：tkinter
 
 ### 網路
+- 
