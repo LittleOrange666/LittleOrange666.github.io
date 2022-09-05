@@ -58,7 +58,7 @@ sigmoid函數
 $g(z)=\frac{1}{1+e^{-z}}$
 **relu**
 relu(alpha=0.0, max_value=None, threshold=0.0)
-$g(z) = min(max_value,max(threshold,z)+max(0,(threshold-z)*alpha))$
+$g(z) = min(max\_value,max(threshold,z)+max(0,(threshold-z)*alpha))$
 **softmax**
 softmax(x, axis=-1)
 $g(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}$
