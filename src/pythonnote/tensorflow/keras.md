@@ -51,7 +51,7 @@ Dense(units)表示這一層中有units個節點
 或著用Dense(units,activation=激活函數)來使用
 通常使用內建的
 也可以自己設計，但自己設計的激活函數要支援對張量(tf.Tensor)作操作
-:::spoiler 內建激活函數(都在keras.backend底下)
+:::spoiler 內建激活函數(都在keras.activations底下)
 常用：
 **sigmoid**
 sigmoid函數
@@ -66,6 +66,27 @@ $g(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}$
 無變化
 $g(z)=z$
 :::
+#### 正則化器
+正則化器附屬在一個層中，用於解決 overfitting
+用法：
+```python
+Dense(units,kernel_regularizer=正則化器) #壓制核心參數
+Dense(units,bias_regularizer=正則化器) #壓制偏差
+Dense(units,activity_regularizer=kernel正則化器) #壓制變化
+```
+keras中提供兩種正則化算法
+
++ L1: 用絕對值
++ L2: 用平方
+
+可用正則化器有
+```python
+keras.regularizers.L1(l1=0.01)
+keras.regularizers.L2(l2=0.01)
+keras.regularizers.L1L2(l1=0.01, l2=0.01)
+# 參數為lambda
+```
+
 ### 編譯
 建構完模型要對模型作編譯
 ```python
@@ -94,15 +115,22 @@ model.compile()
 且部分內建損失函數提供參數，可其改為駝峰名稱以取用class版本
 Ex.
 ```python
-losses.binary_crossentropy #基礎版
-losses.BinaryCrossentropy() #用class
-losses.BinaryCrossentropy(from_logits=True) #用class加參數
+losses.binary_crossentropy # 基礎版
+losses.BinaryCrossentropy() # 用class
+losses.BinaryCrossentropy(from_logits=True) # 用class加參數
 ```
 :::
 #### 優化器
 優化器是一個物件
 通常使用內建的
 :::spoiler 內建優化器(都在keras.optimizers底下)
+常用：
+
+```python
+SGD(lr=0.01) # 線性回歸
+RMSprop(lr=0.001) # 在學習率上依據梯度的大小對學習率進行加強或是衰減
+Adam(lr=0.001) # 自適應矩估計
+```
 :::
 
 #### 評估函數

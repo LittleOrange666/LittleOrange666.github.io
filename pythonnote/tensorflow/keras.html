@@ -76,7 +76,7 @@ Dense(units)表示這一層中有units個節點<br>
 或著用Dense(units,activation=激活函數)來使用<br>
 通常使用內建的<br>
 也可以自己設計，但自己設計的激活函數要支援對張量(tf.Tensor)作操作<br>
-<details><summary>內建激活函數(都在keras.backend底下)</summary><br>
+<details><summary>內建激活函數(都在keras.activations底下)</summary><br>
 常用：<br>
 <strong>sigmoid</strong><br>
 sigmoid函數<br>
@@ -95,7 +95,27 @@ softmax(x, axis=-1)<br>
 <script type="math/tex">g(z)=z</script>
 <br>
 </details></p>
-<h3 id="_6">編譯</h3>
+<h4 id="_6">正則化器</h4>
+<p>正則化器附屬在一個層中，用於解決 overfitting<br>
+用法：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">正則化器</span><span class="p">)</span> <span class="c1">#壓制核心參數</span>
+<span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">bias_regularizer</span><span class="o">=</span><span class="n">正則化器</span><span class="p">)</span> <span class="c1">#壓制偏差</span>
+<span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">activity_regularizer</span><span class="o">=</span><span class="n">kernel正則化器</span><span class="p">)</span> <span class="c1">#壓制變化</span>
+</code></pre></div>
+
+<p>keras中提供兩種正則化算法</p>
+<ul>
+<li>L1: 用絕對值</li>
+<li>L2: 用平方</li>
+</ul>
+<p>可用正則化器有</p>
+<div class="codehilite"><pre><span></span><code><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L1</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L2</span><span class="p">(</span><span class="n">l2</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L1L2</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="c1"># 參數為lambda</span>
+</code></pre></div>
+
+<h3 id="_7">編譯</h3>
 <p>建構完模型要對模型作編譯</p>
 <div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
 </code></pre></div>
@@ -109,7 +129,7 @@ softmax(x, axis=-1)<br>
 <ul>
 <li>評估函數metrics</li>
 </ul>
-<h4 id="_7">損失函數</h4>
+<h4 id="_8">損失函數</h4>
 <p>損失函數輸入真實值與預測值後，回傳一個損失值<br>
 通常使用內建的，也可以自己設計<br>
 必須為Callable<script type="math/tex; mode=display">\[tf.Tensor,tf.Tensor</script>,tf.Tensor]<br>
@@ -122,25 +142,31 @@ softmax(x, axis=-1)<br>
 </ul>
 <p>且部分內建損失函數提供參數，可其改為駝峰名稱以取用class版本<br>
 Ex.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">losses</span><span class="o">.</span><span class="n">binary_crossentropy</span> <span class="c1">#基礎版</span>
-<span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">()</span> <span class="c1">#用class</span>
-<span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#用class加參數</span>
+<div class="codehilite"><pre><span></span><code><span class="n">losses</span><span class="o">.</span><span class="n">binary_crossentropy</span> <span class="c1"># 基礎版</span>
+<span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">()</span> <span class="c1"># 用class</span>
+<span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 用class加參數</span>
 </code></pre></div>
 
 <p></details></p>
-<h4 id="_8">優化器</h4>
+<h4 id="_9">優化器</h4>
 <p>優化器是一個物件<br>
 通常使用內建的<br>
 <details><summary>內建優化器(都在keras.optimizers底下)</summary><br>
-</details></p>
-<h4 id="_9">評估函數</h4>
+常用：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># 線性回歸</span>
+<span class="n">RMSprop</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1"># 在學習率上依據梯度的大小對學習率進行加強或是衰減</span>
+<span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1"># 自適應矩估計</span>
+</code></pre></div>
+
+<p></details></p>
+<h4 id="_10">評估函數</h4>
 <p>評估函數輸入真實值與預測值後，回傳一個評估值<br>
 通常使用內建的，也可以自己設計<br>
 用於評估模型的性能<br>
 可以同時使用多個<br>
 <details><summary>內建評估函數(都在keras.metrics底下)</summary><br>
 </details></p>
-<h4 id="_10">使用名稱</h4>
+<h4 id="_11">使用名稱</h4>
 <p>編譯時使用內建的東西可以直接傳入名稱<br>
 如以下三者意義相同</p>
 <div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">MeanSquaredError</span><span class="p">(),</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
@@ -148,7 +174,7 @@ Ex.</p>
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'RMSprop'</span><span class="p">,</span><span class="n">loss</span><span class="o">=</span><span class="s1">'mean_squared_error'</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'mae'</span><span class="p">])</span>
 </code></pre></div>
 
-<h3 id="_11">訓練</h3>
+<h3 id="_12">訓練</h3>
 <p>透過訓練資料進行訓練</p>
 <div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，使用generator作為輸入</span>
@@ -228,17 +254,17 @@ Ex.</p>
 </tbody>
 </table>
 <p></details></p>
-<h3 id="_12">測試</h3>
+<h3 id="_13">測試</h3>
 <p>透過測試資料求出損失值及評估值</p>
 <div class="codehilite"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="_13">使用</h3>
+<h3 id="_14">使用</h3>
 <p>使用模型預測結果</p>
 <div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="_14">儲存與載入</h3>
+<h3 id="_15">儲存與載入</h3>
 <p>keras模型可以用三種格式儲存</p>
 <ul>
 <li>h5</li>
@@ -263,7 +289,7 @@ Ex.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">model_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div>
 
-<h3 id="_15">範例</h3>
+<h3 id="_16">範例</h3>
 <p><details><summary>範例：y=A*X+b</p></summary>
 <div class="codehilite"><pre><span></span><code><span class="n">param_count</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 參數數量</span>
 
