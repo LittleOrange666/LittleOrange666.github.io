@@ -17,9 +17,9 @@ title: 小橘子的Python筆記
 ### 常用
 - 檔案處裡：os
 - 系統操作：sys
-- JSON：json
 - 時間：time
 - 隨機：ramdom
+- JSON：json
 
 ### 數學
 - 基礎數學計算：math
@@ -38,4 +38,5 @@ title: 小橘子的Python筆記
 - 排版：tkinter
 
 ### 網路
-- 
+- request
+- selenium

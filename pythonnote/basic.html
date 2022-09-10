@@ -66,7 +66,7 @@
 </code></pre></div>
 
 <h2 id="_4">變數</h2>
-<p>變數是給資料值的一個"暱稱"，可以告訴電腦該資料值之後可能會用到，不要刪掉。</p>
+<p>變數是給資料值的一個"暱稱"，可以告訴電腦該資料值之後可能會用到，並方便重複存取。</p>
 <h3 id="_5">賦值</h3>
 <p>賦值即是把一個"暱稱"設定給一個資料值</p>
 <div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">資料值</span>
@@ -334,7 +334,7 @@ True=1, False=0</p>
 <tr>
 <td>5</td>
 <td>左至右</td>
-<td>a<<b</td>
+<td>a\<\<b</td>
 <td>位元左移</td>
 </tr>
 <tr>
@@ -382,7 +382,7 @@ True=1, False=0</p>
 <tr>
 <td>8</td>
 <td>左至右</td>
-<td>a<b</td>
+<td>a\<b</td>
 <td>小於</td>
 </tr>
 <tr>
@@ -499,7 +499,7 @@ Python中賦值運算子(包含<code>+=</code>之類的)不具有回傳值(不�
 <h3 id="with">上下文管理(with語法)</h3>
 <p>with語法可以更簡潔的語法確保資源被正確釋放<br>
 常用於檔案的操作</p>
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#as不是必須</span>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#"as 變數"不是必須</span>
     <span class="c1">#主程式</span>
 </code></pre></div>
 
@@ -609,7 +609,20 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
     <span class="n">程式碼</span>
 </code></pre></div>
 
-<h2 id="_29">自訂函數</h2>
+<h3 id="forwhileelse">for/while...else</h3>
+<p>在迴圈後加上else區域可在迴圈不是因為例外或break而跳出時執行</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
+    <span class="n">程式碼</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">程式碼</span>
+<span class="c1"># 或</span>
+<span class="k">for</span> <span class="n">變數</span> <span class="ow">in</span> <span class="n">可迭代物件</span><span class="p">:</span>
+    <span class="n">程式碼</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">程式碼</span>
+</code></pre></div>
+
+<h2 id="_29">自訂函數(副程式)</h2>
 <p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
