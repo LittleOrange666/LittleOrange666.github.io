@@ -42,7 +42,7 @@ Ex. 用all(obj)來表示整個range
 ```cpp
 #define all(o) o.begin(),o.end()
 ```
-因為define會使其下方的所有關鍵字受到影響，最好不要寫在include上方
+因為define會使其下方的所有關鍵字受到影響，最好不要寫在include上方(特別是`#define int long long`之類的東東)
 #### undef
 undef可以取消define的效果
 語法：
@@ -60,6 +60,7 @@ content;
 #endif
 ```
 若常數運算式為真則編譯以下內容
+(常用於C++版本判斷)
 
 二、ifdef
 ```cpp
@@ -77,10 +78,7 @@ content;
 ```
 若識別字未定義則編譯以下內容
 
-#### elif
-預處理指令也有elif
-
-Example1: 避免重複引用標頭檔導致出錯
+Example: 避免重複引用標頭檔導致出錯
 ```cpp
 #ifndef MY_HEADER_IS_INCLUDED
 #define MY_HEADER_IS_INCLUDED
@@ -90,7 +88,10 @@ header_content;
 #endif
 ```
 
-Example2: 用一個define控制多種分支結果
+#### elif
+預處理指令也有elif
+
+Example: 用一個define控制多種分支結果
 ```cpp
 #define MY_VERSION 1
 

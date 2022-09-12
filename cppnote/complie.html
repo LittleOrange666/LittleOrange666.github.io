@@ -68,7 +68,7 @@
 <div class="codehilite"><pre><span></span><code><span class="cp">#define all(o) o.begin(),o.end()</span>
 </code></pre></div>
 
-<p>因為define會使其下方的所有關鍵字受到影響，最好不要寫在include上方</p>
+<p>因為define會使其下方的所有關鍵字受到影響，最好不要寫在include上方(特別是<code>#define int long long</code>之類的東東)</p>
 <h4 id="undef">undef</h4>
 <p>undef可以取消define的效果<br>
 語法：</p>
@@ -85,7 +85,8 @@
 <span class="cp">#endif</span>
 </code></pre></div>
 
-<p>若常數運算式為真則編譯以下內容</p>
+<p>若常數運算式為真則編譯以下內容<br>
+(常用於C++版本判斷)</p>
 <p>二、ifdef</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#ifdef identifier</span>
 <span class="n">content</span><span class="p">;</span><span class="w"></span>
@@ -100,9 +101,7 @@
 </code></pre></div>
 
 <p>若識別字未定義則編譯以下內容</p>
-<h4 id="elif">elif</h4>
-<p>預處理指令也有elif</p>
-<p>Example1: 避免重複引用標頭檔導致出錯</p>
+<p>Example: 避免重複引用標頭檔導致出錯</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#ifndef MY_HEADER_IS_INCLUDED</span>
 <span class="cp">#define MY_HEADER_IS_INCLUDED</span>
 
@@ -111,7 +110,9 @@
 <span class="cp">#endif</span>
 </code></pre></div>
 
-<p>Example2: 用一個define控制多種分支結果</p>
+<h4 id="elif">elif</h4>
+<p>預處理指令也有elif</p>
+<p>Example: 用一個define控制多種分支結果</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#define MY_VERSION 1</span>
 
 <span class="cp">#if MY_VERSION == 1</span>

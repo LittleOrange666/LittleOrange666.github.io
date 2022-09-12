@@ -1,0 +1,201 @@
+<html>
+
+<head>
+    <title>C++基本語法</title>
+    <base target="_top">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="indexbar" class="toc"></div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="c">C++基本語法</h1>
+<h2 id="_1">開始</h2>
+<p>C++的主要程式必須寫在main函數裡</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 主程式</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="_2">註解</h2>
+<p>有時候在程式中需要注明一些程式的功能，就可以用註解<br>
+單行註解用兩個斜線開頭：</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// 把a設置為1</span>
+</code></pre></div>
+
+<p>多行註解用"/*""*/"包起來：</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm">常數設置</span>
+<span class="cm">a->1, b->2</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="_3">變數</h2>
+<p>變數是在記憶體內準備的"儲存格"，用來儲存資料，並標記資料的類型<br>
+語法為</p>
+<div class="codehilite"><pre><span></span><code><span class="n">型別</span><span class="w"> </span><span class="n">變數名</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<p>與許多程式語言不同，C++變數名是否能用中文(Unicode字元)並沒有硬性規定，而是取決於編譯器<br>
+通常建議用英文大小寫、數字和底線"_"命名<br>
+常用基本型別有：</p>
+<ul>
+<li>bool布林值</li>
+<li>char字元</li>
+<li>int整數</li>
+<li>float浮點數</li>
+<li>double雙倍精度浮點數</li>
+</ul>
+<h3 id="_4">布林值</h3>
+<p>布林值是表示"是"和"否"的資料<br>
+"是"寫作</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">true</span><span class="w"></span>
+</code></pre></div>
+
+<p>"否"寫作</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">false</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="_5">字元</h3>
+<p>字元表示"單一個字"<br>
+用<code>'</code>把字元包起來</p>
+<h3 id="_6">整數</h3>
+<p>整數就是整數<br>
+整數有不同容許範圍的版本<br>
+最常用的是<br>
++ int <script type="math/tex">-2^31~2^31-1</script>
+<br>
++ long long <script type="math/tex">-2^63~2^63-1</script>
+</p>
+<h3 id="_7">浮點數</h3>
+<p>浮點數可以記錄包含小數的數，但會有誤差<br>
+通常若沒有特殊需求都會直接用double而非float</p>
+<h2 id="_8">輸入和輸出</h2>
+<p>C語言的核心並不包含輸出入的處理<br>
+所以要引用輸出入函數庫</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><iostream></span><span class="cp"></span>
+</code></pre></div>
+
+<h3 id="_9">輸入</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">變數</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="_10">輸出</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<p>可以連著寫</p>
+<p>它會依照變數的型別自動判斷如何輸出入<br>
+支援 字元、字串(string)、整數、浮點數<br>
+也可以自己定義處理其他類型的方法</p>
+<h3 id="using-namespace">using namespace</h3>
+<p>因為一些原因，C++的基本函數庫裡的東西都放在叫"std"的命名空間裡<br>
+所以每次呼叫都要告訴編譯器要到std裡面找，很麻煩<br>
+可以先寫一行</p>
+<div class="codehilite"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<p>(注意分號)<br>
+告訴編譯器把"std"裡的東西拿出來，就可以不用每次都要加上"std::"</p>
+<p><details><summary>小範例：計算a+b</p></summary>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><iostream></span><span class="cp"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p></details></p>
+<h2 id="_11">基礎運算子</h2>
+<p>常用的計算符包含：</p>
+<ul>
+<li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></li>
+<li>比較運算子 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code> <code>not_eq</code></li>
+<li>位元運算子 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code> <code>bitand</code> <code>bitor</code> <code>xor</code> <code>compl</code></li>
+<li>邏輯運算子 <code>!</code> <code>||</code> <code>&&</code> <code>!</code> <code>||</code> <code>&&</code> <code>not</code> <code>and</code> <code>or</code></li>
+<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code> <code>++</code> <code>--</code> <code>and_eq</code> <code>or_eq</code> <code>xor_eq</code></li>
+<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>?:</code> <code><::></code> <code><%%></code></li>
+</ul>
+<h2 id="_12">語法結構</h2>
+<h3 id="_13">條件判斷</h3>
+<p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">//縮排不是必須的</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">條件</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">另一個條件</span><span class="p">){</span><span class="w"> </span><span class="c1">//非必要，可以有很多</span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"> </span><span class="c1">//非必要</span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="_14">迴圈</h2>
+<h3 id="for">for迴圈：</h3>
+<p>for迴圈有兩種</p>
+<h4 id="for_1">傳統for</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">初始化</span><span class="p">;</span><span class="n">繼續條件</span><span class="p">;</span><span class="n">結尾動作</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Ex.重複n次</p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="while">while迴圈：</h3>
+<p>while迴圈可以在條件符合時不斷重複相同程式碼</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">條件</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="break-continue">break continue</h3>
+<p>在迴圈中使用break可以立刻跳出當前迴圈</p>
+<p>在迴圈中使用continue可以回到迴圈起點</p>
+<p>注意：要加分號</p>
+<h2 id="_15">自訂函數(副程式)</h2>
+<p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
+語法：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">回傳類型</span><span class="w"> </span><span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">程式碼</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">回傳值</span><span class="p">;</span><span class="w"> </span><span class="c1">//非必要 不一定要在最後一行</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+</body>
+
+</html>

@@ -125,6 +125,14 @@ def run_markdown(source: str) -> str:
     html = re.sub("<br>\\s*<br>", "<br>", html.replace("</br>", "<br>"))
     return html
 
+def run_markdown_file(source: str, target: str) -> None:
+    dat = run_markdown(open(source, encoding="utf8").read())
+    try:
+        open(target, "w", encoding="utf8").write(dat)
+    except FileNotFoundError:
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        open(target, "w", encoding="utf8").write(dat)
+
 
 def main(logger: Callable[[str], None]):
     for dirPath, dirNames, fileNames in os.walk(os.path.join(os.pardir, "src")):
@@ -133,17 +141,12 @@ def main(logger: Callable[[str], None]):
             new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "src"), os.pardir), f)
             if os.path.splitext(name)[-1] == ".md":
                 new_name = new_name[:-3] + ".html"
-                dat = run_markdown(open(name, encoding="utf8").read())
-                try:
-                    open(new_name, "w", encoding="utf8").write(dat)
-                except FileNotFoundError:
-                    os.mkdir(new_name[:new_name.rfind("\\")])
-                    open(new_name, "w", encoding="utf8").write(dat)
+                run_markdown_file(name,new_name)
             else:
                 try:
                     shutil.copyfile(name, new_name)
                 except FileNotFoundError:
-                    os.mkdir(new_name[:new_name.rfind("\\")])
+                    os.makedirs(os.path.dirname(new_name), exist_ok=True)
                     shutil.copyfile(name, new_name)
             logger(f"create {os.path.abspath(new_name)} from {os.path.abspath(name)}")
 

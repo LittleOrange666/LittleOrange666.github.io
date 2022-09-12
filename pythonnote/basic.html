@@ -78,7 +78,7 @@
 
 <p><details><summary>注：</summary><br>
 這種寫法在資料值可變時會使兩個變數代表同個值，使其連動<br>
-可以用這樣的寫法來做淺複製(詳細的"變數與型別"再說)</p>
+可以用這樣的寫法來做淺複製</p>
 <div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
 </code></pre></div>
 
@@ -91,7 +91,7 @@
 <span class="n">日期</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
 
-<p>變數名稱可以是任何的文字，可以用任何語言，但通常建議用英文<br>
+<p>變數名稱可以是任何的文字，可以用任何語言，但通常建議用英文大小寫、數字和底線"_"<br>
 且不能和保留字重複<br>
 也建議不要和內建的函數、常數、類型重名(可能會有非預期的結果)<br>
 不能以數字開頭(可以包含數字)，不能包含計算符號(加減乘除之類的符號)<br>
@@ -260,6 +260,15 @@ True=1, False=0</p>
 <li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code></li>
 <li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></li>
 </ul>
+<p><details><summary>關於除法</summary><br>
+不論用<code>int</code>/<code>float</code>做<code>/</code>總是輸出float<br>
+而<code>//</code>和<code>%</code>則是在有<code>float</code>參與計算時輸出<code>float</code></p>
+<p><code>%</code>遇到負數會有怪怪行為，要小心</p>
+<p>雖然Python有<code>inf</code>和<code>NaN</code>，但內建計算不會輸出<code>inf</code>或<code>NaN</code>，會直接報錯<br>
+(OverflowError/ZeroDivisionError)</p>
+<p><code>**</code>有提供函數的版本，額外有一個"mod"的參數，還可以算模逆元<br>
+pow(a,p,m)<br>
+</details></p>
 <p><details><summary>總表</p></summary>
 <table>
 <thead>
@@ -482,7 +491,7 @@ Python中賦值運算子(包含<code>+=</code>之類的)不具有回傳值(不�
 </code></pre></div>
 
 <p>此語法通常用於對不可預防的錯誤(例如：IOError)做處理<br>
-例外處理可以快速的跳出迴圈/函數，但不建議這樣用</p>
+例外處理可以快速的跳出迴圈/函數，但不建議這樣用(try裡面的所有程式碼都會變慢且可讀性差)</p>
 <h4 id="_27">丟出例外</h4>
 <div class="codehilite"><pre><span></span><code><span class="k">raise</span> <span class="n">例外物件</span>
 </code></pre></div>
@@ -609,6 +618,9 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
     <span class="n">程式碼</span>
 </code></pre></div>
 
+<h3 id="break-continue">break continue</h3>
+<p>在迴圈中使用break可以立刻跳出當前迴圈</p>
+<p>在迴圈中使用continue可以回到迴圈起點</p>
 <h3 id="forwhileelse">for/while...else</h3>
 <p>在迴圈後加上else區域可在迴圈不是因為例外或break而跳出時執行</p>
 <div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
