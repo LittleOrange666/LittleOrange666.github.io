@@ -28,6 +28,16 @@
     <div id="indexbar" class="toc"></div>
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
         <h1 id="c">C++基本語法</h1>
+<h2 id="ide">IDE</h2>
+<h3 id="codeblocks">CodeBlocks</h3>
+<p>CodeBlocks是非常好用的IDE，非常容易上手<br>
+各種功能都很方便<br>
+只有C++的功能也省去了不少麻煩<br>
+和</p>
+<h3 id="vscode">VSCode</h3>
+<p>擴充性很好的IDE<br>
+有許多插件可以使用<br>
+支援絕大多數程式語言</p>
 <h2 id="_1">開始</h2>
 <p>C++的主要程式必須寫在main函數裡</p>
 <div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
@@ -129,7 +139,27 @@
 </code></pre></div>
 
 <p></details></p>
-<h2 id="_11">基礎運算子</h2>
+<h3 id="io">IO優化</h3>
+<p>C++的輸出入默認會比純C的慢<br>
+但只要適當優化就能比純C還快<br>
+(只有打競賽時這樣做，實際應用不建議做IO優化)</p>
+<h4 id="_11">一、優化指令</h4>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><iostream></span><span class="cp"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>優化指令包含兩項<br>
+1. 告訴C++不需要去和純C的IO同步<br>
+2. 告訴cin讀資料的時候不要去flush(cout)</p>
+<h4 id="_12">換行</h4>
+<p>不要用<code>endl</code>，用<code>"\n"</code>或<code>'\n'</code>(兩個一樣快)<br>
+因為<code>endl</code>會去flush(cout)</p>
+<h4 id="flush">為什麼不要flush</h4>
+<p>cout是一種檔案流，用來將資料輸出到標準輸出stdout，但把資料從記憶體傳出去很慢，所以會在記憶體中開一個緩衝區buffer暫時儲存輸出，flush指令會把緩衝區的內容傳出去，速度較慢，雖然在實際應用中可能沒什麼差別，但在程式競賽中就可能是AC和TLE的差別</p>
+<h2 id="_13">基礎運算子</h2>
 <p>常用的計算符包含：</p>
 <ul>
 <li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></li>
@@ -139,8 +169,8 @@
 <li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code> <code>++</code> <code>--</code> <code>and_eq</code> <code>or_eq</code> <code>xor_eq</code></li>
 <li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>?:</code> <code><::></code> <code><%%></code></li>
 </ul>
-<h2 id="_12">語法結構</h2>
-<h3 id="_13">條件判斷</h3>
+<h2 id="_14">語法結構</h2>
+<h3 id="_15">條件判斷</h3>
 <p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">//縮排不是必須的</span>
 <span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">條件</span><span class="p">){</span><span class="w"></span>
@@ -152,7 +182,7 @@
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
-<h2 id="_14">迴圈</h2>
+<h2 id="_16">迴圈</h2>
 <h3 id="for">for迴圈：</h3>
 <p>for迴圈有兩種</p>
 <h4 id="for_1">傳統for</h4>
@@ -184,7 +214,7 @@
 <p>在迴圈中使用break可以立刻跳出當前迴圈</p>
 <p>在迴圈中使用continue可以回到迴圈起點</p>
 <p>注意：要加分號</p>
-<h2 id="_15">自訂函數(副程式)</h2>
+<h2 id="_17">自訂函數(副程式)</h2>
 <p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">回傳類型</span><span class="w"> </span><span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">){</span><span class="w"></span>
@@ -193,7 +223,7 @@
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
-<h2 id="_16">三元運算子</h2>
+<h2 id="_18">三元運算子</h2>
 <p>三元運算子可以簡化條件判斷<br>
 語法：</p>
 <div class="codehilite"><pre><span></span><code><span class="n">條件</span><span class="o">?</span><span class="n">值1</span><span class="o">:</span><span class="n">值2</span><span class="w"></span>

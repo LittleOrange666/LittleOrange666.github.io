@@ -4,6 +4,25 @@ title: Python基礎語法
 
 # 基礎語法
 
+## IDE
+### Jupyter notebook/JupyterLab
+JupyterLab是個簡單易上手的IDE
+單元格的結構可以做到在保留記憶體變數的狀況下繼續寫程式
+並以任意順序執行它
+
+### Colab
+一個免費的Jupyter Notebook環境
+可以在線上執行並儲存在Google雲端內
+還可以額外付費和Google租借更多算力
+
+### VSCode
+擴充性很好的IDE
+有許多插件可以使用
+支援絕大多數程式語言
+
+### PyCharm
+功能豐富的IDE
+
 ## 換行
 在Python裡每換一行就代表下一段程式碼，不需要也不能有分號
 但在以下兩個情況電腦會將不同行看成同一段程式碼
