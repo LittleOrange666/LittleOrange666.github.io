@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <title>小橘子的競程筆記-快速數論變換</title>
+    <base target="_top">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="indexbar" class="toc"></div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h1 id="ntt">NTT 快速數論變換</h1>
+<h2 id="_1">數學部分</h2>
+<h2 id="_2">實作</h2>
+<h3 id="_3">蝴蝶操作</h3>
+<p>完整講解：<a href="https://zhuanlan.zhihu.com/p/80297169">快速数论变换（NTT）及蝴蝶操作构造详解 - 知乎专栏</a><br>
+簡單講解：<br>
+<img alt="" src="https://pic3.zhimg.com/80/v2-9be3b017e8b5f3a6c27bc2562f51509a_720w.jpg"></img><br>
+顯然的，左圖和右圖效果相同<br>
+右圖與數學描述類似<br>
+程式中<br>
+外層迴圈迭代左圖的左到右步驟<br>
+中層迴圈迭代左圖的每一步驟的上到下區塊<br>
+內層迴圈迭代左圖的每一區塊的每一對</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#define g 3</span><span class="c1">//模数的原根</span>
+<span class="cp">#define mod 998244353</span><span class="c1">//通常情况下的模数</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ll</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">pow</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">){</span><span class="c1">//快速幂</span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">z</span><span class="o">=</span><span class="mf">1l</span><span class="n">l</span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="n">ans</span><span class="o">=</span><span class="mf">1l</span><span class="n">l</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="n">y</span><span class="p">;</span><span class="n">y</span><span class="o">/=</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="o">*</span><span class="n">z</span><span class="o">%</span><span class="n">mod</span><span class="p">)</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">&</span><span class="mi">1</span><span class="p">)</span><span class="n">ans</span><span class="o">=</span><span class="n">ans</span><span class="o">*</span><span class="n">z</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="c1">//注意精度</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">ans</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ntt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">inv</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="mi">1</span><span class="o"><<</span><span class="n">bit</span><span class="p">)</span><span class="o"><</span><span class="n">len</span><span class="p">)</span><span class="o">++</span><span class="n">bit</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="o"><=</span><span class="n">len</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="o">>></span><span class="mi">1</span><span class="p">]</span><span class="o">>></span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">((</span><span class="n">i</span><span class="o">&</span><span class="mi">1</span><span class="p">)</span><span class="o"><<</span><span class="p">(</span><span class="n">bit</span><span class="mi">-1</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o"><</span><span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">rev</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="c1">//前面和FFT一样 (位元逆序)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">mid</span><span class="o"><</span><span class="n">len</span><span class="p">;</span><span class="n">mid</span><span class="o">*=</span><span class="mi">2</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">tmp</span><span class="o">=</span><span class="n">pow</span><span class="p">(</span><span class="n">g</span><span class="p">,(</span><span class="n">mod</span><span class="mi">-1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">mid</span><span class="o">*</span><span class="mi">2</span><span class="p">));</span><span class="c1">//原根代替单位根</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inv</span><span class="o">==</span><span class="mi">-1</span><span class="p">)</span><span class="n">tmp</span><span class="o">=</span><span class="n">pow</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">mod</span><span class="mi">-2</span><span class="p">);</span><span class="c1">//逆变换则乘上逆元</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o"><</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="n">mid</span><span class="o">*</span><span class="mi">2</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">omega</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o"><</span><span class="n">mid</span><span class="p">;</span><span class="o">++</span><span class="n">j</span><span class="p">,</span><span class="n">omega</span><span class="o">=</span><span class="n">omega</span><span class="o">*</span><span class="n">tmp</span><span class="o">%</span><span class="n">mod</span><span class="p">){</span><span class="w"></span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">omega</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">mid</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">mid</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="o">+</span><span class="n">mod</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="c1">//注意取模</span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="c1">//大体和FFT差不多</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="_4">單點操作</h3>
+<p>對於狀態<script type="math/tex">f_{type}(x^{pow})</script>將其濃縮為一數字即<script type="math/tex">pow|type</script>
+<br>
+其中代表<script type="math/tex">pow</script>的位元總是在左方、代表<script type="math/tex">type</script>的位元總是在右方<br>
+外層迴圈迭代每一步驟<br>
+內層迴圈迭代每一點<br>
+<code>i&(~pull)</code>代表目前格子的<script type="math/tex">pow</script>
+<br>
+<code>i&pull</code>代表目前格子的<script type="math/tex">type</script>
+<br>
+<code>gi</code>指向前一步驟的第一個狀態</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><bits/stdc++.h></span><span class="cp"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="n">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">998244353</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="n">ll</span><span class="w"> </span><span class="nf">Pow</span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="n">p</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">&</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">p</span><span class="o">>>=</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ntt</span><span class="p">(</span><span class="n">vector</span><span class="o"><</span><span class="n">ll</span><span class="o">></span><span class="w"> </span><span class="o">&</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="n">rev</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o"><<</span><span class="p">(</span><span class="mi">63</span><span class="o">-</span><span class="n">__builtin_clzll</span><span class="p">(</span><span class="n">n</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="o"><</span><span class="n">n</span><span class="p">)</span><span class="n">N</span><span class="o"><<=</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">full</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">lvl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">63</span><span class="o">-</span><span class="n">__builtin_clzll</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="c1">// N=2^lvl</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">vector</span><span class="o"><</span><span class="n">ll</span><span class="o">></span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 暫存區</span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pow</span><span class="p">(</span><span class="n">g</span><span class="p">,(</span><span class="n">mod</span><span class="mi">-1</span><span class="p">)</span><span class="o">+</span><span class="p">((</span><span class="n">rev</span><span class="o">*</span><span class="p">(</span><span class="n">mod</span><span class="mi">-1</span><span class="p">))</span><span class="o">>></span><span class="n">lvl</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">vector</span><span class="o"><</span><span class="n">ll</span><span class="o">></span><span class="w"> </span><span class="n">ws</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">ws</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ws</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">]</span><span class="o">*</span><span class="n">w</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o"><=</span><span class="w"> </span><span class="n">lvl</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o"><<</span><span class="n">lvl</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">place</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o"><<</span><span class="n">lvl</span><span class="o">-</span><span class="n">j</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="n">ll</span><span class="w"> </span><span class="n">gi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(((</span><span class="n">i</span><span class="o">&</span><span class="p">(</span><span class="o">~</span><span class="n">pull</span><span class="p">))</span><span class="o"><<</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">i</span><span class="o">&</span><span class="n">pull</span><span class="p">))</span><span class="o">&</span><span class="n">full</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span><span class="o">+</span><span class="n">ws</span><span class="p">[</span><span class="n">i</span><span class="o">&</span><span class="p">(</span><span class="o">~</span><span class="n">pull</span><span class="p">)]</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">gi</span><span class="o">|</span><span class="n">place</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="o">==</span><span class="mi">-1</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">rn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">mod</span><span class="mi">-2</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">rn</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+</body>
+
+</html>
