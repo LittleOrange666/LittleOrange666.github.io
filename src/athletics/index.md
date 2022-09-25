@@ -21,6 +21,7 @@ title: 小橘子的競程筆記
 + [隨機](random)
 + [圖論1](gragh)
 + [計算幾何1](geometry1)
++ [NTT](ntt)
 
 + [APCS](apcs)
 
