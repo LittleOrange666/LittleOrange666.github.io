@@ -39,12 +39,12 @@ int main() {
             // 把z存起來
             readchar();
         }
-		// 運算
+        // 運算
         for (int i = 1;i<=5;i++)for (int j = 1;j<=7;j++){
-			puting(
-			// 你要輸出的東西，如果是int記得+'0'
-			),puting(j==7?'\n':' ');
-		}
+            puting(
+            // 你要輸出的東西，如果是int記得+'0'
+            ),puting(j==7?'\n':' ');
+        }
     }
 	fwrite(outbuf, 1, outp, stdout);
 }
