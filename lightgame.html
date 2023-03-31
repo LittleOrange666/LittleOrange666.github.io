@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base target="_top">
+	<title>關燈挑戰</title>
+</head>
+<body>
+	<script type="text/javascript">
+    	var size = "60px";
+		var system ={};
+		var p = navigator.platform;
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+		if(system.win||system.mac||system.xll){
+    		size = "120px";
+		}
+		function flip(x,y){
+			if (x>=0 && x<5 && y>=0 && y<7){
+				if (array[x][y]){
+					array[x][y] = false;
+					btns[x][y].style = off;
+				}else{
+					array[x][y] = true;
+					btns[x][y].style = on;
+				}
+			}
+		}
+		function click(x,y) {
+			flip(x,y);
+			flip(x+1,y);
+			flip(x-1,y);
+			flip(x,y+1);
+			flip(x,y-1);
+		}
+		function setall(style){
+			for (let i = 0; i < 5; i++) {
+				for (let j = 0; j < 7; j++) {
+					btns[i][j].style = style;
+				}
+			}
+		}
+		var playing = true;
+		function buttonclick(x,y){
+			if (playing){
+				click(x,y);
+				let b = 0;
+				for (let i = 0; i < 5; i++) {
+					for (let j = 0; j < 7; j++) {
+						if (array[i][j]){
+							b++;
+						}
+					}
+				}
+				if (b == 0){
+					playing = false;
+					let count = 5;
+					for (let i = 0; i < count; i++) {
+						window.setTimeout(function(){
+							setall(on);
+						},(2*i+1)*300);
+						window.setTimeout(function(){
+							setall(off);
+						},(2*i+2)*300);
+					}
+					window.setTimeout(function(){
+						for (let i = 0; i < 200; i++) {
+							click(Math.floor(5*Math.random()),Math.floor(7*Math.random()))
+						}
+						playing = true;
+					},600*count);
+				}
+			}
+		}
+		var off = "width:"+size+";height:"+size+";font-size:20px;background-color:#808080";
+		var on = "width:"+size+";height:"+size+";font-size:20px;background-color:#FFD700";
+		var table = document.createElement("table");
+		var tbody=document.createElement("tbody");
+		table.appendChild(tbody);
+		var array = new Array();
+		var btns = new Array();
+		for (let i = 0; i < 5; i++) {
+			let line = document.createElement("tr");
+			let a = new Array();
+			let linebtn = new Array();
+			for (let j = 0; j < 7; j++) {
+				a[j] = false;
+				let grid = document.createElement("td");
+				let button = document.createElement("button");
+				linebtn[j] = button;
+				button.value = "  ";
+				button.style = off;
+				let x = i;
+				let y = j;
+				button.onclick = function(){
+					buttonclick(x,y);
+				};
+				grid.appendChild(button);
+				line.appendChild(grid);
+			}
+			array[i] = a;
+			btns[i] = linebtn;
+			tbody.appendChild(line);
+		}
+		document.body.appendChild(table);
+		for (var i = 0; i < 200; i++) {
+			click(Math.floor(5*Math.random()),Math.floor(7*Math.random()))
+		}
+	</script>
+</body>
+</html>
