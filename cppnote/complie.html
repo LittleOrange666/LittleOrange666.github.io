@@ -45,11 +45,11 @@
 可以用來載入標頭檔<br>
 有兩種用法<br>
 一、從標準函數庫載入</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><header></span><span class="cp"></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><header></span>
 </code></pre></div>
 
 <p>二、從目前資料夾載入</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf">"header"</span><span class="cp"></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf">"header"</span>
 </code></pre></div>
 
 <p>include指令實際上只是把標頭檔複製過來而已</p>
@@ -85,7 +85,7 @@
 有三種語法<br>
 一、if</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#if const_expression</span>
-<span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="n">content</span><span class="p">;</span>
 <span class="cp">#endif</span>
 </code></pre></div>
 
@@ -93,14 +93,14 @@
 (常用於C++版本判斷)</p>
 <p>二、ifdef</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#ifdef identifier</span>
-<span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="n">content</span><span class="p">;</span>
 <span class="cp">#endif</span>
 </code></pre></div>
 
 <p>若識別字已定義則編譯以下內容</p>
 <p>三、ifndef</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">#ifndef identifier</span>
-<span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="n">content</span><span class="p">;</span>
 <span class="cp">#endif</span>
 </code></pre></div>
 
@@ -109,7 +109,7 @@
 <div class="codehilite"><pre><span></span><code><span class="cp">#ifndef MY_HEADER_IS_INCLUDED</span>
 <span class="cp">#define MY_HEADER_IS_INCLUDED</span>
 
-<span class="n">header_content</span><span class="p">;</span><span class="w"></span>
+<span class="n">header_content</span><span class="p">;</span>
 
 <span class="cp">#endif</span>
 </code></pre></div>
