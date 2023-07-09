@@ -22,7 +22,7 @@
             r.className = c;
             return r;
         }
-        const ip = "http://192.168.100.129";
+        const ip = "https://192.168.100.129";
         let d = new Date();
         $.get(ip + "/settime", { "time": "" + (d.getDay() * 86400000 + d.getHours() * 3600000 + d.getMinutes() * 60000 + d.getSeconds() * 1000 + d.getMilliseconds()) });
         document.querySelector("#stop").addEventListener("click", function () {
