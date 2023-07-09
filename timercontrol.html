@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Timer Control</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" rel="stylesheet">
+    <script crossorigin="anonymous" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <button type="button" class="btn btn-primary" id="stop">STOP</button>
+    <button type="button" class="btn btn-primary" id="settime">更新時間</button>
+    <div id="list"></div>
+    <button type="button" class="btn btn-primary" id="update">更新設定</button>
+    <script>
+        function e(t, c) {
+            let r = document.createElement(t);
+            r.className = c;
+            return r;
+        }
+        const ip = "http://192.168.100.129";
+        let d = new Date();
+        $.get(ip + "/settime", { "time": "" + (d.getDay() * 86400000 + d.getHours() * 3600000 + d.getMinutes() * 60000 + d.getSeconds() * 1000 + d.getMilliseconds()) });
+        document.querySelector("#stop").addEventListener("click", function () {
+            $.get(ip + "/stop");
+        });
+        document.querySelector("#settime").addEventListener("click", function () {
+            let d = new Date();
+            $.get(ip + "/settime", { "time": "" + (d.getDay() * 86400000 + d.getHours() * 3600000 + d.getMinutes() * 60000 + d.getSeconds() * 1000 + d.getMilliseconds()) });
+        });
+        var selects = [];
+        var times = [];
+        var checks = [];
+        var names = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"];
+        for (let i = 0; i < 10; i++) {
+            let d = e("div", "mb-3 row");
+            let s = e("select", "form-control");
+            for (let n of names) {
+                let o = document.createElement("option");
+                o.textContent = n;
+                s.appendChild(o);
+            }
+            let t = e("input", "form-control");
+            t.type = "time";
+            let f = e("div", "form-check");
+            let c = e("input", "form-check-input");
+            c.type = "checkbox";
+            c.value = "";
+            c.id = "checkbox" + i;
+            let l = e("label", "form-check-label");
+            l.value = "";
+            l.setAttribute("for", "checkbox" + i);
+            l.textContent = "啟用"
+            f.appendChild(c);
+            f.appendChild(l);
+            selects.push(s);
+            times.push(t);
+            checks.push(c);
+            let c0 = e("div", "col");
+            c0.appendChild(s);
+            let c1 = e("div", "col");
+            c1.appendChild(t);
+            let c2 = e("div", "col");
+            c2.appendChild(f);
+            d.appendChild(c0);
+            d.appendChild(c1);
+            d.appendChild(c2);
+            document.querySelector("#list").appendChild(d);
+        }
+        $.get(ip + "/getschedule", function (data) {
+            let l = data.split(";");
+            for (let i = 0; i < 10; i++) {
+                let x = Number(l[i]);
+                if (x != -1) {
+                    let d = Math.floor(x / 86400000);
+                    let h = Math.floor(x % 86400000 / 3600000);
+                    let m = Math.floor(x % 3600000 / 60000);
+                    selects[i].value = names[d - 1];
+                    times[i].value = (h > 9 ? "" : "0") + h + ":" + (m > 9 ? "" : "0") + m;
+                    checks[i].checked = true;
+                }
+            }
+        });
+        document.querySelector("#update").addEventListener("click", function () {
+            let res = "";
+            for (let i = 0; i < 10; i++) {
+                let cur = -1;
+                if (times[i].value && checks[i].checked) {
+                    let d = 1 + names.indexOf(selects[i].value);
+                    let h = Number(times[i].value.substring(0, 2));
+                    let m = Number(times[i].value.substring(3, 5));
+                    let ms = ((d * 24 + h) * 60 + m) * 60000;
+                    cur = ms;
+                }
+                res += cur + ";";
+            }
+            console.log(res);
+            $.get(ip + "/setschedule", { "data": res });
+        });
+    </script>
+</body>
+
+</html>
