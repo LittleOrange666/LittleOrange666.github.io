@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>黑白</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<input
+  type="file"
+  accept="image/jpg,image/jpeg,image/png"
+>
+<canvas></canvas>
+<script>
+$("input").change(function(){
+     getData(this)
+   });
+async function getData(event) {
+        const file = event.files[0]
+        const data = await getImageData(file)
+        const canvas = document.querySelector("canvas")
+        const context = canvas.getContext('2d')
+        const cw = data.width
+        const ch = data.height
+        canvas.width = cw
+        canvas.height = ch
+        context.drawImage(data.img, 0, 0, cw, ch)
+        let pixelData = context.getImageData(0, 0, cw, ch)
+  for (let i = 0; i < pixelData.data.length; i += 4) {
+    let sm = pixelData.data[i] + pixelData.data[i+1] + pixelData.data[i+2]
+    let ans = sm>382?255:0;
+    pixelData.data[i] = ans;
+    pixelData.data[i + 1] = ans;
+    pixelData.data[i + 2] = ans;
+  }
+  console.log(pixelData)
+  context.putImageData(pixelData, 0, 0)
+    var doc = new jspdf.jsPDF();
+      var image = canvas.toDataURL("image/png");
+      let x = 210/canvas.width
+      doc.addImage(image, 'JPEG', 0, 0, canvas.width *x, canvas.height *x);
+      doc.save('test.pdf');
+      }
+
+// 抽出處理邏輯，以下為獲取圖片檔案
+function fileLoad(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
+}
+function imgLoad(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve(img)
+    img.onerror = reject
+    img.src = src
+  })
+}
+
+async function getImageData(file){
+  try {
+    const src = await fileLoad(file)
+    const img = await imgLoad(src)
+    const width = img.width
+    const height = img.height
+    return {
+      width,
+      height,
+      img
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+</script>
+</body>
+</html>
