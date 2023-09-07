@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td{
+            font-size: 50px;
+            height: 50px;
+            width: 50px;
+        }
+        .ac{
+            font-size: 100px;
+            color: green;
+        }
+        .go{
+            font-size: 100px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead></thead>
+    <tbody></tbody>
+</table>
+<span style="display:none" class="ac">You Win</span>
+<span style="display:none" class="go">Game Over</span>
+<script>
+    const w = 9;
+    const h = 9;
+    const cnt = 10;
+    var ed = 0;
+    function func(ev){
+        ev.preventDefault();
+        if (ed) return;
+        let e = ev.target;
+        if (ev.button){
+            if (e.dataset.f==1){
+                e.dataset.f = 0;
+                e.textContent = "□";
+            }else if (e.dataset.h==1&&document.querySelectorAll("td[data-f='1']").length<cnt){
+                e.dataset.f = 1;
+                e.textContent = "※";
+            }
+        }else cl(e,1);
+        if (document.querySelectorAll("td[data-m='1'][data-f='0']").length==0||
+        document.querySelectorAll("td[data-m='0'][data-h='1']").length==0){
+            ed = 1;
+            document.querySelector(".ac").style = "";
+            for(let o of document.querySelectorAll("td[data-m='1']"))o.textContent = "※";
+            for(let o of document.querySelectorAll("td[data-m='0']"))o.textContent = o.dataset.c;
+        }
+    }
+    var t = document.querySelector("tbody");
+    for(let x = 0;x<h;x++){
+        var l = document.createElement("tr");
+        for(let y = 0;y < w;y++){
+            var d = document.createElement("td");
+            d.dataset.x = x;
+            d.dataset.y = y;
+            d.dataset.m = 0;
+            d.dataset.h = 1;
+            d.dataset.c = 0;
+            d.dataset.f = 0;
+            d.textContent = "□";
+            d.addEventListener("mouseup", func);
+            d.id = "d"+x+"_"+y;
+            l.appendChild(d);
+        }
+        t.appendChild(l);
+    }
+    function*F(e){
+        let x = +e.dataset.x;
+        let y = +e.dataset.y;
+        for(let o of [[x,y+1],[x+1,y+1],[x+1,y],[x+1,y-1],[x,y-1],[x-1,y-1],[x-1,y],[x-1,y+1]]){
+            let ele = document.querySelector("#d"+o[0]+"_"+o[1]);
+            if(ele) yield ele;
+        }
+    }
+    function cl(e,first){
+        if (ed) return;
+        if (e.dataset.f==1) return;
+        if (e.dataset.m==1){
+            ed = 1;
+            for(let o of document.querySelectorAll("td[data-m='1']")) o.textContent = "蹦!";
+            document.querySelector(".go").style = "";
+        }else{
+            if (e.dataset.h==1){
+                e.dataset.h=0;
+                e.textContent = e.dataset.c;
+                if(e.dataset.c == 0) for(let o of F(e)) cl(o);
+            }else if (first&&+e.dataset.c>0){
+                let cf = 0;
+                for(let o of F(e)) cf += +o.dataset.f;
+                if (cf>=+e.dataset.c)for(let o of F(e)) cl(o);
+            }
+        }
+    }
+    var al = [];
+    for(let o of document.querySelectorAll("td")) al.push(o);
+    for(let i = 0;i<cnt;i++){
+        let x = Math.floor(Math.random()*al.length);
+        al[x].dataset.m = 1;
+        al.splice(x,1);
+    }
+    for(let e of document.querySelectorAll("td")){
+        let c = 0;
+        for (let o of F(e)) c += +o.dataset.m;
+        e.dataset.c = c;
+    }
+    document.body.oncontextmenu = function(){return false;};
+</script>
+</body>
+</html>

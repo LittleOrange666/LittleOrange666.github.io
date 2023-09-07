@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>目錄</title>
+    <title>微積分計算器</title>
     <base target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
     <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
@@ -29,33 +29,31 @@
             </div>
         </nav>
     </div>
-    <div id="indexbar" class="toc"></div>
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
-        <h2 id="coding">Coding</h2>
-<ul>
-<li><a href="pythonnote">Python</a></li>
-<li><a href="cppnote">C++</a></li>
-<li><a href="athletics">競程</a></li>
-</ul>
-<h2 id="_1">自製小遊戲</h2>
-<ul>
-<li><a href="game/Chess">象棋</a></li>
-<li><a href="game/Gobang">五子棋</a></li>
-</ul>
-<h2 id="_2">自製小工具</h2>
-<ul>
-<li><a href="tool/facingtopos">方位找點</a></li>
-</ul>
+        <div id="input_area" class="row"></div>
+        <div>
+            <button type="button" class="btn btn-primary" id="sin_btn">sin</button>
+            <button type="button" class="btn btn-primary" id="cos_btn">cos</button>
+            <button type="button" class="btn btn-primary" id="add_btn">+</button>
+        </div>
+        <p id="text_line"> </p>
+        <p id="out_line"> </p>
+        <p id="ans_line"> </p>
     </div>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            config: ["MMLorHTML.js"],
-            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
-            extensions: ["MathMenu.js", "MathZoom.js"]
-        });
+    <script>
+        MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+              fontCache: 'global'
+            }
+          };
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
     <script src="https://littleorange666.github.io/script/main.js"></script>
+    <script src="script/fraction.js"></script>
+    <script src="sincos.js"></script>
 </body>
 
 </html>

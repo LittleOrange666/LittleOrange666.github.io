@@ -8,8 +8,8 @@ title: 目錄
 - [競程](athletics)
 
 ## 自製小遊戲
-- [象棋](Chess)
-- [五子棋](Gobang)
+- [象棋](game/Chess)
+- [五子棋](game/Gobang)
 
 ## 自製小工具
-- [方位找點](facingtopos)
+- [方位找點](tool/facingtopos)
