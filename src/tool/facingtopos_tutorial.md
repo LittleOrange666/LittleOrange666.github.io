@@ -1,5 +1,5 @@
 # 方位找點基本功能說明
-#### [連結](facingtopos)
+#### [連結](tool/facingtopos)
 ### 這份說明未完成，未說明到的內容請自行摸索
 ### 示意圖
 ![](https://i.imgur.com/QV1deNF.png)

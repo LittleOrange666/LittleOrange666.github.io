@@ -42,8 +42,6 @@ async function getData(event) {
       doc.addImage(image, 'JPEG', 0, 0, canvas.width *x, canvas.height *x);
       doc.save('test.pdf');
       }
-
-// 抽出處理邏輯，以下為獲取圖片檔案
 function fileLoad(file){
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
