@@ -1,0 +1,421 @@
+<html>
+
+<head>
+    <title>Tampermonkey script</title>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="indexbar" class="toc"></div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <h2 id="_1">使用方法：</h2>
+<ol>
+<li>下载 Tampermonkey 插件</li>
+<li>建立一個新的腳本</li>
+<li>貼上代碼</li>
+<li>可能需要填入一些常數</li>
+</ol>
+<p><details><summary>Codeforces Polygon</summary><br>
+1. 自動登入<br>
+2. 自動刷新頁面</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         Codeforces Polygon</span>
+<span class="c1">// @namespace    http://tampermonkey.net/</span>
+<span class="c1">// @version      0.1</span>
+<span class="c1">// @description  try to take over the world!</span>
+<span class="c1">// @author       You</span>
+<span class="c1">// @match        https://polygon.codeforces.com/*</span>
+<span class="c1">// @icon         https://polygon.codeforces.com/image/favicon-32x32.png</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">'use strict'</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 帳號</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 密碼</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">reload_delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 刷新延遲(毫秒)</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">inputevt</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">value</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">'HTMLEvents'</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">evt</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Your code here...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/login"</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='login']"</span><span class="p">),</span><span class="nx">account</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='password']"</span><span class="p">),</span><span class="nx">password</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='submit']"</span><span class="p">).</span><span class="nx">click</span><span class="p">()},</span><span class="mf">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">doreload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/package"</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"table.grid.tablesorter td"</span><span class="p">)){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s2">"RUNNING"</span><span class="p">){</span>
+<span class="w">                </span><span class="nx">doreload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/tests"</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".msiefix pre"</span><span class="p">)){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s1">'Generating...\nReload the page.'</span><span class="p">){</span>
+<span class="w">                </span><span class="nx">doreload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/invocation"</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"span[title='Verdict'] a"</span><span class="p">)){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s1">'TS'</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s1">'NO'</span><span class="p">){</span>
+<span class="w">                </span><span class="nx">doreload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/run"</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"tr td span"</span><span class="p">)){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s1">'TS'</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s1">'NO'</span><span class="p">){</span>
+<span class="w">                </span><span class="nx">doreload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">doreload</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">            </span><span class="nx">history</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span><span class="nx">reload_delay</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<p></details></p>
+<p><details><summary>CSES</summary><br>
+1. 自動登入<br>
+2. 複製按鈕<br>
+3. 戳題按鈕</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         CSES</span>
+<span class="c1">// @namespace    http://tampermonkey.net/</span>
+<span class="c1">// @version      0.1</span>
+<span class="c1">// @description  try to take over the world!</span>
+<span class="c1">// @author       You</span>
+<span class="c1">// @match        https://cses.fi/*</span>
+<span class="c1">// @icon         https://cses.fi/logo.png?1</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">'use strict'</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 帳號</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 密碼</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">inputevt</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">value</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">'HTMLEvents'</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">evt</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/login"</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#nick"</span><span class="p">),</span><span class="nx">account</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='pass']"</span><span class="p">),</span><span class="nx">password</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[type='submit']"</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"a[href='/login']"</span><span class="p">).</span><span class="nx">length</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">lastpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/login"</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">lastpath</span><span class="p">){</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">lastpath</span><span class="p">;</span>
+<span class="w">                </span><span class="ow">delete</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">lastpath</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">link</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">"/problemset/"</span><span class="p">)){</span>
+<span class="w">                </span><span class="kd">function</span><span class="w"> </span><span class="nx">temp</span><span class="p">(){</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">                    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".task"</span><span class="p">)){</span>
+<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".full"</span><span class="p">).</span><span class="nx">length</span><span class="o">==</span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">e</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"a"</span><span class="p">).</span><span class="nx">href</span><span class="p">,</span><span class="nx">e</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".detail"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">]);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">l</span><span class="p">){</span>
+<span class="w">                        </span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s2">" / "</span><span class="p">)[</span><span class="mf">1</span><span class="p">]);</span>
+<span class="w">                        </span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mf">10000</span><span class="o">/</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">]);</span>
+<span class="w">                        </span><span class="nx">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">];</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">sum</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="o">></span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">]){</span>
+<span class="w">                        </span><span class="nx">x</span><span class="o">-=</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">1</span><span class="p">];</span>
+<span class="w">                        </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">                    </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="kd">function</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">o</span><span class="p">){</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">a</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">temp</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">a</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#"</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">a</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"戳"</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">o</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".task-list"</span><span class="p">).</span><span class="nx">length</span><span class="p">){</span>
+<span class="w">                    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".task-list"</span><span class="p">))</span><span class="w"> </span><span class="nx">f</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">f</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".content"</span><span class="p">));</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">copyer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">);</span>
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">copyer</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">hidden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".content"</span><span class="p">).</span><span class="nx">childNodes</span><span class="p">){</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"example"</span><span class="p">)</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="nx">start</span><span class="w"> </span><span class="o">&&</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"Input"</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"Output"</span><span class="p">)))</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">start</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">ok</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">nodeName</span><span class="o">!=</span><span class="s2">"CODE"</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">o</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">copy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"button"</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">copy</span><span class="p">.</span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"background-color: rgba(255, 255, 255, 0.2);right: 0px;top: 0px;font-size: 10px;padding: 0px;margin: 0px;border: 0px;"</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">copy</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"copy"</span>
+<span class="w">                    </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">copy</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"br"</span><span class="p">));</span>
+<span class="w">                    </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">text</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s2">"\n"</span><span class="p">))</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">text</span><span class="o">+</span><span class="s2">"\n"</span><span class="p">;</span>
+<span class="w">                    </span><span class="nx">copy</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">                        </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">text</span><span class="p">;</span>
+<span class="w">                        </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+<span class="w">                        </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">setSelectionRange</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">99999</span><span class="p">);</span>
+<span class="w">                        </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">clipboard</span><span class="p">.</span><span class="nx">writeText</span><span class="p">(</span><span class="nx">copyer</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">};</span>
+<span class="w">                    </span><span class="nx">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<p></details></p>
+<p><details><summary>oj.uz</summary><br>
+1. 自動登入<br>
+2. 隱藏數據</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         ojuz</span>
+<span class="c1">// @namespace    http://tampermonkey.net/</span>
+<span class="c1">// @version      0.1</span>
+<span class="c1">// @description  try to take over the world!</span>
+<span class="c1">// @author       You</span>
+<span class="c1">// @match        https://oj.uz/*</span>
+<span class="c1">// @icon         https://oj.uz/favicon.ico</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">'use strict'</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 帳號</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 密碼</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">inputevt</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">value</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">'HTMLEvents'</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">evt</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/login"</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='email']"</span><span class="p">),</span><span class="nx">account</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='password']"</span><span class="p">),</span><span class="nx">password</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='submit']"</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">login</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".login-bar a"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">login</span><span class="w"> </span><span class="o">&&</span><span class="w"> </span><span class="nx">login</span><span class="p">.</span><span class="nx">textContent</span><span class="o">==</span><span class="s2">"Sign in"</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">login</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">"/problem/view/"</span><span class="p">)){</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"#content table"</span><span class="p">)[</span><span class="mf">0</span><span class="p">].</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"tbody tr td"</span><span class="p">);</span>
+<span class="w">                </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">l</span><span class="p">){</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">>=</span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"???"</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"th"</span><span class="p">)){</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Solved"</span><span class="p">){</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">.</span><span class="nx">nextElementSibling</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">line</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">children</span><span class="p">){</span>
+<span class="w">                        </span><span class="nx">line</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">line</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">].</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"???"</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<p></details></p>
+<p><details><summary>USACO</summary><br>
+1. 自動登入<br>
+2. 複製按鈕</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         USACO</span>
+<span class="c1">// @namespace    http://tampermonkey.net/</span>
+<span class="c1">// @version      0.1</span>
+<span class="c1">// @description  try to take over the world!</span>
+<span class="c1">// @author       You</span>
+<span class="c1">// @match        http://www.usaco.org/*</span>
+<span class="c1">// @icon         http://www.usaco.org/current/images/usaco_logo.png</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">'use strict'</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 帳號</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// 密碼</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">copyToClipboard</span><span class="p">(</span><span class="nx">textToCopy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">clipboard</span><span class="w"> </span><span class="o">&&</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">isSecureContext</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">clipboard</span><span class="p">.</span><span class="nx">writeText</span><span class="p">(</span><span class="nx">textToCopy</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">textArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">textToCopy</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"-999999px"</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"-999999px"</span><span class="p">;</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">textArea</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">rej</span><span class="p">)</span><span class="w"> </span><span class="p">=></span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">execCommand</span><span class="p">(</span><span class="s1">'copy'</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">res</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">rej</span><span class="p">();</span>
+<span class="w">                </span><span class="nx">textArea</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">inputevt</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">value</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">evt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">'HTMLEvents'</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">evt</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">copyer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"textarea"</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">copyer</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">hidden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"pre"</span><span class="p">)){</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"div"</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">o</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">copy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"button"</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">o</span><span class="p">.</span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"padding: 0px;margin: 0px;border: 0px;"</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">copy</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"copy"</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">copy</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"br"</span><span class="p">));</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">copy</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">                </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">text</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+<span class="w">                </span><span class="nx">copyer</span><span class="p">.</span><span class="nx">setSelectionRange</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">99999</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">copyToClipboard</span><span class="p">(</span><span class="nx">copyer</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"b"</span><span class="p">)</span><span class="w"> </span><span class="o">&&</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"b"</span><span class="p">).</span><span class="nx">textContent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Log in to allow submissions in analysis mode"</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">oldlink</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/index.php"</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/index.php"</span><span class="o">||</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"/"</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#login"</span><span class="p">)){</span>
+<span class="w">                </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='uname']"</span><span class="p">),</span><span class="w"> </span><span class="nx">account</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">inputevt</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[name='password']"</span><span class="p">),</span><span class="w"> </span><span class="nx">password</span><span class="p">);</span>
+<span class="w">                </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"input[type='submit'][value='Login']"</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">oldlink</span><span class="p">){</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">oldlink</span><span class="p">;</span>
+<span class="w">                </span><span class="ow">delete</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">oldlink</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">target</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="mf">1000</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<p></details></p>
+<p><details><summary>ZeroJudge</summary><br>
+1. 自動登入(僅支持Google登入)<br>
+2. 新增"我的狀況"按鈕，並在提交後自動篩選出自己的submission</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ==UserScript==</span>
+<span class="c1">// @name         ZeroJudge</span>
+<span class="c1">// @namespace    http://tampermonkey.net/</span>
+<span class="c1">// @version      0.1</span>
+<span class="c1">// @description  try to take over the world!</span>
+<span class="c1">// @author       You</span>
+<span class="c1">// @match        https://zerojudge.tw/*</span>
+<span class="c1">// @icon         https://zerojudge.tw/favicon.ico</span>
+<span class="c1">// @grant        none</span>
+<span class="c1">// ==/UserScript==</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">'use strict'</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'/'</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">"lastpage"</span><span class="p">)){</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">"lastpage"</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="s2">"lastpage"</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">link</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'/Login'</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"./InsertGoogleUser"</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"a[href='/Login']"</span><span class="p">).</span><span class="nx">length</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">"lastpage"</span><span class="p">,</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">            </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/Login"</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span><span class="mf">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".img-rounded"</span><span class="p">).</span><span class="nx">nextSibling</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\t/g</span><span class="p">,</span><span class="s2">""</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span><span class="s2">""</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\n/g</span><span class="p">,</span><span class="s2">""</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'/ShowProblem'</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"a.btn[href^='./Submissions']"</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">nw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">nw</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" 我的狀況 "</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">nw</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s2">"&account="</span><span class="o">+</span><span class="nx">handle</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">e</span><span class="p">.</span><span class="nx">insertAdjacentElement</span><span class="p">(</span><span class="s1">'afterend'</span><span class="p">,</span><span class="w"> </span><span class="nx">nw</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"span"</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">o</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">e</span><span class="p">.</span><span class="nx">insertAdjacentElement</span><span class="p">(</span><span class="s1">'afterend'</span><span class="p">,</span><span class="w"> </span><span class="nx">o</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'/Submissions'</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">referrer</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="o">&&</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">"https://zerojudge.tw/ShowProblem"</span><span class="p">)){</span>
+<span class="w">            </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/Submissions?problemid="</span><span class="o">+</span><span class="nx">s</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">+</span><span class="s2">"&account="</span><span class="o">+</span><span class="nx">handle</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<p></details></p>
+    </div>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+</body>
+
+</html>
