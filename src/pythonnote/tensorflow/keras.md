@@ -104,7 +104,7 @@ model.compile()
 #### 損失函數
 損失函數輸入真實值與預測值後，回傳一個損失值
 通常使用內建的，也可以自己設計
-必須為Callable\[\[tf.Tensor,tf.Tensor\],tf.Tensor\]
+必須為`Callable[[tf.Tensor,tf.Tensor],tf.Tensor]`
 :::spoiler 內建損失函數(都在keras.losses底下)
 常用：
 

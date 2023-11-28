@@ -10,6 +10,256 @@ title: Tampermonkey script
 4. 可能需要填入一些常數
 
 
+:::spoiler Codeforces
+1. 隱藏解題人數
+2. 在problemset頁面可以戳題
+```js
+// ==UserScript==
+// @name         Codeforces
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://codeforces.com/*
+// @icon         https://codeforces.org/s/56111/favicon-96x96.png
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    // hide solved
+    $("a[title~='solved']").remove();
+    if (location.pathname.includes("/standings"))$(".cell-passed-system-test:contains('Accepted')").parent().parent().remove();
+
+    // random problem
+    if (location.pathname.startsWith("/problemset")){
+        var page_cnt = +$(".pagination span:last").text();
+        function do_random(){
+            location.href = "/problemset/page/"+(Math.floor(page_cnt*Math.random())+1)+location.search+"#random";
+        }
+        let btn = $("<input type='button' value='random'>");
+        btn.click(do_random);
+        $("._FilterByTagsFrame_button").append(btn);
+        if (location.hash=="#random"){
+            let o = $(".problems tr:not(.accepted-problem)");
+            if (o.length==0) do_random();
+            else{
+                location.href = o[Math.floor(Math.random()*o.length)].querySelector("a").href + "#pick";
+            }
+        }
+    }
+    if(location.hash=="#pick"){
+        $("#sidebar>div:first-child").remove();
+        if (!$("#sidebar>div:first-child").hasClass("ContestVirtualFrame"))$("#sidebar>div:first-child").remove();
+        $("#header>div").first().remove();
+        $(".sidebar-menu").remove();
+    }
+})();
+```
+:::
+
+:::spoiler Codeforces mashup creater
+建立mashup後可在add problems頁面看到操作UI
+可依難度挑題
+```js
+// ==UserScript==
+// @name         Codeforces mashup creater
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://codeforces.com/*
+// @icon         https://codeforces.org/s/56111/favicon-96x96.png
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    function inputevt(o,value){
+        let evt = document.createEvent('HTMLEvents');
+        evt.initEvent('input', true, true);
+        o.value = value;
+        o.dispatchEvent(evt);
+    }
+    function changeevt(o,value){
+        let evt = document.createEvent('HTMLEvents');
+        evt.initEvent('change', true, true);
+        o.value = value;
+        o.dispatchEvent(evt);
+    }
+    function evt(o,value){
+        let evt = document.createEvent('HTMLEvents');
+        evt.initEvent(value, true, true);
+        o.dispatchEvent(evt);
+    }
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    if(location.pathname.endsWith("problems/new")){
+        let input = $(".problemTable .ac_input")[0];
+        let area1 = $("<input>").addClass("ac_input");
+        let area2 = $("<input>").addClass("ac_input");
+        $("#pageContent").append("ranges:").append(area1).append("<br>");
+        $("#pageContent").append("participants:").append(area2).append("<br>");
+        let btn = $("<button>").text("run mashup creater");
+        $("#pageContent").append(btn);
+        btn.click(function(){
+            let ranges = area1.val().split(",");
+            let participants = area2.val().split(",");
+            console.log(ranges, participants);
+            localStorage.ranges = JSON.stringify(ranges);
+            localStorage.participants = JSON.stringify(participants);
+            localStorage.completed = JSON.stringify([]);
+            localStorage.page_cnt = JSON.stringify({});
+            window.open("https://codeforces.com/#mashup_run","_blank");
+            var inter_id;
+            inter_id = window.setInterval(function(){
+                let completed = JSON.parse(localStorage.completed);
+                if (completed.length == ranges.length){
+                    window.clearInterval(inter_id);
+                    shuffle(completed);
+                    let idx = 0;
+                    window.setInterval(function(){
+                        if (idx==completed.length){
+                            $("._MashupContestEditFrame_saveMashup .submit").click();
+                        }else{
+                            inputevt(input,completed[idx]);
+                            idx++;
+                            $("._MashupContestEditFrame_addProblem").submit();
+                        }
+                    },2000);
+                }
+            },1000);
+        });
+    }
+    if (location.hash == "#mashup_run"){
+        sessionStorage.mashup_run = 1;
+        location.hash = "";
+        sessionStorage.state = "prepare";
+    }
+    if (sessionStorage.mashup_run){
+        function do_action(){
+            window.setTimeout(function(){
+                let ranges = JSON.parse(localStorage.ranges);
+                let completed = JSON.parse(localStorage.completed);
+                let participants = JSON.parse(localStorage.participants);
+                let page_cnt = JSON.parse(localStorage.page_cnt);
+                switch(sessionStorage.state){
+                    case "prepare":
+                        if (completed.length<ranges.length){
+                            let cur = ranges[completed.length];
+                            if (cur in page_cnt){
+                                sessionStorage.state = "choose";
+                                location.href = "/problemset/page/"+(Math.floor(page_cnt[cur]*Math.random())+1)+"?tags="+cur;
+                            }else{
+                                sessionStorage.state = "count";
+                                location.href = "https://codeforces.com/problemset?tags="+cur;
+                            }
+                        }else{
+                            window.close();
+                        }
+                        break;
+                    case "count":
+                        page_cnt[location.search.substr(6)]=Math.max(1,+$(".pagination span:last").text()-1);
+                        localStorage.page_cnt = JSON.stringify(page_cnt);
+                        sessionStorage.state = "prepare";
+                        do_action();
+                        break;
+                    case "choose":
+                        {
+                            let problems = $(".problems tr:not(.accepted-problem)");
+                            let cur = ranges[completed.length];
+                            if (problems.length==0) location.href = "/problemset/page/"+(Math.floor(page_cnt[cur]*Math.random())+1)+"?tags="+cur;
+                            else{
+                                let got = problems[Math.floor(Math.random()*problems.length)].querySelector(".id").textContent.trim();
+                                sessionStorage.got = got;
+                                sessionStorage.state = "verify";
+                                sessionStorage.verify = "0";
+                                do_action();
+                            }
+                        }
+                        break;
+                    case "verify":
+                        {
+                            let pos = sessionStorage.got.match(/[A-Z]/i).index;
+                            let name = sessionStorage.got.substr(0,pos);
+                            let pid = sessionStorage.got.substr(pos);
+                            if (sessionStorage.verify=="0"){
+                                let link = "/contest/"+name;
+                                if (location.pathname != link){
+                                    location.href = link;
+                                }else{
+                                    let faild = $("#pageContent sup").length>0;
+                                    $(".caption.titled").each(function(){
+                                        if($(this).text().includes("Languages")){
+                                            faild = true;
+                                        }
+                                    });
+                                    if(faild){
+                                        delete sessionStorage.got;
+                                        delete sessionStorage.verify;
+                                        sessionStorage.state = "prepare";
+                                        do_action();
+                                    }else{
+                                        sessionStorage.verify = "1";
+                                        sessionStorage.idx = "0";
+                                        do_action();
+                                    }
+                                }
+                            }else if (sessionStorage.verify=="1"){
+                                let idx = +sessionStorage.idx;
+                                if (idx == participants.length){
+                                    completed.push(sessionStorage.got);
+                                    localStorage.completed = JSON.stringify(completed);
+                                    delete sessionStorage.got;
+                                    delete sessionStorage.verify;
+                                    delete sessionStorage.idx;
+                                    sessionStorage.state = "prepare";
+                                    do_action();
+                                }else{
+                                    let link = "/submissions/"+participants[idx];
+                                    if (location.pathname != link){
+                                        location.href = link;
+                                    }else{
+                                        if (!sessionStorage.choosecontest){
+                                            changeevt(document.querySelector("#_ContestStatusFilterFormPart_chosenContest"),"specifyContest");
+                                            inputevt($("#_ContestStatusFilterFormPart_contestIdAndNameField")[0],name);
+                                            sessionStorage.choosecontest = "1";
+                                            $("form.status-filter input[type='submit']").click();
+                                        }else{
+                                            delete sessionStorage.choosecontest;
+                                            let faild = false;
+                                            $(".status-frame-datatable tr[data-submission-id] td[data-problemid]").each(function(){
+                                                faild = true;
+                                            })
+                                            if(faild){
+                                                delete sessionStorage.got;
+                                                delete sessionStorage.verify;
+                                                delete sessionStorage.idx;
+                                                sessionStorage.state = "prepare";
+                                                do_action();
+                                            }else{
+                                                sessionStorage.idx = idx+1;
+                                                do_action();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                }
+            },2000);
+        }
+        do_action();
+    }
+})();
+```
+:::
+
 :::spoiler Codeforces Polygon
 1. 自動登入
 2. 自動刷新頁面
@@ -379,6 +629,141 @@ title: Tampermonkey script
             location.href = "/Submissions?problemid="+s.substr(s.indexOf("=")+1)+"&account="+handle;
         }
     }
+})();
+```
+:::
+
+:::spoiler TIOJ
+1. 隱藏數據
+2. 戳題
+```js
+// ==UserScript==
+// @name         TIOJ
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://tioj.ck.tp.edu.tw/*
+// @icon         https://tioj.ck.tp.edu.tw/images/favicon.ico
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    if (location.pathname.startsWith("/users/")){
+        let btn = document.querySelector("a[href='/users/edit']");
+        let nw = document.createElement("a")
+        nw.className = btn.className;
+        nw.textContent = "戳";
+        nw.addEventListener("click",function(){
+            let all = [];
+            for(let o of document.querySelectorAll("td a.text-muted")) all.push(o.textContent);
+            for(let o of document.querySelectorAll("td a.text-warning")) all.push(o.textContent);
+            let ch = all[Math.floor(Math.random()*all.length)];
+            location.href = "/problems/" + ch;
+        });
+        btn.parentElement.appendChild(nw);
+    }
+    if(location.pathname.startsWith("/problems")){
+        if(location.pathname=="/problems"){
+            let signed_in = $("nav li").last().text()=="Sign out";
+            $("table tr").each(function(){
+                let o = $(this).find("td");
+                $(o[o.length-1-signed_in]).empty();
+                $(o[o.length-2-signed_in]).empty();
+            });
+            $("table tr").each(function(){
+                let o = $(this).find("th");
+                $(o[o.length-1-signed_in]).empty();
+                $(o[o.length-2-signed_in]).empty();
+            });
+        }else{
+            $(".col-md-6").each(function(){
+                if($(this).find(".panel-title").text().includes("AC")){
+                    $(this).remove();
+                }
+            });
+        }
+    }
+})();
+```
+:::
+
+:::spoiler CSAcademy
+1. 以Solved人數戳題
+```js
+// ==UserScript==
+// @name         CSA
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://csacademy.com/*
+// @icon         https://csacademy.com/favicon.ico
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    // problem picker
+    function picker(){
+        var it;
+        it = window.setInterval(function(){
+            let place = [...document.querySelectorAll("div")].filter((o)=>o.textContent=="Show tags")[0];
+            if (place){
+                window.clearInterval(it);
+                let text = document.createElement("div");
+                text.textContent = "Solved filter: ";
+                text.style = "display: inline-block; padding-right: 10px; padding-left: 30px;";
+                place.appendChild(text);
+                let input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = "use format like XXX-OOO";
+                input.style = "display: inline-block;";
+                place.appendChild(input);
+                function run_pick(){
+                    let fil = input.value;
+                    let mi = +fil.substr(0,fil.indexOf("-"));
+                    let mx = +fil.substr(fil.indexOf("-")+1);
+                    let all = document.querySelectorAll("a[href^='/contest/archive/task/']");
+                    let ok = [];
+                    all.forEach(function(o) {
+                        let t = o.querySelectorAll("svg text")[1].textContent;
+                        let cnt = +t.substr(0,t.indexOf("/"));
+                        let used = [...o.querySelectorAll("div")].filter((o)=>o.className.startsWith("userScore"))[0].children.length>0;
+                        if(!used && cnt<=mx && cnt>=mi){
+                            ok.push(o.href);
+                        }
+                    });
+                    if (ok.length==0){
+                        window.alert("Faild to pick task");
+                    }else{
+                        location.href = ok[Math.floor(Math.random()*ok.length)];
+                    }
+                }
+                input.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        run_pick();
+                    }
+                });
+            }
+        },100);
+    }
+    var yes = location.pathname=='/contest/archive/tasks/'||location.pathname=='/contest/archive/tasks';
+    if(yes){
+        picker();
+    }
+    window.setInterval(function(){
+        if (location.pathname=='/contest/archive/tasks/'||location.pathname=='/contest/archive/tasks'){
+            if(!yes){
+                picker();
+            }
+            yes = true;
+        }else{
+            yes = false;
+        }
+    },100);
 })();
 ```
 :::
