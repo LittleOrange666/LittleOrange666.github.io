@@ -4,7 +4,7 @@ title: Tampermonkey script
 
 ## 使用方法：
 
-1. 下载 Tampermonkey 插件
+1. 下載 Tampermonkey 插件
 2. 建立一個新的腳本
 3. 貼上代碼
 4. 可能需要填入一些常數
