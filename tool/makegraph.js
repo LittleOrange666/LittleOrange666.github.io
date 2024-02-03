@@ -1081,7 +1081,10 @@ function refresh_attributes() {
         let type = clicker.selected.parttype;
         if (type == "ThePoint") type = "所求點";
         if (type == "FixedPoint") type = "固定點";
-        if (type == "Point") type = "動點";
+        if (type == "Point") {
+            type = "動點";
+            if(clicker.selected.is_control_point) type = "控制點";
+        }
         if (type == "Segment") type = "線段";
         if (type == "Polygon") type = "多邊形";
         if (type == "Curve") type = "曲線";
@@ -1212,7 +1215,10 @@ function updatelister() {
             let type = cpart.parttype;
             if (type == "ThePoint") type = "所求點";
             if (type == "FixedPoint") type = "固定點";
-            if (type == "Point") type = "動點";
+            if (type == "Point") {
+                type = "動點";
+                if(cpart.is_control_point) type = "控制點";
+            }
             if (type == "Segment") type = "線段";
             if (type == "Polygon") type = "多邊形";
             if (type == "Curve") type = "曲線";
@@ -1368,7 +1374,9 @@ function createProfile() {
                 o.facing1 = p.angle1;
                 o.facing2 = p.angle2;
                 delete o.pos;
-            } else if (o.type == "Point") {} else if (o.type == "Segment") {
+            } else if (o.type == "Point") {
+                o.is_control_point = !!p.is_control_point;
+            } else if (o.type == "Segment") {
                 o.point1 = p.point1.uuid;
                 o.point2 = p.point2.uuid;
                 if (p.inpolygon) {
@@ -1428,6 +1436,7 @@ function readProfile(text) {
             let p = new Point(new Pos(pd.pos.x, pd.pos.y), 10, pd.color);
             g[pd.uuid] = p;
             p.standardable = pd.standardable;
+            p.is_control_point = pd.is_control_point;
         } else if (pd.type == "Segment") {
             let p = new Segment(g[pd.point1], g[pd.point2], pd.color);
         } else if (pd.type == "Polygon") {
