@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>圖</title>
+    <base target="_top">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <style type="text/css">
+    #canvas {
+        border: 1px solid #000;
+    }
+
+    .horizontal {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .left {
+        justify-content: left;
+        text-align: left;
+    }
+
+    .horizontal_between {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    #leftarea {
+        width: 300px;
+    }
+
+    #rightarea {
+        width: 300px;
+    }
+
+    input {
+        width: 60px;
+        height: 30px;
+    }
+
+    .widinput {
+        width: 150px;
+        height: 30px;
+    }
+
+    .maxinput {
+        width: 100%;
+        height: 30px;
+    }
+
+    select {
+        width: 90px;
+        height: 30px;
+    }
+
+    p {
+        text-align: center;
+        line-height: 30px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: "#090909";
+    }
+
+    tr:nth-of-type(even) {
+        background-color: "#f3f3f3";
+    }
+
+    tr:nth-of-type(odd) {
+        background-color: "#0d0d0d";
+    }
+    </style>
+</head>
+
+<body>
+    <div class="horizontal_between">
+        <div id="leftarea">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="objlist_tab" data-bs-toggle="tab" data-bs-target="#objlist" type="button" role="tab" aria-controls="objlist" aria-selected="true">物件列表</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profiles_tab" data-bs-toggle="tab" data-bs-target="#profiles" type="button" role="tab" aria-controls="profiles" aria-selected="false">設定檔</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="objlist" class="tab-pane fade show active">
+                    <h3>物件列表</h3>
+                    <div class="container" id="objlister">
+                        <div class="row">
+                            <div class="col">
+                                <p>名稱</p>
+                            </div>
+                            <div class="col">
+                                <p>類別</p>
+                            </div>
+                            <div class="col">
+                                <p>選取</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="profiles" class="tab-pane fade">
+                    <h3>設定檔</h3>
+                    <div class="left">
+                        <button id="profile_download" class="btn btn-primary btn-sm">下載設定檔</button>
+                    </div>
+                    <div class="left">
+                        <input type="file" id="profile_uploader" accept=".json">
+                    </div>
+                    <div class="left">
+                        <button id="profile_upload" class="btn btn-primary btn-sm" disabled>上傳設定檔</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="uparea" class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <button id="btn_select" class="btn btn-primary btn-sm">選取√</button>
+                        <button id="btn_move" class="btn btn-primary btn-sm">移動</button>
+                        <button id="btn_point" class="btn btn-primary btn-sm">新點</button>
+                        <button id="btn_segment" class="btn btn-primary btn-sm">線段</button>
+                        <button id="btn_polygon" class="btn btn-primary btn-sm">多邊形</button>
+                        <button id="btn_curve" class="btn btn-primary btn-sm">曲線</button>
+                        <button id="btn_color" class="btn btn-primary btn-sm">改顏色</button>
+                        <button id="btn_destroy" class="btn btn-danger btn-sm">刪除</button>
+                    </div>
+                    <div class="col-md-auto">
+                        <input id="input_color" type="color" value="#808080" />
+                    </div>
+                    <div class="col-md-auto">
+                        <button id="btn_download" class="btn btn-primary btn-sm">匯出圖檔</button>
+                        <button id="btn_copy" class="btn btn-primary btn-sm">複製圖片</button>
+                        <img src="" id="img_copy" hidden>
+                    </div>
+                </div>
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="rightarea">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="settings_tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">設定</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="attributes_tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes" aria-selected="true">屬性</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="settings" class="tab-pane fade">
+                    <h3>設定</h3>
+                    <div class="horizontal">
+                        <p id="facinglabel">這裡啥都沒有</p>
+                    </div>
+                </div>
+                <div id="attributes" class="tab-pane fade show active">
+                    <h3>屬性</h3>
+                    <p id="label_objtype">尚未選取物件</p>
+                    <div id="main_attributes" hidden>
+                        <div class="horizontal">
+                            <p>物件名稱：</p>
+                            <input type="text" name="" class="widinput" value="0" id="attribute_name">
+                        </div>
+                        <div class="horizontal">
+                            <p>顏色</p>
+                            <input type="color" name="" id="attribute_color">
+                        </div>
+                        <div id="pos_attributes">
+                            <div class="horizontal">
+                                <p>x座標</p>
+                                <input type="text" name="" class="widinput" id="attribute_x" value="0" disabled>
+                            </div>
+                            <div class="horizontal">
+                                <p>y座標</p>
+                                <input type="text" name="" class="widinput" id="attribute_y" value="0" disabled>
+                            </div>
+                        </div>
+                        <button id="attribute_update" class="btn btn-primary btn-sm">刷新</button>
+                        <button id="attribute_delete" class="btn btn-danger btn-sm" disabled>刪除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="makegraph.js">
+    </script>
+</body>
+
+</html>

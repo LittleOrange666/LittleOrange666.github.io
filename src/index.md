@@ -16,6 +16,7 @@ title: 目錄
 - [方位找點](tool/facingtopos)
 - [簡單sincos積分](tool/sincos)
 - [圖轉黑白雙色](tool/blackwhite)
+- [畫圖](tool/makegraph)
 
 ## Tampermonkey script
 - [全部](tampermonkey_script)
