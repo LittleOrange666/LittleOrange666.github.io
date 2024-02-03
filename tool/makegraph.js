@@ -51,7 +51,7 @@ class Pos {
         return "(" + this.x + ", " + this.y + ")";
     }
     toPt() {
-        return "(" + this.x + "pt, " + -this.y + "pt)";
+        return "(" + Math.round(this.x) + "pt, " + Math.round(-this.y) + "pt)";
     }
 }
 class PolarPos extends Pos { //極座標
@@ -464,6 +464,7 @@ class Point extends Part {
         return this.is_new_point === true;
     }
     tikz(){
+        if(this.is_control_point) return "";
         return "\\fill "+this.canvaspos.toPt()+" circle ("+this.radius+"pt);\n";
     }
 }
@@ -898,6 +899,7 @@ function onmouseclick() {
             if (endpart != null) {
                 let p = new Point(clicker.selected.center.add(endpart.center).mul(0.5), 5, input_color.value);
                 p.is_new_point = true;
+                p.is_control_point = true;
                 new Curve([clicker.selected, p, endpart], input_color.value);
                 updatelister();
             }
