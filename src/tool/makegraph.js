@@ -50,6 +50,9 @@ class Pos {
     toString() {
         return "(" + this.x + ", " + this.y + ")";
     }
+    toPt() {
+        return "(" + this.x + "pt, " + -this.y + "pt)";
+    }
 }
 class PolarPos extends Pos { //極座標
     constructor(r, theta) {
@@ -271,6 +274,9 @@ class Part { //元件
     istag() {
         return false;
     }
+    tikz() {
+        return "";
+    }
 }
 class Segment extends Part {
     constructor(point1, point2, color) {
@@ -354,6 +360,9 @@ class Curve extends Part {
         return true;
     }
     draw() {
+        for(let o of this.parts) {
+            if (o.destroyed) this.destroy();
+        }
         if (this.color != undefined) {
             ctx.strokeStyle = this.color;
         }
@@ -366,6 +375,11 @@ class Curve extends Part {
     }
     updatepos() {
         this.ok = false;
+    }
+    tikz(){
+        let ret = "\\draw[thick]  plot [smooth,tension=0.8]\ncoordinates {";
+        for(let o of this.parts) ret += o.canvaspos.toPt() + " ";
+        return ret+"};\n"
     }
 }
 class Polygon extends Part {
@@ -447,7 +461,10 @@ class Point extends Part {
         return true;
     }
     candestroy() {
-        return this.is_new_point === true && !this.standardable;
+        return this.is_new_point === true;
+    }
+    tikz(){
+        return "\\fill "+this.canvaspos.toPt()+" circle ("+this.radius+"pt);\n";
     }
 }
 class FixedPoint extends Point {
@@ -533,6 +550,9 @@ class Tag extends Part {
     }
     istag() {
         return true;
+    }
+    tikz(){
+        return "\\node[above] at "+this.parent.canvaspos.add(0,-10).toPt()+"{"+this.text+"};\n";
     }
 }
 
@@ -750,7 +770,7 @@ function draging() {
     if (mouse.incanvas()) {
         if (drag.part) {
             drag.lc = drag.lc.add(mouse).sub(drag.previous);
-            if (drag.part.uuid == northpoint.uuid) drag.northing = true;
+            //if (drag.part.uuid == northpoint.uuid) drag.northing = true;
             drag.part.moveto(drag.lc);
             drag.northing = false;
         } else {
@@ -799,11 +819,8 @@ var clicker = {
         clicker.isseging = false;
         clicker.ismoving = false;
         btn_select.innerHTML = "選取";
-        btn_move.innerHTML = "移動";
         btn_point.innerHTML = "新點";
-        btn_segment.innerHTML = "線段";
-        btn_polygon.innerHTML = "多邊形";
-        btn_curve.innerHTML = "曲線";
+        btn_segment.innerHTML = "新邊";
         btn_color.innerHTML = "改顏色";
         clicker.polypoints = [];
         for (let seg of clicker.polysegs) {
@@ -821,15 +838,6 @@ btn_select.addEventListener("click", function() {
     clicker.method = "select";
     btn_select.innerHTML += "√";
 });
-btn_move.addEventListener("click", function() {
-    if (clicker.method == "move") return;
-    clicker.refreshbtn();
-    clicker.method = "move";
-    btn_move.innerHTML += "√";
-    if (clicker.selected && !clicker.ismoving) {
-        clicker.ismoving = true;
-    }
-});
 btn_point.addEventListener("click", function() {
     if (clicker.method == "point") return;
     clicker.refreshbtn();
@@ -845,18 +853,6 @@ btn_segment.addEventListener("click", function() {
     if (clicker.selected && !clicker.isseging) {
         clicker.isseging = true;
     }
-});
-btn_polygon.addEventListener("click", function() {
-    if (clicker.method == "polygon") return;
-    clicker.refreshbtn();
-    clicker.method = "polygon";
-    btn_polygon.innerHTML += "√";
-});
-btn_curve.addEventListener("click", function() {
-    if (clicker.method == "curve") return;
-    clicker.refreshbtn();
-    clicker.method = "curve";
-    btn_curve.innerHTML += "√";
 });
 btn_color.addEventListener("click", function() {
     if (clicker.method == "color") return;
@@ -884,9 +880,9 @@ function onmouseclick() {
         let p = new Point(new Pos(0, 0), 10, input_color.value);
         p.moveto(mouse);
         p.is_new_point = true;
-        clicker.refreshbtn();
-        clicker.method = "select";
-        btn_select.innerHTML += "√";
+        //clicker.refreshbtn();
+        //clicker.method = "select";
+        //btn_select.innerHTML += "√";
         updatelister();
     }
     if (clicker.method == "segment") {
@@ -900,7 +896,9 @@ function onmouseclick() {
             clicker.isseging = false;
             let endpart = parts.findpoint(mouse);
             if (endpart != null) {
-                new Segment(clicker.selected, endpart, input_color.value);
+                let p = new Point(clicker.selected.center.add(endpart.center).mul(0.5), 5, input_color.value);
+                p.is_new_point = true;
+                new Curve([clicker.selected, p, endpart], input_color.value);
                 updatelister();
             }
             clicker.selected = null;
@@ -1019,6 +1017,12 @@ btn_download.addEventListener("click", function() {
     a.download = new Date().toISOString().replace(":", "_") + ".png";
     a.click();
 });
+btn_tikz.addEventListener("click", function() {
+    let txt = "\\begin{tikzpicture}\n";
+    for(let o of parts.arr) txt += o.tikz();
+    txt+="\\end{tikzpicture}";
+    saveTextAsFile("graph.tex", txt);
+});
 btn_copy.addEventListener("click", function() {
     const ccanvas = document.createElement('canvas');
     const cctx = ccanvas.getContext('2d');
@@ -1069,64 +1073,6 @@ function saveTextAsFile(_fileName, _text) {
     downloadLink.click();
 }
 
-function updatename() {
-    //named1.innerHTML = "相對於" + part1.name + "的方向角：";
-    //named2.innerHTML = "相對於" + part2.name + "的方向角：";
-    facinglabel.innerHTML = part1.name + "相對於" + part2.name;
-    label_point1.innerHTML = part1.name;
-    label_point2.innerHTML = part2.name;
-    let l = [];
-    let ps = parts.arr;
-    for (let i in ps) {
-        if (ps[i].standardable) {
-            l.push(ps[i].name);
-        }
-    }
-    //first
-    if (l.includes(first_standard_point.value)) {
-        l.splice(l.indexOf(first_standard_point.value), 1);
-        l.unshift(first_standard_point.value);
-    }
-    let child = first_standard_point.lastElementChild;
-    while (child) {
-        first_standard_point.removeChild(child);
-        child = first_standard_point.lastElementChild;
-    }
-    for (let i in l) {
-        first_standard_point.appendChild(make("option", l[i]));
-    }
-    l.shift();
-    //second
-    if (l.includes(second_standard_point.value)) {
-        l.splice(l.indexOf(second_standard_point.value), 1);
-        l.unshift(second_standard_point.value);
-    }
-    child = second_standard_point.lastElementChild;
-    while (child) {
-        second_standard_point.removeChild(child);
-        child = second_standard_point.lastElementChild;
-    }
-    for (let i in l) {
-        second_standard_point.appendChild(make("option", l[i]));
-    }
-    l.shift();
-    //third
-    if (l.includes(third_standard_point.value)) {
-        l.splice(l.indexOf(third_standard_point.value), 1);
-        l.unshift(third_standard_point.value);
-    }
-    child = third_standard_point.lastElementChild;
-    while (child) {
-        third_standard_point.removeChild(child);
-        child = third_standard_point.lastElementChild;
-    }
-    for (let i in l) {
-        third_standard_point.appendChild(make("option", l[i]));
-    }
-    triple_standard_point.disabled = l.length == 0;
-    if (l.length == 0) triple_standard_point.checked = false;
-}
-
 function refresh_attributes() {
     if (clicker.selected) {
         main_attributes.hidden = false;
@@ -1140,7 +1086,6 @@ function refresh_attributes() {
         label_objtype.innerHTML = "物件類型：" + type;
         attribute_name.value = clicker.selected.name;
         attribute_color.value = clicker.selected.color;
-        attribute_power.value = clicker.selected.power;
         let rp = clicker.selected.realpos;
         attribute_x.value = Math.round(rp.x * 10000000000) * 0.0000000001;
         attribute_y.value = Math.round(rp.y * 10000000000) * 0.0000000001;
@@ -1148,21 +1093,22 @@ function refresh_attributes() {
         attribute_y.oldvalue = attribute_y.value;
         attribute_x.disabled = true //(type != "動點");
         attribute_y.disabled = true //(type != "動點");
-        tp_attributes.hidden = (type != "所求點");
+        //tp_attributes.hidden = (type != "所求點");
         if (type == "所求點") {
             attribute_named1.innerHTML = "相對於" + clicker.selected.part1.name + "的方向角：";
             attribute_named2.innerHTML = "相對於" + clicker.selected.part2.name + "的方向角：";
         }
-        seg_attributes.hidden = (type != "線段");
-        pos_attributes.hidden = (type == "線段" || type == "多邊形");
-        poly_attributes.hidden = (type != "多邊形");
+        //seg_attributes.hidden = (type != "線段");
+        //pos_attributes.hidden = (type == "線段" || type == "多邊形");
+        //poly_attributes.hidden = (type != "多邊形");
         //curve_attributes.hidden = (type != "曲線");
-        attribute_facing1.value = clicker.selected.angle1;
-        attribute_facing2.value = clicker.selected.angle2;
-        if (type == "線段") attribute_length.value = clicker.selected.length * reallength();
-        if (type == "多邊形") attribute_area.value = clicker.selected.getarea() * reallength() * reallength();
+        //attribute_facing1.value = clicker.selected.angle1;
+        //attribute_facing2.value = clicker.selected.angle2;
+        //if (type == "線段") attribute_length.value = clicker.selected.length * reallength();
+        //if (type == "多邊形") attribute_area.value = clicker.selected.getarea() * reallength() * reallength();
         attribute_delete.disabled = !clicker.selected.candestroy();
-        standardable_attributes.hidden = !(type == "所求點" || (type == "動點" && clicker.selected.is_new_point));
+        //standardable_attributes.hidden = !(type == "所求點" || (type == "動點" && clicker.selected.is_new_point));
+        /*
         if (!standardable_attributes.hidden) {
             attribute_standardable.checked = clicker.selected.standardable;
             attribute_standardable.disabled = false;
@@ -1182,6 +1128,7 @@ function refresh_attributes() {
                 }
             }
         }
+        */
     } else {
         main_attributes.hidden = true;
         label_objtype.innerHTML = "尚未選取物件";
@@ -1223,26 +1170,6 @@ attribute_y.addEventListener("input", function() {
         clicker.selected.updatepos();
     }
 });
-attribute_facing1.addEventListener("input", function() {
-    if (clicker.selected) {
-        let data = Number(attribute_facing1.value);
-        if (data >= 0 && data <= 360 && !isNaN(data)) clicker.selected.angle1 = data;
-        clicker.selected.updatepos();
-    }
-});
-attribute_facing2.addEventListener("input", function() {
-    if (clicker.selected) {
-        let data = Number(attribute_facing2.value);
-        if (data >= 0 && data <= 360 && !isNaN(data)) clicker.selected.angle2 = data;
-        clicker.selected.updatepos();
-    }
-});
-attribute_power.addEventListener("input", function() {
-    if (clicker.selected) {
-        let data = Number(attribute_power.value);
-        if (!isNaN(data)) clicker.selected.power = data;
-    }
-});
 attribute_update.addEventListener("click", function() {
     if (clicker.selected) {
         clicker.selected.updatepos();
@@ -1256,20 +1183,13 @@ attribute_delete.addEventListener("click", function() {
         refresh_attributes();
     }
 });
-attribute_standardable.addEventListener("change", function() {
-    if (clicker.selected) {
-        clicker.selected.standardable = attribute_standardable.checked;
-        updatename();
-        refresh_attributes();
-    }
-})
 
 function updatelister() {
     while (objlister.children.length > 1) {
         objlister.removeChild(objlister.children[1]);
     }
     for (let cpart of parts.arr) {
-        if (cpart.display) {
+        if (cpart.display&&cpart.parttype!="Curve") {
             let row = document.createElement("div");
             row.className = "row";
             let col1 = document.createElement("div");
@@ -1377,10 +1297,6 @@ function checkfacingtopos() {
     }
     btn_ftp.disabled = !sus;
 }
-facingin1.addEventListener("input", checkfacingtopos);
-facingin2.addEventListener("input", checkfacingtopos);
-pointnamer.addEventListener("input", checkfacingtopos);
-btn_ftp.addEventListener("click", facingtopos);
 
 function refresh() { //刷新畫面
     checkcanvaspos();
@@ -1402,6 +1318,7 @@ function refresh() { //刷新畫面
         }
     }
     //畫指向北方的箭頭
+    /*
     ctx.lineWidth = 2;
     ctx.strokeStyle = midpoint.color;
     let p1 = midpoint.canvaspos;
@@ -1417,33 +1334,13 @@ function refresh() { //刷新畫面
     let p4 = p2.add(f2);
     drawline(p3.x, p3.y, p2.x, p2.y);
     drawline(p4.x, p4.y, p2.x, p2.y);
+    */
 }
 //default points
 var part1, part2, midpoint, northpoint;
 
 function init() {
     parts.arr = [];
-    part1 = new Point(new Pos(-0.8, 0.8), 10, "#00FFFF");
-    part1.important = true;
-    part1.name = "基準點A";
-    part1.standardable = true;
-    part2 = new Point(new Pos(-0.8, -0.8), 10, "#FFFF00");
-    part2.important = true;
-    part2.name = "基準點B";
-    part2.standardable = true;
-    midpoint = new Point(new Pos(0.7, 0.7), 4, "#000000");
-    midpoint.name = "方向標";
-    northpoint = new NorthPoint(new Pos(0, 0), 3, "#666666", () => midpoint.center.add(new PolarPos(0.2, north())));
-    midpoint.addchild(northpoint);
-    northpoint.name = "N";
-    northpoint.updatepos();
-    updatename();
-    part1.isbase = true;
-    part2.isbase = true;
-    midpoint.isbase = true;
-    northpoint.isbase = true;
-    midpoint.isnorth = true;
-    northpoint.isnorth = true;
 }
 
 function createProfile() {
@@ -1451,33 +1348,6 @@ function createProfile() {
     let partlist = [];
     let settings = {};
     //
-    settings.facing = facingin.value;
-    settings.distance = distancein.value;
-    settings.position_x = standard_x.value;
-    settings.position_y = standard_y.value;
-    settings.point = standard_point.value;
-    settings.point_1 = first_standard_point.value;
-    settings.point_2 = second_standard_point.value;
-    settings.point_3 = third_standard_point.value;
-    settings.facing_1 = facingin1.value;
-    settings.facing_2 = facingin2.value;
-    settings.facing_3 = facingin3.value;
-    settings.name = pointnamer.value;
-    settings.color = pointcolorr.value;
-    settings.name_1 = part1.name;
-    settings.name_2 = part2.name;
-    settings.name_3 = midpoint.name;
-    settings.name_4 = northpoint.name;
-    settings.color_1 = part1.color;
-    settings.color_2 = part2.color;
-    settings.color_3 = midpoint.color;
-    settings.pos_1 = part1.center;
-    settings.pos_2 = part2.center;
-    settings.pos_3 = midpoint.center;
-    settings.uuid1 = part1.uuid;
-    settings.uuid2 = part2.uuid;
-    settings.uuid3 = midpoint.uuid;
-    settings.uuid4 = northpoint.uuid;
     //
     let ps = parts.arr;
     for (let p of ps) {
@@ -1536,34 +1406,6 @@ function readProfile(text) {
     let partlist = data.partlist;
     let g = {};
     init();
-    part1.name = settings.name_1;
-    part2.name = settings.name_2;
-    midpoint.name = settings.name_3;
-    northpoint.name = settings.name_4;
-    updatename();
-    g[settings.uuid1] = part1;
-    g[settings.uuid2] = part2;
-    g[settings.uuid3] = midpoint;
-    g[settings.uuid4] = northpoint;
-    facingin.value = settings.facing;
-    distancein.value = settings.distance;
-    standard_x.value = settings.position_x;
-    standard_y.value = settings.position_y;
-    standard_point.value = settings.point;
-    first_standard_point.value = settings.point_1;
-    second_standard_point.value = settings.point_2;
-    third_standard_point.value = settings.point_3;
-    facingin1.value = settings.facing_1;
-    facingin2.value = settings.facing_2;
-    facingin3.value = settings.facing_3;
-    pointnamer.value = settings.name;
-    pointcolorr.value = settings.color;
-    part1.color = settings.color_1;
-    part2.color = settings.color_2;
-    midpoint.color = settings.color_3;
-    part1.center = new Pos(settings.pos_1.x, settings.pos_1.y);
-    part2.center = new Pos(settings.pos_2.x, settings.pos_2.y);
-    midpoint.center = new Pos(settings.pos_3.x, settings.pos_3.y);
     for (let pd of partlist) {
         if (pd.type == "ThePoint") {
             if (pd.facing1 === undefined) {
@@ -1603,11 +1445,10 @@ function readProfile(text) {
     }
     parts.updatepos();
     updatelister();
-    updatename();
 }
 
 profile_download.addEventListener("click", function() {
-    let filename = "方位找點" + getTimeStr(new Date()) + ".json";
+    let filename = "畫圖" + getTimeStr(new Date()) + ".json";
     saveTextAsFile(filename, createProfile());
 });
 const reader = new FileReader();
@@ -1624,23 +1465,19 @@ reader.addEventListener("load", function() {
 });
 
 function north() {
-    return part1.center.sub(part2.center).toPolar().theta + Number(facingin.value);
+    return 0;
 }
 
 function reference_center() {
-    if (standard_point.value == part1.name) {
-        return part1.center;
-    } else {
-        return part2.center;
-    }
+    return new Pos(0,0);
 }
 
 function reallength() {
-    return Number(distancein.value) / part1.center.sub(part2.center).toPolar().r;
+    return 1;
 }
 
 function reference_pos() {
-    return new Pos(Number(standard_x.value), Number(standard_y.value));
+    return new Pos(0,0);
 }
 
 function checknumber(ip, positive) {
@@ -1656,66 +1493,4 @@ function checknumber(ip, positive) {
     };
     ip.addEventListener("input", ip.numberchecker);
 }
-checknumber(facingin1, false);
-checknumber(facingin2, false);
-checknumber(facingin3, false);
-checknumber(facingin, false);
-checknumber(distancein, true);
-checknumber(standard_x, false);
-checknumber(standard_y, false);
-checknumber(attribute_x, false);
-checknumber(attribute_y, false);
-facingin.addEventListener("input", parts.updatepos);
-distancein.addEventListener("input", refresh_attributes);
-standard_x.addEventListener("input", refresh_attributes);
-standard_y.addEventListener("input", refresh_attributes);
-standard_point.addEventListener("change", refresh_attributes);
-first_standard_point.addEventListener("change", updatename);
-second_standard_point.addEventListener("change", updatename);
-triple_standard_point.addEventListener("change", function() {
-    if (!third_standard_point.lastElementChild) {
-        triple_standard_point.checked = false;
-    }
-    third_standard_point_div.hidden = !triple_standard_point.checked;
-    standard_point_color_div.hidden = triple_standard_point.checked;
-})
 window.setTimeout(init, 1);
-btn_findgood.addEventListener("click", function() {
-    if (window.confirm("注意!此功能會刪除部分的點且不可復原\n並且結果不一定適當\n建議備份後執行\n確定要執行嗎?")) {
-        let spans = {};
-        let delta = 1;
-        parts.forEach((part) => {
-            if (part.parttype == "ThePoint") {
-                let key = part.name;
-                let pos = part.center;
-                let pos1 = part.part1.center;
-                let pos2 = part.part2.center;
-                let dis1 = pos.sub(posfinder(pos1, pos2, part.angle1 + delta, part.angle2 + delta)).length;
-                let dis2 = pos.sub(posfinder(pos1, pos2, part.angle1 - delta, part.angle2 + delta)).length;
-                let dis3 = pos.sub(posfinder(pos1, pos2, part.angle1 + delta, part.angle2 - delta)).length;
-                let dis4 = pos.sub(posfinder(pos1, pos2, part.angle1 - delta, part.angle2 - delta)).length;
-                let dis5 = pos.sub(posfinder(pos1, pos2, part.angle1 + delta, part.angle2)).length;
-                let dis6 = pos.sub(posfinder(pos1, pos2, part.angle1, part.angle2 + delta)).length;
-                let dis7 = pos.sub(posfinder(pos1, pos2, part.angle1, part.angle2 - delta)).length;
-                let dis8 = pos.sub(posfinder(pos1, pos2, part.angle1 - delta, part.angle2)).length;
-                let score = dis1 + dis2 + dis3 + dis4 + dis5 + dis6 + dis7 + dis8;
-                if (spans[key] == undefined) spans[key] = new Array();
-                spans[key].push({ uuid: part.uuid, score: score });
-            }
-        });
-        for (let key in spans) {
-            let a = spans[key];
-            if (a.length > 1) {
-                let m = 10000000;
-                for (let o of a) {
-                    m = Math.min(m, o.score);
-                }
-                for (let o of a) {
-                    if (o.score > m) {
-                        parts.get(o.uuid).destroy();
-                    }
-                }
-            }
-        }
-    }
-});
