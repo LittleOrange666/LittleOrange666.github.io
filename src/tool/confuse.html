@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>代碼混淆</title>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+    <link href="https://littleorange666.github.io/style/codehilite.css" rel="stylesheet">
+    <link href="https://littleorange666.github.io/style/main.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://littleorange666.github.io/script/jquery.js"></script>
+</head>
+
+<body>
+    <div id="top_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="https://littleorange666.github.io/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="previous">前一頁</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="main_area" class="container-fluid" data-hard-breaks="true">
+        <p>Code</p>
+        <textarea id="code" style="width: 100%"></textarea>
+        <button id="collect">Collect</button>
+		<br>
+        <textarea id="collected" style="width: 100%"></textarea>
+        <button id="run">Run</button>
+		<br>
+        <textarea id="code_out" style="width: 100%"></textarea>
+    </div>
+    <script>
+        MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+              fontCache: 'global'
+            }
+          };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script src="https://littleorange666.github.io/script/main.js"></script>
+    <script src="https://littleorange666.github.io/script/fraction.js"></script>
+    <script src="confuse.js"></script>
+</body>
+
+</html>
