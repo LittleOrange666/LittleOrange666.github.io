@@ -160,9 +160,9 @@ arr[<em>索引</em>] = <em>數據</em><br>
 <strong>2.使用與原陣列形狀相同的布林陣列</strong><br>
 這種用法中的布林陣列通常是使用原陣列生成<br>
 例如：取出正數</p>
-<div class="codehilite"><pre><span></span><code><span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</pre>
 <p><strong>3.複合索引(使用tuple)</strong><br>
 把1.打包成一個tuple來和4.合用<br>
 <strong>4.多重索引(使用list或與2./3.合用)</strong><br>
@@ -279,7 +279,7 @@ class ndarray(builtins.object)<br>
   empty : Create an array, but leave its allocated memory unchanged (i.e.,<br>
           it contains "garbage").<br>
   dtype : Create a data-type.<br>
-  numpy.typing.NDArray : A :term:<code>generic &lt;generic type&gt;</code> version<br>
+  numpy.typing.NDArray : A :term:<code>generic <generic type></code> version<br>
                          of ndarray.<br>
   Notes</p>
 <hr></hr>
@@ -295,12 +295,15 @@ class ndarray(builtins.object)<br>
 <p>These examples illustrate the low-level <code>ndarray</code> constructor.  Refer<br>
   to the <code>See Also</code> section above for easier ways of constructing an<br>
   ndarray.<br>
-  First mode, <code>buffer</code> is None:<br>
-  >>> np.ndarray(shape=(2,2), dtype=float, order='F')<br>
+  First mode, <code>buffer</code> is None:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>np.ndarray(shape=(2,2), dtype=float, order='F')<br>
   array([[0.0e+000, 0.0e+000], # random<br>
          [     nan, 2.5e-323]])<br>
   Second mode:<br>
-  >>> np.ndarray((2,), buffer=np.array([1,2,3]),<br>
+np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   ...            offset=np.int_().itemsize,<br>
   ...            dtype=int) # offset = 1<em>itemsize, i.e. skip first element<br>
   array([2, 3])<br>
@@ -330,7 +333,7 @@ class ndarray(builtins.object)<br>
   __copy __(...)<br>
       a.__copy __()<br>
       Used if :func:<code>copy.copy</code> is called on an array. Returns a copy of the array.<br>
-      Equivalent to <code>a.copy(order=&#x27;K&#x27;)</code>.<br>
+      Equivalent to <code>a.copy(order='K')</code>.<br>
   __deepcopy __(...)<br>
       a.__deepcopy __(memo, /) -> Deep copy of array.<br>
       Used if :func:<code>copy.deepcopy</code> is called on an array.<br>
@@ -426,19 +429,7 @@ class ndarray(builtins.object)<br>
   __rfloordiv __(self, value, /)<br>
       Return value//self.<br>
   __rlshift __(self, value, /)<br>
-      Return value<<self.<br>
-  __rmatmul __(self, value, /)<br>
-      Return value@self.<br>
-  __rmod __(self, value, /)<br>
-      Return value%self.<br>
-  __rmul __(self, value, /)<br>
-      Return value</em>self.<br>
-  __ror __(self, value, /)<br>
-      Return value|self.<br>
-  __rpow __(self, value, mod=None, /)<br>
-      Return pow(value, self, mod).<br>
-  __rrshift __(self, value, /)<br>
-      Return value>>self.<br>
+      Return value<<self. \95\95rmatmul \95\95(self, value, ) return value@self. \95\95rmod value%self. \95\95rmul value*self. \95\95ror value|self. \95\95rpow mod="None," pow(value, self, mod). \95\95rrshift value>>self.<br>
   __rshift __(self, value, /)<br>
       Return self>>value.<br>
   __rsub __(self, value, /)<br>
@@ -474,14 +465,14 @@ class ndarray(builtins.object)<br>
   __xor __(self, value, /)<br>
       Return self^value.<br>
   all(...)<br>
-      a.all(axis=None, out=None, keepdims=False, <em>, where=True)<br>
+      a.all(axis=None, out=None, keepdims=False, </em>, where=True)<br>
       Returns True if all elements evaluate to True.<br>
       Refer to <code>numpy.all</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.all : equivalent function<br>
   any(...)<br>
-      a.any(axis=None, out=None, keepdims=False, </em>, where=True)<br>
+      a.any(axis=None, out=None, keepdims=False, *, where=True)<br>
       Returns True if any of the elements of <code>a</code> evaluate to True.<br>
       Refer to <code>numpy.any</code> for full documentation.<br>
       See Also<br>
@@ -1284,63 +1275,59 @@ class ndarray(builtins.object)<br>
       >>> a.sort(order='y')<br>
       >>> a<br>
       array([(b'c', 1), (b'a', 2)],<br>
-            dtype=[('x', 'S1'), ('y', '<i8')])<br>
-  squeeze(...)<br>
-      a.squeeze(axis=None)<br>
-      Remove axes of length one from <code>a</code>.<br>
-      Refer to <code>numpy.squeeze</code> for full documentation.<br>
-      See Also<br>
-      --------<br>
-      numpy.squeeze : equivalent function<br>
-  std(...)<br>
-      a.std(axis=None, dtype=None, out=None, ddof=0, keepdims=False, <em>, where=True)<br>
-      Returns the standard deviation of the array elements along given axis.<br>
-      Refer to <code>numpy.std</code> for full documentation.<br>
-      See Also<br>
-      --------<br>
-      numpy.std : equivalent function<br>
-  sum(...)<br>
-      a.sum(axis=None, dtype=None, out=None, keepdims=False, initial=0, where=True)<br>
-      Return the sum of the array elements over the given axis.<br>
-      Refer to <code>numpy.sum</code> for full documentation.<br>
-      See Also<br>
-      --------<br>
-      numpy.sum : equivalent function<br>
-  swapaxes(...)<br>
-      a.swapaxes(axis1, axis2)<br>
-      Return a view of the array with <code>axis1</code> and <code>axis2</code> interchanged.<br>
-      Refer to <code>numpy.swapaxes</code> for full documentation.<br>
-      See Also<br>
-      --------<br>
-      numpy.swapaxes : equivalent function<br>
-  take(...)<br>
-      a.take(indices, axis=None, out=None, mode='raise')<br>
-      Return an array formed from the elements of <code>a</code> at the given indices.<br>
-      Refer to <code>numpy.take</code> for full documentation.<br>
-      See Also<br>
-      --------<br>
-      numpy.take : equivalent function<br>
-  tobytes(...)<br>
-      a.tobytes(order='C')<br>
-      Construct Python bytes containing the raw data bytes in the array.<br>
-      Constructs Python bytes showing a copy of the raw contents of<br>
-      data memory. The bytes object is produced in C-order by default.<br>
-      This behavior is controlled by the <code>order</code> parameter.<br>
-      .. versionadded:: 1.9.0<br>
-      Parameters<br>
-      ----------<br>
-      order : {'C', 'F', 'A'}, optional<br>
-          Controls the memory layout of the bytes object. 'C' means C-order,<br>
-          'F' means F-order, 'A' (short for </em>Any<em>) means 'F' if <code>a</code> is<br>
-          Fortran contiguous, 'C' otherwise. Default is 'C'.<br>
-      Returns<br>
-      -------<br>
-      s : bytes<br>
-          Python bytes exhibiting a copy of <code>a</code>'s raw data.<br>
-      Examples<br>
-      --------<br>
-      >>> x = np.array([[0, 1], [2, 3]], dtype='<u2')<br>
-      >>> x.tobytes()<br>
+            dtype=[('x', 'S1'), ('y', '<i8')]) squeeze(...) a.squeeze(axis="None)" remove axes of length one from <code>a</code>.
+      Refer to <code>numpy.squeeze</code> for full documentation.
+      See Also
+      --------
+      numpy.squeeze : equivalent function
+  std(...)
+      a.std(axis=None, dtype=None, out=None, ddof=0, keepdims=False, *, where=True)
+      Returns the standard deviation of the array elements along given axis.
+      Refer to <code>numpy.std</code> for full documentation.
+      See Also
+      --------
+      numpy.std : equivalent function
+  sum(...)
+      a.sum(axis=None, dtype=None, out=None, keepdims=False, initial=0, where=True)
+      Return the sum of the array elements over the given axis.
+      Refer to <code>numpy.sum</code> for full documentation.
+      See Also
+      --------
+      numpy.sum : equivalent function
+  swapaxes(...)
+      a.swapaxes(axis1, axis2)
+      Return a view of the array with <code>axis1</code> and <code>axis2</code> interchanged.
+      Refer to <code>numpy.swapaxes</code> for full documentation.
+      See Also
+      --------
+      numpy.swapaxes : equivalent function
+  take(...)
+      a.take(indices, axis=None, out=None, mode='raise')
+      Return an array formed from the elements of <code>a</code> at the given indices.
+      Refer to <code>numpy.take</code> for full documentation.
+      See Also
+      --------
+      numpy.take : equivalent function
+  tobytes(...)
+      a.tobytes(order='C')
+      Construct Python bytes containing the raw data bytes in the array.
+      Constructs Python bytes showing a copy of the raw contents of
+      data memory. The bytes object is produced in C-order by default.
+      This behavior is controlled by the <code>order</code> parameter.
+      .. versionadded:: 1.9.0
+      Parameters
+      ----------
+      order : {'C', 'F', 'A'}, optional
+          Controls the memory layout of the bytes object. 'C' means C-order,
+          'F' means F-order, 'A' (short for *Any*) means 'F' if <code>a</code> is
+          Fortran contiguous, 'C' otherwise. Default is 'C'.
+      Returns
+      -------
+      s : bytes
+          Python bytes exhibiting a copy of <code>a</code>'s raw data.
+      Examples
+      --------
+      >>> x = np.array([[0, 1], [2, 3]], dtype='<u2')>>> x.tobytes()<br>
       b'\x00\x00\x01\x00\x02\x00\x03\x00'<br>
       >>> x.tobytes('C') == x.tobytes()<br>
       True<br>
@@ -1439,7 +1426,7 @@ class ndarray(builtins.object)<br>
       --------<br>
       numpy.trace : equivalent function<br>
   transpose(...)<br>
-      a.transpose(</em>axes)<br>
+      a.transpose(<em>axes)<br>
       Returns a view of the array with axes transposed.<br>
       For a 1-D array this has no effect, as a transposed vector is simply the<br>
       same vector. To convert a 1-D array into a 2D column vector, an additional<br>
@@ -1483,7 +1470,7 @@ class ndarray(builtins.object)<br>
       array([[1, 3],<br>
              [2, 4]])<br>
   var(...)<br>
-      a.var(axis=None, dtype=None, out=None, ddof=0, keepdims=False, *, where=True)<br>
+      a.var(axis=None, dtype=None, out=None, ddof=0, keepdims=False, </em>, where=True)<br>
       Returns the variance of the array elements, along given axis.<br>
       Refer to <code>numpy.var</code> for full documentation.<br>
       See Also<br>
@@ -1495,7 +1482,7 @@ class ndarray(builtins.object)<br>
       .. note::<br>
           Passing None for <code>dtype</code> is different from omitting the parameter,<br>
           since the former invokes <code>dtype(None)</code> which is an alias for<br>
-<code>dtype(&#x27;float_&#x27;)</code>.<br>
+<code>dtype('float_')</code>.<br>
       Parameters<br>
       ----------<br>
       dtype : data-type or ndarray sub-class, optional<br>
@@ -1569,6 +1556,9 @@ class ndarray(builtins.object)<br>
       >>> z.view(dtype=[('width', np.int16), ('length', np.int16)])<br>
       array([[(1, 2)],<br>
              [(4, 5)]], dtype=[('width', '<i2'), ('length', '<i2')])</p>
+</blockquote>
+</blockquote>
+</blockquote>
 <hr></hr>
 <p>Static methods defined here:<br>
   __new __(<em>args, </em>*kwargs) from builtins.type<br>
@@ -1671,9 +1661,9 @@ class ndarray(builtins.object)<br>
       >>> x.ctypes.data_as(ctypes.POINTER(ctypes.c_uint64)).contents<br>
       c_ulong(4294967296)<br>
       >>> x.ctypes.shape<br>
-      <numpy.core._internal.c_long_Array_2 object at 0x7ff2fc1fce60> # may vary<br>
+      <numpy.core._internal.c_long_array_2 object at 0x7ff2fc1fce60> # may vary<br>
       >>> x.ctypes.strides<br>
-      <numpy.core._internal.c_long_Array_2 object at 0x7ff2fc1ff320> # may vary<br>
+      <numpy.core._internal.c_long_array_2 object at 0x7ff2fc1ff320> # may vary<br>
   data<br>
       Python buffer object pointing to the start of the array's data.<br>
   dtype<br>
@@ -1740,7 +1730,7 @@ class ndarray(builtins.object)<br>
           BEHAVED and F_CONTIGUOUS and not C_CONTIGUOUS.<br>
       Notes<br>
       -----<br>
-      The <code>flags</code> object can be accessed dictionary-like (as in <code>a.flags[&#x27;WRITEABLE&#x27;]</code>),<br>
+      The <code>flags</code> object can be accessed dictionary-like (as in <code>a.flags['WRITEABLE']</code>),<br>
       or by using lowercased attribute names (as in <code>a.flags.writeable</code>). Short flag<br>
       names are only supported in dictionary access.<br>
       Only the WRITEBACKIFCOPY, UPDATEIFCOPY, WRITEABLE, and ALIGNED flags can be<br>

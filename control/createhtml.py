@@ -55,7 +55,8 @@ class Codehightlighter(HTMLParser):
         if self.prepare == "":
             self.text.append(data)
         else:
-            self.text.append(highlight(data, prepares[self.prepare](), HtmlFormatter()))
+            # print(data)
+            self.text.append(highlight(data, prepares[self.prepare], HtmlFormatter()))
 
     def solve(self, text: str):
         self.text = []
@@ -89,8 +90,8 @@ def run_markdown(source: str) -> str:
         source = f"{source[:get.span(1)[0]]}{get.group(1).replace(' ', '&nbsp;')}{source[get.span(1)[1]:]}"
         get = reg1.search(source)
     # 主要部分
-    html = markdown.markdown(escape(source), extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
-                                                 'codehilite', 'nl2br', mdx_math.makeExtension(enable_dollar_delimiter=True)])
+    html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
+                                                  'nl2br', mdx_math.makeExtension(enable_dollar_delimiter=True)])
     # spoiler轉成details
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
                                                                                                     " NEXTLINE ")

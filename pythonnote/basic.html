@@ -51,65 +51,65 @@
 <p>在Python裡每換一行就代表下一段程式碼，不需要也不能有分號<br>
 但在以下兩個情況電腦會將不同行看成同一段程式碼</p>
 <p>一、 括號未完成</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p>可以寫成</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mi">1</span>
+<pre><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span>
 <span class="o">+</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>二、行結尾是反斜槓</p>
-<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">87</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">87</span>
+</pre></div>
+</pre>
 <p>可以寫成</p>
-<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> \
+<pre><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> \
 <span class="mi">87</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>這兩種寫法一般用在一行程式碼太長的時候，換行寫比較好看</p>
 <h2 id="_3">註解</h2>
 <p>有時候在程式中需要注明一些程式的功能，就可以用註解<br>
 單行註解用一個井字號開頭：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#把a設置為1</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#把a設置為1</span>
+</pre></div>
+</pre>
 <p>多行註解用三個引號包起來：</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span>
-<span class="n">常數設置</span>
-<span class="n">a</span><span class="o">-&</span><span class="n">gt</span><span class="p">;</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">-&</span><span class="n">gt</span><span class="p">;</span><span class="mi">2</span>
-<span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span>
+<pre><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">常數設置</span>
+<span class="sd">a-&gt;1, b-&gt;2</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h2 id="_4">變數</h2>
 <p>變數是給資料值的一個"暱稱"，可以告訴電腦該資料值之後可能會用到，並方便重複存取。</p>
 <h3 id="_5">賦值</h3>
 <p>賦值即是把一個"暱稱"設定給一個資料值</p>
-<div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">資料值</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">資料值</span>
+</pre></div>
+</pre>
 <p>或著</p>
-<div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">另一個變數名稱</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">變數名稱</span> <span class="o">=</span> <span class="n">另一個變數名稱</span>
+</pre></div>
+</pre>
 <p><details><summary>注：</summary><br>
 這種寫法在資料值可變時會使兩個變數代表同個值，使其連動<br>
 可以用這樣的寫法來做淺複製</p>
-<div class="codehilite"><pre><span></span><code><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">變數名稱</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">另一個變數名稱</span><span class="p">)(</span><span class="n">另一個變數名稱</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p></details><br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+<pre><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">真的</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">你好</span> <span class="o">=</span> <span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">Hello</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span>
-<span class="n">こんにちは</span> <span class="o">=</span> <span class="o">&</span><span class="c1">#x27;안녕하세요&#x27;</span>
+<span class="n">你好</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="n">こんにちは</span> <span class="o">=</span> <span class="s1">&#39;안녕하세요&#39;</span>
 <span class="n">日期</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>變數名稱可以是任何的文字，可以用任何語言，但通常建議用英文大小寫、數字和底線"_"<br>
 且不能和保留字重複<br>
 也建議不要和內建的函數、常數、類型重名(可能會有非預期的結果)<br>
@@ -127,9 +127,9 @@ ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOEr
 <h2 id="_7">常用資料類型</h2>
 <p>在程式中，所有的資料值都有類型，用來讓電腦分辨要如何處裡資料<br>
 可以用</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">type</span><span class="p">(</span><span class="n">資料值</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">資料值</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p>來獲取資料值的類型</p>
 <h4 id="_8">常用資料類型包括：</h4>
 <ul>
@@ -151,13 +151,13 @@ ArithmeticError、AssertionError、AttributeError、BaseException、BlockingIOEr
 <h3 id="_10">布林值</h3>
 <p>布林值是表示"是"和"否"的資料<br>
 "是"寫作</p>
-<div class="codehilite"><pre><span></span><code><span class="kc">True</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</pre>
 <p>"否"寫作</p>
-<div class="codehilite"><pre><span></span><code><span class="kc">False</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</pre>
 <p><strong>大小寫必須正確</strong><br>
 布林值可以和數字混在一起計算<br>
 True=1, False=0</p>
@@ -166,53 +166,53 @@ True=1, False=0</p>
 比較需要注意的是虛數符號要用"j"而非"i"<br>
 且"1j"不能簡記為"j"<br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="mi">123</span>      <span class="c1">#整數</span>
+<pre><div class="highlight"><pre><span></span><span class="mi">123</span>      <span class="c1">#整數</span>
 <span class="mf">123.0</span>    <span class="c1">#浮點數</span>
 <span class="mf">12.33</span>    <span class="c1">#浮點數</span>
 <span class="p">(</span><span class="mf">1.2</span><span class="o">+</span><span class="mi">3</span><span class="n">j</span><span class="p">)</span> <span class="c1">#複數</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="_12">字串</h3>
 <p>字串表示一段文字<br>
 在程式中要用英文引號包起來<br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&</span><span class="c1">#x27;你好&#x27;</span>
-<span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">阿</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="s1">&#39;你好&#39;</span>
+<span class="s2">&quot;阿&quot;</span>
+</pre></div>
+</pre>
 <h3 id="_13">空值</h3>
 <p>空值用於標記不存在/未確定的值<br>
 表示為：</p>
-<div class="codehilite"><pre><span></span><code><span class="kc">None</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="kc">None</span>
+</pre></div>
+</pre>
 <h3 id="_14">元組</h3>
 <p>元組表示並列且有序的一組任意長度的資料值<br>
 長度不可改變，元素不可寫入<br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span> <span class="c1">#用小括號包住用半形逗號分隔的資料</span>
+<pre><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span> <span class="c1">#用小括號包住用半形逗號分隔的資料</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">13</span>   <span class="c1">#如果沒有歧義，可以省略小括號，這行和上一行同義</span>
-<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">你好</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span> <span class="c1">#可以包含不同型別的資料</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="s2">&quot;你好&quot;</span><span class="p">)</span> <span class="c1">#可以包含不同型別的資料</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#True</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#87</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#你好</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#直接加東西在結尾</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="_15">清單</h3>
 <p>清單表示並列且有序的一組任意長度的資料值<br>
 可插入/刪除資料<br>
 類似C++的vector<br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#空清單</span>
+<pre><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#空清單</span>
 <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="c1">#還是空清單</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">haha</span><span class="o">&</span><span class="n">quot</span><span class="p">;]</span> <span class="c1">#可以包含不同型別的資料</span>
-<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="mi">1</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span> <span class="c1">#在結尾加入資料</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="s2">&quot;haha&quot;</span><span class="p">]</span> <span class="c1">#可以包含不同型別的資料</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span> <span class="c1">#在結尾加入資料</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#[7, 8, &quot;haha&quot;, &quot;1&quot;]</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">owo</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="mi">1234</span><span class="p">]</span> <span class="c1">#直接加東西在結尾</span>
-<span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">owo</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="mi">1234</span><span class="p">])</span> <span class="c1">#和上一行類似，但可加上任意型別且在原地操作</span>
-</code></pre></div>
-
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">[</span><span class="s2">&quot;owo&quot;</span><span class="p">,</span><span class="mi">1234</span><span class="p">]</span> <span class="c1">#直接加東西在結尾</span>
+<span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;owo&quot;</span><span class="p">,</span><span class="mi">1234</span><span class="p">])</span> <span class="c1">#和上一行類似，但可加上任意型別且在原地操作</span>
+</pre></div>
+</pre>
 <h3 id="_16">集合</h3>
 <p>集合表示無序不重複的一組任意長度的資料值<br>
 並能夠在常數時間裡檢查一元素是否在集合中<br>
@@ -221,62 +221,62 @@ True=1, False=0</p>
 不能存可變的值，如：list、set、dict<br>
 要存其他set必須轉換成frozenset<br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> <span class="c1">#集合</span>
+<pre><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> <span class="c1">#集合</span>
 <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">}</span> <span class="c1">#和上一行一樣</span>
 <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1">#加一個</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span> <span class="c1">#集合合併</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1">#{8, 4, 5, 7}</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="_17">字典</h3>
 <p>字典是鍵-值對的資料結構<br>
 鍵是唯一的，值不一定唯一<br>
 在較新的python版本(3.7+)中鍵會按照加入的順序排列<br>
 類似C++的unordered_map</p>
-<div class="codehilite"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">a</span><span class="o">&</span><span class="n">quot</span><span class="p">;:</span><span class="mi">12</span><span class="p">,</span> <span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">b</span><span class="o">&</span><span class="n">quot</span><span class="p">;:</span><span class="mi">34</span><span class="p">}</span> <span class="c1">#字典</span>
-<span class="n">d</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">c</span><span class="o">&</span><span class="n">quot</span><span class="p">;]</span> <span class="o">=</span> <span class="mi">56</span> <span class="c1">#新增資料</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">a</span><span class="o">&</span><span class="n">quot</span><span class="p">;])</span> <span class="c1">#12</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#{&#x27;a&#x27;: 12, &#x27;b&#x27;: 34, &#x27;c&#x27;: 56}</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">34</span><span class="p">}</span> <span class="c1">#字典</span>
+<span class="n">d</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">56</span> <span class="c1">#新增資料</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span> <span class="c1">#12</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">#{&#39;a&#39;: 12, &#39;b&#39;: 34, &#39;c&#39;: 56}</span>
+</pre></div>
+</pre>
 <h3 id="_18">順帶一提</h3>
 <p>類型名稱可以視為一個函數，用來複製資料值或把其他類型的資料轉換成當前類型<br>
 較常用的有int(),float(),str(),bool(),list()<br>
 範例：</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="mi">123</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span> <span class="c1">#123 #轉換為整數</span>
-<span class="nb">float</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="mf">8.7</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span> <span class="c1">#8.7 #轉換為浮點數</span>
-<span class="nb">str</span><span class="p">(</span><span class="mi">666</span><span class="p">)</span> <span class="c1">#&#x27;666&#x27; #轉換為字串</span>
-<span class="nb">bool</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">xxx</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span> <span class="c1">#True #轉換為布林值</span>
+<pre><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span> <span class="c1">#123 #轉換為整數</span>
+<span class="nb">float</span><span class="p">(</span><span class="s2">&quot;8.7&quot;</span><span class="p">)</span> <span class="c1">#8.7 #轉換為浮點數</span>
+<span class="nb">str</span><span class="p">(</span><span class="mi">666</span><span class="p">)</span> <span class="c1">#&#39;666&#39; #轉換為字串</span>
+<span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;xxx&quot;</span><span class="p">)</span> <span class="c1">#True #轉換為布林值</span>
 <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1">#[0,1,2] #轉換為列表</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h2 id="_19">輸出和輸入</h2>
 <h3 id="_20">輸出</h3>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p>把數值列印到螢幕上，並換行<br>
 不想要結尾換行可以這樣寫：</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">,</span><span class="n">end</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">值</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</pre>
 <h3 id="_21">輸入</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">問題</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+<pre><div class="highlight"><pre><span></span><span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;問題&quot;</span><span class="p">)</span>
 
 <span class="c1">#同義於</span>
-<span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">問題</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="n">end</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;問題&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>先輸出一行字(不換行)(可選)，再接收一行字串</p>
 <h2 id="_22">基礎運算子</h2>
 <p>常用的計算符包含：</p>
 <ul>
 <li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>//</code> <code>%</code> <code>**</code></li>
-<li>比較運算子 <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>==</code> <code>!=</code></li>
-<li>位元運算子 <code>&lt;&lt;</code> <code>|</code> <code>&amp;</code> <code>^</code> <code>&gt;&gt;</code> <code>~</code></li>
+<li>比較運算子 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code></li>
+<li>位元運算子 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code></li>
 <li>邏輯運算子 <code>not</code> <code>or</code> <code>and</code></li>
-<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code>&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>|=</code> <code>&amp;=</code> <code>^=</code></li>
+<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code></li>
 <li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></li>
 </ul>
 <p><details><summary>關於除法</summary><br>
@@ -488,51 +488,51 @@ Python中賦值運算子(包含<code>+=</code>之類的)不具有回傳值(不�
 <h2 id="_24">語法結構</h2>
 <h3 id="_25">條件判斷</h3>
 <p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">#縮排是必須的</span>
+<pre><div class="highlight"><pre><span></span><span class="c1">#縮排是必須的</span>
 <span class="k">if</span> <span class="n">條件</span><span class="p">:</span>
     <span class="n">程式碼</span>
 <span class="k">elif</span> <span class="n">另一個條件</span><span class="p">:</span> <span class="c1">#非必要，可以有很多</span>
     <span class="n">程式碼</span>
 <span class="k">else</span><span class="p">:</span> <span class="c1">#非必要</span>
     <span class="n">程式碼</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="_26">例外處理</h3>
 <p>例外處理語法可以接收執行過程中出現的錯誤，並做適當地處理</p>
-<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+<pre><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="c1">#主程式</span>
-<span class="k">except</span> <span class="n">錯誤類型</span> <span class="k">as</span> <span class="n">變數名</span><span class="p">:</span> <span class="c1">#&#x27;as 變數名&#x27;非必要 #可以有很多</span>
+<span class="k">except</span> <span class="n">錯誤類型</span> <span class="k">as</span> <span class="n">變數名</span><span class="p">:</span> <span class="c1">#&#39;as 變數名&#39;非必要 #可以有很多</span>
     <span class="c1">#例外處理</span>
 <span class="k">else</span><span class="p">:</span> <span class="c1">#非必要</span>
     <span class="c1">#沒例外時的處理</span>
 <span class="k">finally</span><span class="p">:</span> <span class="c1">#非必要</span>
     <span class="c1">#無論如何都會執行</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>此語法通常用於對不可預防的錯誤(例如：IOError)做處理<br>
 例外處理可以快速的跳出迴圈/函數，但不建議這樣用(try裡面的所有程式碼都會變慢且可讀性差)</p>
 <h4 id="_27">丟出例外</h4>
-<div class="codehilite"><pre><span></span><code><span class="k">raise</span> <span class="n">例外物件</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="n">例外物件</span>
+</pre></div>
+</pre>
 <p>除了直接丟出以外，還可以用assert表示在不符合條件時自動丟出例外</p>
-<div class="codehilite"><pre><span></span><code><span class="k">assert</span> <span class="n">條件</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">條件</span>
+</pre></div>
+</pre>
 <p>等同於</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">條件</span><span class="p">:</span>
+<pre><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">條件</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">AssertionError</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="with">上下文管理(with語法)</h3>
 <p>with語法可以更簡潔的語法確保資源被正確釋放<br>
 常用於檔案的操作</p>
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#&quot;as 變數&quot;不是必須</span>
+<pre><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">表達式</span> <span class="k">as</span> <span class="n">變數</span><span class="p">:</span> <span class="c1">#&quot;as 變數&quot;不是必須</span>
     <span class="c1">#主程式</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>等同於</p>
-<div class="codehilite"><pre><span></span><code><span class="n">_contextmanager</span><span class="o">=</span><span class="n">表達式</span>
+<pre><div class="highlight"><pre><span></span><span class="n">_contextmanager</span><span class="o">=</span><span class="n">表達式</span>
 <span class="n">_value</span> <span class="o">=</span> <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
 <span class="n">_success</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">try</span><span class="p">:</span>
@@ -545,26 +545,26 @@ Python中賦值運算子(包含<code>+=</code>之類的)不具有回傳值(不�
 <span class="k">finally</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">_success</span><span class="p">:</span>
         <span class="n">_contextmanager</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>表達式必須產出一個contextmanager<br>
 with語法也可以用於使中間的程式展現特定的行為<br>
 例如：指定cpu/gpu<br>
-<details><summary>Example:&nbsp;檔案的開啟</p></summary>
-<div class="codehilite"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">filename</span><span class="p">:</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+<details><summary>Example: 檔案的開啟</p></summary>
+<pre><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;filename:&quot;</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">content</span> <span class="n">of</span> <span class="o">&</span><span class="n">quot</span><span class="p">;</span> <span class="o">+</span><span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">+&</span><span class="n">quot</span><span class="p">;</span> <span class="p">:</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;content of &quot;</span> <span class="o">+</span><span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; :&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p></details><br>
-<details><summary>Example:&nbsp;列印時間</p></summary>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
+<details><summary>Example: 列印時間</p></summary>
+<pre><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
 <span class="k">class</span> <span class="nc">TimePrinter</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="n">f</span><span class="o">&</span><span class="n">quot</span><span class="p">;[</span><span class="n">INFO</span><span class="p">][{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()}]:</span> <span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="n">end</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO][</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span><span class="si">}</span><span class="s2">]: &quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">PrintTime</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -581,11 +581,11 @@ with語法也可以用於使中間的程式展現特定的行為<br>
             <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span>
             <span class="k">if</span> <span class="n">exc_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">&</span><span class="n">quot</span><span class="p">;[</span><span class="n">EXCEPTION</span><span class="p">][{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()}]</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[EXCEPTION][</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
                 <span class="n">traceback</span><span class="o">.</span><span class="n">print_tb</span><span class="p">(</span><span class="n">exc_traceback</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">&</span><span class="n">quot</span><span class="p">;{</span><span class="n">exc_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="p">}{</span><span class="o">&</span><span class="c1">#x27;: &#x27;+str(exc_value) if exc_value else &#x27;&#x27;}&quot;)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exc_type</span><span class="o">.</span><span class="vm">__name__</span><span class="w"> </span><span class="si">}{</span><span class="s1">&#39;: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">exc_value</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">exc_value</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
-<span class="k">if</span> <span class="vm">__name__</span><span class="o">==&</span><span class="c1">#x27;__main__&#x27;:</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">PrintTime</span><span class="p">():</span>
@@ -593,16 +593,16 @@ with語法也可以用於使中間的程式展現特定的行為<br>
             <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p></details></p>
 <h2 id="_28">迴圈</h2>
 <h3 id="for">for迴圈：</h3>
 <p>for迴圈可以對可迭代物件中的每一項進行相同的處理</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">變數</span> <span class="ow">in</span> <span class="n">可迭代物件</span><span class="p">:</span>
+<pre><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">變數</span> <span class="ow">in</span> <span class="n">可迭代物件</span><span class="p">:</span>
     <span class="n">程式碼</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>需要注意的是，直接對字典進行迭代與對鍵值進行迭代效果相同<br>
 可迭代物件中 有兩個常用在for迴圈裡</p>
 <ol>
@@ -611,38 +611,38 @@ with語法也可以用於使中間的程式展現特定的行為<br>
 </ol>
 <h4 id="range">range</h4>
 <p>range有三種寫法</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">range</span><span class="p">(</span><span class="n">結尾</span><span class="p">)</span>
+<pre><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="n">結尾</span><span class="p">)</span>
 <span class="nb">range</span><span class="p">(</span><span class="n">開頭</span><span class="p">,</span><span class="n">結尾</span><span class="p">)</span>
 <span class="nb">range</span><span class="p">(</span><span class="n">開頭</span><span class="p">,</span><span class="n">結尾</span><span class="p">,</span><span class="n">步長</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>range代表一個從<code>開頭</code>到<code>結尾</code>間隔<code>步長</code>的等差數列(不包含結尾)<br>
 <code>開頭</code>默認為<code>0</code>，<code>步長</code>默認為<code>1</code><br>
 三個值都可以是負的<br>
 range不會直接產生數列，而是在要用到的時候才計算</p>
 <h4 id="enumerate">enumerate</h4>
 <p>enumerate語法如下</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">enumerate</span><span class="p">(</span><span class="n">可迭代物件</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="nb">enumerate</span><span class="p">(</span><span class="n">可迭代物件</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p>enumerate輸入一個<code>可迭代物件</code>，輸出的每一元素為(編號,值)的元組<br>
 通常寫作</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<pre><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="c1">#do something</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="while">while迴圈：</h3>
 <p>while迴圈可以在條件符合時不斷重複相同程式碼</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
+<pre><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
     <span class="n">程式碼</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="break-continue">break continue</h3>
 <p>在迴圈中使用break可以立刻跳出當前迴圈</p>
 <p>在迴圈中使用continue可以回到迴圈起點</p>
 <h3 id="forwhileelse">for/while...else</h3>
 <p>在迴圈後加上else區域可在迴圈不是因為例外或break而跳出時執行</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
+<pre><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">條件</span><span class="p">:</span>
     <span class="n">程式碼</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">程式碼</span>
@@ -651,38 +651,38 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
     <span class="n">程式碼</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">程式碼</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h2 id="_29">自訂函數(副程式)</h2>
 <p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
+<pre><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
     <span class="n">程式碼</span>
     <span class="k">return</span> <span class="n">回傳值</span> <span class="c1">#非必要 不一定要在最後一行</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h2 id="_30">三元運算子</h2>
 <p>三元運算子可以簡化條件判斷<br>
 語法：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">值1</span> <span class="k">if</span> <span class="n">條件</span> <span class="k">else</span> <span class="n">值2</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">值1</span> <span class="k">if</span> <span class="n">條件</span> <span class="k">else</span> <span class="n">值2</span>
+</pre></div>
+</pre>
 <p>空格不能省略<br>
 這一整個可以視為一個值<br>
 當條件成立，輸出值1；當條件不成立，輸出值2<br>
 Ex:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="nb">input</span><span class="p">:</span><span class="o">&</span><span class="n">quot</span><span class="p">;))</span>
+<pre><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;input:&quot;</span><span class="p">))</span>
 <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">odd</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;odd&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">even</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
-</code></pre></div>
-
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;even&quot;</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p>可簡化為</p>
-<div class="codehilite"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="nb">input</span><span class="p">:</span><span class="o">&</span><span class="n">quot</span><span class="p">;))</span>
-<span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">odd</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">even</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;input:&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;odd&quot;</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;even&quot;</span><span class="p">)</span>
+</pre></div>
+</pre>
 <h2 id="comprehension">推導式(Comprehension)</h2>
 <p>這沒有統一的翻譯，在此暫時稱之為推導式<br>
 推導式來源於數學中的集合建構式<br>
@@ -697,12 +697,12 @@ Python中的推導式有4種，分別是</p>
 <li>生成器表達式(Generator Expression)<br>
 共通語法：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="n">右括號</span>
+<pre><div class="highlight"><pre><span></span><span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="n">右括號</span>
 
 <span class="c1">#或著加上謂詞</span>
 <span class="n">左括號</span> <span class="n">輸出表達式</span> <span class="k">for</span> <span class="n">變量</span> <span class="ow">in</span> <span class="n">輸入集合</span> <span class="k">if</span> <span class="n">謂詞</span> <span class="n">右括號</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="list-comprehension">列表推導式(List Comprehension)</h3>
 <p>算是其中較常用的一種<br>
 元素的順序會被保留<br>
@@ -726,15 +726,15 @@ Python中的推導式有4種，分別是</p>
 <h2 id="main">關於main</h2>
 <p>Python程式不需要包含在main函數裡就可執行<br>
 若是要長期維護的代碼會建議用如下語法：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<pre><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c1"># 主要程式碼</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="o">&</span><span class="c1">#x27;__main__&#x27;:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>這種寫法可以使程式碼在被import時不自動執行主要程式碼<br>
 但同時可以手動執行main<br>
-而且有一些函數庫會要求把程式碼寫在<code>if __name__ == &#x27;__main__&#x27;:</code>裡面(例如：PyQt)<br>
+而且有一些函數庫會要求把程式碼寫在<code>if __name__ == '__main__':</code>裡面(例如：PyQt)<br>
 並能明確的標示出主要程式碼的位置</p>
     </div>
     <script type="text/x-mathjax-config">

@@ -1,6 +1,6 @@
 var main = $("#main_area");
 var actdict = {};
-
+$(".highlight").addClass("codehilite")
 function initindex() {
     if (main.find("h1,h2,h3,h4,h5,h6,p,pre,ol,ul").first().prop("tagName") != "H1") {
         main.prepend($("<h1></h1>").text($("title").text()));

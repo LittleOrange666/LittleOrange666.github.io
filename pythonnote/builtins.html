@@ -498,16 +498,22 @@ Create a string of hexadecimal numbers from a bytearray object.</p>
   bytes_per_sep<br>
     How many bytes between separators.  Positive values count from the<br>
     right, negative values count from the left.</p>
-<p>Example:<br>
->>> value = bytearray([0xb9, 0x01, 0xef])<br>
->>> value.hex()<br>
+<p>Example:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>value = bytearray([0xb9, 0x01, 0xef])<br>
+value.hex()<br>
 'b901ef'<br>
->>> value.hex(':')<br>
+value.hex(':')<br>
 'b9:01:ef'<br>
->>> value.hex(':', 2)<br>
+value.hex(':', 2)<br>
 'b9:01ef'<br>
->>> value.hex(':', -2)<br>
+value.hex(':', -2)<br>
 'b901:ef'</p>
+</blockquote>
+</blockquote>
+</blockquote>
 <p><strong>index</strong><br>
 B.index(sub[, start[, end]]) -> int</p>
 <p>Return the lowest index in B where subsection sub is found,<br>

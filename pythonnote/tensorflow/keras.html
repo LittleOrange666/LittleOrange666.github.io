@@ -35,9 +35,9 @@
 <p>Keras 是一個用 Python 編寫的高級神經網絡 API，它能夠以 TensorFlow, CNTK, 或者 Theano 作為後端運行。 Keras 的開發重點是支持快速的實驗。能夠以最少的時間把想法轉換為實驗結果，是做好研究的關鍵。</p>
 <h2 id="_1">基本使用</h2>
 <p>先import</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
+</pre></div>
+</pre>
 <h3 id="_2">建立模型</h3>
 <p>模型有兩種建立方式</p>
 <ol>
@@ -46,31 +46,31 @@
 </ol>
 <h4 id="_3">順序模型</h4>
 <p>寫法一、</p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+<pre><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
     <span class="n">第一層</span>
     <span class="n">第二層</span>
     <span class="o">..</span>
     <span class="n">最後一層</span>
     <span class="p">])</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>寫法二、</p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<pre><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">第一層</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">第二層</span><span class="p">)</span>
 <span class="o">..</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">最後一層</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h4 id="api">函數式 API</h4>
-<div class="codehilite"><pre><span></span><code><span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">輸入陣列形狀</span><span class="p">)</span>
+<pre><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">輸入陣列形狀</span><span class="p">)</span>
 <span class="n">第一層</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
 <span class="n">第二層</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">第一層</span><span class="p">)</span>
 <span class="o">..</span>
 <span class="n">outputs</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">大小</span><span class="p">)(</span><span class="n">前一層</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="n">outputs</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h4 id="_4">層</h4>
 <p>keras中最基本的層是layers.Dense<br>
 Dense(units)表示這一層中有units個節點<br>
@@ -102,28 +102,28 @@ softmax(x, axis=-1)<br>
 <h4 id="_6">正則化器</h4>
 <p>正則化器附屬在一個層中，用於解決 overfitting<br>
 用法：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">正則化器</span><span class="p">)</span> <span class="c1">#壓制核心參數</span>
+<pre><div class="highlight"><pre><span></span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">正則化器</span><span class="p">)</span> <span class="c1">#壓制核心參數</span>
 <span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">bias_regularizer</span><span class="o">=</span><span class="n">正則化器</span><span class="p">)</span> <span class="c1">#壓制偏差</span>
 <span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span><span class="n">activity_regularizer</span><span class="o">=</span><span class="n">kernel正則化器</span><span class="p">)</span> <span class="c1">#壓制變化</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>keras中提供兩種正則化算法</p>
 <ul>
 <li>L1: 用絕對值</li>
 <li>L2: 用平方</li>
 </ul>
 <p>可用正則化器有</p>
-<div class="codehilite"><pre><span></span><code><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L1</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<pre><div class="highlight"><pre><span></span><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L1</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L2</span><span class="p">(</span><span class="n">l2</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">L1L2</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="c1"># 參數為lambda</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h3 id="_7">編譯</h3>
 <p>建構完模型要對模型作編譯</p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+</pre>
 <p>編譯需要兩個參數</p>
 <ul>
 <li>損失函數loss</li>
@@ -146,22 +146,22 @@ softmax(x, axis=-1)<br>
 </ul>
 <p>且部分內建損失函數提供參數，可其改為駝峰名稱以取用class版本<br>
 Ex.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">losses</span><span class="o">.</span><span class="n">binary_crossentropy</span> <span class="c1"># 基礎版</span>
+<pre><div class="highlight"><pre><span></span><span class="n">losses</span><span class="o">.</span><span class="n">binary_crossentropy</span> <span class="c1"># 基礎版</span>
 <span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">()</span> <span class="c1"># 用class</span>
 <span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 用class加參數</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p></details></p>
 <h4 id="_9">優化器</h4>
 <p>優化器是一個物件<br>
 通常使用內建的<br>
 <details><summary>內建優化器(都在keras.optimizers底下)</summary><br>
 常用：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># 線性回歸</span>
+<pre><div class="highlight"><pre><span></span><span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span> <span class="c1"># 線性回歸</span>
 <span class="n">RMSprop</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1"># 在學習率上依據梯度的大小對學習率進行加強或是衰減</span>
 <span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1"># 自適應矩估計</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p></details></p>
 <h4 id="_10">評估函數</h4>
 <p>評估函數輸入真實值與預測值後，回傳一個評估值<br>
@@ -173,18 +173,18 @@ Ex.</p>
 <h4 id="_11">使用名稱</h4>
 <p>編譯時使用內建的東西可以直接傳入名稱<br>
 如以下三者意義相同</p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">MeanSquaredError</span><span class="p">(),</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
+<pre><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">MeanSquaredError</span><span class="p">(),</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(),</span><span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">mae</span><span class="p">])</span>
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=&</span><span class="c1">#x27;RMSprop&#x27;,loss=&#x27;mean_squared_error&#x27;,metrics=[&#x27;mae&#x27;])</span>
-</code></pre></div>
-
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;RMSprop&#39;</span><span class="p">,</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">])</span>
+</pre></div>
+</pre>
 <h3 id="_12">訓練</h3>
 <p>透過訓練資料進行訓練</p>
-<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入</span>
+<pre><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，tensorflow 2.1以後支援使用generator作為輸入</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">train_inputs</span><span class="p">,</span><span class="n">train_outputs</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練很多資料，使用generator作為輸入</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">train_input</span><span class="p">,</span><span class="n">train_output</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="n">訓練次數</span><span class="p">)</span> <span class="c1"># 一次訓練一筆資料</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p><details><summary>參數表(若依照此順序輸入可省略"key=")</p></summary>
 <table>
 <thead>
@@ -260,14 +260,14 @@ Ex.</p>
 <p></details></p>
 <h3 id="_13">測試</h3>
 <p>透過測試資料求出損失值及評估值</p>
-<div class="codehilite"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span><span class="n">test_outputs</span><span class="p">)</span>
+</pre></div>
+</pre>
 <h3 id="_14">使用</h3>
 <p>使用模型預測結果</p>
-<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</pre>
 <h3 id="_15">儲存與載入</h3>
 <p>keras模型可以用三種格式儲存</p>
 <ul>
@@ -277,25 +277,25 @@ Ex.</p>
 <h4 id="h5py">h5py</h4>
 <p>副檔名建議用".h5"或".keras"<br>
 <strong>儲存：</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
+</pre></div>
+</pre>
 <p><strong>載入：</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>
+</pre></div>
+</pre>
 <h4 id="json">json</h4>
 <p><strong>儲存：</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">w</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+</pre></div>
+</pre>
 <p><strong>載入：</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">model_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">model_from_json</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</pre>
 <h3 id="_16">範例</h3>
 <p><details><summary>範例：y=A*X+b</p></summary>
-<div class="codehilite"><pre><span></span><code><span class="n">param_count</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 參數數量</span>
+<pre><div class="highlight"><pre><span></span><span class="n">param_count</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 參數數量</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -329,17 +329,17 @@ Ex.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span><span class="n">test_Y</span><span class="p">))</span>
 
 <span class="c1"># 損失值變化</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="o">&</span><span class="c1">#x27;loss&#x27;])),history.history[&#x27;loss&#x27;])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="o">&</span><span class="c1">#x27;Model accuracy&#x27;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="o">&</span><span class="c1">#x27;loss&#x27;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="o">&</span><span class="c1">#x27;epoch&#x27;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="o">&</span><span class="c1">#x27;Train&#x27;], loc=&#x27;upper right&#x27;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">])),</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Model accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Train&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># 儲存</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">f</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">keras_</span><span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_year</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_mon</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_mday</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_hour</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_min</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_sec</span><span class="p">}</span><span class="o">.</span><span class="n">h5</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;keras_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_mon</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_mday</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_hour</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_min</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_sec</span><span class="si">}</span><span class="s2">.h5&quot;</span>
 <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">model</span>
 
@@ -349,8 +349,8 @@ Ex.</p>
 <span class="n">y_predict</span> <span class="o">=</span> <span class="n">the_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_predict</span><span class="p">)</span>
 <span class="n">y_should</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_predict</span><span class="p">,</span><span class="n">random_a</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">10</span><span class="p">,),</span><span class="n">random_b</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x_predict</span><span class="p">,</span><span class="n">y_predict</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y_should</span><span class="p">)</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p></details></p>
     </div>
     <script type="text/x-mathjax-config">

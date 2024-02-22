@@ -45,79 +45,79 @@
 可以用來載入標頭檔<br>
 有兩種用法<br>
 一、從標準函數庫載入</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include&lt;header&gt;</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;header&gt;</span>
+</pre></div>
+</pre>
 <p>二、從目前資料夾載入</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include&quot;header&quot;</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&quot;header&quot;</span>
+</pre></div>
+</pre>
 <p>include指令實際上只是把標頭檔複製過來而已</p>
 <h3 id="define">define</h3>
 <p>define用來定義識別字<br>
 有三種語法<br>
 一、只是定義，用於if判斷</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#define identifier</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#define identifier</span>
+</pre></div>
+</pre>
 <p>二、覆蓋</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#define identifier replacement</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#define identifier replacement</span>
+</pre></div>
+</pre>
 <p>三、類函數式覆蓋</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#define identifier(args) expression</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#define identifier(args) expression</span>
+</pre></div>
+</pre>
 <p>Ex. 用all(obj)來表示整個range</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#define all(o) o.begin(),o.end()</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#define all(o) o.begin(),o.end()</span>
+</pre></div>
+</pre>
 <p>因為define會使其下方的所有關鍵字受到影響，最好不要寫在include上方(特別是<code>#define int long long</code>之類的東東)</p>
 <h4 id="undef">undef</h4>
 <p>undef可以取消define的效果<br>
 語法：</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#undef identifier</span>
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span><span class="cp">#undef identifier</span>
+</pre></div>
+</pre>
 <h3 id="if">if語句</h3>
 <p>if語句可以依照情況搭配define做選擇式編譯<br>
 總是由endif做結尾<br>
 有三種語法<br>
 一、if</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#if const_expression</span>
+<pre><div class="highlight"><pre><span></span><span class="cp">#if const_expression</span>
 <span class="n">content</span><span class="p">;</span>
 <span class="cp">#endif</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>若常數運算式為真則編譯以下內容<br>
 (常用於C++版本判斷)</p>
 <p>二、ifdef</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#ifdef identifier</span>
+<pre><div class="highlight"><pre><span></span><span class="cp">#ifdef identifier</span>
 <span class="n">content</span><span class="p">;</span>
 <span class="cp">#endif</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>若識別字已定義則編譯以下內容</p>
 <p>三、ifndef</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#ifndef identifier</span>
+<pre><div class="highlight"><pre><span></span><span class="cp">#ifndef identifier</span>
 <span class="n">content</span><span class="p">;</span>
 <span class="cp">#endif</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <p>若識別字未定義則編譯以下內容</p>
 <p>Example: 避免重複引用標頭檔導致出錯</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#ifndef MY_HEADER_IS_INCLUDED</span>
+<pre><div class="highlight"><pre><span></span><span class="cp">#ifndef MY_HEADER_IS_INCLUDED</span>
 <span class="cp">#define MY_HEADER_IS_INCLUDED</span>
 
 <span class="n">header_content</span><span class="p">;</span>
 
 <span class="cp">#endif</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h4 id="elif">elif</h4>
 <p>預處理指令也有elif</p>
 <p>Example: 用一個define控制多種分支結果</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#define MY_VERSION 1</span>
+<pre><div class="highlight"><pre><span></span><span class="cp">#define MY_VERSION 1</span>
 
 <span class="cp">#if MY_VERSION == 1</span>
 <span class="cp">#define WELCOME_MSG &quot;this is first version&quot;</span>
@@ -126,8 +126,8 @@
 <span class="cp">#elif MY_VERSION == 3</span>
 <span class="cp">#define WELCOME_MSG &quot;this is third version&quot;</span>
 <span class="cp">#endif</span>
-</code></pre></div>
-
+</pre></div>
+</pre>
 <h2 id="_3">編譯</h2>
 <p>C++編譯可大致分為三個階段</p>
 <ol>
@@ -144,13 +144,13 @@
 注意：template通常不能正確連結，建議如果一定要用template就直接用include</p>
 <h2 id="g">編譯指令(g++)</h2>
 <p>基本語法：</p>
-<div class="codehilite"><pre><span></span><code>g++ 來源檔名 -o 輸出檔名
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span>g++ 來源檔名 -o 輸出檔名
+</pre></div>
+</pre>
 <p>或著</p>
-<div class="codehilite"><pre><span></span><code>g++ -o 輸出檔名 來源檔名
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span>g++ -o 輸出檔名 來源檔名
+</pre></div>
+</pre>
 <p>這裡的來源檔名可以是.cpp檔或.o檔案，可用空白隔開多個輸入檔案，編譯器就會把它們連結在一起(或著分別部分編譯)</p>
 <h3 id="_7">常用編譯參數</h3>
 <p>常用編譯參數大致有四類</p>
@@ -162,9 +162,9 @@
 </ol>
 <h4 id="_8">指定版本</h4>
 <p>語法：</p>
-<div class="codehilite"><pre><span></span><code>-std=版本名稱
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span>-std=版本名稱
+</pre></div>
+</pre>
 <p>可用的版本名稱有：</p>
 <ul>
 <li>c++11</li>
@@ -175,9 +175,9 @@
 <h4 id="_9">優化</h4>
 <p>優化最簡單的就是優化等級<br>
 語法：</p>
-<div class="codehilite"><pre><span></span><code>-優化等級
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span>-優化等級
+</pre></div>
+</pre>
 <p>等級包含</p>
 <ul>
 <li>O1</li>
@@ -199,13 +199,13 @@ O3似乎是在較舊版本會出一些問題所以比較少用</p>
 <h4 id="define_1">define</h4>
 <p>可以利用編譯參數定義識別字，效果與在檔案開頭使用define相同<br>
 語法：</p>
-<div class="codehilite"><pre><span></span><code>-D identifier
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span>-D identifier
+</pre></div>
+</pre>
 <p>或</p>
-<div class="codehilite"><pre><span></span><code>-D identifier=replacement
-</code></pre></div>
-
+<pre><div class="highlight"><pre><span></span>-D identifier=replacement
+</pre></div>
+</pre>
 <p>有必要時可以適當使用引號</p>
 <h3 id="_11">部分編譯</h3>
 <p>可以用編譯參數要求g++只完成部分編譯步驟<br>
