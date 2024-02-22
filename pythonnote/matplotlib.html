@@ -33,64 +33,64 @@
     <div id="main_area" class="container-fluid" data-hard-breaks="true">
         <h1 id="matplotlib">matplotlib</h1>
 <p>因為和通常numpy一起用，所以開頭要寫</p>
-<pre><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft JhengHei&#39;</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 正常顯示負號</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="_1">初始化與顯示</h2>
 <h3 id="_2">作法一：建立影像物件</h3>
 <p>語法如下</p>
-<pre><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 </pre></div>
-</pre>
-<p><code>fig</code>可以換成其他名稱，以下使用<code>fig</code>指代影像物件<br>
+</code></pre>
+<p><code><code>fig</code>可以換成其他名稱，以下使用<code><code>fig</code>指代影像物件<br>
 建立完成繪圖物件再建立一個子圖</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
-</pre>
-<p>想像一個<code>nrows</code>橫行<code>ncols</code>直列的網格，並把<code>axe</code>放在<code>index</code>所指的位置<br>
+</code></pre>
+<p>想像一個<code><code>nrows</code>橫行<code><code>ncols</code>直列的網格，並把<code><code>axe</code>放在<code><code>index</code>所指的位置<br>
 注意此處座標/索引皆由1開始而非由0開始<br>
 如果不需要進行排版可以省略所有引數<br>
 最後是顯示的部分</p>
-<pre><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>如果用的是Python console則會建立一個視窗來顯示圖表<br>
 如果用的是Jupyter NoteBook/JupyterLab則會顯示在建立fig和axe的那一個Cell下方(fig和axe要在同一個Cell建立，否則不會顯示)，且不需要執行此行<br>
 若堅持要使用show，則在開頭加上</p>
-<pre><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;TkAgg&#39;</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>且此作法會導致程式建立一個視窗來顯示圖表</p>
 <h3 id="plt">作法二：直接使用plt</h3>
-<p>若不想要使用繪圖物件，可以把<code>plt</code>當成一個子圖來使用<br>
+<p>若不想要使用繪圖物件，可以把<code><code>plt</code>當成一個子圖來使用<br>
 使用Jupyter NoteBook/JupyterLab時建議使用此做法<br>
 也可以建立個子圖</p>
-<pre><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
-</pre>
-<p>想像一個<code>nrows</code>橫行<code>ncols</code>直列的網格，並在<code>index</code>所指的位置建立子圖，使<code>plt</code>當成該子圖使用<br>
+</code></pre>
+<p>想像一個<code><code>nrows</code>橫行<code><code>ncols</code>直列的網格，並在<code><code>index</code>所指的位置建立子圖，使<code><code>plt</code>當成該子圖使用<br>
 最後是顯示的部分</p>
-<pre><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>如果用的是Python console則會建立一個視窗來顯示圖表<br>
 如果用的是Jupyter NoteBook/JupyterLab則會顯示在下方</p>
 <h2 id="_3">圖表繪製</h2>
 <h3 id="_4">基本繪製</h3>
 <h4 id="_5">折線圖</h4>
-<pre><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
 </pre></div>
-</pre>
-<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code><br>
+</code></pre>
+<p>"資料"可以是<code><code>list</code>或是一維的<code><code>numpy陣列</code><br>
 資料可以不只一組，用來在一張圖中顯示多筆資料<br>
 兩筆資料這樣寫：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料1</span><span class="p">,</span><span class="n">y軸資料1</span><span class="p">,</span><span class="n">x軸資料2</span><span class="p">,</span><span class="n">y軸資料2</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料1</span><span class="p">,</span><span class="n">y軸資料1</span><span class="p">,</span><span class="n">x軸資料2</span><span class="p">,</span><span class="n">y軸資料2</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>lines是一個儲存折線的列表，幾組資料就幾條折線<br>
 <details><summary>折線圖樣式</summary><br>
 設定折線圖外觀的時候可以直接用樣式字串或單獨設置三個部分<br>
@@ -203,9 +203,9 @@
 </tbody>
 </table>
 <p>Ex.藍色實線並用三角形符號記做</p>
-<pre><div class="highlight"><pre><span></span><span class="s2">&quot;b-^&quot;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="s2">&quot;b-^&quot;</span>
 </pre></div>
-</pre>
+</code></pre>
 <p></details><br>
 <details><summary>常用參數</p></summary>
 <table>
@@ -236,31 +236,31 @@
 </table>
 <p></details></p>
 <h4 id="_6">散佈圖</h4>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">點大小</span><span class="p">,</span><span class="n">色彩</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">點大小</span><span class="p">,</span><span class="n">色彩</span><span class="p">)</span>
 </pre></div>
-</pre>
-<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code>，只能有一組<br>
-"點大小"和"色彩"是和資料長度相同的<code>list</code>或是一維的<code>numpy陣列</code><br>
-<code>scatter</code>指令可重複執行來疊加資料</p>
+</code></pre>
+<p>"資料"可以是<code><code>list</code>或是一維的<code><code>numpy陣列</code>，只能有一組<br>
+"點大小"和"色彩"是和資料長度相同的<code><code>list</code>或是一維的<code><code>numpy陣列</code><br>
+<code><code>scatter</code>指令可重複執行來疊加資料</p>
 <h4 id="_7">長條圖</h4>
 <p>垂直：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">資料</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">資料</span><span class="p">)</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">標籤</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">標籤</span><span class="p">)</span> <span class="c1">#對於使用plt的情況</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>水平：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">資料</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">資料</span><span class="p">)</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">標籤</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">標籤</span><span class="p">)</span> <span class="c1">#對於使用plt的情況</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>索引用來表示資料的顯示順序<br>
 索引通常為</p>
-<pre><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">標籤</span><span class="p">))</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">標籤</span><span class="p">))</span>
 </pre></div>
-</pre>
-<p><code>bar</code>指令可重複執行來疊加資料<br>
+</code></pre>
+<p><code><code>bar</code>指令可重複執行來疊加資料<br>
 並按照索引排列<br>
 <details><summary>常用參數</p></summary>
 <table>
@@ -283,10 +283,10 @@
 </table>
 <p></details></p>
 <h4 id="_8">直方圖</h4>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">資料</span><span class="p">,)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">資料</span><span class="p">,)</span>
 </pre></div>
-</pre>
-<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code>，可以包含多組，但是要用list包起來<br>
+</code></pre>
+<p>"資料"可以是<code><code>list</code>或是一維的<code><code>numpy陣列</code>，可以包含多組，但是要用list包起來<br>
 <details><summary>常用參數</p></summary>
 <table>
 <thead>
@@ -320,58 +320,58 @@
 </table>
 <p></details></p>
 <h4 id="_9">圓餅圖</h4>
-<pre><div class="highlight"><pre><span></span><span class="n">patches</span><span class="p">,</span> <span class="n">texts</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">資料</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">標籤</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">patches</span><span class="p">,</span> <span class="n">texts</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">資料</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">標籤</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="data">data參數</h4>
 <p>在繪製任何資料時，都可以用data參數指定資料來源<br>
 如：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>可改為：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="_10">畫線</h4>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y座標</span><span class="p">,</span><span class="n">顏色</span><span class="p">,</span><span class="n">樣式</span><span class="p">,</span><span class="n">寬度</span><span class="p">)</span> <span class="c1"># 畫橫線</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y座標</span><span class="p">,</span><span class="n">顏色</span><span class="p">,</span><span class="n">樣式</span><span class="p">,</span><span class="n">寬度</span><span class="p">)</span> <span class="c1"># 畫橫線</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">avhline</span><span class="p">(</span><span class="n">x座標</span><span class="p">,</span><span class="n">顏色</span><span class="p">,</span><span class="n">樣式</span><span class="p">,</span><span class="n">寬度</span><span class="p">)</span> <span class="c1"># 畫直線</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_11">圖例</h3>
-<p>在繪製任何資料時，都可在結尾加上<code>label="xxx"</code>來設置資料集名稱<br>
+<p>在繪製任何資料時，都可在結尾加上<code><code>label="xxx"</code>來設置資料集名稱<br>
 如：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sin()&quot;</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sin()&quot;</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>並使用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>顯示圖例</p>
 <h3 id="_12">標籤</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 標題</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 標題</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># Y軸名稱</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># X軸名稱</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 對於使用plt的情況</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 對於使用plt的情況</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 對於使用plt的情況</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_13">標記</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">文字</span><span class="p">,</span> <span class="n">標記位置</span><span class="p">,</span> <span class="n">文字位置</span><span class="p">,</span> <span class="n">箭頭標記的屬性</span><span class="p">)</span> <span class="c1"># 位置用(x,y)表示，xy皆與資料使用相同座標軸</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">文字</span><span class="p">,</span> <span class="n">標記位置</span><span class="p">,</span> <span class="n">文字位置</span><span class="p">,</span> <span class="n">箭頭標記的屬性</span><span class="p">)</span> <span class="c1"># 位置用(x,y)表示，xy皆與資料使用相同座標軸</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_14">外觀</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">showgrid</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="c1"># 是否顯示網格</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">showgrid</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="c1"># 是否顯示網格</span>
 <span class="n">axe</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">,</span><span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="p">])</span> <span class="c1"># 設置座標軸範圍</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_15">多軸圖表</h3>
 <p>要建立多軸圖表可以用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">twin_axe</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">twin_axe</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>建立一個與原來子圖共用x軸的子圖<br>
 再分別對兩個子圖做操作即可</p>
     </div>

@@ -34,13 +34,13 @@
         <h1 id="tensorflow">tensorflow 基礎</h1>
 <p>先import<br>
 因為和通常numpy、matplotlib一起用，所以開頭要寫</p>
-<pre><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft JhengHei&#39;</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 正常顯示負號</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="_1">基本部分</h2>
 <h3 id="_2">常用資料型別</h3>
 <h4 id="tftensor">張量 tf.Tensor</h4>
@@ -55,43 +55,43 @@
 <h3 id="_3">常用張量計算</h3>
 <h4 id="_4">建立基本張量</h4>
 <p>用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>value可以是 python陣列、numpy陣列、單一數字<br>
 同時<a href="/pythonnote/numpy">numpy</a>中許多陣列生成的函數都能直接把np換成tf來生成張量(full->fill,arange->range)</p>
 <h4 id="_5">加/減</h4>
 <p>直接用加號/減號</p>
 <h4 id="_6">對應值相乘</h4>
 <p>用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="_7">矩陣相乘</h4>
 <p>用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="_8">平方</h4>
 <p>用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="_9">根號</h4>
 <p>用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="_10">自定義</h4>
-<p>除了標準的張量計算外，還可以用<code>@tf.function</code>來建立自定義的張量計算</p>
+<p>除了標準的張量計算外，還可以用<code><code>@tf.function</code>來建立自定義的張量計算</p>
 <h3 id="eager-execution">關於eager execution</h3>
 <p>eager execution表示所有計算都立即執行<br>
 在tensorflow 2默認是啟用的<br>
 可用以下任一行來禁用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_v2_behavior</span><span class="p">()</span> <span class="c1"># 禁用tensorflow 2全域特性防止出RuntimeError</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_v2_behavior</span><span class="p">()</span> <span class="c1"># 禁用tensorflow 2全域特性防止出RuntimeError</span>
 <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">disable_eager_execution</span><span class="p">()</span> <span class="c1"># 禁用eager execution防止出RuntimeError</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>若禁用eager execution，則計算結果必須通過Session::run來讀取<br>
 但可以利用占位符作計算，把資料留到輸出結果時再輸入</p>
 <h2 id="_11">架構</h2>
@@ -112,17 +112,17 @@
   占位符表示模型中可輸入資料的空位<br>
   語法：</li>
 </ul>
-<pre><div class="highlight"><pre><span></span><span class="n">名稱</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">名稱</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <ul>
 <li>模型參數: tf.Variable<br>
   模型參數是模型中要透過訓練求得的值<br>
   語法：</li>
 </ul>
-<pre><div class="highlight"><pre><span></span><span class="n">名稱</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">初始值</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">名稱</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">名稱</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">初始值</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">名稱</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <ul>
 <li>
 <p>損失函數: tf.Tensor<br>
@@ -134,31 +134,31 @@
   語法：</p>
 </li>
 </ul>
-<pre><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;global_step&#39;</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">損失函數</span><span class="p">,</span> <span class="n">global_step</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="session">Session建立與使用</h4>
 <p>主要訓練部分需要建立一個Session<br>
 語法：</p>
-<pre><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span> <span class="c1"># 初始化變數</span>
     <span class="c1"># 主程式</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>sess.run有以下功能：</p>
 <ul>
 <li>sess.run(Operation) 進行操作</li>
 <li>sess.run(Tensor|Variable) 取出值</li>
 </ul>
-<p>使用<code>sess.run(optimizer)</code>可進行訓練<br>
-使用<code>sess.run(損失函數)</code>可求出損失值<br>
+<p>使用<code><code>sess.run(optimizer)</code>可進行訓練<br>
+使用<code><code>sess.run(損失函數)</code>可求出損失值<br>
 這兩個操作都需要輸入資料<br>
-使用<code>sess.run(模型參數)</code>可取出模型參數</p>
+使用<code><code>sess.run(模型參數)</code>可取出模型參數</p>
 <h4 id="_14">範例</h4>
 <p><details><summary>範例：y=ax+b</p></summary>
-<pre><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft JhengHei&#39;</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
@@ -207,7 +207,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p></details></p>
 <h3 id="_15">動態圖</h3>
 <p>動態圖基於eager execution<br>
@@ -225,29 +225,29 @@
   改善器能夠透過梯度自動優化參數<br>
   語法：</li>
 </ul>
-<pre><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="_17">動態圖使用</h4>
 <p>首先定義好模型參數與改善器<br>
 並在過程中計算梯度<br>
 <strong>計算梯度</strong></p>
-<pre><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
     <span class="n">cost_</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="n">損失函數</span>
     <span class="n">gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">cost_</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="n">模型參數列表</span><span class="p">])</span>  <span class="c1"># 計算梯度</span>
 </pre></div>
-</pre>
+</code></pre>
 <p><strong>優化參數</strong></p>
-<pre><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="p">[</span><span class="n">模型參數列表</span><span class="p">]),</span> <span class="n">global_step</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="p">[</span><span class="n">模型參數列表</span><span class="p">]),</span> <span class="n">global_step</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>要取出任何的模型參數可直接使用</p>
-<pre><div class="highlight"><pre><span></span><span class="n">參數</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">參數</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p><details><summary>範例：y=ax+b</p></summary>
-<pre><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft JhengHei&#39;</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
@@ -293,7 +293,7 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</pre>
+</code></pre>
 <p></details></p>
 <h3 id="_18">估算器</h3>
 <h3 id="keras">keras</h3>

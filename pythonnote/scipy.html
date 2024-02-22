@@ -35,22 +35,22 @@
 <h2 id="special">特殊函數 special</h2>
 <p>所有特殊函數都可以接受列表/陣列為輸入值，但若輸入多個值輸出必為numpy陣列</p>
 <h3 id="_1">指數</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">special</span><span class="o">.</span><span class="n">exp2</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">special</span><span class="o">.</span><span class="n">exp2</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="n">special</span><span class="o">.</span><span class="n">exp10</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_2">三角函數(使用角度)</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">special</span><span class="o">.</span><span class="n">sindq</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">special</span><span class="o">.</span><span class="n">sindq</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="n">special</span><span class="o">.</span><span class="n">cosdq</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="n">special</span><span class="o">.</span><span class="n">tandq</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="n">special</span><span class="o">.</span><span class="n">cotdq</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="integrate">微積分 integrate</h2>
 <h3 id="_3">定積分</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">area</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">low</span><span class="p">,</span><span class="n">up</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">area</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">low</span><span class="p">,</span><span class="n">up</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <ul>
 <li>area 計算結果</li>
 <li>err 絕對誤差估計值</li>
@@ -62,25 +62,25 @@
 </ul>
 <h2 id="linalg">線性代數 linalg</h2>
 <h3 id="_4">反矩陣</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">invarr</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">invarr</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_5">行列式</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_6">線性方程求解</h3>
 <p>
 <script type="math/tex">Ax = b</script>
 </p>
-<pre><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="optimize">最佳化 optimize</h2>
 <h3 id="_7">最小值</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <ul>
 <li>func 要做定積分的函數<br>
   可以在參數列結尾加一個tuple做為傳給func的額外參數</li>
@@ -110,18 +110,18 @@
 </tbody>
 </table>
 <h2 id="interpolate">內插 interpolate</h2>
-<pre><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="stats">統計 stats</h2>
 <h3 id="_8">常態分佈</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">avg</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">avg</span><span class="p">,</span><span class="n">scale</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_9">敘述統計</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <ul>
 <li>result 回傳結果，是它自己獨有的資料型別，常用屬性如下<br>
 屬性名|意義<br>
@@ -130,9 +130,9 @@
 </ul>
 <h2 id="signal">訊號處理 signal</h2>
 <h3 id="_10">卷積</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">signal</span><span class="o">.</span><span class="n">convolve2d</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">core</span><span class="p">,</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">boundary</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">signal</span><span class="o">.</span><span class="n">convolve2d</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">core</span><span class="p">,</span><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span><span class="n">boundary</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
 </pre></div>
-</pre>
+</code></pre>
 <ul>
 <li>img 目標圖片</li>
 <li>core 卷積核</li>

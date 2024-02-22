@@ -44,32 +44,32 @@
 支援絕大多數程式語言</p>
 <h2 id="_1">開始</h2>
 <p>C++的主要程式必須寫在main函數裡</p>
-<pre><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="c1">// 主程式</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="_2">註解</h2>
 <p>有時候在程式中需要注明一些程式的功能，就可以用註解<br>
 單行註解用兩個斜線開頭：</p>
-<pre><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// 把a設置為1</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// 把a設置為1</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>多行註解用"/*""*/"包起來：</p>
-<pre><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<pre><code><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">常數設置</span>
 <span class="cm">a-&gt;1, b-&gt;2</span>
 <span class="cm">*/</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="_3">變數</h2>
 <p>變數是在記憶體內準備的"儲存格"，用來儲存資料，並標記資料的類型<br>
 語法為</p>
-<pre><div class="highlight"><pre><span></span><span class="n">型別</span><span class="w"> </span><span class="n">變數名</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">型別</span><span class="w"> </span><span class="n">變數名</span><span class="p">;</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>與許多程式語言不同，C++變數名是否能用中文(Unicode字元)並沒有硬性規定，而是取決於編譯器<br>
 通常建議用英文大小寫、數字和底線"_"命名<br>
 常用基本型別有：</p>
@@ -83,16 +83,16 @@
 <h3 id="_4">布林值</h3>
 <p>布林值是表示"是"和"否"的資料<br>
 "是"寫作</p>
-<pre><div class="highlight"><pre><span></span><span class="nb">true</span>
+<pre><code><div class="highlight"><pre><span></span><span class="nb">true</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>"否"寫作</p>
-<pre><div class="highlight"><pre><span></span><span class="nb">false</span>
+<pre><code><div class="highlight"><pre><span></span><span class="nb">false</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_5">字元</h3>
 <p>字元表示"單一個字"<br>
-用<code>'</code>把字元包起來</p>
+用<code><code>'</code>把字元包起來</p>
 <h3 id="_6">整數</h3>
 <p>整數就是整數<br>
 整數有不同容許範圍的版本<br>
@@ -107,17 +107,17 @@
 <h2 id="_8">輸入和輸出</h2>
 <p>C語言的核心並不包含輸出入的處理<br>
 所以要引用輸出入函數庫</p>
-<pre><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_9">輸入</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="_10">輸出</h3>
-<pre><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>可以連著寫</p>
 <p>它會依照變數的型別自動判斷如何輸出入<br>
 支援 字元、字串(string)、整數、浮點數<br>
@@ -126,13 +126,13 @@
 <p>因為一些原因，C++的基本函數庫裡的東西都放在叫"std"的命名空間裡<br>
 所以每次呼叫都要告訴編譯器要到std裡面找，很麻煩<br>
 可以先寫一行</p>
-<pre><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>(注意分號)<br>
 告訴編譯器把"std"裡的東西拿出來，就可以不用每次都要加上"std::"</p>
 <p><details><summary>小範例：計算a+b</p></summary>
-<pre><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
@@ -141,42 +141,42 @@
 <span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <p></details></p>
 <h3 id="io">IO優化</h3>
 <p>C++的輸出入默認會比純C的慢<br>
 但只要適當優化就能比純C還快<br>
 (只有打競賽時這樣做，實際應用不建議做IO優化)</p>
 <h4 id="_11">一、優化指令</h4>
-<pre><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
+<pre><code><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>優化指令包含兩項<br>
 1. 告訴C++不需要去和純C的IO同步<br>
 2. 告訴cin讀資料的時候不要去flush(cout)</p>
 <h4 id="_12">換行</h4>
-<p>不要用<code>endl</code>，用<code>"\n"</code>或<code>'\n'</code>(兩個一樣快)<br>
-因為<code>endl</code>會去flush(cout)</p>
+<p>不要用<code><code>endl</code>，用<code><code>"\n"</code>或<code><code>'\n'</code>(兩個一樣快)<br>
+因為<code><code>endl</code>會去flush(cout)</p>
 <h4 id="flush">為什麼不要flush</h4>
 <p>cout是一種檔案流，用來將資料輸出到標準輸出stdout，但把資料從記憶體傳出去很慢，所以會在記憶體中開一個緩衝區buffer暫時儲存輸出，flush指令會把緩衝區的內容傳出去，速度較慢，雖然在實際應用中可能沒什麼差別，但在程式競賽中就可能是AC和TLE的差別</p>
 <h2 id="_13">基礎運算子</h2>
 <p>常用的計算符包含：</p>
 <ul>
-<li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></li>
-<li>比較運算子 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code> <code>not_eq</code></li>
-<li>位元運算子 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code> <code>bitand</code> <code>bitor</code> <code>xor</code> <code>compl</code></li>
-<li>邏輯運算子 <code>!</code> <code>||</code> <code>&&</code> <code>!</code> <code>||</code> <code>&&</code> <code>not</code> <code>and</code> <code>or</code></li>
-<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code> <code>++</code> <code>--</code> <code>and_eq</code> <code>or_eq</code> <code>xor_eq</code></li>
-<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>?:</code> <code><::></code> <code><%%></code></li>
+<li>數學運算子 <code><code>+</code> <code><code>-</code> <code><code>*</code> <code><code>/</code> <code><code>%</code></li>
+<li>比較運算子 <code><code>></code> <code><code><</code> <code><code>>=</code> <code><code><=</code> <code><code>==</code> <code><code>!=</code> <code><code>not_eq</code></li>
+<li>位元運算子 <code><code><<</code> <code><code>|</code> <code><code>&</code> <code><code>^</code> <code><code>>></code> <code><code>~</code> <code><code>bitand</code> <code><code>bitor</code> <code><code>xor</code> <code><code>compl</code></li>
+<li>邏輯運算子 <code><code>!</code> <code><code>||</code> <code><code>&&</code> <code><code>!</code> <code><code>||</code> <code><code>&&</code> <code><code>not</code> <code><code>and</code> <code><code>or</code></li>
+<li>賦值運算子 <code><code>+=</code> <code><code>-=</code> <code><code>*=</code> <code><code>/=</code> <code><code>%=</code> <code><code><<=</code> <code><code>>>=</code> <code><code>|=</code> <code><code>&=</code> <code><code>^=</code> <code><code>++</code> <code><code>--</code> <code><code>and_eq</code> <code><code>or_eq</code> <code><code>xor_eq</code></li>
+<li>其他 <code><code>[]</code> <code><code>()</code> <code><code>{}</code> <code><code>?:</code> <code><code><::></code> <code><code><%%></code></li>
 </ul>
 <h2 id="_14">語法結構</h2>
 <h3 id="_15">條件判斷</h3>
 <p>條件判斷可以指定在特定條件符合值才執行部分程式碼</p>
-<pre><div class="highlight"><pre><span></span><span class="c1">//縮排不是必須的</span>
+<pre><code><div class="highlight"><pre><span></span><span class="c1">//縮排不是必須的</span>
 <span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">條件</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">另一個條件</span><span class="p">){</span><span class="w"> </span><span class="c1">//非必要，可以有很多</span>
@@ -185,35 +185,35 @@
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="_16">迴圈</h2>
 <h3 id="for">for迴圈：</h3>
 <p>for迴圈有兩種</p>
 <h4 id="for_1">傳統for</h4>
-<pre><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">初始化</span><span class="p">;</span><span class="n">繼續條件</span><span class="p">;</span><span class="n">結尾動作</span><span class="p">){</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">初始化</span><span class="p">;</span><span class="n">繼續條件</span><span class="p">;</span><span class="n">結尾動作</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <p>Ex.重複n次</p>
-<pre><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <h4 id="for_2">迭代for</h4>
-<pre><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">型別</span><span class="w"> </span><span class="n">變數名</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">容器</span><span class="p">){</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">型別</span><span class="w"> </span><span class="n">變數名</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">容器</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="while">while迴圈：</h3>
 <p>while迴圈可以在條件符合時不斷重複相同程式碼</p>
-<pre><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">條件</span><span class="p">){</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">條件</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <h3 id="break-continue">break continue</h3>
 <p>在迴圈中使用break可以立刻跳出當前迴圈</p>
 <p>在迴圈中使用continue可以回到迴圈起點</p>
@@ -221,18 +221,18 @@
 <h2 id="_17">自訂函數(副程式)</h2>
 <p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">回傳類型</span><span class="w"> </span><span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">){</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">回傳類型</span><span class="w"> </span><span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">回傳值</span><span class="p">;</span><span class="w"> </span><span class="c1">//非必要 不一定要在最後一行</span>
 <span class="p">}</span>
 </pre></div>
-</pre>
+</code></pre>
 <h2 id="_18">三元運算子</h2>
 <p>三元運算子可以簡化條件判斷<br>
 語法：</p>
-<pre><div class="highlight"><pre><span></span><span class="n">條件</span><span class="o">?</span><span class="n">值1</span><span class="o">:</span><span class="n">值2</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">條件</span><span class="o">?</span><span class="n">值1</span><span class="o">:</span><span class="n">值2</span>
 </pre></div>
-</pre>
+</code></pre>
     </div>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

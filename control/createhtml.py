@@ -40,6 +40,7 @@ class Codehightlighter(HTMLParser):
             for k, v in attrs.items():
                 if k == "class" and v in prepares:
                     self.prepare = v
+            self.text.append(f"<code>")
         if self.prepare == "":
             atl = ''.join(' ' + (k if v is None else k + '="' + v + '"') for k, v in attrs.items() if k is not None)
             if tag != "br" or len(self.text) == 0 or self.text[-1] != "<br>":
@@ -48,6 +49,7 @@ class Codehightlighter(HTMLParser):
     def handle_endtag(self, tag):
         if self.prepare != "":
             self.prepare = ""
+            self.text.append(f"</code>")
         else:
             self.text.append(f"</{tag}>")
 

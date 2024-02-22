@@ -68,3 +68,8 @@
 .spoiler_repeat {
     display: none;
 }
+
+pre {
+    margin-bottom: 0;
+    font-size: 1em;
+}

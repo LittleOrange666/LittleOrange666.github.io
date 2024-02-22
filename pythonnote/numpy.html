@@ -55,36 +55,36 @@ numpy版本<br>
 將python 陣列轉換為numpy陣列，依據原始陣列資料決定默認數據類型，內容只能是數字<br>
 默認索引是從零開始，就和一般的陣列一樣<br>
 <strong>np.zeros(shape, dtype={dtype}) -> arr</strong><br>
-生成全部是0的numpy陣列，默認數據類型為<code>float64</code><br>
+生成全部是0的numpy陣列，默認數據類型為<code><code>float64</code><br>
 <strong>np.ones(shape, dtype={dtype}) -> arr</strong><br>
-生成全部是1的numpy陣列，默認數據類型為<code>float64</code><br>
+生成全部是1的numpy陣列，默認數據類型為<code><code>float64</code><br>
 <strong>np.full(shape, value, dtype={dtype}) -> arr</strong><br>
-生成全部是<code>value</code>的numpy陣列，依據<code>value</code>決定默認數據類型<br>
+生成全部是<code><code>value</code>的numpy陣列，依據<code><code>value</code>決定默認數據類型<br>
 <strong>np.zeros_like(arr, dtype={dtype}) -> arr</strong><br>
-生成全部是0的numpy陣列，形狀與<code>arr</code>相同，默認數據類型為<code>float64</code><br>
+生成全部是0的numpy陣列，形狀與<code><code>arr</code>相同，默認數據類型為<code><code>float64</code><br>
 <strong>np.ones_like(arr, dtype={dtype}) -> arr</strong><br>
-生成全部是0的numpy陣列，形狀與<code>arr</code>相同，默認數據類型為<code>float64</code><br>
+生成全部是0的numpy陣列，形狀與<code><code>arr</code>相同，默認數據類型為<code><code>float64</code><br>
 <strong>np.arange(end:int)/np.arange(start:int,end:int,step:int) -> arr</strong><br>
-行為類似range()，生成一維的numpy陣列，默認數據類型為<code>int32</code><br>
+行為類似range()，生成一維的numpy陣列，默認數據類型為<code><code>int32</code><br>
 <strong>np.linspace(start: int|float|complex,stop: int|float|complex, num: int) -> arr</strong><br>
-以<code>start</code>為開頭<code>stop</code>為結尾建立長度為<code>num</code>的等差數列<br>
+以<code><code>start</code>為開頭<code><code>stop</code>為結尾建立長度為<code><code>num</code>的等差數列<br>
 <strong>np.eye(size:int) -> arr</strong><br>
-生成邊長<code>size</code>的矩陣，且只有x=y的格子是一，其他為零(<strong>單位矩陣</strong>)<br>
+生成邊長<code><code>size</code>的矩陣，且只有x=y的格子是一，其他為零(<strong>單位矩陣</strong>)<br>
 <strong>np.random.randint(min:int,max:int,shape)</strong><br>
-生成 <script type="math/tex">[min,max)</script> 的整數陣列，默認數據類型為<code>int32</code><br>
+生成 <script type="math/tex">[min,max)</script> 的整數陣列，默認數據類型為<code><code>int32</code><br>
 <strong>np.random.rand(*shape)</strong><br>
-生成 0~1 的浮點數陣列，默認數據類型為<code>float64</code><br>
-此處<code>shape</code>需將各個緯度大小分開寫，如：<code>np.random.rand(3,7,5)</code><br>
-若要堅持使用<code>tuple</code>可以使用星號，如：<code>np.random.rand(*(3,7,5))</code><br>
+生成 0~1 的浮點數陣列，默認數據類型為<code><code>float64</code><br>
+此處<code><code>shape</code>需將各個緯度大小分開寫，如：<code><code>np.random.rand(3,7,5)</code><br>
+若要堅持使用<code><code>tuple</code>可以使用星號，如：<code><code>np.random.rand(*(3,7,5))</code><br>
 <strong>np.random.randn(*shape)</strong><br>
-生成 標準常態分配 的浮點數陣列，默認數據類型為<code>float64</code></p>
+生成 標準常態分配 的浮點數陣列，默認數據類型為<code><code>float64</code></p>
 <h3 id="-">--陣列處理--</h3>
 <p><strong>np.diag(arr/pyarr,k: int) -> arr</strong><br>
 k表示偏移量，正表示向右、負表示向下，默認為0<br>
 case 1:原陣列為一維：將原陣列的元素由左上到左下排列於新矩陣中，新矩陣邊長為len(原陣列)+abs(k)<br>
 case 2:原陣列為二維(不一定是矩陣)：將原陣列的元素由左上到左下取出於新一維陣列中<br>
 <strong>np.tile(arr,shape) -> arr</strong><br>
-將矩陣倍增<code>shape</code>倍<br>
+將矩陣倍增<code><code>shape</code>倍<br>
 <strong>np.dot(arr1,arr2) -> arr</strong><br>
 case 1:原陣列為一維：向量內積<br>
 case 2:原陣列為二維：矩陣乘法<br>
@@ -96,9 +96,9 @@ case 2:原陣列為二維：矩陣乘法<br>
 求標準差</p>
 <h3 id="-_1">--其他--</h3>
 <p><strong>np.nonzero(arr/pyarr) -> tuple[arr]</strong><br>
-尋找陣列中的非零項目(對bool則是!=False)，用n個一維的numpy陣列紀錄n維陣列非零項目位置，一維的numpy陣列維非零項目總數，默認數據類型為<code>int64</code><br>
+尋找陣列中的非零項目(對bool則是!=False)，用n個一維的numpy陣列紀錄n維陣列非零項目位置，一維的numpy陣列維非零項目總數，默認數據類型為<code><code>int64</code><br>
 <strong>np.unravel_index(index:int,shape) -> shape</strong><br>
-將<code>index</code>轉換為大小為<code>shape</code>的矩陣中的位置座標</p>
+將<code><code>index</code>轉換為大小為<code><code>shape</code>的矩陣中的位置座標</p>
 <h2 id="numpy_3">numpy數據類型</h2>
 <h4 id="numpy_4">numpy數據類型多用來標示陣列的數據類型</h4>
 <h3 id="np">以下為基礎數據類型，實際使用須加上"np."前綴</h3>
@@ -160,9 +160,9 @@ arr[<em>索引</em>] = <em>數據</em><br>
 <strong>2.使用與原陣列形狀相同的布林陣列</strong><br>
 這種用法中的布林陣列通常是使用原陣列生成<br>
 例如：取出正數</p>
-<pre><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<pre><code><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-</pre>
+</code></pre>
 <p><strong>3.複合索引(使用tuple)</strong><br>
 把1.打包成一個tuple來和4.合用<br>
 <strong>4.多重索引(使用list或與2./3.合用)</strong><br>
@@ -173,7 +173,7 @@ arr[<em>索引</em>] = <em>數據</em><br>
 <p><strong>arr.shape: tuple</strong><br>
 陣列形狀<br>
 <strong>arr.size: int</strong><br>
-陣列元素數目(同<code>len(arr)</code>)<br>
+陣列元素數目(同<code><code>len(arr)</code>)<br>
 <strong>arr.dtype: dtype</strong><br>
 陣列數值類型<br>
 <strong>arr.itemsize: int</strong><br>
@@ -181,7 +181,7 @@ arr[<em>索引</em>] = <em>數據</em><br>
 <strong>arr.nbytes: int</strong><br>
 整個陣列占用的位元組數<br>
 <strong>arr.ndim: int</strong><br>
-陣列維度數，同<code>len(arr.shape)</code><br>
+陣列維度數，同<code><code>len(arr.shape)</code><br>
 <strong>arr.T: arr</strong><br>
 轉置矩陣</p>
 <h3 id="_6">陣列方法</h3>
@@ -194,7 +194,7 @@ arr[<em>索引</em>] = <em>數據</em><br>
 <strong>arr.max() -> value</strong><br>
 陣列中最大的元素<br>
 <strong>arr.mean() -> value</strong><br>
-陣列所有所有元素的平均值<em>若原陣列的數據類型為布林值或整數，則回傳值可能與原數據類型不同(多為<code>float</code>)</em><br>
+陣列所有所有元素的平均值<em>若原陣列的數據類型為布林值或整數，則回傳值可能與原數據類型不同(多為<code><code>float</code>)</em><br>
 <strong>arr.argmin() -> int</strong><br>
 陣列中最小的元素的索引<br>
 <strong>arr.argmax() -> int</strong><br>
@@ -208,10 +208,10 @@ class ndarray(builtins.object)<br>
   format of each element in the array (its byte-order, how many bytes it<br>
   occupies in memory, whether it is an integer, a floating point number,<br>
   or something else, etc.)<br>
-  Arrays should be constructed using <code>array</code>, <code>zeros</code> or <code>empty</code> (refer<br>
+  Arrays should be constructed using <code><code>array</code>, <code><code>zeros</code> or <code><code>empty</code> (refer<br>
   to the See Also section below).  The parameters given here refer to<br>
-  a low-level method (<code>ndarray(...)</code>) for instantiating an array.<br>
-  For more information, refer to the <code>numpy</code> module and examine the<br>
+  a low-level method (<code><code>ndarray(...)</code>) for instantiating an array.<br>
+  For more information, refer to the <code><code>numpy</code> module and examine the<br>
   methods and attributes of an array.<br>
   Parameters</p>
 <hr></hr>
@@ -241,7 +241,7 @@ class ndarray(builtins.object)<br>
       'C_CONTIGUOUS', 'OWNDATA', 'WRITEABLE', etc.<br>
   flat : numpy.flatiter object<br>
       Flattened version of the array as an iterator.  The iterator<br>
-      allows assignments, e.g., <code>x.flat = 3</code> (See <code>ndarray.flat</code> for<br>
+      allows assignments, e.g., <code><code>x.flat = 3</code> (See <code><code>ndarray.flat</code> for<br>
       assignment examples; TODO).<br>
   imag : ndarray<br>
       Imaginary part of the array.<br>
@@ -253,24 +253,24 @@ class ndarray(builtins.object)<br>
       The memory use of each array element in bytes.<br>
   nbytes : int<br>
       The total number of bytes required to store the array data,<br>
-      i.e., <code>itemsize * size</code>.<br>
+      i.e., <code><code>itemsize * size</code>.<br>
   ndim : int<br>
       The array's number of dimensions.<br>
   shape : tuple of ints<br>
       Shape of the array.<br>
   strides : tuple of ints<br>
       The step-size required to move from one element to the next in<br>
-      memory. For example, a contiguous <code>(3, 4)</code> array of type<br>
-<code>int16</code> in C-order has strides <code>(8, 2)</code>.  This implies that<br>
+      memory. For example, a contiguous <code><code>(3, 4)</code> array of type<br>
+<code><code>int16</code> in C-order has strides <code><code>(8, 2)</code>.  This implies that<br>
       to move from element to element in memory requires jumps of 2 bytes.<br>
       To move from row-to-row, one needs to jump 8 bytes at a time<br>
-      (<code>2 * 4</code>).<br>
+      (<code><code>2 * 4</code>).<br>
   ctypes : ctypes object<br>
       Class containing properties of the array needed for interaction<br>
       with ctypes.<br>
   base : ndarray<br>
-      If the array is a view into another array, that array is its <code>base</code><br>
-      (unless that array is also a view).  The <code>base</code> array is where the<br>
+      If the array is a view into another array, that array is its <code><code>base</code><br>
+      (unless that array is also a view).  The <code><code>base</code> array is where the<br>
       array data is actually stored.<br>
   See Also</p>
 <hr></hr>
@@ -279,23 +279,23 @@ class ndarray(builtins.object)<br>
   empty : Create an array, but leave its allocated memory unchanged (i.e.,<br>
           it contains "garbage").<br>
   dtype : Create a data-type.<br>
-  numpy.typing.NDArray : A :term:<code>generic <generic type></code> version<br>
+  numpy.typing.NDArray : A :term:<code><code>generic <generic type></code> version<br>
                          of ndarray.<br>
   Notes</p>
 <hr></hr>
-<p>There are two modes of creating an array using <code>__new__</code>:<br>
-  1. If <code>buffer</code> is None, then only <code>shape</code>, <code>dtype</code>, and <code>order</code><br>
+<p>There are two modes of creating an array using <code><code>__new__</code>:<br>
+  1. If <code><code>buffer</code> is None, then only <code><code>shape</code>, <code><code>dtype</code>, and <code><code>order</code><br>
      are used.<br>
-  2. If <code>buffer</code> is an object exposing the buffer interface, then<br>
+  2. If <code><code>buffer</code> is an object exposing the buffer interface, then<br>
      all keywords are interpreted.<br>
-  No <code>__init__</code> method is needed because the array is fully initialized<br>
-  after the <code>__new__</code> method.<br>
+  No <code><code>__init__</code> method is needed because the array is fully initialized<br>
+  after the <code><code>__new__</code> method.<br>
   Examples</p>
 <hr></hr>
-<p>These examples illustrate the low-level <code>ndarray</code> constructor.  Refer<br>
-  to the <code>See Also</code> section above for easier ways of constructing an<br>
+<p>These examples illustrate the low-level <code><code>ndarray</code> constructor.  Refer<br>
+  to the <code><code>See Also</code> section above for easier ways of constructing an<br>
   ndarray.<br>
-  First mode, <code>buffer</code> is None:</p>
+  First mode, <code><code>buffer</code> is None:</p>
 <blockquote>
 <blockquote>
 <blockquote>
@@ -332,11 +332,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Return key in self.<br>
   __copy __(...)<br>
       a.__copy __()<br>
-      Used if :func:<code>copy.copy</code> is called on an array. Returns a copy of the array.<br>
-      Equivalent to <code>a.copy(order='K')</code>.<br>
+      Used if :func:<code><code>copy.copy</code> is called on an array. Returns a copy of the array.<br>
+      Equivalent to <code><code>a.copy(order='K')</code>.<br>
   __deepcopy __(...)<br>
       a.__deepcopy __(memo, /) -> Deep copy of array.<br>
-      Used if :func:<code>copy.deepcopy</code> is called on an array.<br>
+      Used if :func:<code><code>copy.deepcopy</code> is called on an array.<br>
   __delitem __(self, key, /)<br>
       Delete self[key].<br>
   __divmod __(self, value, /)<br>
@@ -443,7 +443,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   __setstate __(...)<br>
       a.__setstate __(state, /)<br>
       For unpickling.<br>
-      The <code>state</code> argument must be a sequence that contains the following<br>
+      The <code><code>state</code> argument must be a sequence that contains the following<br>
       elements:<br>
       Parameters<br>
       ----------<br>
@@ -467,35 +467,35 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   all(...)<br>
       a.all(axis=None, out=None, keepdims=False, </em>, where=True)<br>
       Returns True if all elements evaluate to True.<br>
-      Refer to <code>numpy.all</code> for full documentation.<br>
+      Refer to <code><code>numpy.all</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.all : equivalent function<br>
   any(...)<br>
       a.any(axis=None, out=None, keepdims=False, *, where=True)<br>
-      Returns True if any of the elements of <code>a</code> evaluate to True.<br>
-      Refer to <code>numpy.any</code> for full documentation.<br>
+      Returns True if any of the elements of <code><code>a</code> evaluate to True.<br>
+      Refer to <code><code>numpy.any</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.any : equivalent function<br>
   argmax(...)<br>
       a.argmax(axis=None, out=None)<br>
       Return indices of the maximum values along the given axis.<br>
-      Refer to <code>numpy.argmax</code> for full documentation.<br>
+      Refer to <code><code>numpy.argmax</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.argmax : equivalent function<br>
   argmin(...)<br>
       a.argmin(axis=None, out=None)<br>
       Return indices of the minimum values along the given axis.<br>
-      Refer to <code>numpy.argmin</code> for detailed documentation.<br>
+      Refer to <code><code>numpy.argmin</code> for detailed documentation.<br>
       See Also<br>
       --------<br>
       numpy.argmin : equivalent function<br>
   argpartition(...)<br>
       a.argpartition(kth, axis=-1, kind='introselect', order=None)<br>
       Returns the indices that would partition this array.<br>
-      Refer to <code>numpy.argpartition</code> for full documentation.<br>
+      Refer to <code><code>numpy.argpartition</code> for full documentation.<br>
       .. versionadded:: 1.8.0<br>
       See Also<br>
       --------<br>
@@ -503,7 +503,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   argsort(...)<br>
       a.argsort(axis=-1, kind=None, order=None)<br>
       Returns the indices that would sort this array.<br>
-      Refer to <code>numpy.argsort</code> for full documentation.<br>
+      Refer to <code><code>numpy.argsort</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.argsort : equivalent function<br>
@@ -535,16 +535,16 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
           the returned array will be forced to be a base-class array.<br>
       copy : bool, optional<br>
           By default, astype always returns a newly allocated array. If this<br>
-          is set to false, and the <code>dtype</code>, <code>order</code>, and <code>subok</code><br>
+          is set to false, and the <code><code>dtype</code>, <code><code>order</code>, and <code><code>subok</code><br>
           requirements are satisfied, the input array is returned instead<br>
           of a copy.<br>
       Returns<br>
       -------<br>
       arr_t : ndarray<br>
-          Unless <code>copy</code> is False and the other conditions for returning the input<br>
-          array are satisfied (see description for <code>copy</code> input parameter), <code>arr_t</code><br>
+          Unless <code><code>copy</code> is False and the other conditions for returning the input<br>
+          array are satisfied (see description for <code><code>copy</code> input parameter), <code><code>arr_t</code><br>
           is a new array of the same shape as the input array, with dtype, order<br>
-          given by <code>dtype</code>, <code>order</code>.<br>
+          given by <code><code>dtype</code>, <code><code>order</code>.<br>
       Notes<br>
       -----<br>
       .. versionchanged:: 1.17.0<br>
@@ -559,7 +559,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       ------<br>
       ComplexWarning<br>
           When casting from complex to float or int. To avoid this,<br>
-          one should use <code>a.real.astype(t)</code>.<br>
+          one should use <code><code>a.real.astype(t)</code>.<br>
       Examples<br>
       --------<br>
       >>> x = np.array([1, 2, 2.5])<br>
@@ -577,11 +577,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Parameters<br>
       ----------<br>
       inplace : bool, optional<br>
-          If <code>True</code>, swap bytes in-place, default is <code>False</code>.<br>
+          If <code><code>True</code>, swap bytes in-place, default is <code><code>False</code>.<br>
       Returns<br>
       -------<br>
       out : ndarray<br>
-          The byteswapped array. If <code>inplace</code> is <code>True</code>, this is<br>
+          The byteswapped array. If <code><code>inplace</code> is <code><code>True</code>, this is<br>
           a view to self.<br>
       Examples<br>
       --------<br>
@@ -596,7 +596,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       >>> A = np.array([b'ceg', b'fac'])<br>
       >>> A.byteswap()<br>
       array([b'ceg', b'fac'], dtype='|S3')<br>
-<code>A.newbyteorder().byteswap()</code> produces an array with the same values<br>
+<code><code>A.newbyteorder().byteswap()</code> produces an array with the same values<br>
         but different representation in memory<br>
       >>> A = np.array([1, 2, 3])<br>
       >>> A.view(np.uint8)<br>
@@ -610,36 +610,36 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   choose(...)<br>
       a.choose(choices, out=None, mode='raise')<br>
       Use an index array to construct a new array from a set of choices.<br>
-      Refer to <code>numpy.choose</code> for full documentation.<br>
+      Refer to <code><code>numpy.choose</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.choose : equivalent function<br>
   clip(...)<br>
       a.clip(min=None, max=None, out=None, </strong>kwargs)<br>
-      Return an array whose values are limited to <code>[min, max]</code>.<br>
+      Return an array whose values are limited to <code><code>[min, max]</code>.<br>
       One of max or min must be given.<br>
-      Refer to <code>numpy.clip</code> for full documentation.<br>
+      Refer to <code><code>numpy.clip</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.clip : equivalent function<br>
   compress(...)<br>
       a.compress(condition, axis=None, out=None)<br>
       Return selected slices of this array along given axis.<br>
-      Refer to <code>numpy.compress</code> for full documentation.<br>
+      Refer to <code><code>numpy.compress</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.compress : equivalent function<br>
   conj(...)<br>
       a.conj()<br>
       Complex-conjugate all elements.<br>
-      Refer to <code>numpy.conjugate</code> for full documentation.<br>
+      Refer to <code><code>numpy.conjugate</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.conjugate : equivalent function<br>
   conjugate(...)<br>
       a.conjugate()<br>
       Return the complex conjugate, element-wise.<br>
-      Refer to <code>numpy.conjugate</code> for full documentation.<br>
+      Refer to <code><code>numpy.conjugate</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.conjugate : equivalent function<br>
@@ -650,9 +650,9 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       ----------<br>
       order : {'C', 'F', 'A', 'K'}, optional<br>
           Controls the memory layout of the copy. 'C' means C-order,<br>
-          'F' means F-order, 'A' means 'F' if <code>a</code> is Fortran contiguous,<br>
-          'C' otherwise. 'K' means match the layout of <code>a</code> as closely<br>
-          as possible. (Note that this function and :func:<code>numpy.copy</code> are very<br>
+          'F' means F-order, 'A' means 'F' if <code><code>a</code> is Fortran contiguous,<br>
+          'C' otherwise. 'K' means match the layout of <code><code>a</code> as closely<br>
+          as possible. (Note that this function and :func:<code><code>numpy.copy</code> are very<br>
           similar but have different default values for their order=<br>
           arguments, and this function always passes sub-classes through.)<br>
       See also<br>
@@ -662,7 +662,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Notes<br>
       -----<br>
       This function is the preferred method for creating an array copy.  The<br>
-      function :func:<code>numpy.copy</code> is similar, but it defaults to using order 'K',<br>
+      function :func:<code><code>numpy.copy</code> is similar, but it defaults to using order 'K',<br>
       and will not pass sub-classes through by default.<br>
       Examples<br>
       --------<br>
@@ -680,14 +680,14 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   cumprod(...)<br>
       a.cumprod(axis=None, dtype=None, out=None)<br>
       Return the cumulative product of the elements along the given axis.<br>
-      Refer to <code>numpy.cumprod</code> for full documentation.<br>
+      Refer to <code><code>numpy.cumprod</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.cumprod : equivalent function<br>
   cumsum(...)<br>
       a.cumsum(axis=None, dtype=None, out=None)<br>
       Return the cumulative sum of the elements along the given axis.<br>
-      Refer to <code>numpy.cumsum</code> for full documentation.<br>
+      Refer to <code><code>numpy.cumsum</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.cumsum : equivalent function<br>
@@ -696,14 +696,14 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Return specified diagonals. In NumPy 1.9 the returned array is a<br>
       read-only view instead of a copy as in previous NumPy versions.  In<br>
       a future version the read-only restriction will be removed.<br>
-      Refer to :func:<code>numpy.diagonal</code> for full documentation.<br>
+      Refer to :func:<code><code>numpy.diagonal</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.diagonal : equivalent function<br>
   dot(...)<br>
       a.dot(b, out=None)<br>
       Dot product of two arrays.<br>
-      Refer to <code>numpy.dot</code> for full documentation.<br>
+      Refer to <code><code>numpy.dot</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.dot : equivalent function<br>
@@ -727,7 +727,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       file : str or Path<br>
           A string naming the dump file.<br>
           .. versionchanged:: 1.17.0<br>
-<code>pathlib.Path</code> objects are now accepted.<br>
+<code><code>pathlib.Path</code> objects are now accepted.<br>
   dumps(...)<br>
       a.dumps()<br>
       Returns the pickle of the array as a string.<br>
@@ -741,7 +741,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Parameters<br>
       ----------<br>
       value : scalar<br>
-          All elements of <code>a</code> will be assigned this value.<br>
+          All elements of <code><code>a</code> will be assigned this value.<br>
       Examples<br>
       --------<br>
       >>> a = np.array([1, 2])<br>
@@ -761,9 +761,9 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
           'C' means to flatten in row-major (C-style) order.<br>
           'F' means to flatten in column-major (Fortran-<br>
           style) order. 'A' means to flatten in column-major<br>
-          order if <code>a</code> is Fortran <em>contiguous</em> in memory,<br>
+          order if <code><code>a</code> is Fortran <em>contiguous</em> in memory,<br>
           row-major order otherwise. 'K' means to flatten<br>
-<code>a</code> in the order the elements occur in memory.<br>
+<code><code>a</code> in the order the elements occur in memory.<br>
           The default is 'C'.<br>
       Returns<br>
       -------<br>
@@ -818,7 +818,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       ----------<br>
       *args : Arguments (variable number and type)<br>
           * none: in this case, the method only works for arrays<br>
-            with one element (<code>a.size == 1</code>), which element is<br>
+            with one element (<code><code>a.size == 1</code>), which element is<br>
             copied into a standard Python scalar object and returned.<br>
           * int_type: this argument is interpreted as a flat index into<br>
             the array, specifying which element to copy and return.<br>
@@ -832,11 +832,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
           Python scalar<br>
       Notes<br>
       -----<br>
-      When the data type of <code>a</code> is longdouble or clongdouble, item() returns<br>
+      When the data type of <code><code>a</code> is longdouble or clongdouble, item() returns<br>
       a scalar array object because there is no available Python scalar that<br>
       would not lose information. Void arrays return a buffer object for item(),<br>
       unless fields are defined, in which case a tuple is returned.<br>
-<code>item</code> is very similar to a[args], except, instead of an array scalar,<br>
+<code><code>item</code> is very similar to a[args], except, instead of an array scalar,<br>
       a standard Python scalar is returned. This can be useful for speeding up<br>
       access to elements of the array and doing arithmetic on elements of the<br>
       array using Python's optimized math.<br>
@@ -860,23 +860,23 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       a.itemset(<em>args)<br>
       Insert scalar into an array (scalar is cast to array's dtype, if possible)<br>
       There must be at least 1 argument, and define the last argument<br>
-      as </em>item<em>.  Then, <code>a.itemset(*args)</code> is equivalent to but faster<br>
-      than <code>a[args] = item</code>.  The item should be a scalar value and <code>args</code><br>
-      must select a single item in the array <code>a</code>.<br>
+      as </em>item<em>.  Then, <code><code>a.itemset(*args)</code> is equivalent to but faster<br>
+      than <code><code>a[args] = item</code>.  The item should be a scalar value and <code><code>args</code><br>
+      must select a single item in the array <code><code>a</code>.<br>
       Parameters<br>
       ----------<br>
       *args : Arguments<br>
-          If one argument: a scalar, only used in case <code>a</code> is of size 1.<br>
+          If one argument: a scalar, only used in case <code><code>a</code> is of size 1.<br>
           If two arguments: the last argument is the value to be set<br>
           and must be a scalar, the first argument specifies a single array<br>
           element location. It is either an int or a tuple.<br>
       Notes<br>
       -----<br>
-      Compared to indexing syntax, <code>itemset</code> provides some speed increase<br>
-      for placing a scalar into a particular location in an <code>ndarray</code>,<br>
+      Compared to indexing syntax, <code><code>itemset</code> provides some speed increase<br>
+      for placing a scalar into a particular location in an <code><code>ndarray</code>,<br>
       if you must do this.  However, generally this is discouraged:<br>
       among other problems, it complicates the appearance of the code.<br>
-      Also, when using <code>itemset</code> (and <code>item</code>) inside a loop, be sure<br>
+      Also, when using <code><code>itemset</code> (and <code><code>item</code>) inside a loop, be sure<br>
       to assign the methods to a local variable to avoid the attribute<br>
       look-up at each loop iteration.<br>
       Examples<br>
@@ -896,21 +896,21 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   max(...)<br>
       a.max(axis=None, out=None, keepdims=False, initial=<no value>, where=True)<br>
       Return the maximum along a given axis.<br>
-      Refer to <code>numpy.amax</code> for full documentation.<br>
+      Refer to <code><code>numpy.amax</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.amax : equivalent function<br>
   mean(...)<br>
       a.mean(axis=None, dtype=None, out=None, keepdims=False, </em>, where=True)<br>
       Returns the average of the array elements along given axis.<br>
-      Refer to <code>numpy.mean</code> for full documentation.<br>
+      Refer to <code><code>numpy.mean</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.mean : equivalent function<br>
   min(...)<br>
       a.min(axis=None, out=None, keepdims=False, initial=<no value>, where=True)<br>
       Return the minimum along a given axis.<br>
-      Refer to <code>numpy.amin</code> for full documentation.<br>
+      Refer to <code><code>numpy.amin</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.amin : equivalent function<br>
@@ -925,11 +925,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       ----------<br>
       new_order : string, optional<br>
           Byte order to force; a value from the byte order specifications<br>
-          below. <code>new_order</code> codes can be any of:<br>
+          below. <code><code>new_order</code> codes can be any of:<br>
           * 'S' - swap dtype from current to opposite endian<br>
           * {'<', 'little'} - little endian<br>
           * {'>', 'big'} - big endian<br>
-          * '=' - native order, equivalent to <code>sys.byteorder</code><br>
+          * '=' - native order, equivalent to <code><code>sys.byteorder</code><br>
           * {'|', 'I'} - ignore (no change to byte order)<br>
           The default value ('S') results in swapping the current<br>
           byte order.<br>
@@ -941,7 +941,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   nonzero(...)<br>
       a.nonzero()<br>
       Return the indices of the elements that are non-zero.<br>
-      Refer to <code>numpy.nonzero</code> for full documentation.<br>
+      Refer to <code><code>numpy.nonzero</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.nonzero : equivalent function<br>
@@ -968,7 +968,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       kind : {'introselect'}, optional<br>
           Selection algorithm. Default is 'introselect'.<br>
       order : str or list of str, optional<br>
-          When <code>a</code> is an array with fields defined, this argument specifies<br>
+          When <code><code>a</code> is an array with fields defined, this argument specifies<br>
           which fields to compare first, second, etc. A single field can<br>
           be specified as a string, and not all fields need to be specified,<br>
           but unspecified fields will still be used, in the order in which<br>
@@ -980,7 +980,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       sort : Full sort.<br>
       Notes<br>
       -----<br>
-      See <code>np.partition</code> for notes on the different algorithms.<br>
+      See <code><code>np.partition</code> for notes on the different algorithms.<br>
       Examples<br>
       --------<br>
       >>> a = np.array([3, 4, 2, 1])<br>
@@ -993,28 +993,28 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   prod(...)<br>
       a.prod(axis=None, dtype=None, out=None, keepdims=False, initial=1, where=True)<br>
       Return the product of the array elements over the given axis<br>
-      Refer to <code>numpy.prod</code> for full documentation.<br>
+      Refer to <code><code>numpy.prod</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.prod : equivalent function<br>
   ptp(...)<br>
       a.ptp(axis=None, out=None, keepdims=False)<br>
       Peak to peak (maximum - minimum) value along a given axis.<br>
-      Refer to <code>numpy.ptp</code> for full documentation.<br>
+      Refer to <code><code>numpy.ptp</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.ptp : equivalent function<br>
   put(...)<br>
       a.put(indices, values, mode='raise')<br>
-      Set <code>a.flat[n] = values[n]</code> for all <code>n</code> in indices.<br>
-      Refer to <code>numpy.put</code> for full documentation.<br>
+      Set <code><code>a.flat[n] = values[n]</code> for all <code><code>n</code> in indices.<br>
+      Refer to <code><code>numpy.put</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.put : equivalent function<br>
   ravel(...)<br>
       a.ravel([order])<br>
       Return a flattened array.<br>
-      Refer to <code>numpy.ravel</code> for full documentation.<br>
+      Refer to <code><code>numpy.ravel</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.ravel : equivalent function<br>
@@ -1022,29 +1022,29 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   repeat(...)<br>
       a.repeat(repeats, axis=None)<br>
       Repeat elements of an array.<br>
-      Refer to <code>numpy.repeat</code> for full documentation.<br>
+      Refer to <code><code>numpy.repeat</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.repeat : equivalent function<br>
   reshape(...)<br>
       a.reshape(shape, order='C')<br>
       Returns an array containing the same data with a new shape.<br>
-      Refer to <code>numpy.reshape</code> for full documentation.<br>
+      Refer to <code><code>numpy.reshape</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.reshape : equivalent function<br>
       Notes<br>
       -----<br>
-      Unlike the free function <code>numpy.reshape</code>, this method on <code>ndarray</code> allows<br>
+      Unlike the free function <code><code>numpy.reshape</code>, this method on <code><code>ndarray</code> allows<br>
       the elements of the shape parameter to be passed in as separate arguments.<br>
-      For example, <code>a.reshape(10, 11)</code> is equivalent to<br>
-<code>a.reshape((10, 11))</code>.<br>
+      For example, <code><code>a.reshape(10, 11)</code> is equivalent to<br>
+<code><code>a.reshape((10, 11))</code>.<br>
   resize(...)<br>
       a.resize(new_shape, refcheck=True)<br>
       Change shape and size of array in-place.<br>
       Parameters<br>
       ----------<br>
-      new_shape : tuple of ints, or <code>n</code> ints<br>
+      new_shape : tuple of ints, or <code><code>n</code> ints<br>
           Shape of resized array.<br>
       refcheck : bool, optional<br>
           If False, reference count will not be checked. Default is True.<br>
@@ -1054,13 +1054,13 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Raises<br>
       ------<br>
       ValueError<br>
-          If <code>a</code> does not own its own data or references or views to it exist,<br>
+          If <code><code>a</code> does not own its own data or references or views to it exist,<br>
           and the data memory must be changed.<br>
           PyPy only: will always raise if the data memory must be changed, since<br>
           there is no reliable way to determine if references or views to it<br>
           exist.<br>
       SystemError<br>
-          If the <code>order</code> keyword argument is specified. This behaviour is a<br>
+          If the <code><code>order</code> keyword argument is specified. This behaviour is a<br>
           bug in NumPy.<br>
       See Also<br>
       --------<br>
@@ -1075,7 +1075,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       reallocate the memory. However, reference counts can increase in<br>
       other ways so if you are sure that you have not shared the memory<br>
       for this array with another Python object, then you may safely set<br>
-<code>refcheck</code> to False.<br>
+<code><code>refcheck</code> to False.<br>
       Examples<br>
       --------<br>
       Shrinking an array: array is flattened (in the order that the data are<br>
@@ -1102,7 +1102,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Traceback (most recent call last):<br>
       ...<br>
       ValueError: cannot resize an array that references or is referenced ...<br>
-      Unless <code>refcheck</code> is False:<br>
+      Unless <code><code>refcheck</code> is False:<br>
       >>> a.resize((1, 1), refcheck=False)<br>
       >>> a<br>
       array([[0]])<br>
@@ -1110,31 +1110,31 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       array([[0]])<br>
   round(...)<br>
       a.round(decimals=0, out=None)<br>
-      Return <code>a</code> with each element rounded to the given number of decimals.<br>
-      Refer to <code>numpy.around</code> for full documentation.<br>
+      Return <code><code>a</code> with each element rounded to the given number of decimals.<br>
+      Refer to <code><code>numpy.around</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.around : equivalent function<br>
   searchsorted(...)<br>
       a.searchsorted(v, side='left', sorter=None)<br>
       Find indices where elements of v should be inserted in a to maintain order.<br>
-      For full documentation, see <code>numpy.searchsorted</code><br>
+      For full documentation, see <code><code>numpy.searchsorted</code><br>
       See Also<br>
       --------<br>
       numpy.searchsorted : equivalent function<br>
   setfield(...)<br>
       a.setfield(val, dtype, offset=0)<br>
       Put a value into a specified place in a field defined by a data-type.<br>
-      Place <code>val</code> into <code>a</code>'s field defined by <code>dtype</code> and beginning <code>offset</code><br>
+      Place <code><code>val</code> into <code><code>a</code>'s field defined by <code><code>dtype</code> and beginning <code><code>offset</code><br>
       bytes into the field.<br>
       Parameters<br>
       ----------<br>
       val : object<br>
           Value to be placed in field.<br>
       dtype : dtype object<br>
-          Data-type of the field in which to place <code>val</code>.<br>
+          Data-type of the field in which to place <code><code>val</code>.<br>
       offset : int, optional<br>
-          The number of bytes into the field at which to place <code>val</code>.<br>
+          The number of bytes into the field at which to place <code><code>val</code>.<br>
       Returns<br>
       -------<br>
       None<br>
@@ -1167,7 +1167,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Set array flags WRITEABLE, ALIGNED, (WRITEBACKIFCOPY and UPDATEIFCOPY),<br>
       respectively.<br>
       These Boolean-valued flags affect how numpy interprets the memory<br>
-      area used by <code>a</code> (see Notes below). The ALIGNED flag can only<br>
+      area used by <code><code>a</code> (see Notes below). The ALIGNED flag can only<br>
       be set to True if the data is actually aligned according to the type.<br>
       The WRITEBACKIFCOPY and (deprecated) UPDATEIFCOPY flags can never be set<br>
       to True. The flag WRITEABLE can only be set to True if the array owns its<br>
@@ -1177,11 +1177,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Parameters<br>
       ----------<br>
       write : bool, optional<br>
-          Describes whether or not <code>a</code> can be written to.<br>
+          Describes whether or not <code><code>a</code> can be written to.<br>
       align : bool, optional<br>
-          Describes whether or not <code>a</code> is aligned properly for its type.<br>
+          Describes whether or not <code><code>a</code> is aligned properly for its type.<br>
       uic : bool, optional<br>
-          Describes whether or not <code>a</code> is a copy of another "base" array.<br>
+          Describes whether or not <code><code>a</code> is a copy of another "base" array.<br>
       Notes<br>
       -----<br>
       Array flags provide information about how the memory area used<br>
@@ -1229,7 +1229,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       ValueError: cannot set WRITEBACKIFCOPY flag to True<br>
   sort(...)<br>
       a.sort(axis=-1, kind=None, order=None)<br>
-      Sort an array in-place. Refer to <code>numpy.sort</code> for full documentation.<br>
+      Sort an array in-place. Refer to <code><code>numpy.sort</code> for full documentation.<br>
       Parameters<br>
       ----------<br>
       axis : int, optional<br>
@@ -1243,7 +1243,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
           .. versionchanged:: 1.15.0<br>
              The 'stable' option was added.<br>
       order : str or list of str, optional<br>
-          When <code>a</code> is an array with fields defined, this argument specifies<br>
+          When <code><code>a</code> is an array with fields defined, this argument specifies<br>
           which fields to compare first, second, etc.  A single field can<br>
           be specified as a string, and not all fields need be specified,<br>
           but unspecified fields will still be used, in the order in which<br>
@@ -1257,7 +1257,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       numpy.partition: Partial sort.<br>
       Notes<br>
       -----<br>
-      See <code>numpy.sort</code> for notes on the different sorting algorithms.<br>
+      See <code><code>numpy.sort</code> for notes on the different sorting algorithms.<br>
       Examples<br>
       --------<br>
       >>> a = np.array([[1,4], [3,1]])<br>
@@ -1269,42 +1269,42 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       >>> a<br>
       array([[1, 3],<br>
              [1, 4]])<br>
-      Use the <code>order</code> keyword to specify a field to use when sorting a<br>
+      Use the <code><code>order</code> keyword to specify a field to use when sorting a<br>
       structured array:<br>
       >>> a = np.array([('a', 2), ('c', 1)], dtype=[('x', 'S1'), ('y', int)])<br>
       >>> a.sort(order='y')<br>
       >>> a<br>
       array([(b'c', 1), (b'a', 2)],<br>
             dtype=[('x', 'S1'), ('y', '<i8')]) squeeze(...) a.squeeze(axis="None)" remove axes of length one from <code>a</code>.
-      Refer to <code>numpy.squeeze</code> for full documentation.
+      Refer to <code><code>numpy.squeeze</code> for full documentation.
       See Also
       --------
       numpy.squeeze : equivalent function
   std(...)
       a.std(axis=None, dtype=None, out=None, ddof=0, keepdims=False, *, where=True)
       Returns the standard deviation of the array elements along given axis.
-      Refer to <code>numpy.std</code> for full documentation.
+      Refer to <code><code>numpy.std</code> for full documentation.
       See Also
       --------
       numpy.std : equivalent function
   sum(...)
       a.sum(axis=None, dtype=None, out=None, keepdims=False, initial=0, where=True)
       Return the sum of the array elements over the given axis.
-      Refer to <code>numpy.sum</code> for full documentation.
+      Refer to <code><code>numpy.sum</code> for full documentation.
       See Also
       --------
       numpy.sum : equivalent function
   swapaxes(...)
       a.swapaxes(axis1, axis2)
-      Return a view of the array with <code>axis1</code> and <code>axis2</code> interchanged.
-      Refer to <code>numpy.swapaxes</code> for full documentation.
+      Return a view of the array with <code><code>axis1</code> and <code><code>axis2</code> interchanged.
+      Refer to <code><code>numpy.swapaxes</code> for full documentation.
       See Also
       --------
       numpy.swapaxes : equivalent function
   take(...)
       a.take(indices, axis=None, out=None, mode='raise')
-      Return an array formed from the elements of <code>a</code> at the given indices.
-      Refer to <code>numpy.take</code> for full documentation.
+      Return an array formed from the elements of <code><code>a</code> at the given indices.
+      Refer to <code><code>numpy.take</code> for full documentation.
       See Also
       --------
       numpy.take : equivalent function
@@ -1313,18 +1313,18 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Construct Python bytes containing the raw data bytes in the array.
       Constructs Python bytes showing a copy of the raw contents of
       data memory. The bytes object is produced in C-order by default.
-      This behavior is controlled by the <code>order</code> parameter.
+      This behavior is controlled by the <code><code>order</code> parameter.
       .. versionadded:: 1.9.0
       Parameters
       ----------
       order : {'C', 'F', 'A'}, optional
           Controls the memory layout of the bytes object. 'C' means C-order,
-          'F' means F-order, 'A' (short for *Any*) means 'F' if <code>a</code> is
+          'F' means F-order, 'A' (short for *Any*) means 'F' if <code><code>a</code> is
           Fortran contiguous, 'C' otherwise. Default is 'C'.
       Returns
       -------
       s : bytes
-          Python bytes exhibiting a copy of <code>a</code>'s raw data.
+          Python bytes exhibiting a copy of <code><code>a</code>'s raw data.
       Examples
       --------
       >>> x = np.array([[0, 1], [2, 3]], dtype='<u2')>>> x.tobytes()<br>
@@ -1336,7 +1336,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   tofile(...)<br>
       a.tofile(fid, sep="", format="%s")<br>
       Write array to a file as text or binary (default).<br>
-      Data is always written in 'C' order, independent of the order of <code>a</code>.<br>
+      Data is always written in 'C' order, independent of the order of <code><code>a</code>.<br>
       The data produced by this method can be recovered using the function<br>
       fromfile().<br>
       Parameters<br>
@@ -1344,11 +1344,11 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       fid : file or str or Path<br>
           An open file object, or a string containing a filename.<br>
           .. versionchanged:: 1.17.0<br>
-<code>pathlib.Path</code> objects are now accepted.<br>
+<code><code>pathlib.Path</code> objects are now accepted.<br>
       sep : str<br>
           Separator between array items for text output.<br>
           If "" (empty), a binary file is written, equivalent to<br>
-<code>file.write(a.tobytes())</code>.<br>
+<code><code>file.write(a.tobytes())</code>.<br>
       format : str<br>
           Format string for text file output.<br>
           Each entry in the array is formatted to text by first converting<br>
@@ -1362,16 +1362,16 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       by outputting the data as text files, at the expense of speed and file<br>
       size.<br>
       When fid is a file object, array contents are directly written to the<br>
-      file, bypassing the file object's <code>write</code> method. As a result, tofile<br>
+      file, bypassing the file object's <code><code>write</code> method. As a result, tofile<br>
       cannot be used with files objects supporting compression (e.g., GzipFile)<br>
-      or file-like objects that do not support <code>fileno()</code> (e.g., BytesIO).<br>
+      or file-like objects that do not support <code><code>fileno()</code> (e.g., BytesIO).<br>
   tolist(...)<br>
       a.tolist()<br>
-      Return the array as an <code>a.ndim</code>-levels deep nested list of Python scalars.<br>
+      Return the array as an <code><code>a.ndim</code>-levels deep nested list of Python scalars.<br>
       Return a copy of the array data as a (nested) Python list.<br>
       Data items are converted to the nearest compatible builtin Python type, via<br>
-      the <code>~numpy.ndarray.item</code> function.<br>
-      If <code>a.ndim</code> is 0, then since the depth of the nested list is 0, it will<br>
+      the <code><code>~numpy.ndarray.item</code> function.<br>
+      If <code><code>a.ndim</code> is 0, then since the depth of the nested list is 0, it will<br>
       not be a list at all, but a simple Python scalar.<br>
       Parameters<br>
       ----------<br>
@@ -1382,12 +1382,12 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
           The possibly nested list of array elements.<br>
       Notes<br>
       -----<br>
-      The array may be recreated via <code>a = np.array(a.tolist())</code>, although this<br>
+      The array may be recreated via <code><code>a = np.array(a.tolist())</code>, although this<br>
       may sometimes lose precision.<br>
       Examples<br>
       --------<br>
-      For a 1D array, <code>a.tolist()</code> is almost the same as <code>list(a)</code>,<br>
-      except that <code>tolist</code> changes numpy scalars to Python scalars:<br>
+      For a 1D array, <code><code>a.tolist()</code> is almost the same as <code><code>list(a)</code>,<br>
+      except that <code><code>tolist</code> changes numpy scalars to Python scalars:<br>
       >>> a = np.uint32([1, 2])<br>
       >>> a_list = list(a)<br>
       >>> a_list<br>
@@ -1399,7 +1399,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       [1, 2]<br>
       >>> type(a_tolist[0])<br>
       <class 'int'><br>
-      Additionally, for a 2D array, <code>tolist</code> applies recursively:<br>
+      Additionally, for a 2D array, <code><code>tolist</code> applies recursively:<br>
       >>> a = np.array([[1, 2], [3, 4]])<br>
       >>> list(a)<br>
       [array([1, 2]), array([3, 4])]<br>
@@ -1415,13 +1415,13 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       1<br>
   tostring(...)<br>
       a.tostring(order='C')<br>
-      A compatibility alias for <code>tobytes</code>, with exactly the same behavior.<br>
-      Despite its name, it returns <code>bytes</code> not <code>str</code>\ s.<br>
+      A compatibility alias for <code><code>tobytes</code>, with exactly the same behavior.<br>
+      Despite its name, it returns <code><code>bytes</code> not <code><code>str</code>\ s.<br>
       .. deprecated:: 1.19.0<br>
   trace(...)<br>
       a.trace(offset=0, axis1=0, axis2=1, dtype=None, out=None)<br>
       Return the sum along diagonals of the array.<br>
-      Refer to <code>numpy.trace</code> for full documentation.<br>
+      Refer to <code><code>numpy.trace</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.trace : equivalent function<br>
@@ -1430,25 +1430,25 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Returns a view of the array with axes transposed.<br>
       For a 1-D array this has no effect, as a transposed vector is simply the<br>
       same vector. To convert a 1-D array into a 2D column vector, an additional<br>
-      dimension must be added. <code>np.atleast2d(a).T</code> achieves this, as does<br>
-<code>a[:, np.newaxis]</code>.<br>
+      dimension must be added. <code><code>np.atleast2d(a).T</code> achieves this, as does<br>
+<code><code>a[:, np.newaxis]</code>.<br>
       For a 2-D array, this is a standard matrix transpose.<br>
       For an n-D array, if axes are given, their order indicates how the<br>
       axes are permuted (see Examples). If axes are not provided and<br>
-<code>a.shape = (i[0], i[1], ... i[n-2], i[n-1])</code>, then<br>
-<code>a.transpose().shape = (i[n-1], i[n-2], ... i[1], i[0])</code>.<br>
+<code><code>a.shape = (i[0], i[1], ... i[n-2], i[n-1])</code>, then<br>
+<code><code>a.transpose().shape = (i[n-1], i[n-2], ... i[1], i[0])</code>.<br>
       Parameters<br>
       ----------<br>
-      axes : None, tuple of ints, or <code>n</code> ints<br>
+      axes : None, tuple of ints, or <code><code>n</code> ints<br>
        * None or no argument: reverses the order of the axes.<br>
-       * tuple of ints: <code>i</code> in the <code>j</code>-th place in the tuple means <code>a</code>'s<br>
-<code>i</code>-th axis becomes <code>a.transpose()</code>'s <code>j</code>-th axis.<br>
-       * <code>n</code> ints: same as an n-tuple of the same ints (this form is<br>
+       * tuple of ints: <code><code>i</code> in the <code><code>j</code>-th place in the tuple means <code><code>a</code>'s<br>
+<code><code>i</code>-th axis becomes <code><code>a.transpose()</code>'s <code><code>j</code>-th axis.<br>
+       * <code><code>n</code> ints: same as an n-tuple of the same ints (this form is<br>
          intended simply as a "convenience" alternative to the tuple form)<br>
       Returns<br>
       -------<br>
       out : ndarray<br>
-          View of <code>a</code>, with axes suitably permuted.<br>
+          View of <code><code>a</code>, with axes suitably permuted.<br>
       See Also<br>
       --------<br>
       transpose : Equivalent function<br>
@@ -1472,7 +1472,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
   var(...)<br>
       a.var(axis=None, dtype=None, out=None, ddof=0, keepdims=False, </em>, where=True)<br>
       Returns the variance of the array elements, along given axis.<br>
-      Refer to <code>numpy.var</code> for full documentation.<br>
+      Refer to <code><code>numpy.var</code> for full documentation.<br>
       See Also<br>
       --------<br>
       numpy.var : equivalent function<br>
@@ -1480,36 +1480,36 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       a.view([dtype][, type])<br>
       New view of array with the same data.<br>
       .. note::<br>
-          Passing None for <code>dtype</code> is different from omitting the parameter,<br>
-          since the former invokes <code>dtype(None)</code> which is an alias for<br>
-<code>dtype('float_')</code>.<br>
+          Passing None for <code><code>dtype</code> is different from omitting the parameter,<br>
+          since the former invokes <code><code>dtype(None)</code> which is an alias for<br>
+<code><code>dtype('float_')</code>.<br>
       Parameters<br>
       ----------<br>
       dtype : data-type or ndarray sub-class, optional<br>
           Data-type descriptor of the returned view, e.g., float32 or int16.<br>
-          Omitting it results in the view having the same data-type as <code>a</code>.<br>
+          Omitting it results in the view having the same data-type as <code><code>a</code>.<br>
           This argument can also be specified as an ndarray sub-class, which<br>
           then specifies the type of the returned object (this is equivalent to<br>
-          setting the <code>type</code> parameter).<br>
+          setting the <code><code>type</code> parameter).<br>
       type : Python type, optional<br>
           Type of the returned view, e.g., ndarray or matrix.  Again, omission<br>
           of the parameter results in type preservation.<br>
       Notes<br>
       -----<br>
-<code>a.view()</code> is used two different ways:<br>
-<code>a.view(some_dtype)</code> or <code>a.view(dtype=some_dtype)</code> constructs a view<br>
+<code><code>a.view()</code> is used two different ways:<br>
+<code><code>a.view(some_dtype)</code> or <code><code>a.view(dtype=some_dtype)</code> constructs a view<br>
       of the array's memory with a different data-type.  This can cause a<br>
       reinterpretation of the bytes of memory.<br>
-<code>a.view(ndarray_subclass)</code> or <code>a.view(type=ndarray_subclass)</code> just<br>
-      returns an instance of <code>ndarray_subclass</code> that looks at the same array<br>
+<code><code>a.view(ndarray_subclass)</code> or <code><code>a.view(type=ndarray_subclass)</code> just<br>
+      returns an instance of <code><code>ndarray_subclass</code> that looks at the same array<br>
       (same shape, dtype, etc.)  This does not cause a reinterpretation of the<br>
       memory.<br>
-      For <code>a.view(some_dtype)</code>, if <code>some_dtype</code> has a different number of<br>
+      For <code><code>a.view(some_dtype)</code>, if <code><code>some_dtype</code> has a different number of<br>
       bytes per entry than the previous dtype (for example, converting a<br>
       regular array to a structured array), then the behavior of the view<br>
-      cannot be predicted just from the superficial appearance of <code>a</code> (shown<br>
-      by <code>print(a)</code>). It also depends on exactly how <code>a</code> is stored in<br>
-      memory. Therefore if <code>a</code> is C-ordered versus fortran-ordered, versus<br>
+      cannot be predicted just from the superficial appearance of <code><code>a</code> (shown<br>
+      by <code><code>print(a)</code>). It also depends on exactly how <code><code>a</code> is stored in<br>
+      memory. Therefore if <code><code>a</code> is C-ordered versus fortran-ordered, versus<br>
       defined as a slice or transpose, etc., the view may give different<br>
       results.<br>
       Examples<br>
@@ -1567,7 +1567,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
 <p>Data descriptors defined here:<br>
   T<br>
       The transposed array.<br>
-      Same as <code>self.transpose()</code>.<br>
+      Same as <code><code>self.transpose()</code>.<br>
       Examples<br>
       --------<br>
       >>> x = np.array([[1.,2.],[3.,4.]])<br>
@@ -1643,7 +1643,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       If the ctypes module is not available, then the ctypes attribute<br>
       of array objects still returns something useful, but ctypes objects<br>
       are not returned and errors may be raised instead. In particular,<br>
-      the object will still have the <code>as_parameter</code> attribute which will<br>
+      the object will still have the <code><code>as_parameter</code> attribute which will<br>
       return an integer equal to the data attribute.<br>
       Examples<br>
       --------<br>
@@ -1730,31 +1730,31 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
           BEHAVED and F_CONTIGUOUS and not C_CONTIGUOUS.<br>
       Notes<br>
       -----<br>
-      The <code>flags</code> object can be accessed dictionary-like (as in <code>a.flags['WRITEABLE']</code>),<br>
-      or by using lowercased attribute names (as in <code>a.flags.writeable</code>). Short flag<br>
+      The <code><code>flags</code> object can be accessed dictionary-like (as in <code><code>a.flags['WRITEABLE']</code>),<br>
+      or by using lowercased attribute names (as in <code><code>a.flags.writeable</code>). Short flag<br>
       names are only supported in dictionary access.<br>
       Only the WRITEBACKIFCOPY, UPDATEIFCOPY, WRITEABLE, and ALIGNED flags can be<br>
       changed by the user, via direct assignment to the attribute or dictionary<br>
-      entry, or by calling <code>ndarray.setflags</code>.<br>
+      entry, or by calling <code><code>ndarray.setflags</code>.<br>
       The array flags cannot be set arbitrarily:<br>
-      - UPDATEIFCOPY can only be set <code>False</code>.<br>
-      - WRITEBACKIFCOPY can only be set <code>False</code>.<br>
-      - ALIGNED can only be set <code>True</code> if the data is truly aligned.<br>
-      - WRITEABLE can only be set <code>True</code> if the array owns its own memory<br>
+      - UPDATEIFCOPY can only be set <code><code>False</code>.<br>
+      - WRITEBACKIFCOPY can only be set <code><code>False</code>.<br>
+      - ALIGNED can only be set <code><code>True</code> if the data is truly aligned.<br>
+      - WRITEABLE can only be set <code><code>True</code> if the array owns its own memory<br>
         or the ultimate owner of the memory exposes a writeable buffer<br>
         interface or is a string.<br>
       Arrays can be both C-style and Fortran-style contiguous simultaneously.<br>
       This is clear for 1-dimensional arrays, but can also be true for higher<br>
       dimensional arrays.<br>
       Even for contiguous arrays a stride for a given dimension<br>
-<code>arr.strides[dim]</code> may be <em>arbitrary</em> if <code>arr.shape[dim] == 1</code><br>
+<code><code>arr.strides[dim]</code> may be <em>arbitrary</em> if <code><code>arr.shape[dim] == 1</code><br>
       or the array has no elements.<br>
-      It does <em>not</em> generally hold that <code>self.strides[-1] == self.itemsize</code><br>
-      for C-style contiguous arrays or <code>self.strides[0] == self.itemsize</code> for<br>
+      It does <em>not</em> generally hold that <code><code>self.strides[-1] == self.itemsize</code><br>
+      for C-style contiguous arrays or <code><code>self.strides[0] == self.itemsize</code> for<br>
       Fortran-style contiguous arrays is true.<br>
   flat<br>
       A 1-D iterator over the array.<br>
-      This is a <code>numpy.flatiter</code> instance, which acts similarly to, but is not<br>
+      This is a <code><code>numpy.flatiter</code> instance, which acts similarly to, but is not<br>
       a subclass of, Python's built-in iterator object.<br>
       See Also<br>
       --------<br>
@@ -1841,7 +1841,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Tuple of array dimensions.<br>
       The shape property is usually used to get the current shape of an array,<br>
       but may also be used to reshape the array in-place by assigning a tuple of<br>
-      array dimensions to it.  As with <code>numpy.reshape</code>, one of the new shape<br>
+      array dimensions to it.  As with <code><code>numpy.reshape</code>, one of the new shape<br>
       dimensions can be -1, in which case its value is inferred from the size of<br>
       the array and the remaining dimensions. Reshaping an array in-place will<br>
       fail if a copy is required.<br>
@@ -1866,21 +1866,21 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       Traceback (most recent call last):<br>
         File "<stdin>", line 1, in <module><br>
       AttributeError: Incompatible shape for in-place modification. Use<br>
-<code>.reshape()</code> to make a copy with the desired shape.<br>
+<code><code>.reshape()</code> to make a copy with the desired shape.<br>
       See Also<br>
       --------<br>
       numpy.reshape : similar function<br>
       ndarray.reshape : similar method<br>
   size<br>
       Number of elements in the array.<br>
-      Equal to <code>np.prod(a.shape)</code>, i.e., the product of the array's<br>
+      Equal to <code><code>np.prod(a.shape)</code>, i.e., the product of the array's<br>
       dimensions.<br>
       Notes<br>
       -----<br>
-<code>a.size</code> returns a standard arbitrary precision Python integer. This<br>
+<code><code>a.size</code> returns a standard arbitrary precision Python integer. This<br>
       may not be the case with other methods of obtaining the same value<br>
-      (like the suggested <code>np.prod(a.shape)</code>, which returns an instance<br>
-      of <code>np.int_</code>), and may be relevant if the value is used further in<br>
+      (like the suggested <code><code>np.prod(a.shape)</code>, which returns an instance<br>
+      of <code><code>np.int_</code>), and may be relevant if the value is used further in<br>
       calculations that may overflow a fixed size integer type.<br>
       Examples<br>
       --------<br>
@@ -1891,7 +1891,7 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       30<br>
   strides<br>
       Tuple of bytes to step in each dimension when traversing an array.<br>
-      The byte offset of element <code>(i[0], i[1], ..., i[n])</code> in an array <code>a</code><br>
+      The byte offset of element <code><code>(i[0], i[1], ..., i[n])</code> in an array <code><code>a</code><br>
       is::<br>
           offset = sum(np.array(i) * a.strides)<br>
       A more detailed explanation of strides can be found in the<br>
@@ -1906,8 +1906,8 @@ np.ndarray((2,), buffer=np.array([1,2,3]),<br>
       us how many bytes we have to skip in memory to move to the next position<br>
       along a certain axis.  For example, we have to skip 4 bytes (1 value) to<br>
       move to the next column, but 20 bytes (5 values) to get to the same<br>
-      position in the next row.  As such, the strides for the array <code>x</code> will be<br>
-<code>(20, 4)</code>.<br>
+      position in the next row.  As such, the strides for the array <code><code>x</code> will be<br>
+<code><code>(20, 4)</code>.<br>
       See Also<br>
       --------<br>
       numpy.lib.stride_tricks.as_strided<br>
