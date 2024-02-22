@@ -41,10 +41,10 @@
 <h3 id="vector">vector</h3>
 <p>vector是一個動態陣列，可以用常數的時間在結尾增刪物件<br>
 定義：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">template</span><span class="o"><</span>
+<div class="codehilite"><pre><span></span><code><span class="k">template</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span>
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o"><</span><span class="n">T</span><span class="o">></span>
-<span class="o">></span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">vector</span><span class="p">;</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span>
+<span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">vector</span><span class="p">;</span>
 </code></pre></div>
 
 <h4 id="_3">初始化</h4>
@@ -86,10 +86,10 @@
 <h3 id="deque">deque</h3>
 <p>deque是一個動態雙向序列，可以用常數的時間在頭尾增刪物件<br>
 定義：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">template</span><span class="o"><</span>
+<div class="codehilite"><pre><span></span><code><span class="k">template</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span>
 <span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o"><</span><span class="n">T</span><span class="o">></span>
-<span class="o">></span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">deque</span><span class="p">;</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Allocator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span>
+<span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">deque</span><span class="p">;</span>
 </code></pre></div>
 
 <h4 id="_5">初始化</h4>
@@ -129,7 +129,7 @@
 <p><div class="spoiler_repeat">STL容器通用方法</div><br>
 <div class="spoiler_repeat">有序容器通用方法</p></div>
 <h5 id="insert">insert</h5>
-<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 <span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">source_begin</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_end</span><span class="p">)</span>
 </code></pre></div>
 
@@ -151,7 +151,7 @@
 
 <p>判斷是否為空</p>
 <h5 id="swap">swap</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">container</span><span class="w"> </span><span class="o">&</span><span class="n">other</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">container</span><span class="w"> </span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="n">other</span><span class="p">)</span>
 </code></pre></div>
 
 <p>與另一容器交換資料</p>
@@ -193,19 +193,19 @@
 用索引取得值<br>
 存取越界時是未定義行為</p>
 <h5 id="at">at</h5>
-<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">at</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">at</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
 </code></pre></div>
 
 <p>用索引取得值<br>
 存取越界時拋出<strong>std::out_of_range</strong></p>
 <h5 id="front">front</h5>
-<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">front</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">front</span><span class="p">()</span>
 </code></pre></div>
 
 <p>取得第一個值<br>
 容器為空時是未定義行為</p>
 <h5 id="back">back</h5>
-<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">back</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">back</span><span class="p">()</span>
 </code></pre></div>
 
 <p>取得最後一個值<br>
@@ -240,7 +240,7 @@
 </details></p>
 <p><details class="spoiler_template"><summary>動態序列容器通用方法</p></summary>
 <h5 id="resize">resize</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">resize</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">resize</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 
 <p>改變容器的大小，並當count>目前大小時在<strong><em>多出來的格子</em></strong>填入value<br>
@@ -249,7 +249,7 @@
 <br>
 vector可能會因為重分配導致複雜度變大</p>
 <h5 id="assign">assign</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">assign</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">assign</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">assign</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">source_begin</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_end</span><span class="p">)</span>
 </code></pre></div>
 
@@ -257,8 +257,8 @@ vector可能會因為重分配導致複雜度變大</p>
 <script type="math/tex">O(N)</script>
 </p>
 <h5 id="insert_1">insert</h5>
-<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 <span class="n">iterator</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">cons_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_begin</span><span class="p">,</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="n">source_end</span><span class="p">)</span>
 </code></pre></div>
 
@@ -270,7 +270,7 @@ vector: <script type="math/tex">O(插入資料數目 + (end-pos))</script>
 deque: <script type="math/tex">O(插入資料數目 + min(end-pos,pos-begin))</script>
 </p>
 <h5 id="emplace">emplace</h5>
-<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">emplace</span><span class="p">(</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="o">&&</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">iterator</span><span class="w"> </span><span class="n">emplace</span><span class="p">(</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="o">&</span><span class="n">amp</span><span class="p">;...</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="p">)</span>
 </code></pre></div>
 
 <p>用args作為參數建構一個物件並插入容器的指定位置，再回傳插入的值的位置<br>
@@ -293,13 +293,13 @@ vector: <script type="math/tex">O(刪除資料數目 + (end-pos))</script>
 deque: <script type="math/tex">O(刪除資料數目 + min(end-pos,pos-begin))</script>
 </p>
 <h5 id="push_back">push_back</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span><span class="o">&&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">push_back</span><span class="p">(</span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 
 <p>在容器的結尾插入一個值</p>
 <h5 id="emplace_back">emplace_back</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&&</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">emplace_back</span><span class="p">(</span><span class="n">Args</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="o">&</span><span class="n">amp</span><span class="p">;...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
 </code></pre></div>
 
 <p>用args作為參數建構一個物件並插入容器的結尾</p>
@@ -309,14 +309,14 @@ deque: <script type="math/tex">O(刪除資料數目 + min(end-pos,pos-begin))</s
 
 <p>在容器的結尾刪除一個值</p>
 <h5 id="push_front">push_front</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">push_front</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="kt">void</span><span class="w"> </span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="o">&&</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">push_front</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">push_front</span><span class="p">(</span><span class="n">T</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 
 <p>在容器的開頭插入一個值<br>
 <em>vector沒有這個方法</em></p>
 <h5 id="emplace_front">emplace_front</h5>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">emplace_front</span><span class="p">(</span><span class="n">Args</span><span class="o">&&</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="n">emplace_front</span><span class="p">(</span><span class="n">Args</span><span class="o">&</span><span class="n">amp</span><span class="p">;</span><span class="o">&</span><span class="n">amp</span><span class="p">;...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
 </code></pre></div>
 
 <p>用args作為參數建構一個物件並插入容器的開頭<br>

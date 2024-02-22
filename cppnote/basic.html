@@ -58,7 +58,7 @@
 <p>多行註解用"/*""*/"包起來：</p>
 <div class="codehilite"><pre><span></span><code><span class="cm">/*</span>
 <span class="cm">常數設置</span>
-<span class="cm">a->1, b->2</span>
+<span class="cm">a-&gt;1, b-&gt;2</span>
 <span class="cm">*/</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
@@ -92,7 +92,7 @@
 
 <h3 id="_5">字元</h3>
 <p>字元表示"單一個字"<br>
-用<code>'</code>把字元包起來</p>
+用<code>&#x27;</code>把字元包起來</p>
 <h3 id="_6">整數</h3>
 <p>整數就是整數<br>
 整數有不同容許範圍的版本<br>
@@ -107,15 +107,15 @@
 <h2 id="_8">輸入和輸出</h2>
 <p>C語言的核心並不包含輸出入的處理<br>
 所以要引用輸出入函數庫</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><iostream></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include&lt;iostream&gt;</span>
 </code></pre></div>
 
 <h3 id="_9">輸入</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
 </code></pre></div>
 
 <h3 id="_10">輸出</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="w"> </span><span class="n">變數</span><span class="p">;</span>
 </code></pre></div>
 
 <p>可以連著寫</p>
@@ -132,13 +132,13 @@
 <p>(注意分號)<br>
 告訴編譯器把"std"裡的東西拿出來，就可以不用每次都要加上"std::"</p>
 <p><details><summary>小範例：計算a+b</p></summary>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><iostream></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">>></span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o"><<</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="w"> </span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="err">\</span><span class="n">n</span><span class="o">&</span><span class="n">quot</span><span class="p">;;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -148,7 +148,7 @@
 但只要適當優化就能比純C還快<br>
 (只有打競賽時這樣做，實際應用不建議做IO優化)</p>
 <h4 id="_11">一、優化指令</h4>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="cpf"><iostream></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -159,7 +159,7 @@
 1. 告訴C++不需要去和純C的IO同步<br>
 2. 告訴cin讀資料的時候不要去flush(cout)</p>
 <h4 id="_12">換行</h4>
-<p>不要用<code>endl</code>，用<code>"\n"</code>或<code>'\n'</code>(兩個一樣快)<br>
+<p>不要用<code>endl</code>，用<code>&quot;\n&quot;</code>或<code>&#x27;\n&#x27;</code>(兩個一樣快)<br>
 因為<code>endl</code>會去flush(cout)</p>
 <h4 id="flush">為什麼不要flush</h4>
 <p>cout是一種檔案流，用來將資料輸出到標準輸出stdout，但把資料從記憶體傳出去很慢，所以會在記憶體中開一個緩衝區buffer暫時儲存輸出，flush指令會把緩衝區的內容傳出去，速度較慢，雖然在實際應用中可能沒什麼差別，但在程式競賽中就可能是AC和TLE的差別</p>
@@ -167,11 +167,11 @@
 <p>常用的計算符包含：</p>
 <ul>
 <li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></li>
-<li>比較運算子 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code> <code>not_eq</code></li>
-<li>位元運算子 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code> <code>bitand</code> <code>bitor</code> <code>xor</code> <code>compl</code></li>
-<li>邏輯運算子 <code>!</code> <code>||</code> <code>&&</code> <code>!</code> <code>||</code> <code>&&</code> <code>not</code> <code>and</code> <code>or</code></li>
-<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code> <code>++</code> <code>--</code> <code>and_eq</code> <code>or_eq</code> <code>xor_eq</code></li>
-<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>?:</code> <code><::></code> <code><%%></code></li>
+<li>比較運算子 <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>==</code> <code>!=</code> <code>not_eq</code></li>
+<li>位元運算子 <code>&lt;&lt;</code> <code>|</code> <code>&amp;</code> <code>^</code> <code>&gt;&gt;</code> <code>~</code> <code>bitand</code> <code>bitor</code> <code>xor</code> <code>compl</code></li>
+<li>邏輯運算子 <code>!</code> <code>||</code> <code>&amp;&amp;</code> <code>!</code> <code>||</code> <code>&amp;&amp;</code> <code>not</code> <code>and</code> <code>or</code></li>
+<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>|=</code> <code>&amp;=</code> <code>^=</code> <code>++</code> <code>--</code> <code>and_eq</code> <code>or_eq</code> <code>xor_eq</code></li>
+<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>?:</code> <code>&lt;::&gt;</code> <code>&lt;%%&gt;</code></li>
 </ul>
 <h2 id="_14">語法結構</h2>
 <h3 id="_15">條件判斷</h3>
@@ -196,7 +196,7 @@
 </code></pre></div>
 
 <p>Ex.重複n次</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="w"> </span><span class="o"><</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="w"> </span><span class="o">&</span><span class="n">lt</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">    </span><span class="n">程式碼</span>
 <span class="p">}</span>
 </code></pre></div>

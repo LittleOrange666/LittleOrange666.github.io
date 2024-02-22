@@ -54,7 +54,7 @@
 可以使用像是numpy的方式取出資料，若取出不只一筆資料則輸出Series就和一般的陣列一樣<br>
 注意如果有用自訂索引就不一定能用數字索引<br>
 也可以像numpy的方式直接四則運算，但計算結果仍然是Series</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">></span><span class="mi">0</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">&</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div>
 
 <h3 id="_2">使用</h3>
@@ -66,13 +66,13 @@
 常用於DataFrame的索引<br>
 單獨取出索引/資料：</p>
 <h4 id="_3">常用方法</h4>
-<div class="codehilite"><pre><span></span><code><span class="n">s</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="c1"># 回傳有哪些不重複的值 類型為 "numpy.ndarray"</span>
-<span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="c1"># 回傳不重複的值出現次數 類型為 "Series"</span>
+<div class="codehilite"><pre><span></span><code><span class="n">s</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="c1"># 回傳有哪些不重複的值 類型為 &quot;numpy.ndarray&quot;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="c1"># 回傳不重複的值出現次數 類型為 &quot;Series&quot;</span>
 </code></pre></div>
 
 <h4 id="_4">常用屬性</h4>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1">#索引 類型為 "Index" 或其子類別</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c1">#資料 類型為 "numpy.ndarray"</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1">#索引 類型為 &quot;Index&quot; 或其子類別</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c1">#資料 類型為 &quot;numpy.ndarray&quot;</span>
 </code></pre></div>
 
 <h2 id="dataframe">DataFrame</h2>
@@ -82,11 +82,11 @@
 每個欄位都是一個Series<br>
 可以用默認索引，也可以用自訂索引<br>
 Ex:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"數量"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
-       <span class="s2">"價格"</span><span class="p">:[</span><span class="mf">3.49</span><span class="p">,</span><span class="mf">5.25</span><span class="p">,</span><span class="mf">2.22</span><span class="p">]}</span>
-<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"蘋果"</span><span class="p">,</span><span class="s2">"水梨"</span><span class="p">,</span><span class="s2">"香蕉"</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">數量</span><span class="o">&</span><span class="n">quot</span><span class="p">;:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
+       <span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">價格</span><span class="o">&</span><span class="n">quot</span><span class="p">;:[</span><span class="mf">3.49</span><span class="p">,</span><span class="mf">5.25</span><span class="p">,</span><span class="mf">2.22</span><span class="p">]}</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">蘋果</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">水梨</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">香蕉</span><span class="o">&</span><span class="n">quot</span><span class="p">;]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"總價"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"數量"</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">"價格"</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">總價</span><span class="o">&</span><span class="n">quot</span><span class="p">;]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">數量</span><span class="o">&</span><span class="n">quot</span><span class="p">;]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">價格</span><span class="o">&</span><span class="n">quot</span><span class="p">;]</span>
 <span class="n">df</span>
 </code></pre></div>
 
@@ -117,8 +117,8 @@ Ex:</p>
 </code></pre></div>
 
 <h4 id="_8">內部資料</h4>
-<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">index</span>    <span class="c1"># 索引    類型為 "Index" 或其子類別</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span>  <span class="c1"># 欄位標籤 類型為 "Index" 或其子類別</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">index</span>    <span class="c1"># 索引    類型為 &quot;Index&quot; 或其子類別</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>  <span class="c1"># 欄位標籤 類型為 &quot;Index&quot; 或其子類別</span>
 <span class="n">df</span><span class="o">.</span><span class="n">values</span>   <span class="c1"># 資料    為numpy陣列</span>
 </code></pre></div>
 
@@ -170,12 +170,12 @@ Ex:</p>
 <p>pandas有整合matplotlib的繪製圖表功能<br>
 但如果要用中文還是需要在繪圖的程式碼以前寫下</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft JhengHei'</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="o">&</span><span class="c1">#x27;font.sans-serif&#x27;] = [&#x27;Microsoft JhengHei&#x27;]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="o">&</span><span class="c1">#x27;axes.unicode_minus&#x27;] = False</span>
 </code></pre></div>
 
 <p>繪圖語法：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"類型"</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="n">類型</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
 
 <span class="c1">#或著</span>
 <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">類型</span><span class="p">()</span>
@@ -239,9 +239,9 @@ Ex:</p>
 </tbody>
 </table>
 <p>部分類型需要額外參數<br>
-圓餅圖需要<code>y="欄位名稱"</code>來定義要畫圖的欄位<br>
+圓餅圖需要<code>y=&quot;欄位名稱&quot;</code>來定義要畫圖的欄位<br>
 或使用<code>subplots=True</code>表達每一個欄位都畫一個圖<br>
-散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸<br>
+散佈圖、六邊形分箱圖需要<code>x=&quot;欄位名稱&quot;</code>,<code>y=&quot;欄位名稱&quot;</code>來定義x,y軸<br>
 其它參數與<a href="matplotlib">matplotlib</a>大致相同</p>
     </div>
     <script type="text/x-mathjax-config">

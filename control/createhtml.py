@@ -8,6 +8,7 @@ from pygments.formatters import HtmlFormatter
 import re
 import shutil
 import os
+from html import escape
 
 prepares = {"language-" + k: lexers.get_lexer_by_name(k) for lexer in lexers.get_all_lexers() for k in lexer[1]}
 the_headers = ("h1", "h2", "h3")
@@ -88,7 +89,7 @@ def run_markdown(source: str) -> str:
         source = f"{source[:get.span(1)[0]]}{get.group(1).replace(' ', '&nbsp;')}{source[get.span(1)[1]:]}"
         get = reg1.search(source)
     # 主要部分
-    html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
+    html = markdown.markdown(escape(source), extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
                                                  'codehilite', 'nl2br', mdx_math.makeExtension(enable_dollar_delimiter=True)])
     # spoiler轉成details
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",

@@ -39,25 +39,25 @@
 "方法"就是從屬於物件的函數<br>
 以下的範例示範了一些基本的使用</p>
 <div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Obj</span><span class="p">:</span>
-  <span class="n">wow</span> <span class="o">=</span> <span class="s2">"這是一個類別屬性"</span>
+  <span class="n">wow</span> <span class="o">=</span> <span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">這是一個類別屬性</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span>
 
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">):</span> <span class="c1"># __init__用來初始化物件</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1"># 定義物件的屬性</span>
 
   <span class="k">def</span> <span class="nf">a_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">param</span><span class="p">):</span> <span class="c1"># 物件方法要在第一格加self來獲取目前物件</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"這是一個物件的方法, name="</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s2">",param="</span><span class="o">+</span><span class="n">param</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">這是一個物件的方法</span><span class="p">,</span> <span class="n">name</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+&</span><span class="n">quot</span><span class="p">;,</span><span class="n">param</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">+</span><span class="n">param</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">b_method</span><span class="p">(</span><span class="n">yee</span><span class="p">):</span> <span class="c1"># "self"不是像this那樣固定的名稱，只是習慣上會用"self"</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"這是另一個物件的方法, name="</span><span class="o">+</span><span class="n">yee</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">b_method</span><span class="p">(</span><span class="n">yee</span><span class="p">):</span> <span class="c1"># &quot;self&quot;不是像this那樣固定的名稱，只是習慣上會用&quot;self&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">這是另一個物件的方法</span><span class="p">,</span> <span class="n">name</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">+</span><span class="n">yee</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
   <span class="nd">@classmethod</span>
   <span class="k">def</span> <span class="nf">class_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"這是一個類別的方法, wow="</span><span class="o">+</span><span class="bp">cls</span><span class="o">.</span><span class="n">wow</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">這是一個類別的方法</span><span class="p">,</span> <span class="n">wow</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="o">+</span><span class="bp">cls</span><span class="o">.</span><span class="n">wow</span><span class="p">)</span>
 
-<span class="n">obj</span> <span class="o">=</span> <span class="n">Obj</span><span class="p">(</span><span class="s2">"777771449"</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">.</span><span class="n">a_method</span><span class="p">(</span><span class="s2">"www"</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">Obj</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="mi">777771449</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
+<span class="n">obj</span><span class="o">.</span><span class="n">a_method</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">www</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
 <span class="n">obj</span><span class="o">.</span><span class="n">b_method</span><span class="p">()</span>
-<span class="n">Obj</span><span class="o">.</span><span class="n">a_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s2">"yee"</span><span class="p">)</span>
+<span class="n">Obj</span><span class="o">.</span><span class="n">a_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">yee</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Obj</span><span class="o">.</span><span class="n">wow</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">wow</span><span class="p">)</span>
 <span class="n">Obj</span><span class="o">.</span><span class="n">class_method</span><span class="p">()</span>

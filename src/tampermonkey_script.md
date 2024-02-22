@@ -504,15 +504,15 @@ title: Tampermonkey script
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        http://www.usaco.org/*
-// @icon         http://www.usaco.org/current/images/usaco_logo.png
+// @match        https://usaco.org/*
+// @icon         https://usaco.org/current/images/usaco_logo.png
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
-    const account = ""; // 帳號
-    const password = ""; // 密碼
+    const account = "liitleorange666";
+    const password = "o1r2a3n4g5e";
     function copyToClipboard(textToCopy) {
         if (navigator.clipboard && window.isSecureContext) {
             return navigator.clipboard.writeText(textToCopy);
@@ -572,7 +572,6 @@ title: Tampermonkey script
                 delete localStorage.oldlink;
                 location.href = target;
             }
-
         }
     },1000);
 })();
@@ -767,3 +766,42 @@ title: Tampermonkey script
 })();
 ```
 :::
+
+:::spoiler OI Checklist
+1. 隱藏解題人數
+2. 自動儲存
+```js
+// ==UserScript==
+// @name         OI checklist
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://oichecklist.pythonanywhere.com/*
+// @icon         https://oichecklist.pythonanywhere.com/static/img/favicon.17d856e260ea.svg
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    // hide statics
+    $('body').on('DOMNodeInserted', 'div', function () {
+        if(this.className.includes("popover") && this.children[2]) this.children[2].remove();
+    });
+    if (location.pathname.startsWith("/view/my")){
+        // auto save
+        var save = false;
+        var it = null;
+        function run_save(){
+            $("input[type='submit']").click();
+        }
+        function detect(){
+            if (it!==null){
+                window.clearTimeout(it);
+            }
+            it = window.setTimeout(run_save,60000);
+        }
+        $("td").click(detect);
+    }
+})();
+```

@@ -35,8 +35,8 @@
 <p>因為和通常numpy一起用，所以開頭要寫</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Microsoft JhengHei'</span><span class="p">]</span> <span class="c1"># 正常顯示中文</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 正常顯示負號</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="o">&</span><span class="c1">#x27;font.sans-serif&#x27;] = [&#x27;Microsoft JhengHei&#x27;] # 正常顯示中文</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="o">&</span><span class="c1">#x27;axes.unicode_minus&#x27;] = False # 正常顯示負號</span>
 </code></pre></div>
 
 <h2 id="_1">初始化與顯示</h2>
@@ -61,7 +61,7 @@
 如果用的是Jupyter NoteBook/JupyterLab則會顯示在建立fig和axe的那一個Cell下方(fig和axe要在同一個Cell建立，否則不會顯示)，且不需要執行此行<br>
 若堅持要使用show，則在開頭加上</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'TkAgg'</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="o">&</span><span class="c1">#x27;TkAgg&#x27;)</span>
 </code></pre></div>
 
 <p>且此作法會導致程式建立一個視窗來顯示圖表</p>
@@ -203,7 +203,7 @@
 </tbody>
 </table>
 <p>Ex.藍色實線並用三角形符號記做</p>
-<div class="codehilite"><pre><span></span><code><span class="s2">"b-^"</span>
+<div class="codehilite"><pre><span></span><code><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">b</span><span class="o">-^&</span><span class="n">quot</span><span class="p">;</span>
 </code></pre></div>
 
 <p></details><br>
@@ -326,11 +326,11 @@
 <h4 id="data">data參數</h4>
 <p>在繪製任何資料時，都可以用data參數指定資料來源<br>
 如：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s2">"y"</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">x</span><span class="o">&</span><span class="n">quot</span><span class="p">;],</span><span class="n">df</span><span class="p">[</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">y</span><span class="o">&</span><span class="n">quot</span><span class="p">;])</span>
 </code></pre></div>
 
 <p>可改為：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span><span class="s2">"y"</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">x</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="o">&</span><span class="n">quot</span><span class="p">;</span><span class="n">y</span><span class="o">&</span><span class="n">quot</span><span class="p">;,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 </code></pre></div>
 
 <h4 id="_10">畫線</h4>
@@ -339,9 +339,9 @@
 </code></pre></div>
 
 <h3 id="_11">圖例</h3>
-<p>在繪製任何資料時，都可在結尾加上<code>label="xxx"</code>來設置資料集名稱<br>
+<p>在繪製任何資料時，都可在結尾加上<code>label=&quot;xxx&quot;</code>來設置資料集名稱<br>
 如：</p>
-<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"sin()"</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=&</span><span class="n">quot</span><span class="p">;</span><span class="n">sin</span><span class="p">()</span><span class="o">&</span><span class="n">quot</span><span class="p">;)</span>
 </code></pre></div>
 
 <p>並使用</p>
