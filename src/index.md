@@ -17,6 +17,8 @@ title: 目錄
 - [簡單sincos積分](tool/sincos)
 - [圖轉黑白雙色](tool/blackwhite)
 - [畫圖](tool/makegraph)
+- [簡單代碼混淆](tool/confuse)
+- [B13內捲榜單](tool/involution)
 
 ## Tampermonkey script
 - [全部](tampermonkey_script)
