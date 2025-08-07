@@ -2,4 +2,4 @@
 title: OrangeJudge介紹 - 安裝
 ---
 
-see readme
+[OrangeJudgeDeploy](https://github.com/LittleOrange666/OrangeJudgeDeploy)
