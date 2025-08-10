@@ -94,7 +94,9 @@
 </code></pre>
 <h3 id="_5">字元</h3>
 <p>字元表示"單一個字"<br>
-用<code>'</code>把字元包起來</p>
+用<code><div class="highlight"><pre><span></span><span class="err">&#39;</span>
+</pre></div>
+</code>把字元包起來</p>
 <h3 id="_6">整數</h3>
 <p>整數就是整數<br>
 整數有不同容許範圍的版本<br>
@@ -161,19 +163,131 @@
 1. 告訴C++不需要去和純C的IO同步<br>
 2. 告訴cin讀資料的時候不要去flush(cout)</p>
 <h4 id="_12">換行</h4>
-<p>不要用<code>endl</code>，用<code>"\n"</code>或<code>'\n'</code>(兩個一樣快)<br>
-因為<code>endl</code>會去flush(cout)</p>
+<p>不要用<code><div class="highlight"><pre><span></span>endl
+</pre></div>
+</code>，用<code><div class="highlight"><pre><span></span><span class="s2">&quot;\n&quot;</span>
+</pre></div>
+</code>或<code><div class="highlight"><pre><span></span><span class="s1">&#39;\n&#39;</span>
+</pre></div>
+</code>(兩個一樣快)<br>
+因為<code><div class="highlight"><pre><span></span>endl
+</pre></div>
+</code>會去flush(cout)</p>
 <h4 id="flush">為什麼不要flush</h4>
 <p>cout是一種檔案流，用來將資料輸出到標準輸出stdout，但把資料從記憶體傳出去很慢，所以會在記憶體中開一個緩衝區buffer暫時儲存輸出，flush指令會把緩衝區的內容傳出去，速度較慢，雖然在實際應用中可能沒什麼差別，但在程式競賽中就可能是AC和TLE的差別</p>
 <h2 id="_13">基礎運算子</h2>
 <p>常用的計算符包含：</p>
 <ul>
-<li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></li>
-<li>比較運算子 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code> <code>not_eq</code></li>
-<li>位元運算子 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code> <code>bitand</code> <code>bitor</code> <code>xor</code> <code>compl</code></li>
-<li>邏輯運算子 <code>!</code> <code>||</code> <code>&&</code> <code>!</code> <code>||</code> <code>&&</code> <code>not</code> <code>and</code> <code>or</code></li>
-<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code> <code>++</code> <code>--</code> <code>and_eq</code> <code>or_eq</code> <code>xor_eq</code></li>
-<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>?:</code> <code><::></code> <code><%%></code></li>
+<li>數學運算子 <code><div class="highlight"><pre><span></span>+
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>-
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>*
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>/
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>%
+</pre></div>
+</code></li>
+<li>比較運算子 <code><div class="highlight"><pre><span></span>&gt;
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&lt;
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&gt;<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&lt;<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">==</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>!<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>not_eq
+</pre></div>
+</code></li>
+<li>位元運算子 <code><div class="highlight"><pre><span></span>&lt;&lt;
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="p">|</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="p">&amp;</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>^
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&gt;&gt;
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>~
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>bitand
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>bitor
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>xor
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>compl
+</pre></div>
+</code></li>
+<li>邏輯運算子 <code><div class="highlight"><pre><span></span>!
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">||</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">&amp;&amp;</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>!
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">||</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">&amp;&amp;</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>not
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>and
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>or
+</pre></div>
+</code></li>
+<li>賦值運算子 <code><div class="highlight"><pre><span></span>+<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>-<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>*<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>/<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>%<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&lt;&lt;<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&gt;&gt;<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="p">|</span><span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>^<span class="o">=</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>++
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>--
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>and_eq
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>or_eq
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>xor_eq
+</pre></div>
+</code></li>
+<li>其他 <code><div class="highlight"><pre><span></span><span class="o">[]</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">()</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span><span class="o">{}</span>
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>?:
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&lt;::&gt;
+</pre></div>
+</code> <code><div class="highlight"><pre><span></span>&lt;%%&gt;
+</pre></div>
+</code></li>
 </ul>
 <h2 id="_14">語法結構</h2>
 <h3 id="_15">條件判斷</h3>

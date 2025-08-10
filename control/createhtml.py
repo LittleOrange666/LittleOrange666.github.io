@@ -39,8 +39,11 @@ class Codehightlighter(HTMLParser):
             for k, v in attrs.items():
                 if k == "class" and v in prepares:
                     self.prepare = v
+                    break
+            else:
+                self.prepare = "language-bash"
             self.text.append(f"<code>")
-        elif self.prepare == "":
+        if self.prepare == "":
             atl = ''.join(' ' + (k if v is None else k + '="' + v + '"') for k, v in attrs.items() if k is not None)
             if tag != "br" or len(self.text) == 0 or self.text[-1] != "<br>":
                 self.text.append(f"<{tag}{atl}>")

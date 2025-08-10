@@ -40,11 +40,13 @@
 <p>請求可能是GET或POST，視API而定</p>
 <p>GET請求的參數會放在URL中，POST請求的參數會放在formData中</p>
 <p>共通參數：</p>
-<pre><code>username: {your_username}
-key: {your_api_key}
+<pre><code><div class="highlight"><pre><span></span>username:<span class="w"> </span><span class="o">{</span>your_username<span class="o">}</span>
+key:<span class="w"> </span><span class="o">{</span>your_api_key<span class="o">}</span>
+</pre></div>
 </code></pre>
 <p>api_key也可以用在HTTP Header中：</p>
-<pre><code>x-api-key: {your_api_key}
+<pre><code><div class="highlight"><pre><span></span>x-api-key:<span class="w"> </span><span class="o">{</span>your_api_key<span class="o">}</span>
+</pre></div>
 </code></pre>
 <p>權限檢查優先級：</p>
 <ol>
@@ -73,42 +75,48 @@ key: {your_api_key}
 <p>method: POST<br>
 路徑：/api/submit<br>
 參數：</p>
-<pre><code>pid: {problem_id}
-lang: {language}
-code: {your_code}
+<pre><code><div class="highlight"><pre><span></span>pid:<span class="w"> </span><span class="o">{</span>problem_id<span class="o">}</span>
+lang:<span class="w"> </span><span class="o">{</span>language<span class="o">}</span>
+code:<span class="w"> </span><span class="o">{</span>your_code<span class="o">}</span>
+</pre></div>
 </code></pre>
 <p>data格式：</p>
-<pre><code>{
-    "submission_id": "{submission_id}"
-}
+<pre><code><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;submission_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;{submission_id}&quot;</span>
+<span class="o">}</span>
+</pre></div>
 </code></pre>
 <h2 id="test-submit">test submit</h2>
 <p>method: POST<br>
 路徑：/api/submit<br>
 參數：</p>
-<pre><code>pid: test
-lang: {language}
-code: {your_code}
-input: {input}
+<pre><code><div class="highlight"><pre><span></span>pid:<span class="w"> </span><span class="nb">test</span>
+lang:<span class="w"> </span><span class="o">{</span>language<span class="o">}</span>
+code:<span class="w"> </span><span class="o">{</span>your_code<span class="o">}</span>
+input:<span class="w"> </span><span class="o">{</span>input<span class="o">}</span>
+</pre></div>
 </code></pre>
 <p>data格式：</p>
-<pre><code>{
-    "submission_id": "{submission_id}"
-}
+<pre><code><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;submission_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;{submission_id}&quot;</span>
+<span class="o">}</span>
+</pre></div>
 </code></pre>
 <h2 id="submission">submission</h2>
 <p>method: GET<br>
 路徑：/api/submission<br>
 參數：</p>
-<pre><code>submission_id: {submission_id}
+<pre><code><div class="highlight"><pre><span></span>submission_id:<span class="w"> </span><span class="o">{</span>submission_id<span class="o">}</span>
+</pre></div>
 </code></pre>
 <p>data格式：</p>
-<pre><code>{
-    "lang": lang,
-    "source_code": source,
-    "completed": completed,
-    "ce_msg": ce_msg
-}
+<pre><code><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;lang&quot;</span>:<span class="w"> </span>lang,
+<span class="w">    </span><span class="s2">&quot;source_code&quot;</span>:<span class="w"> </span>source,
+<span class="w">    </span><span class="s2">&quot;completed&quot;</span>:<span class="w"> </span>completed,
+<span class="w">    </span><span class="s2">&quot;ce_msg&quot;</span>:<span class="w"> </span>ce_msg
+<span class="o">}</span>
+</pre></div>
 </code></pre>
     </div>
     <script type="text/x-mathjax-config">

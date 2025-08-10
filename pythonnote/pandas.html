@@ -60,11 +60,17 @@
 </pre></div>
 </code></pre>
 <h3 id="_2">使用</h3>
-<p>Series有一個特別的運算可以逐個進行<code>in</code>計算</p>
+<p>Series有一個特別的運算可以逐個進行<code><div class="highlight"><pre><span></span><span class="k">in</span>
+</pre></div>
+</code>計算</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">物件</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p><code>isin</code>輸出一個Series[bool]表示每個元素是否在<code>物件</code>中<br>
+<p><code><div class="highlight"><pre><span></span>isin
+</pre></div>
+</code>輸出一個Series[bool]表示每個元素是否在<code><div class="highlight"><pre><span></span>物件
+</pre></div>
+</code>中<br>
 常用於DataFrame的索引<br>
 單獨取出索引/資料：</p>
 <h4 id="_3">常用方法</h4>
@@ -97,8 +103,12 @@ Ex:</p>
 <h3 id="_5">匯入與匯出</h3>
 <p>DataFrame可以直接由檔案匯入/匯出至檔案<br>
 支援.csv .json .html .xlsx格式<br>
-注意：要支援.xlsx格式需要額外安裝<code>openpyxl</code>(不需要import)<br>
-直接<code>pip install openpyxl</code>就可以了<br>
+注意：要支援.xlsx格式需要額外安裝<code><div class="highlight"><pre><span></span>openpyxl
+</pre></div>
+</code>(不需要import)<br>
+直接<code><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl
+</pre></div>
+</code>就可以了<br>
 語法：</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>           <span class="c1"># 匯出到.csv檔</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">檔名</span><span class="p">)</span>          <span class="c1"># 匯出到.json檔</span>
@@ -155,19 +165,29 @@ Ex:</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">((</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">欄位標籤</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="n">是否遞增</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>照<code>(單/多個)欄位標籤</code>決定排序優先程度<br>
-<code>ascending=True</code>為遞增排序<br>
+<p>照<code><div class="highlight"><pre><span></span><span class="o">(</span>單/多個<span class="o">)</span>欄位標籤
+</pre></div>
+</code>決定排序優先程度<br>
+<code><div class="highlight"><pre><span></span><span class="nv">ascending</span><span class="o">=</span>True
+</pre></div>
+</code>為遞增排序<br>
 回傳排序過的DataFrame，不更改原來的</p>
 <h3 id="_12">資料增刪</h3>
 <p>利用索引可以進行資料讀取/編輯<br>
 寫入不存在的索引可以進行資料新增<br>
-資料刪除則使用<code>drop</code></p>
+資料刪除則使用<code><div class="highlight"><pre><span></span>drop
+</pre></div>
+</code></p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">((</span><span class="n">單</span><span class="o">/</span><span class="n">多個</span><span class="p">)</span><span class="n">名稱</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="n">軸</span><span class="p">)</span>
 </pre></div>
 </code></pre>
 <p>axis決定是要刪掉一些資料還是刪掉一些欄位<br>
-<code>axis=0</code>(默認)表示刪掉一些資料<br>
-<code>axis=1</code>(默認)表示刪掉一些欄位</p>
+<code><div class="highlight"><pre><span></span><span class="nv">axis</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+</code>(默認)表示刪掉一些資料<br>
+<code><div class="highlight"><pre><span></span><span class="nv">axis</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</code>(默認)表示刪掉一些欄位</p>
 <h3 id="_13">資料視覺化</h3>
 <p>pandas有整合matplotlib的繪製圖表功能<br>
 但如果要用中文還是需要在繪圖的程式碼以前寫下</p>
@@ -241,9 +261,17 @@ Ex:</p>
 </tbody>
 </table>
 <p>部分類型需要額外參數<br>
-圓餅圖需要<code>y="欄位名稱"</code>來定義要畫圖的欄位<br>
-或使用<code>subplots=True</code>表達每一個欄位都畫一個圖<br>
-散佈圖、六邊形分箱圖需要<code>x="欄位名稱"</code>,<code>y="欄位名稱"</code>來定義x,y軸<br>
+圓餅圖需要<code><div class="highlight"><pre><span></span><span class="nv">y</span><span class="o">=</span><span class="s2">&quot;欄位名稱&quot;</span>
+</pre></div>
+</code>來定義要畫圖的欄位<br>
+或使用<code><div class="highlight"><pre><span></span><span class="nv">subplots</span><span class="o">=</span>True
+</pre></div>
+</code>表達每一個欄位都畫一個圖<br>
+散佈圖、六邊形分箱圖需要<code><div class="highlight"><pre><span></span><span class="nv">x</span><span class="o">=</span><span class="s2">&quot;欄位名稱&quot;</span>
+</pre></div>
+</code>,<code><div class="highlight"><pre><span></span><span class="nv">y</span><span class="o">=</span><span class="s2">&quot;欄位名稱&quot;</span>
+</pre></div>
+</code>來定義x,y軸<br>
 其它參數與<a href="matplotlib">matplotlib</a>大致相同</p>
     </div>
     <script type="text/x-mathjax-config">
