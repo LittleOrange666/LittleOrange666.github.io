@@ -1,14 +1,13 @@
+import os
+import re
+import shutil
+from html.parser import HTMLParser
 from typing import Callable
 
 import markdown
 import mdx_math
-from html.parser import HTMLParser
 from pygments import highlight, lexers
 from pygments.formatters import HtmlFormatter
-import re
-import shutil
-import os
-from html import escape
 
 prepares = {"language-" + k: lexers.get_lexer_by_name(k) for lexer in lexers.get_all_lexers() for k in lexer[1]}
 the_headers = ("h1", "h2", "h3")
@@ -41,7 +40,7 @@ class Codehightlighter(HTMLParser):
                 if k == "class" and v in prepares:
                     self.prepare = v
             self.text.append(f"<code>")
-        if self.prepare == "":
+        elif self.prepare == "":
             atl = ''.join(' ' + (k if v is None else k + '="' + v + '"') for k, v in attrs.items() if k is not None)
             if tag != "br" or len(self.text) == 0 or self.text[-1] != "<br>":
                 self.text.append(f"<{tag}{atl}>")
@@ -93,7 +92,7 @@ def run_markdown(source: str) -> str:
         get = reg1.search(source)
     # 主要部分
     html = markdown.markdown(source, extensions=['tables', 'md_in_html', 'fenced_code', 'attr_list', 'def_list', 'toc',
-                                                  'nl2br', mdx_math.makeExtension(enable_dollar_delimiter=True)])
+                                                 'nl2br', mdx_math.makeExtension(enable_dollar_delimiter=True)])
     # spoiler轉成details
     html = html.replace("<br />", "<br>").replace("<br/>", "<br>").replace("</br>", "<br>").replace("<br>",
                                                                                                     " NEXTLINE ")
@@ -129,6 +128,7 @@ def run_markdown(source: str) -> str:
     html = re.sub("<br>\\s*<br>", "<br>", html.replace("</br>", "<br>"))
     return html
 
+
 def run_markdown_file(source: str, target: str) -> None:
     dat = run_markdown(open(source, encoding="utf8").read())
     try:
@@ -145,7 +145,7 @@ def main(logger: Callable[[str], None]):
             new_name = os.path.join(dirPath.replace(os.path.join(os.pardir, "src"), os.pardir), f)
             if os.path.splitext(name)[-1] == ".md":
                 new_name = new_name[:-3] + ".html"
-                run_markdown_file(name,new_name)
+                run_markdown_file(name, new_name)
             else:
                 try:
                     shutil.copyfile(name, new_name)

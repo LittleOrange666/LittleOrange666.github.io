@@ -85,7 +85,7 @@
 </pre></div>
 </code></pre>
 <h4 id="_10">自定義</h4>
-<p>除了標準的張量計算外，還可以用<code><code>@tf.function</code>來建立自定義的張量計算</p>
+<p>除了標準的張量計算外，還可以用<code>@tf.function</code>來建立自定義的張量計算</p>
 <h3 id="eager-execution">關於eager execution</h3>
 <p>eager execution表示所有計算都立即執行<br>
 在tensorflow 2默認是啟用的<br>
@@ -154,10 +154,10 @@
 <li>sess.run(Operation) 進行操作</li>
 <li>sess.run(Tensor|Variable) 取出值</li>
 </ul>
-<p>使用<code><code>sess.run(optimizer)</code>可進行訓練<br>
-使用<code><code>sess.run(損失函數)</code>可求出損失值<br>
+<p>使用<code>sess.run(optimizer)</code>可進行訓練<br>
+使用<code>sess.run(損失函數)</code>可求出損失值<br>
 這兩個操作都需要輸入資料<br>
-使用<code><code>sess.run(模型參數)</code>可取出模型參數</p>
+使用<code>sess.run(模型參數)</code>可取出模型參數</p>
 <h4 id="_14">範例</h4>
 <p><details><summary>範例：y=ax+b</p></summary>
 <pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>

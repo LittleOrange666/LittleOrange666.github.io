@@ -274,20 +274,20 @@ True=1, False=0</p>
 <h2 id="_22">基礎運算子</h2>
 <p>常用的計算符包含：</p>
 <ul>
-<li>數學運算子 <code><code>+</code> <code><code>-</code> <code><code>*</code> <code><code>/</code> <code><code>//</code> <code><code>%</code> <code><code>**</code></li>
-<li>比較運算子 <code><code>></code> <code><code><</code> <code><code>>=</code> <code><code><=</code> <code><code>==</code> <code><code>!=</code></li>
-<li>位元運算子 <code><code><<</code> <code><code>|</code> <code><code>&</code> <code><code>^</code> <code><code>>></code> <code><code>~</code></li>
-<li>邏輯運算子 <code><code>not</code> <code><code>or</code> <code><code>and</code></li>
-<li>賦值運算子 <code><code>+=</code> <code><code>-=</code> <code><code>*=</code> <code><code>/=</code> <code><code>//=</code> <code><code>%=</code> <code><code>**=</code> <code><code><<=</code> <code><code>>>=</code> <code><code>|=</code> <code><code>&=</code> <code><code>^=</code></li>
-<li>其他 <code><code>[]</code> <code><code>()</code> <code><code>{}</code> <code><code>is</code> <code><code>is not</code> <code><code>in</code> <code><code>not in</code></li>
+<li>數學運算子 <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>//</code> <code>%</code> <code>**</code></li>
+<li>比較運算子 <code>></code> <code><</code> <code>>=</code> <code><=</code> <code>==</code> <code>!=</code></li>
+<li>位元運算子 <code><<</code> <code>|</code> <code>&</code> <code>^</code> <code>>></code> <code>~</code></li>
+<li>邏輯運算子 <code>not</code> <code>or</code> <code>and</code></li>
+<li>賦值運算子 <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>//=</code> <code>%=</code> <code>**=</code> <code><<=</code> <code>>>=</code> <code>|=</code> <code>&=</code> <code>^=</code></li>
+<li>其他 <code>[]</code> <code>()</code> <code>{}</code> <code>is</code> <code>is not</code> <code>in</code> <code>not in</code></li>
 </ul>
 <p><details><summary>關於除法</summary><br>
-不論用<code><code>int</code>/<code><code>float</code>做<code><code>/</code>總是輸出float<br>
-而<code><code>//</code>和<code><code>%</code>則是在有<code><code>float</code>參與計算時輸出<code><code>float</code></p>
-<p><code><code>%</code>遇到負數會有怪怪行為，要小心</p>
-<p>雖然Python有<code><code>inf</code>和<code><code>NaN</code>，但內建計算不會輸出<code><code>inf</code>或<code><code>NaN</code>，會直接報錯<br>
+不論用<code>int</code>/<code>float</code>做<code>/</code>總是輸出float<br>
+而<code>//</code>和<code>%</code>則是在有<code>float</code>參與計算時輸出<code>float</code></p>
+<p><code>%</code>遇到負數會有怪怪行為，要小心</p>
+<p>雖然Python有<code>inf</code>和<code>NaN</code>，但內建計算不會輸出<code>inf</code>或<code>NaN</code>，會直接報錯<br>
 (OverflowError/ZeroDivisionError)</p>
-<p><code><code>**</code>有提供函數的版本，額外有一個"mod"的參數，還可以算模逆元<br>
+<p><code>**</code>有提供函數的版本，額外有一個"mod"的參數，還可以算模逆元<br>
 pow(a,p,m)<br>
 </details></p>
 <p><details><summary>總表</p></summary>
@@ -479,8 +479,8 @@ pow(a,p,m)<br>
 </table>
 <p></details></p>
 <h3 id="_23">象牙運算子</h3>
-<p>象牙運算子<code><code>:=</code>是在Python3.8中新增的特性<br>
-Python中賦值運算子(包含<code><code>+=</code>之類的)不具有回傳值(不是回傳None)，不能拿來作其他計算<br>
+<p>象牙運算子<code>:=</code>是在Python3.8中新增的特性<br>
+Python中賦值運算子(包含<code>+=</code>之類的)不具有回傳值(不是回傳None)，不能拿來作其他計算<br>
 象牙運算子可以在賦值的同時具有回傳值<br>
 但有一些限制</p>
 <ol>
@@ -618,8 +618,8 @@ with語法也可以用於使中間的程式展現特定的行為<br>
 <span class="nb">range</span><span class="p">(</span><span class="n">開頭</span><span class="p">,</span><span class="n">結尾</span><span class="p">,</span><span class="n">步長</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>range代表一個從<code><code>開頭</code>到<code><code>結尾</code>間隔<code><code>步長</code>的等差數列(不包含結尾)<br>
-<code><code>開頭</code>默認為<code><code>0</code>，<code><code>步長</code>默認為<code><code>1</code><br>
+<p>range代表一個從<code>開頭</code>到<code>結尾</code>間隔<code>步長</code>的等差數列(不包含結尾)<br>
+<code>開頭</code>默認為<code>0</code>，<code>步長</code>默認為<code>1</code><br>
 三個值都可以是負的<br>
 range不會直接產生數列，而是在要用到的時候才計算</p>
 <h4 id="enumerate">enumerate</h4>
@@ -627,7 +627,7 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
 <pre><code><div class="highlight"><pre><span></span><span class="nb">enumerate</span><span class="p">(</span><span class="n">可迭代物件</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>enumerate輸入一個<code><code>可迭代物件</code>，輸出的每一元素為(編號,值)的元組<br>
+<p>enumerate輸入一個<code>可迭代物件</code>，輸出的每一元素為(編號,值)的元組<br>
 通常寫作</p>
 <pre><code><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="c1">#do something</span>
@@ -715,7 +715,7 @@ Python中的推導式有4種，分別是</p>
 使用大括號{}</p>
 <h3 id="dictionary-comprehension">字典推導式(Dictionary Comprehension)</h3>
 <p>與集合推導式類似，會覆蓋鍵值相同的元素<br>
-輸出表達式必須為 <code><code>鍵值:值</code> 的格式<br>
+輸出表達式必須為 <code>鍵值:值</code> 的格式<br>
 元素的順序會被保留<br>
 使用大括號{}</p>
 <h3 id="generator-expression">生成器表達式(Generator Expression)</h3>
@@ -736,7 +736,7 @@ Python中的推導式有4種，分別是</p>
 </code></pre>
 <p>這種寫法可以使程式碼在被import時不自動執行主要程式碼<br>
 但同時可以手動執行main<br>
-而且有一些函數庫會要求把程式碼寫在<code><code>if __name__ == '__main__':</code>裡面(例如：PyQt)<br>
+而且有一些函數庫會要求把程式碼寫在<code>if __name__ == '__main__':</code>裡面(例如：PyQt)<br>
 並能明確的標示出主要程式碼的位置</p>
     </div>
     <script type="text/x-mathjax-config">

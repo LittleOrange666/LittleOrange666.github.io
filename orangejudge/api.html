@@ -40,11 +40,11 @@
 <p>請求可能是GET或POST，視API而定</p>
 <p>GET請求的參數會放在URL中，POST請求的參數會放在formData中</p>
 <p>共通參數：</p>
-<pre><code><code>username: {your_username}
+<pre><code>username: {your_username}
 key: {your_api_key}
 </code></pre>
 <p>api_key也可以用在HTTP Header中：</p>
-<pre><code><code>x-api-key: {your_api_key}
+<pre><code>x-api-key: {your_api_key}
 </code></pre>
 <p>權限檢查優先級：</p>
 <ol>
@@ -73,12 +73,12 @@ key: {your_api_key}
 <p>method: POST<br>
 路徑：/api/submit<br>
 參數：</p>
-<pre><code><code>pid: {problem_id}
+<pre><code>pid: {problem_id}
 lang: {language}
 code: {your_code}
 </code></pre>
 <p>data格式：</p>
-<pre><code><code>{
+<pre><code>{
     "submission_id": "{submission_id}"
 }
 </code></pre>
@@ -86,13 +86,13 @@ code: {your_code}
 <p>method: POST<br>
 路徑：/api/submit<br>
 參數：</p>
-<pre><code><code>pid: test
+<pre><code>pid: test
 lang: {language}
 code: {your_code}
 input: {input}
 </code></pre>
 <p>data格式：</p>
-<pre><code><code>{
+<pre><code>{
     "submission_id": "{submission_id}"
 }
 </code></pre>
@@ -100,10 +100,10 @@ input: {input}
 <p>method: GET<br>
 路徑：/api/submission<br>
 參數：</p>
-<pre><code><code>submission_id: {submission_id}
+<pre><code>submission_id: {submission_id}
 </code></pre>
 <p>data格式：</p>
-<pre><code><code>{
+<pre><code>{
     "lang": lang,
     "source_code": source,
     "completed": completed,

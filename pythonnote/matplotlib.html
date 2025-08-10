@@ -47,12 +47,12 @@
 <pre><code><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 </pre></div>
 </code></pre>
-<p><code><code>fig</code>可以換成其他名稱，以下使用<code><code>fig</code>指代影像物件<br>
+<p><code>fig</code>可以換成其他名稱，以下使用<code>fig</code>指代影像物件<br>
 建立完成繪圖物件再建立一個子圖</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">axe</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>想像一個<code><code>nrows</code>橫行<code><code>ncols</code>直列的網格，並把<code><code>axe</code>放在<code><code>index</code>所指的位置<br>
+<p>想像一個<code>nrows</code>橫行<code>ncols</code>直列的網格，並把<code>axe</code>放在<code>index</code>所指的位置<br>
 注意此處座標/索引皆由1開始而非由0開始<br>
 如果不需要進行排版可以省略所有引數<br>
 最後是顯示的部分</p>
@@ -68,13 +68,13 @@
 </code></pre>
 <p>且此作法會導致程式建立一個視窗來顯示圖表</p>
 <h3 id="plt">作法二：直接使用plt</h3>
-<p>若不想要使用繪圖物件，可以把<code><code>plt</code>當成一個子圖來使用<br>
+<p>若不想要使用繪圖物件，可以把<code>plt</code>當成一個子圖來使用<br>
 使用Jupyter NoteBook/JupyterLab時建議使用此做法<br>
 也可以建立個子圖</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">nrows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>想像一個<code><code>nrows</code>橫行<code><code>ncols</code>直列的網格，並在<code><code>index</code>所指的位置建立子圖，使<code><code>plt</code>當成該子圖使用<br>
+<p>想像一個<code>nrows</code>橫行<code>ncols</code>直列的網格，並在<code>index</code>所指的位置建立子圖，使<code>plt</code>當成該子圖使用<br>
 最後是顯示的部分</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -87,7 +87,7 @@
 <pre><code><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>"資料"可以是<code><code>list</code>或是一維的<code><code>numpy陣列</code><br>
+<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code><br>
 資料可以不只一組，用來在一張圖中顯示多筆資料<br>
 兩筆資料這樣寫：</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x軸資料1</span><span class="p">,</span><span class="n">y軸資料1</span><span class="p">,</span><span class="n">x軸資料2</span><span class="p">,</span><span class="n">y軸資料2</span><span class="p">,</span><span class="n">樣式</span><span class="p">)</span>
@@ -241,9 +241,9 @@
 <pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x軸資料</span><span class="p">,</span><span class="n">y軸資料</span><span class="p">,</span><span class="n">點大小</span><span class="p">,</span><span class="n">色彩</span><span class="p">)</span>
 </pre></div>
 </code></pre>
-<p>"資料"可以是<code><code>list</code>或是一維的<code><code>numpy陣列</code>，只能有一組<br>
-"點大小"和"色彩"是和資料長度相同的<code><code>list</code>或是一維的<code><code>numpy陣列</code><br>
-<code><code>scatter</code>指令可重複執行來疊加資料</p>
+<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code>，只能有一組<br>
+"點大小"和"色彩"是和資料長度相同的<code>list</code>或是一維的<code>numpy陣列</code><br>
+<code>scatter</code>指令可重複執行來疊加資料</p>
 <h4 id="_7">長條圖</h4>
 <p>垂直：</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">索引</span><span class="p">,</span><span class="n">資料</span><span class="p">)</span>
@@ -262,7 +262,7 @@
 <pre><code><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">標籤</span><span class="p">))</span>
 </pre></div>
 </code></pre>
-<p><code><code>bar</code>指令可重複執行來疊加資料<br>
+<p><code>bar</code>指令可重複執行來疊加資料<br>
 並按照索引排列<br>
 <details><summary>常用參數</p></summary>
 <table>
@@ -288,7 +288,7 @@
 <pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">資料</span><span class="p">,)</span>
 </pre></div>
 </code></pre>
-<p>"資料"可以是<code><code>list</code>或是一維的<code><code>numpy陣列</code>，可以包含多組，但是要用list包起來<br>
+<p>"資料"可以是<code>list</code>或是一維的<code>numpy陣列</code>，可以包含多組，但是要用list包起來<br>
 <details><summary>常用參數</p></summary>
 <table>
 <thead>
@@ -341,7 +341,7 @@
 </pre></div>
 </code></pre>
 <h3 id="_11">圖例</h3>
-<p>在繪製任何資料時，都可在結尾加上<code><code>label="xxx"</code>來設置資料集名稱<br>
+<p>在繪製任何資料時，都可在結尾加上<code>label="xxx"</code>來設置資料集名稱<br>
 如：</p>
 <pre><code><div class="highlight"><pre><span></span><span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;sin()&quot;</span><span class="p">)</span>
 </pre></div>
