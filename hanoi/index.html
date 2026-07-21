@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower of Hanoi</title>
+    <link rel="stylesheet" href="/hanoi/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tower of Hanoi Challenge</h1>
+        
+        <div class="stats">
+                <div class="custom-controls" style="margin-bottom: 10px;">
+                    <label for="custom-n">Disks (n): <span id="custom-n-val">5</span></label>
+                    <input type="range" id="custom-n" value="5" min="1" max="8">
+                </div>
+            <div id="timer">
+                    Time Elapsed:
+                <span id="time-left">--</span>s
+            </div>
+            <button id="start-btn">Start Game</button>
+            <button id="reset-btn" disabled>Reset Game</button>
+        </div>
+
+        <div id="message-container" class="hidden">
+            <h2 id="message-title"></h2>
+            <p id="message-body"></p>
+        </div>
+
+        <div class="game-board">
+            <div class="peg-container" data-peg="0">
+                <div class="peg"></div>
+                <div class="disks"></div>
+                <div class="peg-base"></div>
+            </div>
+            <div class="peg-container" data-peg="1">
+                <div class="peg"></div>
+                <div class="disks"></div>
+                <div class="peg-base"></div>
+            </div>
+            <div class="peg-container" data-peg="2">
+                <div class="peg"></div>
+                <div class="disks"></div>
+                <div class="peg-base"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pass difficulty to JS -->
+    <script>
+        const DIFFICULTY = "custom";
+    </script>
+    <script src="/hanoi/script.js"></script>
+</body>
+</html>
