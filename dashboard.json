@@ -1,0 +1,24 @@
+{
+    "contest":{
+        "contest_type":"ioicamp",
+        "task_order": [1,2,3],
+        "tasks":{
+            "1":"pA",
+            "2":"pB",
+            "3":"pC"
+        },
+        "freeze_time": 0
+    },
+    "scores":[
+    ],
+    "users":{
+        "team1":{
+            "username": "team01",
+            "nickname": "TEAM01"
+        },
+        "team2":{
+            "username": "team02",
+            "nickname": "TEAM02"
+        }
+    }
+}

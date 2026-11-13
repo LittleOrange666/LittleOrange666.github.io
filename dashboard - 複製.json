@@ -1,0 +1,52 @@
+{
+    "contest":{
+        "contest_type":"ioicamp",
+        "task_order": [1,2,3],
+        "tasks":{
+            "1":"pA",
+            "2":"pB",
+            "3":"pC"
+        },
+        "freeze_time": 0
+    },
+    "scores":[
+        {
+            "result": "AC",
+            "time": 100,
+            "owner": "team1",
+            "score": 100,
+            "task": 1
+        },
+        {
+            "result": "WA",
+            "time": 200,
+            "owner": "team2",
+            "score": 50,
+            "task": 3
+        },
+        {
+            "result": "WA",
+            "time": 300,
+            "owner": "team2",
+            "score": 100,
+            "task": 3
+        },
+        {
+            "result": "AC",
+            "time": 400,
+            "owner": "team2",
+            "score": 114514,
+            "task": 3
+        }
+    ],
+    "users":{
+        "team1":{
+            "username": "team01",
+            "nickname": "TEAM01"
+        },
+        "team2":{
+            "username": "team02",
+            "nickname": "TEAM02"
+        }
+    }
+}
