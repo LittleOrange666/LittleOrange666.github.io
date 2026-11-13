@@ -1,4 +1,4 @@
-var m=`// libc++ 沒有 bits/stdc++.h，這裡提供替代檔
+var g=`// libc++ 沒有 bits/stdc++.h，這裡提供替代檔
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -42,7 +42,7 @@ var m=`// libc++ 沒有 bits/stdc++.h，這裡提供替代檔
 #include <utility>
 #include <variant>
 #include <vector>
-`,g=`/*
+`,b=`/*
  * It is strictly recommended to include "testlib.h" before any other include
  * in your code. In this case testlib overrides compiler specific "random()".
  *
@@ -6412,4 +6412,4 @@ std::string format(const std::string fmt, ...) {
 #undef TESTLIB_INTERNAL_HAS_STD_FORMAT
 
 #endif
-`;const b="22.0.0-git20542-10",v=`https://cdn.jsdelivr.net/npm/@yowasp/clang@${b}/gen/`;let o=null;function f(){return o||(o=import(v+"bundle.js").catch(i=>{throw o=null,i})),o}const h={"testlib.h":g,bits:{"stdc++.h":m}};function T(i){const t=new Uint8Array(i.reduce((s,a)=>s+a.length,0));let e=0;for(const s of i)t.set(s,e),e+=s.length;return t}async function N({src:i,filename:t,compileFlags:e,linkFlags:s}){const{runClang:a}=await f(),c=new TextDecoder;let r="";const d=n=>{n&&(r+=c.decode(n,{stream:!0}))},p=n=>self.postMessage({type:"progress",done:n.doneLength,total:n.totalLength}),l=/^[\w.-]+\.(cpp|cc|cxx)$/.test(t)?t:"main.cpp",_=l.replace(/\.[^.]+$/,".o"),u=[];try{await a(["clang++",...e,"-I.","-c",l,"-o","-"],{[l]:i,...h},{stdout:n=>{n&&u.push(n.slice())},stderr:d,fetchProgress:p})}catch(n){if(n?.code===void 0&&!r)throw n;return{ok:!1,error:r.trim()||n.message}}try{return{ok:!0,wasm:(await a(["clang++",...s,_,"-o","a.wasm"],{[_]:T(u)},{stderr:d}))["a.wasm"],warnings:r.trim()}}catch(n){return{ok:!1,error:r.trim()||n.message}}}self.onmessage=async i=>{const t=i.data;if(t.type==="init")try{await f(),self.postMessage({type:"ready"})}catch(e){self.postMessage({type:"init-error",error:String(e?.message||e)})}else if(t.type==="compile"){let e;try{e=await N(t.req)}catch(s){e={ok:!1,error:`編譯器執行失敗：${s?.message||s}`,internal:!0}}self.postMessage({type:"result",id:t.id,result:e},e.wasm?[e.wasm.buffer]:[])}};
+`;let o=null,p=null,l=null;function _(){return o||(o=import(p+"bundle.js").catch(s=>{throw o=null,s})),o}function v(){return l||(l=(async()=>{const{runClang:s}=await _();let e=-1;await s(null,{},{fetchProgress:({doneLength:n,totalLength:t})=>{const r=t?Math.floor(n/t*100):0;r!==e&&(e=r,self.postMessage({type:"progress",done:n,total:t}))}})})().catch(s=>{throw l=null,s})),l}const h={"testlib.h":b,bits:{"stdc++.h":g}};function T(s){const e=new Uint8Array(s.reduce((t,r)=>t+r.length,0));let n=0;for(const t of s)e.set(t,n),n+=t.length;return e}async function N({src:s,filename:e,compileFlags:n,linkFlags:t}){const{runClang:r}=await _();await v(),self.postMessage({type:"compiling"});const m=new TextDecoder;let a="";const u=i=>{i&&(a+=m.decode(i,{stream:!0}))},d=/^[\w.-]+\.(cpp|cc|cxx)$/.test(e)?e:"main.cpp",f=d.replace(/\.[^.]+$/,".o"),c=[];try{await r(["clang++",...n,"-I.","-c",d,"-o","-"],{[d]:s,...h},{stdout:i=>{i&&c.push(i.slice())},stderr:u})}catch(i){if(i?.code===void 0&&!a)throw i;return{ok:!1,error:a.trim()||i.message}}try{return{ok:!0,wasm:(await r(["clang++",...t,f,"-o","a.wasm"],{[f]:T(c)},{stderr:u}))["a.wasm"],warnings:a.trim()}}catch(i){return{ok:!1,error:a.trim()||i.message}}}self.onmessage=async s=>{const e=s.data;if(e.type==="init"){p=e.clangBase;try{await _(),self.postMessage({type:"ready"})}catch(n){self.postMessage({type:"init-error",error:String(n?.message||n)})}}else if(e.type==="compile"){let n;try{n=await N(e.req)}catch(t){n={ok:!1,error:`編譯器執行失敗：${t?.message||t}`,internal:!0}}self.postMessage({type:"result",id:e.id,result:n},n.wasm?[n.wasm.buffer]:[])}};
