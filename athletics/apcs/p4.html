@@ -705,7 +705,7 @@ dsu<br>
 <pre><code><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">h</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">w</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">ans</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">ans</span><span class="p">):</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">ans</span><span class="p">:</span>
@@ -718,7 +718,7 @@ dsu<br>
             <span class="k">if</span> <span class="n">t</span><span class="o">&gt;=</span><span class="n">k</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span>
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="n">r</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">l</span>
     <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span>

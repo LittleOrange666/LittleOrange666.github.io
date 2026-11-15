@@ -37,7 +37,7 @@
 <p>Keras 是一個用 Python 編寫的高級神經網絡 API，它能夠以 TensorFlow, CNTK, 或者 Theano 作為後端運行。 Keras 的開發重點是支持快速的實驗。能夠以最少的時間把想法轉換為實驗結果，是做好研究的關鍵。</p>
 <h2 id="_1">基本使用</h2>
 <p>先import</p>
-<pre><code><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">layers</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span>
 </pre></div>
 </code></pre>
 <h3 id="_2">建立模型</h3>
@@ -301,17 +301,17 @@ Ex.</p>
 <p><details><summary>範例：y=A*X+b</p></summary>
 <pre><code><div class="highlight"><pre><span></span><span class="n">param_count</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 參數數量</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span><span class="p">,</span><span class="n">layers</span><span class="p">,</span><span class="n">models</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimizers</span><span class="p">,</span><span class="n">losses</span><span class="p">,</span><span class="n">metrics</span><span class="p">,</span><span class="n">layers</span><span class="p">,</span><span class="n">models</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># 隨機參數</span>
 <span class="n">random_a</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_count</span><span class="p">)]</span>
 <span class="n">random_b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># 生成資料</span>
-<span class="k">def</span> <span class="nf">createData</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">createData</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_count</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">random_a</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">count</span><span class="p">,),</span><span class="n">random_b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">random_a</span><span class="p">)</span>  <span class="c1"># y=A*X+b，但是加入了噪聲</span>
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span>
@@ -341,7 +341,7 @@ Ex.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># 儲存</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="n">t</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;keras_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_year</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_mon</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_mday</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_hour</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_min</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">tm_sec</span><span class="si">}</span><span class="s2">.h5&quot;</span>
 <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>

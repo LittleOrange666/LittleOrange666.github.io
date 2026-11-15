@@ -20,5 +20,10 @@ title: 目錄
 - [簡單代碼混淆](tool/confuse)
 - [B13內捲榜單](tool/involution)
 
+## 自製大工具
+- [河內塔](hanoi)
+- [出題工具](taskmaker)
+- [線上IDE](editor)
+
 ## Tampermonkey script
 - [全部](tampermonkey_script)

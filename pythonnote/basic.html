@@ -673,24 +673,24 @@ with語法也可以用於使中間的程式展現特定的行為<br>
 </code></pre>
 <p></details><br>
 <details><summary>Example: 列印時間</p></summary>
-<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
-<span class="k">class</span> <span class="nc">TimePrinter</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<pre><code><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="nn">traceback</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimePrinter</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO][</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span><span class="si">}</span><span class="s2">]: &quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kws</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PrintTime</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PrintTime</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span><span class="p">,</span><span class="n">TimePrinter</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span> <span class="o">=</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
             <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span> <span class="o">=</span> <span class="n">TimePrinter</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span>
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">exc_traceback</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">exc_traceback</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">__builtins__</span><span class="o">.</span><span class="n">print</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_print</span>
@@ -786,7 +786,7 @@ range不會直接產生數列，而是在要用到的時候才計算</p>
 <h2 id="_29">自訂函數(副程式)</h2>
 <p>自訂函數可以把重複用到的功能打包起來，方便使用<br>
 語法：</p>
-<pre><code><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">函數名</span><span class="p">(</span><span class="n">參數列表</span><span class="p">):</span>
     <span class="n">程式碼</span>
     <span class="k">return</span> <span class="n">回傳值</span> <span class="c1">#非必要 不一定要在最後一行</span>
 </pre></div>
@@ -858,7 +858,7 @@ Python中的推導式有4種，分別是</p>
 <h2 id="main">關於main</h2>
 <p>Python程式不需要包含在main函數裡就可執行<br>
 若是要長期維護的代碼會建議用如下語法：</p>
-<pre><code><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<pre><code><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="c1"># 主要程式碼</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
